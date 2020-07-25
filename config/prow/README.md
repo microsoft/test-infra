@@ -305,5 +305,5 @@ Follow the remaining steps over at Prow's getting started [page](https://github.
 ## Clean up
 ```
 az group delete --name ${RESOURCE_GROUP} --yes
-az group delete --name MC_${RESOURCE_GROUP}_oe-${AKS_CLUSTER}_${LOCATION} --yes
+az group delete --name MC_${RESOURCE_GROUP}_oe-${AKS_CLUSTER}_${LOCATION} --yesd
 ```

@@ -8,7 +8,6 @@ plugins:
   - goose
   - help
   - hold
-  - invalidcommitmsg
   - label
   - lifecycle
   - lgtm

@@ -51,7 +51,7 @@ kubectl create clusterrolebinding cluster-admin-binding-"${USER}" \
 
 kubectl create namespace test-pods
 
-openssl rand -hex 20 > $PWD/hmac
+#openssl rand -hex 20 > $PWD/hmac
 
 kubectl create secret generic hmac-token --from-file=$PWD/hmac
 kubectl create secret generic oauth-token --from-file=$PWD/oauth
@@ -85,6 +85,17 @@ kubectl apply -f test-infra/config/prow/cluster/crier_deployment.yaml
 # Apply config and plugins
 kubectl create configmap config --from-file=config.yaml=$PWD/test-infra/config/prow/config.yaml  --dry-run=client -o yaml | kubectl replace configmap config -f -
 kubectl create configmap plugins --from-file=$PWD/test-infra/config/prow/plugins.yaml --dry-run=client -o yaml   | kubectl replace configmap plugins -f -
+
+# Create config map
+kubectl create configmap job-config \
+--from-file=test-infra-periodics.yaml=$PWD/test-infra/config/jobs/test-infra/test-infra-periodics.yaml \
+--from-file=test-infra-postsubmits.yaml=$PWD/test-infra/config/jobs/test-infra/test-infra-postsubmits.yaml \
+--from-file=test-infra-presubmits.yaml=$PWD/test-infra/config/jobs/test-infra/test-infra-presubmits.yaml \
+--from-file=oeedger8r-cpp-presubmits.yaml=$PWD/test-infra/config/jobs/oeedger8r-cpp/oeedger8r-cpp-presubmits.yaml \
+--from-file=oeedger8r-cpp-periodics.yaml=$PWD/test-infra/config/jobs/oeedger8r-cpp/oeedger8r-cpp-periodics.yaml \
+--from-file=openenclave-periodics.yaml=$PWD/test-infra/config/jobs/openenclave-sdk/openenclave-periodics.yaml \
+--from-file=openenclave-presubmits.yaml=$PWD/test-infra/config/jobs/openenclave-sdk/openenclave-presubmits.yaml \
+--dry-run=client -o yaml | kubectl replace configmap job-config -f -
 
 sleep 1m
 

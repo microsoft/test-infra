@@ -33,6 +33,7 @@ spec:
         - --hook-url=http://hook:8888/plugin-help
         - --github-token-path=/etc/github/oauth
         - --plugin-config=/etc/plugins/plugins.yaml
+        - --job-config-path=/etc/job-config
         ports:
           - name: http
             containerPort: 8080
@@ -45,6 +46,9 @@ spec:
           readOnly: true
         - name: plugins
           mountPath: /etc/plugins
+          readOnly: true
+        - name: job-config
+          mountPath: /etc/job-config
           readOnly: true
         livenessProbe:
           httpGet:
@@ -69,3 +73,6 @@ spec:
       - name: plugins
         configMap:
           name: plugins
+      - name: job-config
+        configMap:
+          name: job-config

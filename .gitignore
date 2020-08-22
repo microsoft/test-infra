@@ -39,3 +39,5 @@ Thumbs.db
 # Ignore notes
 hmac
 oauth
+secret
+cookie.txt

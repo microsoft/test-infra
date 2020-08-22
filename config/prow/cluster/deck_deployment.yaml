@@ -34,6 +34,8 @@ spec:
         - --github-token-path=/etc/github/oauth
         - --plugin-config=/etc/plugins/plugins.yaml
         - --job-config-path=/etc/job-config
+        - --github-oauth-config-file=/etc/githuboauth/secret
+        - --oauth-url=/github-login
         ports:
           - name: http
             containerPort: 8080
@@ -49,6 +51,12 @@ spec:
           readOnly: true
         - name: job-config
           mountPath: /etc/job-config
+          readOnly: true
+        - name: oauth-config
+          mountPath: /etc/githuboauth
+          readOnly: true
+        - name: cookie-secret
+          mountPath: /etc/cookie
           readOnly: true
         livenessProbe:
           httpGet:
@@ -76,3 +84,9 @@ spec:
       - name: job-config
         configMap:
           name: job-config
+      - name: oauth-config
+        secret:
+            secretName: github-oauth-config
+      - name: cookie-secret
+        secret:
+            secretName: cookie

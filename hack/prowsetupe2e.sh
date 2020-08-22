@@ -55,46 +55,47 @@ openssl rand -hex 20 > $PWD/hmac
 
 kubectl create secret generic hmac-token --from-file=$PWD/hmac
 kubectl create secret generic oauth-token --from-file=$PWD/oauth
-kubectl create secret generic jenkins-token --from-file=$PWD/hmac
+kubectl create secret generic cookie --from-file=secret=cookie.txt
+kubectl create secret generic github-oauth-config --from-file=secret=$PWD/secret
 
 kubectl -n test-pods create secret generic gcs-credentials --from-file=service-account.json
 
-kubectl apply -f test-infra/config/prow/cluster/configs.yaml
-kubectl apply -f test-infra/config/prow/cluster/hook_deployment.yaml
-kubectl apply -f test-infra/config/prow/cluster/hook_service.yaml
-kubectl apply -f test-infra/config/prow/cluster/plank_deployment.yaml
-kubectl apply -f test-infra/config/prow/cluster/sinker_deployment.yaml
-kubectl apply -f test-infra/config/prow/cluster/deck_deployment.yaml
-kubectl apply -f test-infra/config/prow/cluster/deck_service.yaml
-kubectl apply -f test-infra/config/prow/cluster/horolgium_deployment.yaml
-kubectl apply -f test-infra/config/prow/cluster/tide_deployment.yaml
-kubectl apply -f test-infra/config/prow/cluster/tide_service.yaml
-kubectl apply -f test-infra/config/prow/cluster/ing_ingress.yaml
-kubectl apply -f test-infra/config/prow/cluster/statusreconciler_deployment.yaml
-kubectl apply -f test-infra/config/prow/cluster/test_pods.yaml
-kubectl apply -f test-infra/config/prow/cluster/deck_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/horolgium_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/plank_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/sinker_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/hook_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/tide_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/statusreconciler_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/crier_rbac.yaml
-kubectl apply -f test-infra/config/prow/cluster/crier_deployment.yaml
+kubectl apply -f config/prow/cluster/configs.yaml
+kubectl apply -f config/prow/cluster/hook_deployment.yaml
+kubectl apply -f config/prow/cluster/hook_service.yaml
+kubectl apply -f config/prow/cluster/plank_deployment.yaml
+kubectl apply -f config/prow/cluster/sinker_deployment.yaml
+kubectl apply -f config/prow/cluster/deck_deployment.yaml
+kubectl apply -f config/prow/cluster/deck_service.yaml
+kubectl apply -f config/prow/cluster/horolgium_deployment.yaml
+kubectl apply -f config/prow/cluster/tide_deployment.yaml
+kubectl apply -f config/prow/cluster/tide_service.yaml
+kubectl apply -f config/prow/cluster/ing_ingress.yaml
+kubectl apply -f config/prow/cluster/statusreconciler_deployment.yaml
+kubectl apply -f config/prow/cluster/test_pods.yaml
+kubectl apply -f config/prow/cluster/deck_rbac.yaml
+kubectl apply -f config/prow/cluster/horolgium_rbac.yaml
+kubectl apply -f config/prow/cluster/plank_rbac.yaml
+kubectl apply -f config/prow/cluster/sinker_rbac.yaml
+kubectl apply -f config/prow/cluster/hook_rbac.yaml
+kubectl apply -f config/prow/cluster/tide_rbac.yaml
+kubectl apply -f config/prow/cluster/statusreconciler_rbac.yaml
+kubectl apply -f config/prow/cluster/crier_rbac.yaml
+kubectl apply -f config/prow/cluster/crier_deployment.yaml
 
 # Apply config and plugins
-kubectl create configmap config --from-file=config.yaml=$PWD/test-infra/config/prow/config.yaml  --dry-run=client -o yaml | kubectl replace configmap config -f -
-kubectl create configmap plugins --from-file=$PWD/test-infra/config/prow/plugins.yaml --dry-run=client -o yaml   | kubectl replace configmap plugins -f -
+kubectl create configmap config --from-file=config.yaml=$PWD/config/prow/config.yaml  --dry-run=client -o yaml | kubectl replace configmap config -f -
+kubectl create configmap plugins --from-file=$PWD/config/prow/plugins.yaml --dry-run=client -o yaml   | kubectl replace configmap plugins -f -
 
 # Create job config map
 kubectl create configmap job-config \
---from-file=test-infra-periodics.yaml=$PWD/test-infra/config/jobs/test-infra/test-infra-periodics.yaml \
---from-file=test-infra-postsubmits.yaml=$PWD/test-infra/config/jobs/test-infra/test-infra-postsubmits.yaml \
---from-file=test-infra-presubmits.yaml=$PWD/test-infra/config/jobs/test-infra/test-infra-presubmits.yaml \
---from-file=oeedger8r-cpp-presubmits.yaml=$PWD/test-infra/config/jobs/oeedger8r-cpp/oeedger8r-cpp-presubmits.yaml \
---from-file=oeedger8r-cpp-periodics.yaml=$PWD/test-infra/config/jobs/oeedger8r-cpp/oeedger8r-cpp-periodics.yaml \
---from-file=openenclave-periodics.yaml=$PWD/test-infra/config/jobs/openenclave-sdk/openenclave-periodics.yaml \
---from-file=openenclave-presubmits.yaml=$PWD/test-infra/config/jobs/openenclave-sdk/openenclave-presubmits.yaml \
+--from-file=test-infra-periodics.yaml=$PWD/config/jobs/test-infra-periodics.yaml \
+--from-file=test-infra-postsubmits.yaml=$PWD/config/jobs/test-infra-postsubmits.yaml \
+--from-file=test-infra-presubmits.yaml=$PWD/config/jobs/test-infra-presubmits.yaml \
+--from-file=oeedger8r-cpp-presubmits.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-presubmits.yaml \
+--from-file=oeedger8r-cpp-periodics.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-periodics.yaml \
+--from-file=openenclave-periodics.yaml=$PWD/config/jobs/openenclave-sdk/openenclave-periodics.yaml \
+--from-file=openenclave-presubmits.yaml=$PWD/config/jobs/openenclave-sdk/openenclave-presubmits.yaml \
 --dry-run=client -o yaml | kubectl replace configmap job-config -f -
 
 sleep 1m

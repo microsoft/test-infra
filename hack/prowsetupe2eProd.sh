@@ -1,6 +1,6 @@
 export LOCATION="uksouth"
-export RESOURCE_GROUP="OpenEnclaveCICDDev"
-export AKS_CLUSTER_NAME="oe-prow-dev"
+export RESOURCE_GROUP="OpenEnclaveCICDProd"
+export AKS_CLUSTER_NAME="oe-prow-prod"
 export NODE_SIZE="Standard_DC8_v2"
 export MIN_NODE_COUNT="3"
 export MAX_NODE_COUNT="10"
@@ -44,6 +44,45 @@ helm install nginx-ingress stable/nginx-ingress \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set rbac.create=true
+
+# Get External IP
+kubectl get service -l app=nginx-ingress --namespace ingress-basic
+
+# Public IP address of your ingress controller
+IP="EXTERNAL_IP ABOVE"
+
+# Name to associate with public IP address
+DNSNAME="oe-prow-status"
+
+# Get the resource-id of the public ip
+PUBLICIPID=$(az network public-ip list --query "[?ipAddress!=null]|[?contains(ipAddress, '$IP')].[id]" --output tsv)
+
+# Update public ip address with DNS name
+az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
+
+# Display the FQDN
+az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
+
+# Install certmanager controller
+
+# Label the ingress-basic namespace to disable resource validation
+kubectl label namespace ingress-basic cert-manager.io/disable-validation=true
+
+# Add the Jetstack Helm repository
+helm repo add jetstack https://charts.jetstack.io
+
+# Update your local Helm chart repository cache
+helm repo update
+
+# Install the cert-manager Helm chart
+helm install \
+  cert-manager \
+  --namespace ingress-basic \
+  --version v0.16.1 \
+  --set installCRDs=true \
+  --set nodeSelector."beta\.kubernetes\.io/os"=linux \
+  jetstack/cert-manager
+
 
 # Create Cluster Bindings
 kubectl create clusterrolebinding cluster-admin-binding-"${USER}" \

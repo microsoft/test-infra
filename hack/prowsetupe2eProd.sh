@@ -82,6 +82,8 @@ kubectl apply -f config/prow/cluster/tide_rbac.yaml
 kubectl apply -f config/prow/cluster/statusreconciler_rbac.yaml
 kubectl apply -f config/prow/cluster/crier_rbac.yaml
 kubectl apply -f config/prow/cluster/crier_deployment.yaml
+kubectl apply -f config/prow/cluster/cluster-issuer.yaml
+kubectl apply -f config/prow/cluster/tls_prow_ingress.yaml
 
 # Apply config and plugins
 kubectl create configmap config --from-file=config.yaml=$PWD/config/prow/config.yaml  --dry-run=client -o yaml | kubectl replace configmap config -f -

@@ -1,30 +1,60 @@
 periodics:
-  - name: ci-openenclave-oeedger8r-cmake-1804
+  - name: ci-openenclave-oeedger8r-cmake-1804-debug
     extra_refs:
     - org: openenclave
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 3h
+    interval: 1m
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest
           command:
             - sh
             - "-c"
-            - "/hack/cmake-build.sh"
+            - "/hack/cmake-build.sh -b Debug"
 
-  - name: ci-openenclave-oeedger8r-cmake-1604
+  - name: ci-openenclave-oeedger8r-cmake-1604-debug
     extra_refs:
     - org: openenclave
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 3h
+    interval: 1m
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
           command:
             - sh
             - "-c"
-            - "/hack/cmake-build.sh"
+            - "/hack/cmake-build.sh -b Debug"
+
+  - name: ci-openenclave-oeedger8r-cmake-1804-release
+    extra_refs:
+    - org: openenclave
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 1m
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - "-c"
+            - "/hack/cmake-build.sh -b Release"
+
+  - name: ci-openenclave-oeedger8r-cmake-1604-release
+    extra_refs:
+    - org: openenclave
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 1m
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - "-c"
+            - "/hack/cmake-build.sh -b Release"

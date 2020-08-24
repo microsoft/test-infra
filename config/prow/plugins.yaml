@@ -22,6 +22,29 @@ plugins:
   - welcome
   - wip
 
+  openenclave/oeedger8r-cpp:
+  - approve
+  - assign
+  - blunderbuss
+  - config-updater
+  - dco
+  - goose
+  - help
+  - hold
+  - invalidcommitmsg
+  - label
+  - lifecycle
+  - lgtm
+  - owners-label
+  - override
+  - retitle
+  - size
+  - shrug
+  - trigger
+  - verify-owners
+  - welcome
+  - wip
+
 # Lower bounds in number of lines changed; XS is assumed to be zero.
 size:
   s:   10

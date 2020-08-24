@@ -34,6 +34,7 @@ spec:
         - --github-token-path=/etc/github/oauth
         - --plugin-config=/etc/plugins/plugins.yaml
         - --job-config-path=/etc/job-config
+        - --allow-insecure
         ports:
           - name: http
             containerPort: 8080

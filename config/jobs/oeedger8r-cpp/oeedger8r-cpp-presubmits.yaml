@@ -1,5 +1,5 @@
 presubmits:
-  openenclave-ci/oeedger8r-cpp:
+  openenclave/oeedger8r-cpp:
   - name: pr-openenclave-oeedger8r-cmake-1804
     branches:
     - master

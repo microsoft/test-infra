@@ -5,6 +5,7 @@ export NODE_SIZE="Standard_DC8_v2"
 export MIN_NODE_COUNT="3"
 export MAX_NODE_COUNT="10"
 export PATH_KEY="~/.ssh/id_rsa.pub"
+export DNS_LABEL="oe-prow-status"
 
 # Delete Any Existing Resources
 az group delete --name ${RESOURCE_GROUP} --yes
@@ -33,31 +34,43 @@ az aks create --resource-group ${RESOURCE_GROUP} \
 # Get AKS Credentials
 az aks get-credentials --resource-group ${RESOURCE_GROUP} --name ${AKS_CLUSTER_NAME} --overwrite-existing
 
-# Create Ingress Rules
+# Create a namespace for your ingress resources
 kubectl create namespace ingress-basic
-helm repo add stable https://kubernetes-charts.storage.googleapis.com
 
-helm install nginx-ingress stable/nginx-ingress \
-    --set controller.replicaCount=2 \
+# Add the official stable repo
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
+# Get AKS Resource Group Name
+AKS_RESOURCE_GROUP=$(az aks show --resource-group ${RESOURCE_GROUP} --name ${AKS_CLUSTER_NAME} --query nodeResourceGroup -o tsv)
+echo ${AKS_RESOURCE_GROUP}
+
+# Assign Static IP
+STATIC_IP=$(az network public-ip create --resource-group ${AKS_RESOURCE_GROUP} --name myAKSPublicIP --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv --dns-name ${DNS_LABEL})
+echo ${STATIC_IP}
+
+#Get FQDN
+az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name=='myAKSPublicIP'].[dnsSettings.fqdn]" -o tsv
+
+# Use Helm to deploy an NGINX ingress controller
+helm install nginx stable/nginx-ingress \
     --namespace ingress-basic \
+    --set controller.replicaCount=2 \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.service.loadBalancerIP="${STATIC_IP}" \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set rbac.create=true
-
-# Get External IP
-kubectl get service -l app=nginx-ingress --namespace ingress-basic
 
 # Create Cluster Bindings
 kubectl create clusterrolebinding cluster-admin-binding-"${USER}" \
   --clusterrole=cluster-admin --user="${USER}"
 
+# Create test pods namespace
 kubectl create namespace test-pods
 
+# Credentials
 openssl rand -hex 20 > $PWD/hmac
-
 kubectl create secret generic hmac-token --from-file=$PWD/hmac
 kubectl create secret generic oauth-token --from-file=$PWD/oauth
-
 kubectl -n test-pods create secret generic gcs-credentials --from-file=service-account.json
 
 kubectl apply -f config/prow/cluster/configs.yaml
@@ -82,8 +95,6 @@ kubectl apply -f config/prow/cluster/tide_rbac.yaml
 kubectl apply -f config/prow/cluster/statusreconciler_rbac.yaml
 kubectl apply -f config/prow/cluster/crier_rbac.yaml
 kubectl apply -f config/prow/cluster/crier_deployment.yaml
-kubectl apply -f config/prow/cluster/cluster-issuer.yaml
-kubectl apply -f config/prow/cluster/tls_prow_ingress.yaml
 
 # Apply config and plugins
 kubectl create configmap config --from-file=config.yaml=$PWD/config/prow/config.yaml  --dry-run=client -o yaml | kubectl replace configmap config -f -
@@ -100,45 +111,17 @@ kubectl create configmap job-config \
 --from-file=openenclave-presubmits.yaml=$PWD/config/jobs/openenclave-sdk/openenclave-presubmits.yaml \
 --dry-run=client -o yaml | kubectl replace configmap job-config -f -
 
-exit
+# Ending remarks
+az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name=='myAKSPublicIP'].[dnsSettings.fqdn]" -o tsv
 
+# Generate TLS cert
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -out aks-ingress-tls.crt \
+    -keyout aks-ingress-tls.key \
+    -subj "/CN=${DNS_LABEL}.uksouth.cloudapp.azure.com/O=aks-ingress-tls"
 
-# Public IP address of your ingress controller
-IP="EXTERNAL_IP ABOVE"
-
-# Name to associate with public IP address
-DNSNAME="oe-prow-status"
-
-# Get the resource-id of the public ip
-PUBLICIPID=$(az network public-ip list --query "[?ipAddress!=null]|[?contains(ipAddress, '$IP')].[id]" --output tsv)
-
-# Update public ip address with DNS name
-az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
-
-# Display the FQDN
-az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
-
-# Install certmanager controller
-# Label the ingress-basic namespace to disable resource validation
-kubectl label namespace ingress-basic cert-manager.io/disable-validation=true
-
-# Add the Jetstack Helm repository
-helm repo add jetstack https://charts.jetstack.io
-
-# Update your local Helm chart repository cache
-helm repo update
-
-# Install the cert-manager Helm chart
-helm install \
-  cert-manager \
-  --namespace ingress-basic \
-  --version v0.16.1 \
-  --set installCRDs=true \
-  --set nodeSelector."beta\.kubernetes\.io/os"=linux \
-  jetstack/cert-manager
-
-
-kubectl get service -l app=nginx-ingress -n ingress-basic
-
-# Display the FQDN
-az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
+# Create TLS secret
+kubectl create secret tls prow-tls \
+    --namespace ingress-basic \
+    --key aks-ingress-tls.key \
+    --cert aks-ingress-tls.crt

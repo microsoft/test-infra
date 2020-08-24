@@ -48,3 +48,18 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never
+  - name: pr-openenclave-test-infra-ping
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/test-infra:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - "echo ping"

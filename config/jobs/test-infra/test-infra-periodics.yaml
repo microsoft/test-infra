@@ -1,19 +1,4 @@
 periodics:
-  - name: ci-openenclave-test-infra-validate-prow-jobs
-    extra_refs:
-    - org: BRMcLaren
-      repo: test-infra
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/test-infra:latest
-          command:
-            - sh
-            - "-c"
-            - "./hack/merge-prow-jobs.sh && ./hack/validate-prow-jobs.sh"
-
   - name: ci-openenclave-test-infra-validate-build-image-ubuntu-1604
     extra_refs:
     - org: BRMcLaren

@@ -186,7 +186,7 @@
 
 8. Clone the openenclave-infra-config repository and `cd` to it:
     ```
-    git clone https://github.com/BRMcLaren/test-infra
+    git clone https://github.com/openenclave-ci/test-infra
     cd test-infra/config/jenkins/master
     ```
 

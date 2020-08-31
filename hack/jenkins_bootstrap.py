@@ -1,129 +1,170 @@
 #!/usr/bin/env python
+"""jenkins-trigger.py
 
-"""Bootstraps starting a test job.
+Usage:
+    jenkins-trigger.py --job <jobname> --jenkins-user <username> --jenkins-password <password> [--url <url>] [--sleep <sleep_time>] [--encoding <type>] [--parameters <data>] [--wait-timer <time>] [--debug]
+    jenkins-trigger.py -h
 
-The following should already be done:
-  git checkout http://k8s.io/test-infra
-  cd $WORKSPACE
-  test-infra/jenkins/bootstrap.py <--repo=R || --bare> <--job=J> <--pull=P || --branch=B>
+Examples:
+    jenkins-trigger.py  --job deploy_my_app -e text -u https://jenkins.example.com:8080 -p param1=1,param2=develop
 
-The bootstrapper now does the following:
-  # Note start time
-  # check out repoes defined in --repo
-  # note job started
-  # call runner defined in $JOB.json
-  # upload artifacts (this will change later)
-  # upload build-log.txt
-  # note job ended
-
-The contract with the runner is as follows:
-  * Runner must exit non-zero if job fails for any reason.
+Options:
+  -j, --job <jobname>               Job name.
+  --jenkins-user <username>         Jenkins username.
+  --jenkins-password <password>     Jenkins Password.
+  -u, --url <url>                   Jenkins URL [default: http://localhost:8080]
+  -s, --sleep <sleep_time>          Sleep time between polling requests [default: 2]
+  -w, --wait-timer <time>           Wait time in queue [default: 100]
+  -e, --encoding <type>             Encoding type supports text or html [default: html]
+  -p, --parameters <data>           Comma separated job parameters i.e. a=1,b=2
+  -d, --debug                       Print debug info
+  -h, --help                        Show this screen and exit.
 """
 
-
-import argparse
-import contextlib
-import json
-import logging
-import os
-import pipes
-import random
-import re
-import select
-import signal
-import socket
-import subprocess
-import sys
-import tempfile
-import time
-import urllib2
 import requests
+import json
+from docopt import docopt
+from time import sleep
 
 
-def build_start(args):
-    logging.warning(
-        '**************************************************************************\n'
-        'Jenkins job starting!\n'
-        '**************************************************************************'
-    )
 
-    jenkins_job = args.job
-    jenkins_url=args.jenkins_url
+class Trigger():
+    def __init__(self, arguments):
+        self.arguments = arguments
+        self.debug = arguments['--debug'] 
+        if self.debug:
+            print "argument = ", arguments
+        self.url = arguments['--url']
+        self.job = arguments['--job']
+        self.user = arguments['--jenkins-user']
+        self.password = arguments['--jenkins-password']
+        #self.token = arguments['--jenkins-token']
+        self.timer = int(arguments['--wait-timer'])
+        self.sleep = int(arguments['--sleep'])
+        self.encoding = arguments['--encoding']
+        self.debug = arguments['--debug']
+        if self.encoding.lower() in ["html", "text"]:
+            self.encoding = self.encoding.title()
+        else:
+            print " '%s' is not a valid encoding only support 'text', 'html'" % self.encoding 
+            exit(1)
+        if arguments['--parameters']:
+            try:
+                self.parameters = dict(u.split("=") for u in arguments['--parameters'].split(","))
+            except ValueError:
+                print "Your parameters should be in key=value format separated by ; for multi value i.e. x=1,b=2"
+                exit(1)
+        else:
+            self.parameters = False
 
-    jenkins_user=args.jenkins_user
-    jenkins_password=args.jenkins_password
-    jenkins_token=args.jenkins_token
+    def trigger_build(self):
 
-    logging.warning(
-        '**************************************************************************\n'
-        'Getting Crumb for Jenkins job!\n'
-        '**************************************************************************'
-    )
+        crumb = requests.get(self.url + '/crumbIssuer/api/json',
+        auth=(self.user, self.password)).json()
 
-    crumb = requests.get('https://' + jenkins_user + ':' + jenkins_password + '@' + jenkins_url + '/crumbIssuer/api/json').json()
-
-    print crumb
+        # Do a build request
+        if self.parameters:
+            build_url = self.url + "/job/" + self.job + "/buildWithParameters"
+            print "Triggering a build via post @ ", build_url
+            build_request = requests.post(build_url,data=self.parameters,
+            auth=(self.user, self.password), 
+            headers={"Jenkins-Crumb": crumb.get('crumb')})
+        else:
+            build_url = self.url + "/job/" + self.job + "/build"
+            print "Triggering a build via get @ ", build_url
+            build_request = requests.get(build_url,
+            auth=(self.user, self.password), 
+            headers={"Jenkins-Crumb": crumb.get('crumb')})
+        
+        if build_request.status_code == 201:
+            queue_url =  build_request.headers['location'] +  "/api/json"
+            print "Build is queued @ ", queue_url
+        else:
+            print "Your build somehow failed"
+            print build_request.status_code
+            print build_request.text
+            exit(1)
+        return queue_url
     
-    resp = requests.post('https://' + jenkins_user + ':' + jenkins_password + '@' + jenkins_url + '/job/' + jenkins_job + '/buildWithParameters?token=' + jenkins_token, 
-                   auth=(jenkins_user,jenkins_password), 
-                   headers={"Jenkins-Crumb":'ed0a56919acd170eff92a28fa7306f1331b8f3ddea30fd95515e3f04c7ae9a74'})
-    print(jenkins_job)
-    print(jenkins_url)
-    print(jenkins_user)
-    print(jenkins_password)
-    print(jenkins_token)
+    def waiting_for_job_to_start(self, queue_url):
+        # Poll till we get job number
+        print ""
+        print "Starting polling for our job to start"
+        timer = self.timer
 
+        waiting_for_job = True 
+        while waiting_for_job:
+            queue_request = requests.get(queue_url)
+            if queue_request.json().get("why") != None:
+                print " . Waiting for job to start because :", queue_request.json().get("why")
+                timer -= 1
+                sleep(self.sleep)
+            else:
+                waiting_for_job = False
+                job_number = queue_request.json().get("executable").get("number")  
+                print " Job is being build number: ", job_number  
 
+            if timer == 0:
+                print " time out waiting for job to start"
+                exit(1)
+        # Return the job numner of the working
+        return job_number
+    
+    def console_output(self, job_number):
+        # Get job console till job stops
+        job_url = self.url + "/job/" + self.job + "/" + str(job_number) + "/logText/progressive" + self.encoding
+        blue_ocean_url = self.url + "/blue/organizations/jenkins/" + self.job + "/detail/" + self.job + str(job_number) + '/pipeline'
+        print " View blue ocean @ ", blue_ocean_url
+        print " Getting Console output @ ", job_url
+        start_at = 0
+        stream_open = True
+        check_job_status = 0
 
-def bootstrap(args):
+        crumb = requests.get(self.url + '/crumbIssuer/api/json',
+        auth=(self.user, self.password)).json()
 
-    """Clone repo at pull/branch into root and run job script."""
-    logging.warning(
-        '**************************************************************************\n'
-        'bootstrap.py is WIP, please contact the repo admins if you see anything that does not compute!\n'
-        '**************************************************************************'
-    )
+        console_requests = requests.session()
+        while stream_open:
+            console_response = console_requests.post(job_url, data={'start': start_at },
+            auth=(self.user, self.password), 
+            headers={"Jenkins-Crumb": crumb.get('crumb')})
+            content_length = int(console_response.headers.get("Content-Length",-1))
 
-    jenkins_job = args.job
-    jenkins_url=args.jenkins_url
+            if console_response.status_code != 200:
+                print " Oppps we have an issue ... "
+                print console_response.content
+                print console_response.headers
+                exit(1)
 
-    jenkins_user=args.jenkins_user
-    jenkins_password=args.jenkins_password
-    jenkins_token=args.jenkins_token
+            if content_length == 0:
+                sleep(self.sleep)
+                check_job_status +=1
+            else:
+                check_job_status = 0
+                # Print to screen console
+                print console_response.content
+                sleep(self.sleep)
+                start_at = int(console_response.headers.get("X-Text-Size"))
 
-    print(jenkins_job)
-    print(jenkins_url)
-    print(jenkins_user)
-    print(jenkins_password)
-    print(jenkins_token)
-
-    started = time.time()
-    print(started)
-
-    build = build_start(ARGS)
-
-def parse_args(arguments=None):
-    """Parse arguments or sys.argv[1:]."""
-    if arguments is None:
-        arguments = sys.argv[1:]
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('--job', required=True, help='Name of the job to run')
-    parser.add_argument('--jenkins-url', required=True, help='jenkins master url')
-    parser.add_argument('--jenkins-user', required=True, help='jenkins username')
-    parser.add_argument('--jenkins-password', required=True, help='jenkins password')
-    parser.add_argument('--jenkins-token', required=True, help='jenkins build token')
-
-    extra_job_args = []
-    if '--' in arguments:
-        index = arguments.index('--')
-        arguments, extra_job_args = arguments[:index], arguments[index+1:]
-    args = parser.parse_args(arguments)
-    setattr(args, 'extra_job_args', extra_job_args)
-    return args
-
+            # No content for a while lets check if job is still running
+            if check_job_status > 1:
+                job_status_url = self.url + "/job/" + self.job + "/" + str(job_number) + "/api/json"
+                job_requests = requests.get(job_status_url)
+                job_bulding= job_requests.json().get("building")
+                if not job_bulding:
+                    # We are done
+                    print "stream ended"
+                    stream_open = False
+                else:
+                    # Job is still running
+                    check_job_status = 0
+    
+    def main(self):
+        queue_url = self.trigger_build()
+        job_number = self.waiting_for_job_to_start(queue_url)
+        self.console_output(job_number)
 
 if __name__ == '__main__':
-    ARGS = parse_args()
-    bootstrap(ARGS)
-
+    arguments = docopt(__doc__)
+    myrigger = Trigger(arguments)
+    myrigger.main()

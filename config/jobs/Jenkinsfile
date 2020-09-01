@@ -55,13 +55,6 @@ pipeline {
                     stage('Pre-Build') {
                         steps {
                             checkout scm
-                            sh  """
-                            git config --global user.email "oeciteam@example.com"
-                            git config --global user.name "OE CI Bot"
-                            git fetch origin pull/3/head:PR
-                            git checkout PR
-                            git rebase origin/master
-                            """
                         }
                     }
                     stage('Build') {

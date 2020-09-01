@@ -58,7 +58,7 @@ pipeline {
                             sh  """
                             git config --global user.email "oeciteam@example.com"
                             git config --global user.name "OE CI Bot"
-                            git fetch origin pull/2/head:PR
+                            git fetch origin pull/3/head:PR
                             git checkout PR
                             git rebase origin/master
                             """

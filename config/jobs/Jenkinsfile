@@ -1,27 +1,80 @@
 pipeline {
-    agent any
-
+    agent none
     stages {
+        stage('BuildAndTest') {
+            matrix {
+                agent any
+                axes {
+                    axis {
+                        name 'PLATFORM'
+                        values 'linux', 'windows', 'mac'
+                    }
+                    axis {
+                        name 'OS'
+                        values '1604', '1804', '8.1', '2019', '2016'
+                    }
 
-        stage('Pre-build') {
-            steps{
-                checkout scm
-                git rebase master
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                    axis {
+                        name 'BuildType'
+                        values 'Release', 'RelWithDebInfo', 'Debug'
+                    }
+                }
+                excludes {
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            values 'linux'
+                        }
+                        axis {
+                            name 'OS'
+                            values '2019', '2016'
+                        }
+                    }
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            values 'windows'
+                        }
+                        axis {
+                            name 'OS'
+                            values '1604', '1804', '8.1'
+                        }
+                    }
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            notValues 'windows'
+                        }
+                        axis {
+                            name 'OS'
+                            values 'edge'
+                        }
+                    }
+                }
+                stages {
+                    stage('Pre-Build') {
+                        steps {
+                            checkout scm
+                            sh  """
+                            git config --global user.email "oeciteam@example.com"
+                            git config --global user.name "OE CI Bot"
+                            git fetch origin pull/1/head:PR
+                            git checkout PR
+                            git rebase origin/master
+                            """
+                        }
+                    }
+                    stage('Build') {
+                        steps {
+                            echo "Do Build for ${PLATFORM} - ${OS} - ${BuildType}"
+                        }
+                    }
+                    stage('Test') {
+                        steps {
+                            echo "Do Test for ${PLATFORM} - ${OS} - ${BuildType}"
+                        }
+                    }
+                }
             }
         }
     }

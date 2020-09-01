@@ -15,13 +15,8 @@ pipeline {
                     }
 
                     axis {
-                        name 'Build-Type'
+                        name 'BuildType'
                         values 'Release', 'RelWithDebInfo', 'Debug'
-                    }
-
-                    axis {
-                        name 'Sim'
-                        values 'Simulation', 'Non-Simulation'
                     }
                 }
                 excludes {
@@ -54,12 +49,12 @@ pipeline {
                     }
                     stage('Build') {
                         steps {
-                            echo "Do Build for ${PLATFORM} - ${OS} - ${Build-Type} - ${Sim}"
+                            echo "Do Build for ${PLATFORM} - ${OS} - ${BuildType}"
                         }
                     }
                     stage('Test') {
                         steps {
-                            echo "Do Test for ${PLATFORM} - ${OS} - ${Build-Type} - ${Sim}"
+                            echo "Do Test for ${PLATFORM} - ${OS} - ${BuildType}"
                         }
                     }
                 }

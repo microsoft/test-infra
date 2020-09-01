@@ -6,6 +6,7 @@ pipeline {
         stage('Pre-build') {
             steps{
                 checkout scm
+                git rebase master
             }
         }
         stage('Build') {

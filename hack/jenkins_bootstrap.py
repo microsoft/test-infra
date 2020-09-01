@@ -113,7 +113,7 @@ class Trigger():
     def console_output(self, job_number):
         # Get job console till job stops
         job_url = self.url + "/job/" + self.job + "/" + str(job_number) + "/logText/progressive" + self.encoding
-        blue_ocean_url = self.url + "/blue/organizations/jenkins/" + self.job + "/detail/" + self.job + str(job_number) + '/pipeline'
+        blue_ocean_url = self.url + "/blue/organizations/jenkins/" + self.job + "/detail/" + self.job + "/" + str(job_number) + '/pipeline'
         print " View blue ocean @ ", blue_ocean_url
         print " Getting Console output @ ", job_url
         start_at = 0

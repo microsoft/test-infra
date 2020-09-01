@@ -27,7 +27,6 @@ from docopt import docopt
 from time import sleep
 
 
-
 class Trigger():
     def __init__(self, arguments):
         self.arguments = arguments
@@ -38,7 +37,6 @@ class Trigger():
         self.job = arguments['--job']
         self.user = arguments['--jenkins-user']
         self.password = arguments['--jenkins-password']
-        #self.token = arguments['--jenkins-token']
         self.timer = int(arguments['--wait-timer'])
         self.sleep = int(arguments['--sleep'])
         self.encoding = arguments['--encoding']
@@ -60,24 +58,24 @@ class Trigger():
     def trigger_build(self):
 
         crumb = requests.get(self.url + '/crumbIssuer/api/json',
-        auth=(self.user, self.password)).json()
+                             auth=(self.user, self.password)).json()
 
         # Do a build request
         if self.parameters:
             build_url = self.url + "/job/" + self.job + "/buildWithParameters"
             print "Triggering a build via post @ ", build_url
-            build_request = requests.post(build_url,data=self.parameters,
-            auth=(self.user, self.password), 
-            headers={"Jenkins-Crumb": crumb.get('crumb')})
+            build_request = requests.post(build_url, data=self.parameters,
+                                          auth=(self.user, self.password),
+                                          headers={"Jenkins-Crumb": crumb.get('crumb')})
         else:
             build_url = self.url + "/job/" + self.job + "/build"
             print "Triggering a build via get @ ", build_url
             build_request = requests.get(build_url,
-            auth=(self.user, self.password), 
-            headers={"Jenkins-Crumb": crumb.get('crumb')})
-        
+                                         auth=(self.user, self.password),
+                                         headers={"Jenkins-Crumb": crumb.get('crumb')})
+
         if build_request.status_code == 201:
-            queue_url =  build_request.headers['location'] +  "/api/json"
+            queue_url = build_request.headers['location'] + "/api/json"
             print "Build is queued @ ", queue_url
         else:
             print "Your build somehow failed"
@@ -85,14 +83,14 @@ class Trigger():
             print build_request.text
             exit(1)
         return queue_url
-    
+
     def waiting_for_job_to_start(self, queue_url):
         # Poll till we get job number
         print ""
         print "Starting polling for our job to start"
         timer = self.timer
 
-        waiting_for_job = True 
+        waiting_for_job = True
         while waiting_for_job:
             queue_request = requests.get(queue_url)
             if queue_request.json().get("why") != None:
@@ -101,15 +99,15 @@ class Trigger():
                 sleep(self.sleep)
             else:
                 waiting_for_job = False
-                job_number = queue_request.json().get("executable").get("number")  
-                print " Job is being build number: ", job_number  
+                job_number = queue_request.json().get("executable").get("number")
+                print " Job is being build number: ", job_number
 
             if timer == 0:
                 print " time out waiting for job to start"
                 exit(1)
         # Return the job numner of the working
         return job_number
-    
+
     def console_output(self, job_number):
         # Get job console till job stops
         job_url = self.url + "/job/" + self.job + "/" + str(job_number) + "/logText/progressive" + self.encoding
@@ -121,24 +119,24 @@ class Trigger():
         check_job_status = 0
 
         crumb = requests.get(self.url + '/crumbIssuer/api/json',
-        auth=(self.user, self.password)).json()
+                             auth=(self.user, self.password)).json()
 
         console_requests = requests.session()
         while stream_open:
             console_response = console_requests.post(job_url, data={'start': start_at },
-            auth=(self.user, self.password), 
-            headers={"Jenkins-Crumb": crumb.get('crumb')})
-            content_length = int(console_response.headers.get("Content-Length",-1))
+                                                     auth=(self.user, self.password),
+                                                     headers={"Jenkins-Crumb": crumb.get('crumb')})
+            content_length = int(console_response.headers.get("Content-Length", -1))
 
             if console_response.status_code != 200:
-                print " Oppps we have an issue ... "
+                print " Uh oh we have an issue ... "
                 print console_response.content
                 print console_response.headers
                 exit(1)
 
             if content_length == 0:
                 sleep(self.sleep)
-                check_job_status +=1
+                check_job_status += 1
             else:
                 check_job_status = 0
                 # Print to screen console
@@ -150,7 +148,7 @@ class Trigger():
             if check_job_status > 1:
                 job_status_url = self.url + "/job/" + self.job + "/" + str(job_number) + "/api/json"
                 job_requests = requests.get(job_status_url)
-                job_bulding= job_requests.json().get("building")
+                job_bulding = job_requests.json().get("building")
                 if not job_bulding:
                     # We are done
                     print "stream ended"
@@ -158,11 +156,13 @@ class Trigger():
                 else:
                     # Job is still running
                     check_job_status = 0
-    
+            print " View blue ocean @ ", blue_ocean_url
+
     def main(self):
         queue_url = self.trigger_build()
         job_number = self.waiting_for_job_to_start(queue_url)
         self.console_output(job_number)
+
 
 if __name__ == '__main__':
     arguments = docopt(__doc__)

@@ -75,3 +75,9 @@ If you have been sent here by a bot, please run the following on your branch to 
 git commit --amend --signoff --all
 git push --force-with-lease origin
 ```
+
+If a merge commit is giving you troubles please try
+
+```
+git commit --amend --no-edit -s
+```

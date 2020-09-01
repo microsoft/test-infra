@@ -10,8 +10,18 @@ pipeline {
                         values 'linux', 'windows', 'mac'
                     }
                     axis {
-                        name 'BROWSER'
-                        values 'firefox', 'chrome', 'safari', 'edge'
+                        name 'OS'
+                        values '1604', '1804', '8.1', '2019', '2016'
+                    }
+
+                    axis {
+                        name 'Build-Type'
+                        values 'Release', 'RelWithDebInfo', 'Debug'
+                    }
+
+                    axis {
+                        name 'Sim'
+                        values 'Simulation', 'Non-Simulation'
                     }
                 }
                 excludes {
@@ -21,7 +31,7 @@ pipeline {
                             values 'linux'
                         }
                         axis {
-                            name 'BROWSER'
+                            name 'OS'
                             values 'safari'
                         }
                     }
@@ -31,7 +41,7 @@ pipeline {
                             notValues 'windows'
                         }
                         axis {
-                            name 'BROWSER'
+                            name 'OS'
                             values 'edge'
                         }
                     }
@@ -44,12 +54,12 @@ pipeline {
                     }
                     stage('Build') {
                         steps {
-                            echo "Do Build for ${PLATFORM} - ${BROWSER}"
+                            echo "Do Build for ${PLATFORM} - ${OS} - ${Build-Type} - ${Sim}"
                         }
                     }
                     stage('Test') {
                         steps {
-                            echo "Do Test for ${PLATFORM} - ${BROWSER}"
+                            echo "Do Test for ${PLATFORM} - ${OS} - ${Build-Type} - ${Sim}"
                         }
                     }
                 }

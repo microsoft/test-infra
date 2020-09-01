@@ -1,27 +1,58 @@
 pipeline {
-    agent any
-
+    agent none
     stages {
-
-        stage('Pre-build') {
-            steps{
-                checkout scm
-                git rebase master
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+        stage('BuildAndTest') {
+            matrix {
+                agent any
+                axes {
+                    axis {
+                        name 'PLATFORM'
+                        values 'linux', 'windows', 'mac'
+                    }
+                    axis {
+                        name 'BROWSER'
+                        values 'firefox', 'chrome', 'safari', 'edge'
+                    }
+                }
+                excludes {
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            values 'linux'
+                        }
+                        axis {
+                            name 'BROWSER'
+                            values 'safari'
+                        }
+                    }
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            notValues 'windows'
+                        }
+                        axis {
+                            name 'BROWSER'
+                            values 'edge'
+                        }
+                    }
+                }
+                stages {
+                    stage('Pre-Build') {
+                        steps {
+                            checkout scm
+                        }
+                    }
+                    stage('Build') {
+                        steps {
+                            echo "Do Build for ${PLATFORM} - ${BROWSER}"
+                        }
+                    }
+                    stage('Test') {
+                        steps {
+                            echo "Do Test for ${PLATFORM} - ${BROWSER}"
+                        }
+                    }
+                }
             }
         }
     }

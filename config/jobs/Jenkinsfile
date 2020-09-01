@@ -55,9 +55,11 @@ pipeline {
                     stage('Pre-Build') {
                         steps {
                             checkout scm
+                            sh  """
                             git fetch origin pull/63/head:PR
                             git checkout PR
                             git rebase master
+                            """
                         }
                     }
                     stage('Build') {

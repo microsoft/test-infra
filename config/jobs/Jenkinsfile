@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Pre-build') {
+            steps{
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'

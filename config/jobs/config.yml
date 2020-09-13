@@ -4,7 +4,7 @@ build-configs:
   postsubmits
 
 repos:
-  oeedgr8r-cpp
+  oeedger8r-cpp
   openenclave
 
 oeedgr8r-cpp:

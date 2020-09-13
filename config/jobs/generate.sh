@@ -1,8 +1,6 @@
 #!/bin/bash 
 set +x
 
-
-
 #Create directories if they do not exist
 
 echo "Creating config directories if they do not exist.."

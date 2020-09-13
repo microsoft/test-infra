@@ -106,6 +106,7 @@ kubectl create configmap job-config \
 --from-file=test-infra-postsubmits.yaml=$PWD/config/jobs/test-infra/test-infra-postsubmits.yaml \
 --from-file=test-infra-pre-submits.yaml=$PWD/config/jobs/test-infra/test-infra-pre-submits.yaml \
 --from-file=oeedger8r-cpp-pre-submits.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-pre-submits.yaml \
+--from-file=oeedger8r-cpp-presubmits.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-presubmits.yaml \
 --from-file=oeedger8r-cpp-periodics.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-periodics.yaml \
 --from-file=openenclave-periodics.yaml=$PWD/config/jobs/openenclave/openenclave-periodics.yaml \
 --from-file=openenclave-pre-submits.yaml=$PWD/config/jobs/openenclave/openenclave-pre-submits.yaml \

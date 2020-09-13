@@ -1,0 +1,15 @@
+  - name: pr-${org}-${repo}-cmake-${operating_system}-${build_type}-${compiler}
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/${operating_system}:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=${build_type} --compiler=${compiler}'

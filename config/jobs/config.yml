@@ -1,0 +1,42 @@
+build-configs:
+  pre-submits
+  periodics
+  postsubmits
+
+repos:
+  oeedgr8r-cpp
+  openenclave
+
+oeedgr8r-cpp:
+  operating-systems:
+    ubuntu1604
+    ubuntu1804
+
+  build-modes:
+    simulation
+
+  build-types:
+    Release
+    Debug
+
+  compilers:
+    clang-7
+    gcc
+
+openenclave:
+  operating-systems:
+    ubuntu1604
+    ubuntu1804
+
+  build-modes:
+    simulation
+    hardware
+
+  build-types:
+    Release
+    RelWithDebInfo 
+    Debug
+
+  compilers:
+    clang-7
+    gcc

@@ -6,7 +6,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -21,7 +21,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -36,7 +36,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -51,7 +51,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -66,7 +66,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest
@@ -81,7 +81,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest
@@ -96,7 +96,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest
@@ -111,7 +111,7 @@ periodics:
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 5m
+    interval: 6h
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest

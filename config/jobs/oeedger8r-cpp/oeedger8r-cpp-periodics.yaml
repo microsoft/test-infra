@@ -1,12 +1,12 @@
 periodics:
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Release-clang-7
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -15,13 +15,13 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Release-gcc
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-gcc
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -30,13 +30,13 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Debug-clang-7
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -45,13 +45,13 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Debug-gcc
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-gcc
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1604:latest
@@ -60,13 +60,13 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Release-clang-7
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest
@@ -75,13 +75,13 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Release-gcc
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-gcc
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest
@@ -90,13 +90,13 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Debug-clang-7
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest
@@ -105,13 +105,13 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
 
-  - name: ci-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Debug-gcc
+  - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-gcc
     extra_refs:
-    - org: openenclave
+    - org: openenclave-ci
       repo: oeedger8r-cpp
       base_ref: master
     decorate: true
-    interval: 6h
+    interval: 5m
     spec:
       containers:
         - image: openenclave/ubuntu1804:latest

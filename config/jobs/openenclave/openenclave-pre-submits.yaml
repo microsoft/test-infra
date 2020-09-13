@@ -1,7 +1,7 @@
 presubmits:
-  openenclave/openenclave:
+  openenclave-ci/openenclave:
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Release-clang-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-c-7
     branches:
     - master
     always_run: true
@@ -15,9 +15,9 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Release-gcc
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-gcc
     branches:
     - master
     always_run: true
@@ -33,7 +33,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-clang-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-7
     branches:
     - master
     always_run: true
@@ -47,9 +47,9 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-gcc
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -65,7 +65,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Debug-clang-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
     branches:
     - master
     always_run: true
@@ -79,9 +79,9 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Debug-gcc
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-gcc
     branches:
     - master
     always_run: true
@@ -97,7 +97,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Release-clang-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
     branches:
     - master
     always_run: true
@@ -106,24 +106,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1604:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=c-7'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Release-gcc
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Release-gcc
     branches:
     - master
     always_run: true
@@ -132,24 +132,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1604:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=gcc'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=gcc'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-clang-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-7
     branches:
     - master
     always_run: true
@@ -158,24 +158,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1604:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-gcc
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -184,24 +184,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1604:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Debug-clang-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
     branches:
     - master
     always_run: true
@@ -210,24 +210,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1604:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1604-Debug-gcc
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Debug-gcc
     branches:
     - master
     always_run: true
@@ -236,24 +236,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1604:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Release-clang-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-c-7
     branches:
     - master
     always_run: true
@@ -267,9 +267,9 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Release-gcc
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-gcc
     branches:
     - master
     always_run: true
@@ -285,7 +285,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-clang-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-7
     branches:
     - master
     always_run: true
@@ -299,9 +299,9 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-gcc
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -317,7 +317,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Debug-clang-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
     branches:
     - master
     always_run: true
@@ -331,9 +331,9 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Debug-gcc
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-gcc
     branches:
     - master
     always_run: true
@@ -349,7 +349,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Release-clang-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
     branches:
     - master
     always_run: true
@@ -358,24 +358,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1804:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=c-7'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Release-gcc
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Release-gcc
     branches:
     - master
     always_run: true
@@ -384,24 +384,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1804:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=gcc'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=gcc'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-clang-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-7
     branches:
     - master
     always_run: true
@@ -410,24 +410,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1804:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-gcc
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -436,24 +436,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1804:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Debug-clang-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
     branches:
     - master
     always_run: true
@@ -462,24 +462,24 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1804:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
 
-  - name: pr-openenclave-openenclave-cmake-ubuntu1804-Debug-gcc
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Debug-gcc
     branches:
     - master
     always_run: true
@@ -488,19 +488,19 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1804:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
-        volumeMounts:
-        - mountPath: /dev/sgx
-          name: dev-sgx
-        securityContext:
-          privileged: true
-    volumes:
-    - name: dev-sgx
-      hostPath:
-        path: /dev/sgx
-    restartPolicy: Never        
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        

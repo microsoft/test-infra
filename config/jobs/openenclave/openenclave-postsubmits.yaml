@@ -1,6 +1,7 @@
 postsubmits:
+  openenclave-ci/openenclave:
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Release-clang-7
+  - name: post-openenclave-ci-openenclave-ubuntu1604-Release-c-7
     branches:
     - master
     decorate: true
@@ -10,7 +11,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
+            - '/hack/cmake-build.sh -b=Release --compiler=c-7'
           securityContext:
             privileged: true
           volumeMounts:
@@ -21,7 +22,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Release-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1604-Release-gcc
     branches:
     - master
     decorate: true
@@ -42,7 +43,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-clang-7
+  - name: post-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -52,7 +53,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
           securityContext:
             privileged: true
           volumeMounts:
@@ -63,7 +64,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -84,7 +85,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Debug-clang-7
+  - name: post-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
     branches:
     - master
     decorate: true
@@ -94,7 +95,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
+            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
           securityContext:
             privileged: true
           volumeMounts:
@@ -105,7 +106,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Debug-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1604-Debug-gcc
     branches:
     - master
     decorate: true
@@ -126,7 +127,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Release-clang-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
     branches:
     - master
     decorate: true
@@ -136,9 +137,9 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Release-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Release-gcc
     branches:
     - master
     decorate: true
@@ -150,7 +151,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-clang-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -160,9 +161,9 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -174,7 +175,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Debug-clang-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
     branches:
     - master
     decorate: true
@@ -184,9 +185,9 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1604-Debug-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-gcc
     branches:
     - master
     decorate: true
@@ -198,7 +199,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Release-clang-7
+  - name: post-openenclave-ci-openenclave-ubuntu1804-Release-c-7
     branches:
     - master
     decorate: true
@@ -208,7 +209,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
+            - '/hack/cmake-build.sh -b=Release --compiler=c-7'
           securityContext:
             privileged: true
           volumeMounts:
@@ -219,7 +220,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Release-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1804-Release-gcc
     branches:
     - master
     decorate: true
@@ -240,7 +241,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-clang-7
+  - name: post-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -250,7 +251,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
           securityContext:
             privileged: true
           volumeMounts:
@@ -261,7 +262,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -282,7 +283,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Debug-clang-7
+  - name: post-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
     branches:
     - master
     decorate: true
@@ -292,7 +293,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
+            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
           securityContext:
             privileged: true
           volumeMounts:
@@ -303,7 +304,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Debug-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1804-Debug-gcc
     branches:
     - master
     decorate: true
@@ -324,7 +325,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Release-clang-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
     branches:
     - master
     decorate: true
@@ -334,9 +335,9 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Release-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Release-gcc
     branches:
     - master
     decorate: true
@@ -348,7 +349,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-clang-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -358,9 +359,9 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -372,7 +373,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Debug-clang-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
     branches:
     - master
     decorate: true
@@ -382,9 +383,9 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
 
-  - name: post-openenclave-openenclave-cmake-ubuntu1804-Debug-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-gcc
     branches:
     - master
     decorate: true

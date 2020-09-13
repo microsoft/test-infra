@@ -1,4 +1,4 @@
-  - name: pr-${org}-${repo}-cmake-${operating_system}-${build_type}-${compiler}
+  - name: pr-${org}-${repo}-${operating_system}-${build_type}-${compiler_short}
     branches:
     - master
     always_run: true

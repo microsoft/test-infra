@@ -38,5 +38,5 @@ openenclave:
     Debug
 
   compilers:
-    clang-7
+    c-7
     gcc

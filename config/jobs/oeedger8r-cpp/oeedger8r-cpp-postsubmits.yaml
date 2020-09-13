@@ -1,6 +1,7 @@
 postsubmits:
+  openenclave-ci/oeedger8r-cpp:
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Release-clang-7
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
     branches:
     - master
     decorate: true
@@ -21,7 +22,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Release-gcc
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-gcc
     branches:
     - master
     decorate: true
@@ -42,7 +43,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Debug-clang-7
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
     branches:
     - master
     decorate: true
@@ -63,7 +64,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1604-Debug-gcc
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-gcc
     branches:
     - master
     decorate: true
@@ -84,7 +85,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Release-clang-7
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
     branches:
     - master
     decorate: true
@@ -105,7 +106,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Release-gcc
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-gcc
     branches:
     - master
     decorate: true
@@ -126,7 +127,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Debug-clang-7
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
     branches:
     - master
     decorate: true
@@ -147,7 +148,7 @@ postsubmits:
         hostPath:
           path: /var/run/docker.sock        
 
-  - name: post-openenclave-oeedger8r-cpp-cmake-ubuntu1804-Debug-gcc
+  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-gcc
     branches:
     - master
     decorate: true

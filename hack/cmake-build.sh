@@ -46,7 +46,7 @@ INSTALL_PACKAGE=0
 # Test a package. Default is disabled
 TEST_PACKAGE=0
 # Run in simulation mode. Default is disabled
-SIMULATION_MODE=1
+SIMULATION_MODE=0
 # build with ninja. Defailt is disabled
 NINJA=0
 # build with lvi mitigation. Defailt is disabled

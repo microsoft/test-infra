@@ -10,12 +10,12 @@ echo "Creating config directories if they do not exist.."
 org=openenclave
 
 # Get all build config types
-build_configs=$(yq r /home/brmclare/python/config.yaml build-configs)
+build_configs=$(yq r $PWD/config.yml build-configs)
 
 for build_config in $build_configs
 do
     # Get all supported repos
-    repos=$(yq r /home/brmclare/test-infra/config/jobs/config.yml repos)
+    repos=$(yq r $PWD/config.yml repos)
     # Generate $build_config...
     for repo in $repos
     do
@@ -33,17 +33,17 @@ do
             echo "  ${org}/${repo}:" >> $PWD/$repo/$repo-$build_config.yaml
         fi
 
-        operating_systems=$(yq r /home/brmclare/test-infra/config/jobs/config.yml $repo.operating-systems)
+        operating_systems=$(yq r $PWD/config.yml $repo.operating-systems)
         for operating_system in $operating_systems
         do
             
-            build_modes=$(yq r /home/brmclare/test-infra/config/jobs/config.yml $repo.build-modes)
+            build_modes=$(yq r $PWD/config.yml $repo.build-modes)
             for build_mode in $build_modes
             do
-                build_types=$(yq r /home/brmclare/test-infra/config/jobs/config.yml $repo.build-types)
+                build_types=$(yq r $PWD/config.yml $repo.build-types)
                 for build_type in $build_types
                 do 
-                    compilers=$(yq r /home/brmclare/test-infra/config/jobs/config.yml $repo.compilers)
+                    compilers=$(yq r $PWD/config.yml $repo.compilers)
                     for compiler in $compilers
                     do
                         # New line seems to not work 100% of the time, just for readability

@@ -146,7 +146,6 @@ if [[ ${COMPILER_VALUE} == "gcc" ]]; then
 elif [[ ${COMPILER_VALUE} == "clang-8" ]]; then
     export CC="clang-8"
     export CXX="clang++-8"
-fi
 elif [[ ${COMPILER_VALUE} == "clang-7" ]]; then
     export CC="clang-7"
     export CXX="clang++-7"

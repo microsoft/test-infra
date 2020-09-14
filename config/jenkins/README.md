@@ -1,4 +1,5 @@
 # Setup a new Jenkins master server
+### NOTE: Please consider investing time in: https://github.com/openenclave-ci/test-infra/issues/73 as oppsoed to setting up more permanent servers
 
 1. Create a new resource group via the `az cli`:
     ```

@@ -18,7 +18,7 @@ if [[ $1 == "-h" || $1 == "--help" ]]; then
    echo " ./hack/cmake-build.sh"
    echo "        -b Debug|RelWithDebInfo|Release or -b=Debug|RelWithDebInfo|Release"
    echo "        -h or --help to Display usage and exit"
-   echo "        --compiler=[clang-7,gcc] to build with a specified compiler"
+   echo "        --compiler=[clang-7,clang-8,clang-9,clang-10,gcc] to build with a specified compiler"
    echo "        --build_package to Build a .deb package after testing"
    echo "        --install_package to install a .deb package after testing"
    echo "        --test_package to test the installed package"

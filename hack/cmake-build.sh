@@ -18,7 +18,7 @@ if [[ $1 == "-h" || $1 == "--help" ]]; then
    echo " ./hack/cmake-build.sh"
    echo "        -b Debug|RelWithDebInfo|Release or -b=Debug|RelWithDebInfo|Release"
    echo "        -h or --help to Display usage and exit"
-   echo "        --compiler=[clang-7,clang-8,clang-9,clang-10,gcc] to build with a specified compiler"
+   echo "        --compiler=[clang-7,clang-8,gcc] to build with a specified compiler"
    echo "        --build_package to Build a .deb package after testing"
    echo "        --install_package to install a .deb package after testing"
    echo "        --test_package to test the installed package"
@@ -40,7 +40,7 @@ OE_INSTALL_DIR="/opt/openenclave"
 # Flag for enabling full libcxx tests.
 ENABLE_FULL_LIBCXX_TESTS=0
 # Valid COMPILER_VALUE inputs are clang-7|gcc
-COMPILER_VALUE="clang-7"
+COMPILER_VALUE="clang-8"
 # Install a package. Default is disabled
 INSTALL_PACKAGE=0
 # Test a package. Default is disabled
@@ -143,6 +143,10 @@ echo "CMake command is '${CMAKE}'"
 if [[ ${COMPILER_VALUE} == "gcc" ]]; then
     export CC="gcc"
     export CXX="g++"
+elif [[ ${COMPILER_VALUE} == "clang-8" ]]; then
+    export CC="clang-8"
+    export CXX="clang++-8"
+fi
 elif [[ ${COMPILER_VALUE} == "clang-7" ]]; then
     export CC="clang-7"
     export CXX="clang++-7"

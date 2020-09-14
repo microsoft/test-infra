@@ -23,6 +23,7 @@ if [[ $1 == "-h" || $1 == "--help" ]]; then
    echo "        --install_package to install a .deb package after testing"
    echo "        --test_package to test the installed package"
    echo "        --simulation_mode to run in simulation mode"
+   echo "        --hardware_mode to run in hardware mode"
    echo "        --enable_full_libcxx_tests to Enable libcxx tests"
    echo "        --enable_lvi_mitigation to Enable lvi mitigation"
    echo "        --enable_full_libc_tests to Enable libc tests"
@@ -46,7 +47,7 @@ INSTALL_PACKAGE=0
 # Test a package. Default is disabled
 TEST_PACKAGE=0
 # Run in simulation mode. Default is disabled
-SIMULATION_MODE=0
+SIMULATION_MODE=1
 # build with ninja. Defailt is disabled
 NINJA=0
 # build with lvi mitigation. Defailt is disabled
@@ -80,6 +81,10 @@ while [[ $# -gt 0 ]]; do
         # This is a flag type option. Will catch --simulation_mode
         --simulation_mode)
         SIMULATION_MODE=1
+        ;;
+        # This is a flag type option. Will catch --hardware_mode
+        --hardware_mode)
+        SIMULATION_MODE=0
         ;;
         # This is a flag type option. Will catch --build_package
         --build_package)
@@ -175,7 +180,7 @@ else
 fi
 
 # Finally run the tests in simulation or on Hardware
-if [[ ${SIMULATION_MODE} -ne 1 ]]; then
+if [[ ${SIMULATION_MODE} -eq 1 ]]; then
     SIMULATION_MODE_TEXT="simulation"
     export OE_SIMULATION=1
 fi

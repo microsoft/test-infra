@@ -12,7 +12,7 @@
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=${build_type} --compiler=${compiler}'
+          - '/hack/cmake-build.sh -b=${build_type} --compiler=${compiler} --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx

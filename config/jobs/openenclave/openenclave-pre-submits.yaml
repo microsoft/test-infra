@@ -159,7 +159,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -185,7 +185,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -211,7 +211,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=gcc'
+          - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -237,7 +237,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -263,7 +263,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -289,7 +289,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -315,7 +315,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -341,7 +341,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -367,7 +367,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
+          - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -537,7 +537,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -563,7 +563,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -589,7 +589,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=gcc'
+          - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -615,7 +615,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -641,7 +641,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -667,7 +667,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -693,7 +693,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -719,7 +719,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -745,7 +745,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
+          - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx

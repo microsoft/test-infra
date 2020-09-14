@@ -200,7 +200,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
     branches:
@@ -212,7 +212,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Release-gcc
     branches:
@@ -224,7 +224,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+            - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-8
     branches:
@@ -236,7 +236,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-7
     branches:
@@ -248,7 +248,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-gcc
     branches:
@@ -260,7 +260,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-8
     branches:
@@ -272,7 +272,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
     branches:
@@ -284,7 +284,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-gcc
     branches:
@@ -296,7 +296,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-ubuntu1804-Release-c-8
     branches:
@@ -497,7 +497,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
     branches:
@@ -509,7 +509,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Release-gcc
     branches:
@@ -521,7 +521,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+            - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-8
     branches:
@@ -533,7 +533,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-7
     branches:
@@ -545,7 +545,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-gcc
     branches:
@@ -557,7 +557,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-8
     branches:
@@ -569,7 +569,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
     branches:
@@ -581,7 +581,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'        
 
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-gcc
     branches:
@@ -593,4 +593,4 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'        

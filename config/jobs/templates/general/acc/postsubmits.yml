@@ -8,4 +8,4 @@
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=${build_type} --compiler=${compiler}'
+            - '/hack/cmake-build.sh -b=${build_type} --compiler=${compiler} --hardware_mode'

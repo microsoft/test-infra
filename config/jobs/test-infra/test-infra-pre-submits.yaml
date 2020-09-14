@@ -3,7 +3,7 @@ presubmits:
   - name: pr-openenclave-test-infra-ping
     branches:
     - master
-    run_if_changed: "images/*"
+    always_run: true
     decorate: true
     skip_report: false
     max_concurrency: 10

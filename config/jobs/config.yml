@@ -11,6 +11,9 @@ oeedger8r-cpp:
   operating-systems:
     ubuntu1604
     ubuntu1804
+    rhel-8.1
+    win-2016
+    win-2019
 
   build-modes:
     simulation
@@ -28,6 +31,9 @@ openenclave:
   operating-systems:
     ubuntu1604
     ubuntu1804
+    rhel-8.1
+    win-2016
+    win-2019
 
   build-modes:
     simulation

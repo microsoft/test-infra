@@ -1,6 +1,5 @@
 postsubmits:
   openenclave-ci/openenclave:
-
   - name: post-openenclave-ci-openenclave-ubuntu1604-Release-c-8
     branches:
     - master
@@ -21,7 +20,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1604-Release-c-7
     branches:
     - master
@@ -42,7 +40,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1604-Release-gcc
     branches:
     - master
@@ -63,8 +60,7 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
-  - name: post-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-8
+  - name: post-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-8
     branches:
     - master
     decorate: true
@@ -84,8 +80,7 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
-  - name: post-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-7
+  - name: post-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -105,8 +100,7 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
-  - name: post-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -126,7 +120,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1604-Debug-c-8
     branches:
     - master
@@ -147,7 +140,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
     branches:
     - master
@@ -168,7 +160,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1604-Debug-gcc
     branches:
     - master
@@ -189,7 +180,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-8
     branches:
     - master
@@ -201,7 +191,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
     branches:
     - master
@@ -213,7 +202,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Release-gcc
     branches:
     - master
@@ -225,8 +213,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'        
-
-  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-8
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-8
     branches:
     - master
     decorate: true
@@ -237,8 +224,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'        
-
-  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -249,8 +235,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'        
-
-  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -261,7 +246,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-8
     branches:
     - master
@@ -273,7 +257,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
     branches:
     - master
@@ -285,7 +268,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1604-Debug-gcc
     branches:
     - master
@@ -297,7 +279,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-ubuntu1804-Release-c-8
     branches:
     - master
@@ -318,7 +299,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1804-Release-c-7
     branches:
     - master
@@ -339,7 +319,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1804-Release-gcc
     branches:
     - master
@@ -360,8 +339,7 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
-  - name: post-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-8
+  - name: post-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-8
     branches:
     - master
     decorate: true
@@ -381,8 +359,7 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
-  - name: post-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-7
+  - name: post-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -402,8 +379,7 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
-  - name: post-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -423,7 +399,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1804-Debug-c-8
     branches:
     - master
@@ -444,7 +419,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
     branches:
     - master
@@ -465,7 +439,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-ubuntu1804-Debug-gcc
     branches:
     - master
@@ -486,7 +459,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-8
     branches:
     - master
@@ -498,7 +470,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
     branches:
     - master
@@ -510,7 +481,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Release-gcc
     branches:
     - master
@@ -522,8 +492,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'        
-
-  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-8
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-8
     branches:
     - master
     decorate: true
@@ -534,8 +503,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'        
-
-  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-7
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-7
     branches:
     - master
     decorate: true
@@ -546,8 +514,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'        
-
-  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-gcc
+  - name: post-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-gcc
     branches:
     - master
     decorate: true
@@ -558,7 +525,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-8
     branches:
     - master
@@ -570,7 +536,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
     branches:
     - master
@@ -582,7 +547,6 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'        
-
   - name: post-openenclave-ci-openenclave-acc-ubuntu1804-Debug-gcc
     branches:
     - master
@@ -594,3 +558,111 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'        
+
+  - name: post-openenclave-ci-openenclave-jenk-rhel-8.1-Release-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-rhel-8.1-RelDebInfo-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-rhel-8.1-Debug-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-win-2016-Release-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-win-2016-RelDebInfo-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-win-2016-Debug-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-win-2019-Release-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-win-2019-RelDebInfo-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-openenclave-jenk-win-2019-Debug-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        

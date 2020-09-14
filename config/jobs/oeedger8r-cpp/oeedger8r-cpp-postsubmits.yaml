@@ -1,6 +1,5 @@
 postsubmits:
   openenclave-ci/oeedger8r-cpp:
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-8
     branches:
     - master
@@ -21,7 +20,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
     branches:
     - master
@@ -42,7 +40,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-gcc
     branches:
     - master
@@ -63,7 +60,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-8
     branches:
     - master
@@ -84,7 +80,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
     branches:
     - master
@@ -105,7 +100,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-gcc
     branches:
     - master
@@ -126,7 +120,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-8
     branches:
     - master
@@ -147,7 +140,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
     branches:
     - master
@@ -168,7 +160,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-gcc
     branches:
     - master
@@ -189,7 +180,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-8
     branches:
     - master
@@ -210,7 +200,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
     branches:
     - master
@@ -231,7 +220,6 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
-
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-gcc
     branches:
     - master
@@ -252,3 +240,75 @@ postsubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock        
+
+  - name: post-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Release-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Debug-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Release-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Debug-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Release-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Debug-c-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        

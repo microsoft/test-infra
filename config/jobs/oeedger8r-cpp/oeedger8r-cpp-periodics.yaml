@@ -1,5 +1,4 @@
 periodics:
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-8
     extra_refs:
     - org: openenclave-ci
@@ -14,7 +13,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
     extra_refs:
     - org: openenclave-ci
@@ -29,7 +27,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-gcc
     extra_refs:
     - org: openenclave-ci
@@ -44,7 +41,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-8
     extra_refs:
     - org: openenclave-ci
@@ -59,7 +55,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
     extra_refs:
     - org: openenclave-ci
@@ -74,7 +69,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-gcc
     extra_refs:
     - org: openenclave-ci
@@ -89,7 +83,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-8
     extra_refs:
     - org: openenclave-ci
@@ -104,7 +97,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
     extra_refs:
     - org: openenclave-ci
@@ -119,7 +111,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-gcc
     extra_refs:
     - org: openenclave-ci
@@ -134,7 +125,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-8
     extra_refs:
     - org: openenclave-ci
@@ -149,7 +139,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
     extra_refs:
     - org: openenclave-ci
@@ -164,7 +153,6 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
-
   - name: ci-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-gcc
     extra_refs:
     - org: openenclave-ci
@@ -179,3 +167,93 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+
+  - name: ci-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: ci-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: ci-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: ci-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: ci-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+
+  - name: ci-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: oeedger8r-cpp
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        

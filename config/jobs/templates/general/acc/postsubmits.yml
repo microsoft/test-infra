@@ -1,4 +1,4 @@
-  - name: post-${org}-${repo}-acc-${operating_system}-${build_type}-${compiler_short}
+  - name: post-${org}-${repo}-acc-${operating_system}-${build_type_short}-${compiler_short}
     branches:
     - master
     decorate: true

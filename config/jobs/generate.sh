@@ -51,6 +51,9 @@ do
                         if [ "$compiler" = "clang-7" ]
                         then
                             compiler_short=c-7
+                        elif [ "$compiler" = "clang-8" ]
+                        then
+                            compiler_short=c-8
                         else
                             compiler_short=$compiler
                         fi

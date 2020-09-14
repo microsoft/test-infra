@@ -20,6 +20,7 @@ oeedger8r-cpp:
     Debug
 
   compilers:
+    clang-8
     clang-7
     gcc
 
@@ -38,5 +39,5 @@ openenclave:
     Debug
 
   compilers:
-    c-7
+    clang-8
     gcc

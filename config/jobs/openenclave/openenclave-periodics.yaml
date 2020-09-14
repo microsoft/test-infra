@@ -1,6 +1,6 @@
 periodics:
 
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -13,7 +13,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
 
   - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-gcc
     extra_refs:
@@ -30,7 +30,7 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -43,7 +43,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
 
   - name: ci-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-gcc
     extra_refs:
@@ -60,7 +60,7 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -73,7 +73,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
 
   - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-gcc
     extra_refs:
@@ -90,7 +90,7 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -103,7 +103,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=c-7'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -140,7 +140,7 @@ periodics:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -153,7 +153,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -190,7 +190,7 @@ periodics:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -203,7 +203,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -240,7 +240,7 @@ periodics:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -253,7 +253,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
 
   - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-gcc
     extra_refs:
@@ -270,7 +270,7 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -283,7 +283,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
 
   - name: ci-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-gcc
     extra_refs:
@@ -300,7 +300,7 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -313,7 +313,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
 
   - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-gcc
     extra_refs:
@@ -330,7 +330,7 @@ periodics:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -343,7 +343,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Release --compiler=c-7'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -380,7 +380,7 @@ periodics:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -393,7 +393,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -430,7 +430,7 @@ periodics:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -443,7 +443,7 @@ periodics:
           command:
             - sh
             - '-c'
-            - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx

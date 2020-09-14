@@ -1,7 +1,7 @@
 presubmits:
   openenclave-ci/openenclave:
 
-  - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-c-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-c-8
     branches:
     - master
     always_run: true
@@ -15,7 +15,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
 
   - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-gcc
     branches:
@@ -33,7 +33,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: pr-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-c-8
     branches:
     - master
     always_run: true
@@ -47,7 +47,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
 
   - name: pr-openenclave-ci-openenclave-ubuntu1604-RelWithDebInfo-gcc
     branches:
@@ -65,7 +65,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-c-8
     branches:
     - master
     always_run: true
@@ -79,7 +79,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
 
   - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-gcc
     branches:
@@ -97,7 +97,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-8
     branches:
     - master
     always_run: true
@@ -111,7 +111,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=c-7'
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -149,7 +149,7 @@ presubmits:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-RelWithDebInfo-c-8
     branches:
     - master
     always_run: true
@@ -163,7 +163,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -201,7 +201,7 @@ presubmits:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-8
     branches:
     - master
     always_run: true
@@ -215,7 +215,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -253,7 +253,7 @@ presubmits:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-c-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-c-8
     branches:
     - master
     always_run: true
@@ -267,7 +267,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=c-7'        
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
 
   - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-gcc
     branches:
@@ -285,7 +285,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
 
-  - name: pr-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-c-8
     branches:
     - master
     always_run: true
@@ -299,7 +299,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'        
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
 
   - name: pr-openenclave-ci-openenclave-ubuntu1804-RelWithDebInfo-gcc
     branches:
@@ -317,7 +317,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
 
-  - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-c-8
     branches:
     - master
     always_run: true
@@ -331,7 +331,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=c-7'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
 
   - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-gcc
     branches:
@@ -349,7 +349,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-8
     branches:
     - master
     always_run: true
@@ -363,7 +363,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Release --compiler=c-7'
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -401,7 +401,7 @@ presubmits:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-RelWithDebInfo-c-8
     branches:
     - master
     always_run: true
@@ -415,7 +415,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=c-7'
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -453,7 +453,7 @@ presubmits:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-8
     branches:
     - master
     always_run: true
@@ -467,7 +467,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/hack/cmake-build.sh -b=Debug --compiler=c-7'
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx

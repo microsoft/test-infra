@@ -1,6 +1,22 @@
 presubmits:
   openenclave-ci/oeedger8r-cpp:
 
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
     branches:
     - master
@@ -32,6 +48,22 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
 
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
     branches:
@@ -65,6 +97,22 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
     branches:
     - master
@@ -96,6 +144,22 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
 
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
     branches:

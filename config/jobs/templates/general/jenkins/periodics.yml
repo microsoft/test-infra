@@ -11,4 +11,4 @@
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! ${org}-${repo}-${operating_system}-${build_type_short}-${compiler_short}"'

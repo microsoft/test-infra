@@ -251,7 +251,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Release-c-8"'        
 
   - name: post-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Debug-c-8
     branches:
@@ -263,7 +263,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Debug-c-8"'        
 
   - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Release-c-8
     branches:
@@ -275,7 +275,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Release-c-8"'        
 
   - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Debug-c-8
     branches:
@@ -287,7 +287,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Debug-c-8"'        
 
   - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Release-c-8
     branches:
@@ -299,7 +299,7 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Release-c-8"'        
 
   - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Debug-c-8
     branches:
@@ -311,4 +311,4 @@ postsubmits:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project!"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Debug-c-8"'        

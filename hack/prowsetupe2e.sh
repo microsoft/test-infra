@@ -1,11 +1,11 @@
 export LOCATION="uksouth"
-export RESOURCE_GROUP="OpenEnclaveCICDDev"
-export AKS_CLUSTER_NAME="oe-prow-dev"
+export RESOURCE_GROUP="OpenEnclaveCICDProd"
+export AKS_CLUSTER_NAME="oe-prow-prod"
 export NODE_SIZE="Standard_DC8_v2"
 export MIN_NODE_COUNT="3"
 export MAX_NODE_COUNT="10"
 export PATH_KEY="~/.ssh/id_rsa.pub"
-export DNS_LABEL="oe-prow-status-dev"
+export DNS_LABEL="oe-prow-status"
 
 # Delete Any Existing Resources
 az group delete --name ${RESOURCE_GROUP} --yes
@@ -60,6 +60,16 @@ helm install nginx stable/nginx-ingress \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set rbac.create=true
 
+# Add the ingress-nginx repository
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+# Use Helm to deploy an NGINX ingress controller
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --namespace ingress-basic \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linu
+
 # Create Cluster Bindings
 kubectl create clusterrolebinding cluster-admin-binding-"${USER}" \
   --clusterrole=cluster-admin --user="${USER}"
@@ -104,25 +114,25 @@ kubectl create configmap plugins --from-file=$PWD/config/prow/plugins.yaml --dry
 kubectl create configmap job-config \
 --from-file=test-infra-periodics.yaml=$PWD/config/jobs/test-infra/test-infra-periodics.yaml \
 --from-file=test-infra-postsubmits.yaml=$PWD/config/jobs/test-infra/test-infra-postsubmits.yaml \
---from-file=test-infra-pre-submits.yaml=$PWD/config/jobs/test-infra/test-infra-pre-submits.yaml \
---from-file=oeedger8r-cpp-pre-submits.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-pre-submits.yaml \
---from-file=oeedger8r-cpp-presubmits.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-presubmits.yaml \
+--from-file=test-infra-presubmits.yaml=$PWD/config/jobs/test-infra/test-infra-pre-submits.yaml \
+--from-file=oeedger8r-cpp-presubmits.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-pre-submits.yaml \
 --from-file=oeedger8r-cpp-periodics.yaml=$PWD/config/jobs/oeedger8r-cpp/oeedger8r-cpp-periodics.yaml \
 --from-file=openenclave-periodics.yaml=$PWD/config/jobs/openenclave/openenclave-periodics.yaml \
---from-file=openenclave-pre-submits.yaml=$PWD/config/jobs/openenclave/openenclave-pre-submits.yaml \
+--from-file=openenclave-presubmits.yaml=$PWD/config/jobs/openenclave/openenclave-pre-submits.yaml \
 --dry-run=client -o yaml | kubectl replace configmap job-config -f -
 
 # Ending remarks
 az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name=='myAKSPublicIP'].[dnsSettings.fqdn]" -o tsv
 
+FQDN=$(az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name=='myAKSPublicIP'].[dnsSettings.fqdn]" -o tsv)
+
 # Generate TLS cert
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -out aks-ingress-tls.crt \
     -keyout aks-ingress-tls.key \
-    -subj "/CN=${DNS_LABEL}.uksouth.cloudapp.azure.com/O=aks-ingress-tls"
+    -subj "/CN=${FQDN}/O=aks-ingress-tls"
 
-# Create TLS secret
-kubectl create secret tls prow-tls \
+kubectl create secret tls aks-ingress-tls \
     --namespace ingress-basic \
     --key aks-ingress-tls.key \
     --cert aks-ingress-tls.crt

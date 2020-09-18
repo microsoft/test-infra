@@ -33,9 +33,6 @@ az aks create --resource-group ${RESOURCE_GROUP} \
 # Get AKS Credentials
 az aks get-credentials --resource-group ${RESOURCE_GROUP} --name ${AKS_CLUSTER_NAME} --overwrite-existing
 
-# Add the official stable repo
-#helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-
 # Add the ingress-nginx repository
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
@@ -48,7 +45,9 @@ helm install nginx-ingress ingress-nginx/ingress-nginx \
 
 kubectl get services -o wide -w nginx-ingress-ingress-nginx-controller
 
-IP="20.49.242.118"
+echo "You need to set the external IP here!"
+break;
+IP="20.49.160.61"
 
 # Name to associate with public IP address
 DNSNAME="${DNS_LABEL}"
@@ -83,44 +82,10 @@ helm install \
 sleep 30s
 
 kubectl apply -f /home/brmclare/work/test-infra/config/prow/cluster/tls/cluster_issuer.yaml
-kubectl apply -f /home/brmclare/work/test-infra/config/prow/cluster/tls/aks-helloworld-one.yaml
-kubectl apply -f /home/brmclare/work/test-infra/config/prow/cluster/tls/hellow-world-ingress.yaml
 
-
-
+sleep 30s
 
 ############ THE ABOVE WORKED
-
-# Get AKS Resource Group Name
-AKS_RESOURCE_GROUP=$(az aks show --resource-group ${RESOURCE_GROUP} --name ${AKS_CLUSTER_NAME} --query nodeResourceGroup -o tsv)
-echo ${AKS_RESOURCE_GROUP}
-
-# Assign Static IP
-STATIC_IP=$(az network public-ip create --resource-group ${AKS_RESOURCE_GROUP} --name myAKSPublicIP --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv --dns-name ${DNS_LABEL})
-echo ${STATIC_IP}
-
-#Get FQDN
-FQDN=$(az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name=='myAKSPublicIP'].[dnsSettings.fqdn]" -o tsv)
-echo ${FQDN}
-
-# Use Helm to deploy an NGINX ingress controller
-helm install nginx stable/nginx-ingress \
-    --namespace ingress-basic \
-    --set controller.replicaCount=2 \
-    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set controller.service.loadBalancerIP="${STATIC_IP}" \
-    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set rbac.create=true
-
-# Add the ingress-nginx repository
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-
-# Use Helm to deploy an NGINX ingress controller
-helm install nginx-ingress ingress-nginx/ingress-nginx \
-    --namespace ingress-basic \
-    --set controller.replicaCount=2 \
-    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linu
 
 # Create Cluster Bindings
 kubectl create clusterrolebinding cluster-admin-binding-"${USER}" \

@@ -83,7 +83,7 @@ kubectl apply -f config/prow/cluster/deck_service.yaml
 kubectl apply -f config/prow/cluster/horolgium_deployment.yaml
 kubectl apply -f config/prow/cluster/tide_deployment.yaml
 kubectl apply -f config/prow/cluster/tide_service.yaml
-kubectl apply -f config/prow/cluster/ing_ingress_dev.yaml
+kubectl apply -f config/prow/cluster/ing_ingress.yaml
 kubectl apply -f config/prow/cluster/statusreconciler_deployment.yaml
 kubectl apply -f config/prow/cluster/test_pods.yaml
 kubectl apply -f config/prow/cluster/deck_rbac.yaml

@@ -89,3 +89,47 @@ kubectl create configmap plugins --from-file=$PWD/test-infra/config/prow/plugins
 sleep 1m
 
 kubectl get service -l app=nginx-ingress --namespace ingress-basic
+
+# Label the cert-manager namespace to disable resource validation
+kubectl label namespace --all cert-manager.io/disable-validation=true
+
+# Add the Jetstack Helm repository
+helm repo add jetstack https://charts.jetstack.io
+
+# Update your local Helm chart repository cache
+helm repo update
+
+# Install the cert-manager Helm chart
+helm install \
+  cert-manager \
+  --version v0.16.1 \
+  --set installCRDs=true \
+  --set nodeSelector."beta\.kubernetes\.io/os"=linux \
+  jetstack/cert-manager
+
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set rbac.create=true
+
+kubectl get services -o wide -w nginx-ingress-ingress-nginx-controller
+
+echo "You need to set the external IP here!"
+break;
+
+IP="51.11.172.183"
+# Name to associate with public IP address
+DNSNAME="${DNS_LABEL}"
+
+# Get the resource-id of the public ip
+PUBLICIPID=$(az network public-ip list --query "[?ipAddress!=null]|[?contains(ipAddress, '$IP')].[id]" --output tsv)
+
+# Update public ip address with DNS name
+az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
+
+# Display the FQDN
+az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
+
+kubectl apply -f /home/brmclare/work/test-infra/config/prow/cluster/ing_ingress.yaml
+break;

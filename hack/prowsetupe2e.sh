@@ -37,6 +37,7 @@ az aks get-credentials --resource-group ${RESOURCE_GROUP} --name ${AKS_CLUSTER_N
 # Create a namespace for your ingress resources
 kubectl create namespace ingress-basic
 
+<<<<<<< HEAD
 # Add the official stable repo
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 
@@ -54,7 +55,14 @@ az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name
 # Use Helm to deploy an NGINX ingress controller
 helm install nginx stable/nginx-ingress \
     --namespace ingress-basic \
+=======
+# Add the ingress-nginx repository
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+>>>>>>> up and running no TLS
     --set controller.replicaCount=2 \
+    --namespace ingress-basic \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set controller.service.loadBalancerIP="${STATIC_IP}" \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
@@ -115,14 +123,48 @@ kubectl create configmap job-config \
 # Ending remarks
 az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name=='myAKSPublicIP'].[dnsSettings.fqdn]" -o tsv
 
-# Generate TLS cert
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-    -out aks-ingress-tls.crt \
-    -keyout aks-ingress-tls.key \
-    -subj "/CN=${DNS_LABEL}.uksouth.cloudapp.azure.com/O=aks-ingress-tls"
-
-# Create TLS secret
-kubectl create secret tls prow-tls \
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --set controller.replicaCount=2 \
     --namespace ingress-basic \
-    --key aks-ingress-tls.key \
-    --cert aks-ingress-tls.crt
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set rbac.create=true
+
+# Label the cert-manager namespace to disable resource validation
+kubectl label namespace --all cert-manager.io/disable-validation=true
+
+# Add the Jetstack Helm repository
+helm repo add jetstack https://charts.jetstack.io
+
+# Update your local Helm chart repository cache
+helm repo update
+
+# Install the cert-manager Helm chart
+helm install \
+  cert-manager \
+  --version v0.16.1 \
+  --set installCRDs=true \
+  --set nodeSelector."beta\.kubernetes\.io/os"=linux \
+  jetstack/cert-manager
+
+kubectl get services -o wide -w nginx-ingress-ingress-nginx-controller --namespace ingress-basic 
+
+echo "You need to set the external IP here!"
+break;
+
+IP="20.49.249.104"
+
+# Name to associate with public IP address
+DNSNAME="${DNS_LABEL}"
+
+# Get the resource-id of the public ip
+PUBLICIPID=$(az network public-ip list --query "[?ipAddress!=null]|[?contains(ipAddress, '$IP')].[id]" --output tsv)
+
+# Update public ip address with DNS name
+az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
+
+# Display the FQDN
+az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
+
+kubectl apply -f /home/brmclare/work/test-infra/config/prow/cluster/ing_ingress.yaml
+break;

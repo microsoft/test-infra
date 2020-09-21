@@ -1,0 +1,866 @@
+presubmits:
+  openenclave-ci/openenclave:
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Release-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1604-Debug-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1604:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Release-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1604-Debug-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Release-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+  - name: pr-openenclave-ci-openenclave-ubuntu1804-Debug-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+      - image: openenclave/ubuntu1804:latest
+        command:
+        - /bin/bash
+        args:
+        - -c
+        - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Release-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: pr-openenclave-ci-openenclave-acc-ubuntu1804-Debug-gcc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+
+  - name: pr-openenclave-ci-openenclave-jenk-rhel-8.1-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Release-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-rhel-8.1-RelDebInfo-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-RelDebInfo-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-rhel-8.1-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Debug-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-win-2016-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Release-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-win-2016-RelDebInfo-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-RelDebInfo-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-win-2016-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Debug-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-win-2019-Release-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Release-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-win-2019-RelDebInfo-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-RelDebInfo-c-8"'        
+
+  - name: pr-openenclave-ci-openenclave-jenk-win-2019-Debug-c-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+          - /bin/bash
+          args:
+          - -c
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Debug-c-8"'        

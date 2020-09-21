@@ -1,0 +1,820 @@
+periodics:
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1604:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Release --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-8 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=clang-7 --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-gcc
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=Debug --compiler=gcc --hardware_mode'
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never        
+
+  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Release-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-RelDebInfo-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-RelDebInfo-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Debug-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-win-2016-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Release-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-win-2016-RelDebInfo-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-RelDebInfo-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-win-2016-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Debug-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-win-2019-Release-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Release-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-win-2019-RelDebInfo-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-RelDebInfo-c-8"'        
+
+  - name: ci-openenclave-ci-openenclave-jenk-win-2019-Debug-c-8
+    extra_refs:
+    - org: openenclave-ci
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 6h
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - '-c'
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Debug-c-8"'        

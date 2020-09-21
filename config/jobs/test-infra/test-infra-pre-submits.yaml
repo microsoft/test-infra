@@ -1,5 +1,5 @@
 presubmits:
-  BRMcLaren/test-infra:
+  openenclave-ci/test-infra:
   - name: pr-openenclave-test-infra-ping
     branches:
     - master
@@ -19,7 +19,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-cmake-build
     branches:
     - master
-    always_run: true
+    run_if_changed: "images/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -32,26 +32,10 @@ presubmits:
         - -c
         - "git clone https://github.com/openenclave/oeedger8r-cpp && cd oeedger8r-cpp && /hack/cmake-build.sh"
 
-  - name: pr-openenclave-test-infra-validate-prow-job-config
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-      - image: openenclave/test-infra:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - "./hack/merge-prow-jobs.sh && ./hack/validate-prow-jobs.sh"
-
   - name: pr-openenclave-test-infra-validate-build-image-ubuntu-1804
     branches:
     - master
-    always_run: true
+    run_if_changed: "images/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -75,7 +59,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-ubuntu-1604
     branches:
     - master
-    always_run: true
+    run_if_changed: "images/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -99,7 +83,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-bootstrap-did
     branches:
     - master
-    always_run: true
+    run_if_changed: "images/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -123,7 +107,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-rhel-8.1
     branches:
     - master
-    always_run: true
+    run_if_changed: "images/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -147,7 +131,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-centos-7.5
     branches:
     - master
-    always_run: true
+    run_if_changed: "images/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -171,7 +155,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-fedora-31
     branches:
     - master
-    always_run: true
+    run_if_changed: "images/*"
     decorate: true
     skip_report: false
     max_concurrency: 10

@@ -1,0 +1,20 @@
+  - name: post-${org}-${repo}-${operating_system}-${build_type_short}-${compiler_short}
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/${operating_system}:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=${build_type} --compiler=${compiler}'
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: dockersock
+              mountPath: "/var/run/docker.sock"
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock

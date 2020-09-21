@@ -1,0 +1,11 @@
+  - name: post-${org}-${repo}-acc-${operating_system}-${build_type_short}-${compiler_short}
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/${operating_system}:latest
+          command:
+            - sh
+            - '-c'
+            - '/hack/cmake-build.sh -b=${build_type} --compiler=${compiler} --hardware_mode'

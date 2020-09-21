@@ -1,22 +1,7 @@
 periodics:
-  - name: ci-openenclave-test-infra-validate-prow-jobs
-    extra_refs:
-    - org: BRMcLaren
-      repo: test-infra
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/test-infra:latest
-          command:
-            - sh
-            - "-c"
-            - "./hack/merge-prow-jobs.sh && ./hack/validate-prow-jobs.sh"
-
   - name: ci-openenclave-test-infra-validate-build-image-ubuntu-1604
     extra_refs:
-    - org: BRMcLaren
+    - org: openenclave-ci
       repo: test-infra
       base_ref: master
     decorate: true
@@ -40,7 +25,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-ubuntu-1804
     extra_refs:
-    - org: BRMcLaren
+    - org: openenclave-ci
       repo: test-infra
       base_ref: master
     decorate: true
@@ -64,7 +49,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-rhel-8.1
     extra_refs:
-    - org: BRMcLaren
+    - org: openenclave-ci
       repo: test-infra
       base_ref: master
     decorate: true
@@ -88,7 +73,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-bootstrap-did
     extra_refs:
-    - org: BRMcLaren
+    - org: openenclave-ci
       repo: test-infra
       base_ref: master
     decorate: true
@@ -112,7 +97,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-centos-7.5
     extra_refs:
-    - org: BRMcLaren
+    - org: openenclave-ci
       repo: test-infra
       base_ref: master
     decorate: true
@@ -136,7 +121,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-fedora-31
     extra_refs:
-    - org: BRMcLaren
+    - org: openenclave-ci
       repo: test-infra
       base_ref: master
     decorate: true

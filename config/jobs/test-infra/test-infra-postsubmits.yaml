@@ -1,5 +1,5 @@
 postsubmits:
-  BRMcLaren/test-infra:
+  openenclave-ci/test-infra:
   - name: post-openenclave-test-infra-push-image-bootstrap-did
     branches:
     - master

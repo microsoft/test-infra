@@ -1,0 +1,74 @@
+pipeline {
+    agent none
+    stages {
+        stage('BuildAndTest') {
+            matrix {
+                agent any
+                axes {
+                    axis {
+                        name 'PLATFORM'
+                        values 'linux', 'windows', 'mac'
+                    }
+                    axis {
+                        name 'OS'
+                        values '1604', '1804', '8.1', '2019', '2016'
+                    }
+
+                    axis {
+                        name 'BuildType'
+                        values 'Release', 'RelWithDebInfo', 'Debug'
+                    }
+                }
+                excludes {
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            values 'linux'
+                        }
+                        axis {
+                            name 'OS'
+                            values '2019', '2016'
+                        }
+                    }
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            values 'windows'
+                        }
+                        axis {
+                            name 'OS'
+                            values '1604', '1804', '8.1'
+                        }
+                    }
+                    exclude {
+                        axis {
+                            name 'PLATFORM'
+                            notValues 'windows'
+                        }
+                        axis {
+                            name 'OS'
+                            values 'edge'
+                        }
+                    }
+                }
+                stages {
+                    stage('Pre-Build') {
+                        steps {
+                            checkout scm
+                        }
+                    }
+                    stage('Build') {
+                        steps {
+                            echo "Do Build for ${PLATFORM} - ${OS} - ${BuildType}"
+                        }
+                    }
+                    stage('Test') {
+                        steps {
+                            echo "Do Test for ${PLATFORM} - ${OS} - ${BuildType}"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

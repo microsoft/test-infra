@@ -9,7 +9,8 @@ spec:
     serviceName: deck
     servicePort: 80
   rules:
-  - http:
+  - host: oe-prow-status.uksouth.cloudapp.azure.com
+    http:
       paths:
       - path: /
         backend:

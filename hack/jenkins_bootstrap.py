@@ -70,12 +70,12 @@ class Trigger():
         else:
             build_url = self.url + "/job/" + self.job + "/build"
             print "Triggering a build via get @ ", build_url
-            build_request = requests.get(build_url,
+            build_request = requests.post(build_url,
                                          auth=(self.user, self.password),
                                          headers={"Jenkins-Crumb": crumb.get('crumb')})
 
         if build_request.status_code == 201:
-            queue_url = build_request.headers['location'] + "/api/json"
+            queue_url = build_request.headers['location'] + "api/json"
             print "Build is queued @ ", queue_url
         else:
             print "Your build somehow failed"

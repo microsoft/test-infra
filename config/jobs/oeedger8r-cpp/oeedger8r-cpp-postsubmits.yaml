@@ -1,6 +1,6 @@
 postsubmits:
-  openenclave-ci/oeedger8r-cpp:
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-8
+  openenclave/oeedger8r-cpp:
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1604-Release-c-8
     branches:
     - master
     decorate: true
@@ -12,7 +12,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
 
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1604-Release-c-7
     branches:
     - master
     decorate: true
@@ -24,7 +24,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
 
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-gcc
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1604-Release-gcc
     branches:
     - master
     decorate: true
@@ -36,7 +36,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'
   
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-8
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1604-Debug-c-8
     branches:
     - master
     decorate: true
@@ -48,7 +48,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
        
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1604-Debug-c-7
     branches:
     - master
     decorate: true
@@ -60,7 +60,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
       
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-gcc
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1604-Debug-gcc
     branches:
     - master
     decorate: true
@@ -72,7 +72,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
        
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-8
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1804-Release-c-8
     branches:
     - master
     decorate: true
@@ -84,7 +84,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
       
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1804-Release-c-7
     branches:
     - master
     decorate: true
@@ -96,7 +96,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
       
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-gcc
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1804-Release-gcc
     branches:
     - master
     decorate: true
@@ -108,7 +108,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'
 
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-8
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1804-Debug-c-8
     branches:
     - master
     decorate: true
@@ -120,7 +120,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
        
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1804-Debug-c-7
     branches:
     - master
     decorate: true
@@ -132,7 +132,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
       
-  - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-gcc
+  - name: post-openenclave-oeedger8r-cpp-ubuntu1804-Debug-gcc
     branches:
     - master
     decorate: true
@@ -144,7 +144,7 @@ postsubmits:
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
 
-  - name: post-openenclave-ci-oeedger8r-cpp-jenk
+  - name: post-openenclave-oeedger8r-cpp-jenk
     branches:
     - master
     decorate: true

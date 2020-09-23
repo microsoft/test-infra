@@ -63,3 +63,16 @@ sinker:
   max_prowjob_age: 48h
   max_pod_age: 48h
   terminated_pod_ttl: 30m
+slack_reporter_configs:
+
+  # Wildcard (i.e. catch-all) slack config
+  "*":
+    job_types_to_report:
+      - presubmit
+      - postsubmit
+    job_states_to_report:
+      - failure
+      - error
+    channel: open-enclave-infrastracture
+    # The template shown below is the default
+    report_template: "Job {{.Spec.Job}} of type {{.Spec.Type}} ended with state {{.Status.State}}. <{{.Status.URL}}|View logs>"

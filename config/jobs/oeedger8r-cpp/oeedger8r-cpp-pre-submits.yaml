@@ -14,7 +14,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
     branches:
     - master
@@ -29,7 +30,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-gcc
     branches:
     - master
@@ -44,7 +46,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+        - '/hack/cmake-build.sh -b=Release --compiler=gcc'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-8
     branches:
     - master
@@ -59,7 +62,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
     branches:
     - master
@@ -74,7 +78,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-gcc
     branches:
     - master
@@ -89,7 +94,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-8
     branches:
     - master
@@ -104,7 +110,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
     branches:
     - master
@@ -119,7 +126,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-gcc
     branches:
     - master
@@ -134,7 +142,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
+        - '/hack/cmake-build.sh -b=Release --compiler=gcc'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-8
     branches:
     - master
@@ -149,7 +158,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
     branches:
     - master
@@ -164,7 +174,8 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
+        - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
+
   - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-gcc
     branches:
     - master

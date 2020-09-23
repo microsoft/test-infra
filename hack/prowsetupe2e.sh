@@ -72,6 +72,10 @@ kubectl create secret generic hmac-token --from-file=$PWD/hmac
 kubectl create secret generic oauth-token --from-file=$PWD/oauth
 kubectl -n test-pods create secret generic gcs-credentials --from-file=service-account.json
 
+# Create Jenkins token
+### Generate a dummy credential even if you are not using Jenkins or else some prow jobs will fail
+kubectl create secret generic jenkins-token --from-file=$PWD/jenkins-secret
+
 kubectl apply -f config/prow/cluster/configs.yaml
 kubectl apply -f config/prow/cluster/hook_deployment.yaml
 kubectl apply -f config/prow/cluster/hook_service.yaml

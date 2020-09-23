@@ -192,7 +192,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Release-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-jenk
     branches:
     - master
     always_run: true
@@ -201,89 +201,9 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-        - image: openenclave/test-infra-did:latest
+        - image: openenclave/jenkinsoperator:latest
           command:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Release-c-8"'        
-
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Debug-c-8
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-          - /bin/bash
-          args:
-          - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Debug-c-8"'        
-
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Release-c-8
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-          - /bin/bash
-          args:
-          - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Release-c-8"'        
-
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Debug-c-8
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-          - /bin/bash
-          args:
-          - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Debug-c-8"'        
-
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Release-c-8
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-          - /bin/bash
-          args:
-          - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Release-c-8"'        
-
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Debug-c-8
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-          - /bin/bash
-          args:
-          - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Debug-c-8"'        
+          - "python /hack/jenkins_bootstrap.py --job openenclave-oeedger8r-cpp-jenkins-full --jenkins-user $(echo $JENKINS_USER) --url $(echo $JENKINS_URL) --jenkins-password $(echo $JENKINS_TOKEN)"

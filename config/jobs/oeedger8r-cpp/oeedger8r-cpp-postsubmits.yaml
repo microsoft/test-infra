@@ -11,15 +11,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
     branches:
     - master
@@ -31,15 +23,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-gcc
     branches:
     - master
@@ -51,15 +35,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+  
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-8
     branches:
     - master
@@ -71,15 +47,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+       
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
     branches:
     - master
@@ -91,15 +59,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+      
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-gcc
     branches:
     - master
@@ -111,15 +71,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+       
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-8
     branches:
     - master
@@ -131,15 +83,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+      
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
     branches:
     - master
@@ -151,15 +95,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-7'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+      
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-gcc
     branches:
     - master
@@ -171,15 +107,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-8
     branches:
     - master
@@ -191,15 +119,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+       
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
     branches:
     - master
@@ -211,15 +131,7 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
+      
   - name: post-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-gcc
     branches:
     - master
@@ -231,84 +143,15 @@ postsubmits:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: dockersock
-              mountPath: "/var/run/docker.sock"
-      volumes:
-      - name: dockersock
-        hostPath:
-          path: /var/run/docker.sock        
 
-  - name: post-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Release-c-8
+  - name: post-openenclave-ci-oeedger8r-cpp-jenk
     branches:
     - master
     decorate: true
     spec:
       containers:
-        - image: openenclave/test-infra-did:latest
+        - image: openenclave/jenkinsoperator:latest
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Release-c-8"'        
-
-  - name: post-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Debug-c-8
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-            - sh
-            - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Debug-c-8"'        
-
-  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Release-c-8
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-            - sh
-            - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Release-c-8"'        
-
-  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Debug-c-8
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-            - sh
-            - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Debug-c-8"'        
-
-  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Release-c-8
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-            - sh
-            - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Release-c-8"'        
-
-  - name: post-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Debug-c-8
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/test-infra-did:latest
-          command:
-            - sh
-            - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Debug-c-8"'        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-oeedger8r-cpp-jenkins-full --jenkins-user $(echo $JENKINS_USER) --url $(echo $JENKINS_URL) --jenkins-password $(echo $JENKINS_TOKEN)"

@@ -117,15 +117,3 @@ kubectl create configmap job-config \
 
 # Ending remarks
 az network public-ip list --resource-group ${AKS_RESOURCE_GROUP} --query "[?name=='myAKSPublicIP'].[dnsSettings.fqdn]" -o tsv
-
-# Generate TLS cert
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-    -out aks-ingress-tls.crt \
-    -keyout aks-ingress-tls.key \
-    -subj "/CN=${DNS_LABEL}.uksouth.cloudapp.azure.com/O=aks-ingress-tls"
-
-# Create TLS secret
-kubectl create secret tls prow-tls \
-    --namespace ingress-basic \
-    --key aks-ingress-tls.key \
-    --cert aks-ingress-tls.crt

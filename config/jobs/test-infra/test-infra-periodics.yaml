@@ -142,3 +142,28 @@ periodics:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock
+  - name: ci-openenclave-test-infra-jenkins-ping
+    extra_refs:
+    - org: openenclave-ci
+      repo: test-infra
+      base_ref: master
+    decorate: true
+    interval: 1m 
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job job-runner --jenkins-user $(echo $JENKINS_USER) --url $(echo $JENKINS_URL) --jenkins-password $(echo $JENKINS_TOKEN)"
+
+presets:
+- env:                     # a preset with no labels is applied to all jobs
+  - name: JENKINS_TOKEN
+    value: <>
+
+  - name: JENKINS_USER
+    value: jenkins-trigger
+  
+  - name: JENKINS_URL
+    value: http://oe-jenk-master-test.canadacentral.cloudapp.azure.com

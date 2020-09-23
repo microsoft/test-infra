@@ -119,7 +119,7 @@ periodics:
         hostPath:
           path: /var/run/docker.sock
 
-  - name: ci-openenclave-test-infra-validate-build-image-fedora-32
+  - name: ci-openenclave-test-infra-validate-build-image-fedora-31
     extra_refs:
     - org: openenclave-ci
       repo: test-infra

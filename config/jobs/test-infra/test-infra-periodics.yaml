@@ -160,7 +160,10 @@ periodics:
 presets:
 - env:                     # a preset with no labels is applied to all jobs
   - name: JENKINS_TOKEN
-    value: <>
+    valueFrom:
+      secretKeyRef:
+        name: jenkins-token
+        key: jenkins-token
 
   - name: JENKINS_USER
     value: jenkins-trigger

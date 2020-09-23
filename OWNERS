@@ -10,3 +10,5 @@ approvers:
   - BRMcLaren
   - oe-ci-robot
   - rs--
+labels:
+- sig/test-infra

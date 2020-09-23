@@ -175,3 +175,32 @@ presubmits:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock
+
+  - name: pr-openenclave-test-infra-jenkins-ping
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job job-runner --jenkins-user $(echo $JENKINS_USER) --url $(echo $JENKINS_URL) --jenkins-password $(echo $JENKINS_TOKEN)"
+
+resets:
+- env:                     # a preset with no labels is applied to all jobs
+  - name: JENKINS_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: jenkins-token
+        key: jenkins-token
+
+  - name: JENKINS_USER
+    value: jenkins-trigger
+  
+  - name: JENKINS_URL
+    value: http://oe-jenk-master-test.canadacentral.cloudapp.azure.com

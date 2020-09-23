@@ -74,7 +74,7 @@ kubectl -n test-pods create secret generic gcs-credentials --from-file=service-a
 
 # Create Jenkins token
 ### Generate a dummy credential even if you are not using Jenkins or else some prow jobs will fail
-kubectl create secret generic jenkins-token --from-file=$PWD/jenkins-secret
+kubectl -n test-pods create secret generic jenkins-token --from-file=jenkins-token=$PWD/jenkins-secret
 
 kubectl apply -f config/prow/cluster/configs.yaml
 kubectl apply -f config/prow/cluster/hook_deployment.yaml

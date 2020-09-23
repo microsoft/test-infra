@@ -115,7 +115,7 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/fedora/31/Dockerfile --skip_testing --docker_tag openenclave/fefora-31:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/fedora/31/Dockerfile --skip_testing --docker_tag openenclave/fedora-31:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
           securityContext:
             privileged: true
           volumeMounts:

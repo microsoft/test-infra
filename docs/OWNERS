@@ -8,4 +8,4 @@ approvers:
   - BRMcLaren
   - oe-ci-robot
 labels:
-- area/prow-config
+- area/docs

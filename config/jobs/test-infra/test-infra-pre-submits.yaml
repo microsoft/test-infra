@@ -19,7 +19,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-cmake-build
     branches:
     - master
-    run_if_changed: "images/*"
+    run_if_changed: "hacks/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -35,7 +35,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-ubuntu-1804
     branches:
     - master
-    run_if_changed: "images/*"
+    run_if_changed: "images/ubuntu/1804/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -59,7 +59,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-ubuntu-1604
     branches:
     - master
-    run_if_changed: "images/*"
+    run_if_changed: "images/ubuntu/1604/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -83,7 +83,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-bootstrap-did
     branches:
     - master
-    run_if_changed: "images/*"
+    run_if_changed: "images/bootstrap/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -107,7 +107,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-rhel-8.1
     branches:
     - master
-    run_if_changed: "images/*"
+    run_if_changed: "images/rhel/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -131,7 +131,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-centos-7.5
     branches:
     - master
-    run_if_changed: "images/*"
+    run_if_changed: "images/centos/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -155,7 +155,7 @@ presubmits:
   - name: pr-openenclave-test-infra-validate-build-image-fedora-31
     branches:
     - master
-    run_if_changed: "images/*"
+    run_if_changed: "images/fedora/*"
     decorate: true
     skip_report: false
     max_concurrency: 10
@@ -166,6 +166,30 @@ presubmits:
             - sh
             - "-c"
             - "./images/test/build.sh --docker_path images/fedora/31/Dockerfile --skip_testing --docker_tag fedora-31"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: dockersock
+              mountPath: "/var/run/docker.sock"
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
+
+  - name: pr-openenclave-test-infra-validate-build-image-jenkins-op
+    branches:
+    - master
+    run_if_changed: "images/jenkinsoperator/*"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/test-infra-did:latest
+          command:
+            - sh
+            - "-c"
+            - "./images/test/build.sh --docker_path images/jenkinsoperator/Dockerfile --skip_testing --docker_tag fedora-31"
           securityContext:
             privileged: true
           volumeMounts:
@@ -191,7 +215,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job job-runner --jenkins-user $(echo $JENKINS_USER) --url $(echo $JENKINS_URL) --jenkins-password $(echo $JENKINS_TOKEN)"
 
-resets:
+presets:
 - env:                     # a preset with no labels is applied to all jobs
   - name: JENKINS_TOKEN
     valueFrom:

@@ -1,6 +1,6 @@
 presubmits:
   openenclave-ci/oeedger8r-cpp:
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-clang-8
     branches:
     - master
     always_run: true
@@ -15,7 +15,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-c-7
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Release-clang-7
     branches:
     - master
     always_run: true
@@ -45,7 +45,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -60,7 +60,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-c-7
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1604-Debug-clang-7
     branches:
     - master
     always_run: true
@@ -90,7 +90,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-clang-8
     branches:
     - master
     always_run: true
@@ -105,7 +105,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-c-7
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Release-clang-7
     branches:
     - master
     always_run: true
@@ -135,7 +135,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -150,7 +150,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-c-7
+  - name: pr-openenclave-ci-oeedger8r-cpp-ubuntu1804-Debug-clang-7
     branches:
     - master
     always_run: true
@@ -181,7 +181,7 @@ presubmits:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
 
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Release-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Release-clang-8
     branches:
     - master
     always_run: true
@@ -195,9 +195,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Release-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Release-clang-8"'        
 
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Debug-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-rhel-8.1-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -211,9 +211,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Debug-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-rhel-8.1-Debug-clang-8"'        
 
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Release-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Release-clang-8
     branches:
     - master
     always_run: true
@@ -227,9 +227,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Release-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Release-clang-8"'        
 
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Debug-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2016-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -243,9 +243,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Debug-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2016-Debug-clang-8"'        
 
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Release-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Release-clang-8
     branches:
     - master
     always_run: true
@@ -259,9 +259,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Release-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Release-clang-8"'        
 
-  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Debug-c-8
+  - name: pr-openenclave-ci-oeedger8r-cpp-jenk-win-2019-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -275,4 +275,4 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Debug-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-oeedger8r-cpp-win-2019-Debug-clang-8"'        

@@ -1,4 +1,4 @@
-  - name: ci-${org}-${repo}-acc-${operating_system}-${build_type_short}-${compiler_short}
+  - name: ci-${repo}-sgx-${operating_system}-${build_type_short}-${compiler}
     extra_refs:
     - org: ${org}
       repo: ${repo}

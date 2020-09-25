@@ -1,5 +1,5 @@
 periodics:
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-c-8
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -13,7 +13,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Release-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -41,7 +41,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-8
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -55,7 +55,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-RelDebInfo-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -83,7 +83,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-c-8
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -97,7 +97,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1604-Debug-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -125,7 +125,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-8
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -149,7 +149,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Release-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -197,7 +197,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-8
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -221,7 +221,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-RelDebInfo-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -269,7 +269,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-8
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -293,7 +293,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1604-Debug-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -341,7 +341,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-c-8
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -355,7 +355,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Release-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -383,7 +383,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-8
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -397,7 +397,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-RelDebInfo-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -425,7 +425,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-c-8
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -439,7 +439,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-ubuntu1804-Debug-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -467,7 +467,7 @@ periodics:
             - sh
             - '-c'
             - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-8
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -491,7 +491,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Release-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -539,7 +539,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-8
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -563,7 +563,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-RelDebInfo-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -611,7 +611,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-8
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -635,7 +635,7 @@ periodics:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-c-7
+  - name: ci-openenclave-ci-openenclave-acc-ubuntu1804-Debug-clang-7
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -684,7 +684,7 @@ periodics:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-Release-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-Release-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -697,9 +697,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Release-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Release-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-RelDebInfo-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-RelDebInfo-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -712,9 +712,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-RelDebInfo-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-RelDebInfo-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-Debug-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-rhel-8.1-Debug-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -727,9 +727,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Debug-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Debug-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-win-2016-Release-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-win-2016-Release-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -742,9 +742,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Release-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Release-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-win-2016-RelDebInfo-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-win-2016-RelDebInfo-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -757,9 +757,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-RelDebInfo-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-RelDebInfo-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-win-2016-Debug-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-win-2016-Debug-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -772,9 +772,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Debug-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Debug-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-win-2019-Release-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-win-2019-Release-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -787,9 +787,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Release-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Release-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-win-2019-RelDebInfo-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-win-2019-RelDebInfo-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -802,9 +802,9 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-RelDebInfo-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-RelDebInfo-clang-8"'        
 
-  - name: ci-openenclave-ci-openenclave-jenk-win-2019-Debug-c-8
+  - name: ci-openenclave-ci-openenclave-jenk-win-2019-Debug-clang-8
     extra_refs:
     - org: openenclave-ci
       repo: openenclave
@@ -817,4 +817,4 @@ periodics:
           command:
             - sh
             - '-c'
-            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Debug-c-8"'        
+            - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Debug-clang-8"'        

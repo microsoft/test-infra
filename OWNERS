@@ -11,4 +11,4 @@ approvers:
   - oe-ci-robot
   - rs--
 labels:
-- sig/test-infra
+  - sig/test-infra

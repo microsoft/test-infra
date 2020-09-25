@@ -7,3 +7,5 @@ reviewers:
 approvers:
   - BRMcLaren
   - oe-ci-robot
+labels:
+  - area/openenclave

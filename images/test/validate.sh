@@ -6,5 +6,6 @@ do
   if [[ -d ./${repo} ]]; then
     rm -rf ./${repo} || sudo rm -rf ./${repo} 
   fi
+  # TODO Iterate through build config types
   git clone --recursive https://github.com/openenclave/${repo}.git && cd ${repo} && exec "../hack/cmake-build.sh" && cd ..
 done

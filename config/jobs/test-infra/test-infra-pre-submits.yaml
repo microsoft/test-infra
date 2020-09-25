@@ -25,7 +25,7 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/ubuntu1804:latest
+      - image: openenclave/ubuntu-1804:latest
         command:
         - /bin/bash
         args:
@@ -45,7 +45,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu1804"
+            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu-1804"
           securityContext:
             privileged: true
           volumeMounts:
@@ -69,7 +69,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu1604"
+            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu-1604"
           securityContext:
             privileged: true
           volumeMounts:

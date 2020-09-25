@@ -12,7 +12,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/ubuntu/1604/Dockerfile --docker_tag openenclave/ubuntu1604:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/ubuntu/1604/Dockerfile --docker_tag openenclave/ubuntu-1604:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
           securityContext:
             privileged: true
           volumeMounts:
@@ -36,7 +36,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu1804:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu-1804:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
           securityContext:
             privileged: true
           volumeMounts:

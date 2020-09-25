@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CMake Validation
-for repo in  oeedger8r-cpp #openenclave
+for repo in  oeedger8r-cpp openenclave
 do
   if [[ -d ./${repo} ]]; then
     rm -rf ./${repo} || sudo rm -rf ./${repo} 

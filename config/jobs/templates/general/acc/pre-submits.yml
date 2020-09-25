@@ -1,4 +1,4 @@
-  - name: pr-${org}-${repo}-acc-${operating_system}-${build_type_short}-${compiler_short}
+  - name: pr-${repo}-sgx-${operating_system}-${build_type_short}-${compiler_short}
     branches:
     - master
     always_run: true

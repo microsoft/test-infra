@@ -1,6 +1,6 @@
 presubmits:
   openenclave-ci/openenclave:
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-Release-c-8
+  - name: pr-openenclave-ubuntu-1604-Release-clang-8
     branches:
     - master
     always_run: true
@@ -15,7 +15,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-Release-c-7
+  - name: pr-openenclave-ubuntu-1604-Release-clang-7
     branches:
     - master
     always_run: true
@@ -30,7 +30,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-Release-gcc
+  - name: pr-openenclave-ubuntu-1604-Release-gcc
     branches:
     - master
     always_run: true
@@ -45,7 +45,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-RelDebInfo-c-8
+  - name: pr-openenclave-ubuntu-1604-RelDebInfo-clang-8
     branches:
     - master
     always_run: true
@@ -60,7 +60,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-RelDebInfo-c-7
+  - name: pr-openenclave-ubuntu-1604-RelDebInfo-clang-7
     branches:
     - master
     always_run: true
@@ -75,7 +75,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-RelDebInfo-gcc
+  - name: pr-openenclave-ubuntu-1604-RelDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -90,7 +90,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-Debug-c-8
+  - name: pr-openenclave-ubuntu-1604-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -105,7 +105,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-Debug-c-7
+  - name: pr-openenclave-ubuntu-1604-Debug-clang-7
     branches:
     - master
     always_run: true
@@ -120,7 +120,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1604-Debug-gcc
+  - name: pr-openenclave-ubuntu-1604-Debug-gcc
     branches:
     - master
     always_run: true
@@ -135,7 +135,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-Release-c-8
+  - name: pr-openenclave-sgx-ubuntu-1604-Release-clang-8
     branches:
     - master
     always_run: true
@@ -160,7 +160,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-Release-c-7
+  - name: pr-openenclave-sgx-ubuntu-1604-Release-clang-7
     branches:
     - master
     always_run: true
@@ -185,7 +185,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-Release-gcc
+  - name: pr-openenclave-sgx-ubuntu-1604-Release-gcc
     branches:
     - master
     always_run: true
@@ -210,7 +210,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-RelDebInfo-c-8
+  - name: pr-openenclave-sgx-ubuntu-1604-RelDebInfo-clang-8
     branches:
     - master
     always_run: true
@@ -235,7 +235,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-RelDebInfo-c-7
+  - name: pr-openenclave-sgx-ubuntu-1604-RelDebInfo-clang-7
     branches:
     - master
     always_run: true
@@ -260,7 +260,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-RelDebInfo-gcc
+  - name: pr-openenclave-sgx-ubuntu-1604-RelDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -285,7 +285,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-Debug-c-8
+  - name: pr-openenclave-sgx-ubuntu-1604-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -310,7 +310,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-Debug-c-7
+  - name: pr-openenclave-sgx-ubuntu-1604-Debug-clang-7
     branches:
     - master
     always_run: true
@@ -335,7 +335,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1604-Debug-gcc
+  - name: pr-openenclave-sgx-ubuntu-1604-Debug-gcc
     branches:
     - master
     always_run: true
@@ -360,7 +360,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-Release-c-8
+  - name: pr-openenclave-ubuntu-1804-Release-clang-8
     branches:
     - master
     always_run: true
@@ -375,7 +375,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=clang-8'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-Release-c-7
+  - name: pr-openenclave-ubuntu-1804-Release-clang-7
     branches:
     - master
     always_run: true
@@ -390,7 +390,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=clang-7'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-Release-gcc
+  - name: pr-openenclave-ubuntu-1804-Release-gcc
     branches:
     - master
     always_run: true
@@ -405,7 +405,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Release --compiler=gcc'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-RelDebInfo-c-8
+  - name: pr-openenclave-ubuntu-1804-RelDebInfo-clang-8
     branches:
     - master
     always_run: true
@@ -420,7 +420,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-8'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-RelDebInfo-c-7
+  - name: pr-openenclave-ubuntu-1804-RelDebInfo-clang-7
     branches:
     - master
     always_run: true
@@ -435,7 +435,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=clang-7'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-RelDebInfo-gcc
+  - name: pr-openenclave-ubuntu-1804-RelDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -450,7 +450,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=RelWithDebInfo --compiler=gcc'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-Debug-c-8
+  - name: pr-openenclave-ubuntu-1804-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -465,7 +465,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=clang-8'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-Debug-c-7
+  - name: pr-openenclave-ubuntu-1804-Debug-clang-7
     branches:
     - master
     always_run: true
@@ -480,7 +480,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=clang-7'        
-  - name: pr-openenclave-ci-openenclave-ubuntu-1804-Debug-gcc
+  - name: pr-openenclave-ubuntu-1804-Debug-gcc
     branches:
     - master
     always_run: true
@@ -495,7 +495,7 @@ presubmits:
         args:
         - -c
         - '/hack/cmake-build.sh -b=Debug --compiler=gcc'        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-Release-c-8
+  - name: pr-openenclave-sgx-ubuntu-1804-Release-clang-8
     branches:
     - master
     always_run: true
@@ -520,7 +520,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-Release-c-7
+  - name: pr-openenclave-sgx-ubuntu-1804-Release-clang-7
     branches:
     - master
     always_run: true
@@ -545,7 +545,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-Release-gcc
+  - name: pr-openenclave-sgx-ubuntu-1804-Release-gcc
     branches:
     - master
     always_run: true
@@ -570,7 +570,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-RelDebInfo-c-8
+  - name: pr-openenclave-sgx-ubuntu-1804-RelDebInfo-clang-8
     branches:
     - master
     always_run: true
@@ -595,7 +595,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-RelDebInfo-c-7
+  - name: pr-openenclave-sgx-ubuntu-1804-RelDebInfo-clang-7
     branches:
     - master
     always_run: true
@@ -620,7 +620,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-RelDebInfo-gcc
+  - name: pr-openenclave-sgx-ubuntu-1804-RelDebInfo-gcc
     branches:
     - master
     always_run: true
@@ -645,7 +645,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-Debug-c-8
+  - name: pr-openenclave-sgx-ubuntu-1804-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -670,7 +670,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-Debug-c-7
+  - name: pr-openenclave-sgx-ubuntu-1804-Debug-clang-7
     branches:
     - master
     always_run: true
@@ -695,7 +695,7 @@ presubmits:
         hostPath:
           path: /dev/sgx
       restartPolicy: Never        
-  - name: pr-openenclave-ci-openenclave-acc-ubuntu-1804-Debug-gcc
+  - name: pr-openenclave-sgx-ubuntu-1804-Debug-gcc
     branches:
     - master
     always_run: true
@@ -721,7 +721,7 @@ presubmits:
           path: /dev/sgx
       restartPolicy: Never        
 
-  - name: pr-openenclave-ci-openenclave-jenk-rhel-8.1-Release-c-8
+  - name: pr-openenclave-jenk-rhel-8.1-Release-clang-8
     branches:
     - master
     always_run: true
@@ -735,9 +735,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Release-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-rhel-8.1-Release-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-rhel-8.1-RelDebInfo-c-8
+  - name: pr-openenclave-jenk-rhel-8.1-RelDebInfo-clang-8
     branches:
     - master
     always_run: true
@@ -751,9 +751,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-RelDebInfo-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-rhel-8.1-RelDebInfo-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-rhel-8.1-Debug-c-8
+  - name: pr-openenclave-jenk-rhel-8.1-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -767,9 +767,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-rhel-8.1-Debug-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-rhel-8.1-Debug-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-win-2016-Release-c-8
+  - name: pr-openenclave-jenk-win-2016-Release-clang-8
     branches:
     - master
     always_run: true
@@ -783,9 +783,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Release-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-win-2016-Release-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-win-2016-RelDebInfo-c-8
+  - name: pr-openenclave-jenk-win-2016-RelDebInfo-clang-8
     branches:
     - master
     always_run: true
@@ -799,9 +799,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-RelDebInfo-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-win-2016-RelDebInfo-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-win-2016-Debug-c-8
+  - name: pr-openenclave-jenk-win-2016-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -815,9 +815,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2016-Debug-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-win-2016-Debug-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-win-2019-Release-c-8
+  - name: pr-openenclave-jenk-win-2019-Release-clang-8
     branches:
     - master
     always_run: true
@@ -831,9 +831,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Release-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-win-2019-Release-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-win-2019-RelDebInfo-c-8
+  - name: pr-openenclave-jenk-win-2019-RelDebInfo-clang-8
     branches:
     - master
     always_run: true
@@ -847,9 +847,9 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-RelDebInfo-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-win-2019-RelDebInfo-clang-8"'        
 
-  - name: pr-openenclave-ci-openenclave-jenk-win-2019-Debug-c-8
+  - name: pr-openenclave-jenk-win-2019-Debug-clang-8
     branches:
     - master
     always_run: true
@@ -863,4 +863,4 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-ci-openenclave-win-2019-Debug-c-8"'        
+          - 'echo "I am not implemented yet! Thanks for your interest in this project! openenclave-win-2019-Debug-clang-8"'        

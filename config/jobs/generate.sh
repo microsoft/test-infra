@@ -5,8 +5,6 @@ set +x
 
 echo "Creating config directories if they do not exist.."
 
-org=openenclave-ci
-
 # Get all build config types
 build_configs=$(yq r $PWD/config.yml build-configs)
 

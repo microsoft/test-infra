@@ -12,7 +12,14 @@ do
   git clone --recursive https://github.com/openenclave/${repo}.git && cd ${repo}
   for buildConfig in Release RelWithDebInfo Debug
   do
-    bash -c  "/hack/cmake-build.sh  -b=${buildConfig} --compiler=clang-8"
+    if [[ $repo = "openenclave" ]]; then
+      bash -c  "/hack/cmake-build.sh  -b=${buildConfig} --compiler=clang-8 --enable_lvi_mitigation"
+    fi
+    # for each compiler supported
+    for compiler in clang-7 clang-8
+    do
+      bash -c  "/hack/cmake-build.sh  -b=${buildConfig} --compiler=${compiler}"
+    done
   done
   cd ..
 done

@@ -220,4 +220,4 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job job-runner --jenkins-user (echo JENKINS_USER) --url (echo JENKINS_URL) --jenkins-password (echo JENKINS_TOKEN)"
+            - "python /hack/jenkins_bootstrap.py --job job-runner --jenkins-user $(echo $JENKINS_USER) --url $(echo $JENKINS_URL) --jenkins-password $(echo $JENKINS_TOKEN)"

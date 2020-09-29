@@ -14,7 +14,8 @@ Param(
     [string]$AzureDCAPNupkgHash = 'CC6D4071CE03B9E6922C3265D99FB1C0E56FCDB3409CBCEDB5A76F4886A3964A',
     [Parameter(mandatory=$true)][string]$InstallPath,
     [Parameter(mandatory=$true)][ValidateSet("SGX1FLC", "SGX1", "SGX1FLC-NoIntelDrivers", "SGX1-NoIntelDrivers")][string]$LaunchConfiguration,
-    [Parameter(mandatory=$true)][ValidateSet("None", "Azure")][string]$DCAPClientType
+    [Parameter(mandatory=$true)][ValidateSet("None", "Azure")][string]$DCAPClientType,
+    [Parameter(mandatory=$false)][ValidateSet("CICD", "None")][string]$ImageConfiguration
 )
 
 $ErrorActionPreference = "Stop"
@@ -523,7 +524,7 @@ function Install-Build-Dependencies {
     cinst python3 -y
     cinst pip -y
     # Need to explicitly add to PATH here before trying to use
-    Add-ToSystemPath -Path $EnvironmentPath
+    Add-ToSystemPath -Path "C:\Python38\Scripts"
     pip install cmake-format
 }
 
@@ -542,7 +543,12 @@ function Install-Run-Time-Dependencies {
 }
 
 function Install-Test-Dependencies {
-    cinst nsis -y
+    # Do regardless for testing.
+    #if ($ImageConfiguration -eq "CICD")
+    #{
+        # Need NSIS to install packages in CICD for verification/validation, contributors can ignore
+        cinst nsis -y
+    #}
 }
 
 try {

@@ -523,7 +523,9 @@ function Install-Build-Dependencies {
     # Cmake installation
     cinst cmake -y
     Add-ToSystemPath -Path "C:\Program Files\CMake\bin"
-
+    cinst ninja -y
+    Add-ToSystemPath -Path "C:\ProgramData\chocoportable\lib\ninja\tools"
+    
     # Pip installation
     cinst python3 -y
     cinst pip -y

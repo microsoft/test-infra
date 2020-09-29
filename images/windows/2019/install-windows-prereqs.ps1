@@ -520,6 +520,10 @@ function Install-Build-Dependencies {
     # Add builds tools to path explicitly
     Add-ToSystemPath -Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build"
     
+    # Cmake installation
+    cinst cmake -y
+    Add-ToSystemPath -Path "C:\Program Files\CMake\bin"
+
     # Pip installation
     cinst python3 -y
     cinst pip -y

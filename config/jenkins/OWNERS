@@ -9,4 +9,4 @@ reviewers:
   - rs--
   - CyanDevs
 labels:
-  - area/images-fedora
+  - area/jenkins

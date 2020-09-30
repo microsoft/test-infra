@@ -1,9 +1,12 @@
-required_reviewers:
-  - BRMcLaren
-  - oe-ci-robot
-reviewers:
-  - BRMcLaren
-  - oe-ci-robot
 approvers:
   - BRMcLaren
   - oe-ci-robot
+  - rs--
+  - CyanDevs
+reviewers:
+  - BRMcLaren
+  - oe-ci-robot
+  - rs--
+  - CyanDevs
+labels:
+  - area/image-rhel

@@ -17,11 +17,9 @@ pipeline {
         }
 
         stage('Test SGX Win 2019 Docker Image') {
-            agent {
-                docker { image 'docker.io/openenclave/windows-2019:0.1' }
-            }
             steps {
-                echo "Test"
+                def image = docker.image('openenclave/windows-2019')
+                image.pull()
             }
         }
     }

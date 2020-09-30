@@ -24,7 +24,7 @@ pipeline {
                             git clone --recursive https://github.com/openenclave/openenclave && \
                             cd openenclave && \
                             mkdir build && cd build && \
-                            vcvars64.bat && cmake .. -G Ninja -DNUGET_PACKAGE_PATH=C:\\Downloads\\prereqs\\nuget -DCPACK_GENERATOR=NuGet -DCMAKE_BUILD_TYPE=Release -DBUILD_ENCLAVES=ON -DLVI_MITIGATION=ControlFlow -DHAS_QUOTE_PROVIDER=ON && \ 
+                            vcvars64.bat && cmake .. -G Ninja -DNUGET_PACKAGE_PATH=C:\\Downloads\\prereqs\\nuget -DCPACK_GENERATOR=NuGet -DCMAKE_BUILD_TYPE=Release -DBUILD_ENCLAVES=ON -DLVI_MITIGATION=ControlFlow -DHAS_QUOTE_PROVIDER=ON && \
                             ninja -j 1 -v && \
                             ctest.exe -V -C Release --timeout 480 && \
                             cpack.exe -D CPACK_NUGET_COMPONENT_INSTALL=ON -DCPACK_COMPONENTS_ALL=OEHOSTVERIFY && \

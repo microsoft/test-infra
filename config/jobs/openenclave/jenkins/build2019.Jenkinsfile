@@ -22,6 +22,7 @@ pipeline {
                     docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                         bat """
                             git clone --recursive https://github.com/openenclave/openenclave && \
+                            cd openenclave && \
                             vcvars64.bat x64 && \
                             cmake.exe ${WORKSPACE} -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_ENCLAVES=ON -DLVI_MITIGATION=ControlFlow -DLVI_MITIGATION_SKIP_TESTS=OFF -DNUGET_PACKAGE_PATH=C:\\Downloads\\prereqs\\nuget -DCPACK_GENERATOR=NuGet && \
                             ninja.exe && \

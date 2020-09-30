@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
-                        echo "I am alive!"
+                        git clone --recursive "https://github.com/openenclave/openenclave"
                     }
                 }
             }

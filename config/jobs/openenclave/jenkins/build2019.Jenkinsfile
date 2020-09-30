@@ -19,7 +19,7 @@ pipeline {
         stage('Test SGX Win 2019 Docker Image') {
             steps {
                 script {
-                    docker.image('openenclave/windows-2019:latest').withRun('--device="class/17eaf82e-e167-4763-b569-5b8273cef6e1') { c ->
+                    docker.image('openenclave/windows-2019:latest').withRun('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                         echo "I am alive!"
                     }
                 }

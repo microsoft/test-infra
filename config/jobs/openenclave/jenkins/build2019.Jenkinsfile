@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "build"
-                    //docker.build("windows-2019:latest", "-f images/windows/2019/Dockerfile ." )
+                    docker.build("windows-2019:latest", "-f images/windows/2019/Dockerfile ." )
                 }
             }
         }

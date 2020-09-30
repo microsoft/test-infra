@@ -21,7 +21,26 @@ pipeline {
                 script {
                     docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                         bat """
-                            git clone --recursive https://github.com/openenclave/openenclave
+                            git clone --recursive https://github.com/openenclave/openenclave && \
+                            vcvars64.bat x64 && \
+                            cmake.exe ${WORKSPACE} -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_ENCLAVES=ON -DLVI_MITIGATION=ControlFlow -DLVI_MITIGATION_SKIP_TESTS=OFF -DNUGET_PACKAGE_PATH=C:\\Downloads\\prereqs\\nuget -DCPACK_GENERATOR=NuGet && \
+                            ninja.exe && \
+                            ctest.exe -V -C Release --timeout 480 && \
+                            cpack.exe -D CPACK_NUGET_COMPONENT_INSTALL=ON -DCPACK_COMPONENTS_ALL=OEHOSTVERIFY && \
+                            cpack.exe && \
+                            (if exist C:\\oe rmdir /s/q C:\\oe) && \
+                            nuget.exe install open-enclave -Source %cd% -OutputDirectory C:\\oe -ExcludeVersion && \
+                            set CMAKE_PREFIX_PATH=C:\\oe\\open-enclave\\openenclave\\lib\\openenclave\\cmake && \
+                            cd C:\\oe\\open-enclave\\openenclave\\share\\openenclave\\samples && \
+                            setlocal enabledelayedexpansion && \
+                            for /d %%i in (*) do (
+                                cd C:\\oe\\open-enclave\\openenclave\\share\\openenclave\\samples\\"%%i"
+                                mkdir build
+                                cd build
+                                cmake .. -G Ninja -DNUGET_PACKAGE_PATH=C:\\oe_prereqs -DLVI_MITIGATION=ControlFlow || exit /b %errorlevel%
+                                ninja || exit /b %errorlevel%
+                                ninja run || exit /b %errorlevel%
+                            )
                             """
                     }
                 }

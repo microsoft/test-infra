@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "build"
-                    docker.build("windows-2019:latest", "-f images/windows/2019/Dockerfile ." )
+                    //docker.build("windows-2019:latest", "-f images/windows/2019/Dockerfile ." )
                 }
             }
         }
@@ -19,8 +19,9 @@ pipeline {
         stage('Test SGX Win 2019 Docker Image') {
             steps {
                 script {
-                    def image = docker.image('openenclave/windows-2019')
-                    image.pull()
+                    docker.image('openenclave/windows-2019:latest').withRun('--device="class/17eaf82e-e167-4763-b569-5b8273cef6e1') { c ->
+                        echo "I am alive!"
+                    }
                 }
             }
         }

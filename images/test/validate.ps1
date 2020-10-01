@@ -1,0 +1,1 @@
+../tests/openenclave/cmake_test.cmd

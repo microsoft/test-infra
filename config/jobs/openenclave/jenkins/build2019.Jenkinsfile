@@ -21,6 +21,7 @@ pipeline {
                 script {
                     docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                         bat """
+                            (if exist openenclave rmdir /s/q openenclave) && \
                             git clone --recursive https://github.com/openenclave/openenclave && \
                             cd openenclave && \
                             mkdir build && cd build && \
@@ -53,6 +54,7 @@ pipeline {
                 script {
                     docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                         bat """
+                            (if exist openenclave rmdir /s/q openenclave) && \
                             git clone --recursive https://github.com/openenclave/openenclave && \
                             cd openenclave && \
                             mkdir build && cd build && \

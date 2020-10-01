@@ -4,6 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 cleanWs()
+                git rebase master
                 checkout scm
             }
         }

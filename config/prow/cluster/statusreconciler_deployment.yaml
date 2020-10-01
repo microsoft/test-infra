@@ -27,19 +27,12 @@ spec:
         - --plugin-config=/etc/plugins/plugins.yaml
         - --config-path=/etc/config/config.yaml
         - --github-token-path=/etc/github/oauth
-        - --job-config-path=/etc/job-config
-        - --github-endpoint=http://ghproxy
-        - --github-endpoint=https://api.github.com
-        - --github-token-path=/etc/github/oauth
         volumeMounts:
         - name: oauth
           mountPath: /etc/github
           readOnly: true
         - name: config
           mountPath: /etc/config
-          readOnly: true
-        - name: job-config
-          mountPath: /etc/job-config
           readOnly: true
         - name: plugins
           mountPath: /etc/plugins
@@ -54,6 +47,3 @@ spec:
       - name: plugins
         configMap:
           name: plugins
-      - name: job-config
-        configMap:
-          name: job-config

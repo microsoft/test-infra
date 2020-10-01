@@ -26,4 +26,4 @@ RUN curl.exe -O http://download.windowsupdate.com/c/msdownload/update/driver/drv
 && expand /R %DCAP_CAB% /F:ThirdPartyLicenses.txt c:/ \
 && del /q %DCAP_CAB%
 
-RUN cd images/windows/2019 && dir && install.cmd
+RUN cd images/windows/ && dir && install.cmd

@@ -1,7 +1,22 @@
 periodics:
+  - name: ci-openenclave-test-infra-validate-prow-jobs
+    extra_refs:
+    - org: BRMcLaren
+      repo: test-infra
+      base_ref: master
+    decorate: true
+    interval: 12h
+    spec:
+      containers:
+        - image: openenclave/test-infra:latest
+          command:
+            - sh
+            - "-c"
+            - "./hack/merge-prow-jobs.sh && ./hack/validate-prow-jobs.sh"
+
   - name: ci-openenclave-test-infra-validate-build-image-ubuntu-1604
     extra_refs:
-    - org: openenclave-ci
+    - org: BRMcLaren
       repo: test-infra
       base_ref: master
     decorate: true
@@ -12,26 +27,20 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/ubuntu/1604/Dockerfile --docker_tag openenclave/ubuntu-1604:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/ubuntu/1604/Dockerfile --docker_tag openenclave/ubuuntu-1604"
           securityContext:
             privileged: true
           volumeMounts:
             - name: dockersock
               mountPath: "/var/run/docker.sock"
-            - mountPath: /dev/sgx
-              name: dev-sgx
       volumes:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock
-      - name: dev-sgx
-        hostPath:
-          path: /dev/sgx
-      restartPolicy: Never
 
   - name: ci-openenclave-test-infra-validate-build-image-ubuntu-1804
     extra_refs:
-    - org: openenclave-ci
+    - org: BRMcLaren
       repo: test-infra
       base_ref: master
     decorate: true
@@ -42,26 +51,20 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu-1804:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/ubuntu/1804/Dockerfile --docker_tag openenclave/ubuntu-1804"
           securityContext:
             privileged: true
           volumeMounts:
             - name: dockersock
               mountPath: "/var/run/docker.sock"
-            - mountPath: /dev/sgx
-              name: dev-sgx
       volumes:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock
-      - name: dev-sgx
-        hostPath:
-          path: /dev/sgx
-      restartPolicy: Never
 
   - name: ci-openenclave-test-infra-validate-build-image-rhel-8.1
     extra_refs:
-    - org: openenclave-ci
+    - org: BRMcLaren
       repo: test-infra
       base_ref: master
     decorate: true
@@ -72,7 +75,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/rhel/8.1/Dockerfile --skip_testing --docker_tag openenclave/rhel-8.1:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/rhel/8.1/Dockerfile --skip_testing --docker_tag openenclave/rhel-8.1"
           securityContext:
             privileged: true
           volumeMounts:
@@ -85,7 +88,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-bootstrap-did
     extra_refs:
-    - org: openenclave-ci
+    - org: BRMcLaren
       repo: test-infra
       base_ref: master
     decorate: true
@@ -96,7 +99,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/bootstap/Dockerfile --skip_testing --docker_tag openenclave/test-infra-did:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "docker build . -f images/bootstap/Dockerfile"
           securityContext:
             privileged: true
           volumeMounts:
@@ -109,7 +112,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-centos-7.5
     extra_refs:
-    - org: openenclave-ci
+    - org: BRMcLaren
       repo: test-infra
       base_ref: master
     decorate: true
@@ -120,7 +123,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/centos/7.5/Dockerfile --skip_testing --docker_tag openenclave/centos-7.5:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/centos/7.5/Dockerfile --skip_testing --docker_tag openenclave/centos-7.5"
           securityContext:
             privileged: true
           volumeMounts:
@@ -133,7 +136,7 @@ periodics:
 
   - name: ci-openenclave-test-infra-validate-build-image-fedora-31
     extra_refs:
-    - org: openenclave-ci
+    - org: BRMcLaren
       repo: test-infra
       base_ref: master
     decorate: true
@@ -144,7 +147,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "./images/test/build.sh --docker_path images/fedora/31/Dockerfile --skip_testing --docker_tag openenclave/fedora-31:latest --docker_push --docker_user $(echo $DOCKER_USER) --docker_pass $(echo $DOCKER_PASSWORD)"
+            - "./images/test/build.sh --docker_path images/fedora/31/Dockerfile --skip_testing --docker_tag openenclave/fedora-31"
           securityContext:
             privileged: true
           volumeMounts:
@@ -154,18 +157,3 @@ periodics:
       - name: dockersock
         hostPath:
           path: /var/run/docker.sock
-
-  - name: ci-openenclave-test-infra-jenkins-ping
-    extra_refs:
-    - org: openenclave-ci
-      repo: test-infra
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "python /hack/jenkins_bootstrap.py --job job-runner --jenkins-user $(echo $JENKINS_USER) --url $(echo $JENKINS_URL) --jenkins-password $(echo $JENKINS_TOKEN)"

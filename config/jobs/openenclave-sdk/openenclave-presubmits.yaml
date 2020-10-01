@@ -1,0 +1,50 @@
+presubmits:
+  openenclave-ci/openenclave:
+  - name: pr-openenclave-openenclave-cmake-1804
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - "-c"
+            - "/hack/cmake-build.sh"
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never
+  - name: pr-openenclave-openenclave-cmake-1604
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/ubuntu1804:latest
+          command:
+            - sh
+            - "-c"
+            - "/hack/cmake-build.sh"
+          volumeMounts:
+          - mountPath: /dev/sgx
+            name: dev-sgx
+          securityContext:
+            privileged: true
+      volumes:
+      - name: dev-sgx
+        hostPath:
+          path: /dev/sgx
+      restartPolicy: Never

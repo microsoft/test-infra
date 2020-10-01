@@ -25,7 +25,6 @@ spec:
         args:
         - --dry-run=false
         - --config-path=/etc/config/config.yaml
-        - --job-config-path=/etc/job-config
         - --skip-report=false
         volumeMounts:
         - name: oauth
@@ -34,9 +33,6 @@ spec:
         - name: config
           mountPath: /etc/config
           readOnly: true
-        - name: job-config
-          mountPath: /etc/job-config
-          readOnly: true
       volumes:
       - name: oauth
         secret:
@@ -44,6 +40,3 @@ spec:
       - name: config
         configMap:
           name: config
-      - name: job-config
-        configMap:
-          name: job-config

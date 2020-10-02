@@ -1,10 +1,15 @@
+CTEST_TIMEOUT_SECONDS = 480
+PULL_NUMBER = env.PULL_NUMBER
+TEST_INFRA = env.TEST_INFRA
+TEST_INFRA ? PULL_NUMBER = "master" : null
+
 pipeline {
     agent { label 'SGXFLC-Windows-2019-Docker' }
     stages {
         stage('Build SGX Win 2019 Docker Image') {
             steps {
                 script {
-                    checkout()
+                    checkout("openenclave-ci","test-infra")
                     docker.build("windows-2019:latest", "-f images/windows/2019/Dockerfile ." )
                 }
             }
@@ -78,12 +83,12 @@ pipeline {
     }
 }
 
-void checkout() {
+void checkout(String REPO_OWNER, String REPO_NAME ) {
     bat """
         (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
         git clone https://github.com/${REPO_OWNER}/${REPO_NAME} && \
         cd ${REPO_NAME} && \
-        git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/* && \
-        if NOT %PULL_NUMBER%==master git checkout origin/pr/${PULL_NUMBER}
+        git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
+        if NOT ${PULL_NUMBER}==master git checkout origin/pr/${PULL_NUMBER}
         """
 }

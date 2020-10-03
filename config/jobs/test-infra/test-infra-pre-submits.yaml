@@ -307,3 +307,33 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/hostverify --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,LINUX_VERSION=1604,WINDOWS_VERSION=2019,BUILD_TYPE=Debug"
+
+  - name: pr-openenclave-test-infra-validate-openenclave-host-verify-package-release
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/hostverifyPackage --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,LINUX_VERSION=1804,WINDOWS_VERSION=2019,BUILD_TYPE=Release"
+
+  - name: pr-openenclave-test-infra-validate-openenclave-host-verify-package-debug
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/hostverifyPackage --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,LINUX_VERSION=1604,WINDOWS_VERSION=2019,BUILD_TYPE=Debug"

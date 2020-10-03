@@ -21,6 +21,7 @@ plugins:
   - verify-owners
   - welcome
   - wip
+  - yuks
 
   openenclave/oeedger8r-cpp:
   - approve

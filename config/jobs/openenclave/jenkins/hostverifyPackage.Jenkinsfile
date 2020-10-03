@@ -90,8 +90,8 @@ pipeline {
                                   -Wdev
                                 make VERBOSE=1
                                 cpack -G DEB -D CPACK_DEB_COMPONENT_INSTALL=ON -D CPACK_COMPONENTS_ALL=OEHOSTVERIFY
-                                if [ -d /opt/openenclave ]; then sudo rm -r /opt/openenclave; fi
-                                sudo dpkg -i open-enclave-hostverify*.deb
+                                if [ -d /opt/openenclave ]; then ${WORKSPACE}/openenclaverm -r /opt/openenclave; fi
+                                ${WORKSPACE}/openenclave dpkg -i open-enclave-hostverify*.deb
                                 cp tests/host_verify/host/*.der ${WORKSPACE}/openenclave/samples/host_verify
                                 cp tests/host_verify/host/*.bin ${WORKSPACE}/openenclave/samples/host_verify
                                 pushd ${WORKSPACE}/openenclave/samples/host_verify

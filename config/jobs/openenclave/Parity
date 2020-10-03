@@ -1,3 +1,6 @@
 Knownissues
 
 RelWithDebInfo + Clang-8 Compatability
+
+HostVerification Pipeline - built
+HostVerificationPackage Pipeline - built

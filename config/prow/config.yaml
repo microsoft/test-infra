@@ -91,6 +91,9 @@ slack_reporter_configs:
     # The template shown below is the default
     report_template: "Job {{.Spec.Job}} of type {{.Spec.Type}} ended with state {{.Status.State}}. <{{.Status.URL}}|View logs>"
 presets:
+# credential presets
+- labels:
+    trusted-service-role: "true"
 - env:
   - name: JENKINS_TOKEN
     valueFrom:

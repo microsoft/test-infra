@@ -82,30 +82,26 @@ pipeline {
                         checkout("openenclave")
                         unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                         def task = """
-                            cmake ${WORKSPACE}/openenclave \
-                              -DBUILD_ENCLAVES=OFF \
-                              -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-                              -DCMAKE_INSTALL_PREFIX=/opt/openenclave \
-                              -DCOMPONENT=OEHOSTVERIFY \
-                              -Wdev
-                            make VERBOSE=1
-                            cpack -G DEB -D CPACK_DEB_COMPONENT_INSTALL=ON -D CPACK_COMPONENTS_ALL=OEHOSTVERIFY
-                            if [ -d /opt/openenclave ]; then rm -r /opt/openenclave; fi
-                            sudo dpkg -i open-enclave-hostverify*.deb
-                            cp tests/host_verify/host/*.der ${WORKSPACE}/openenclave/samples/host_verify
-                            cp tests/host_verify/host/*.bin ${WORKSPACE}/openenclave/samples/host_verify
-                            pushd ${WORKSPACE}/openenclave/samples/host_verify
-                            if [ ! -d build ]; then mkdir build; fi
-                            cd build
-                            cmake ..  -DBUILD_ENCLAVES=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
-                            make VERBOSE=1
-                            ./host_verify -r ../sgx_report.bin
-                            ./host_verify -c ../sgx_cert_ec.der
-                            ./host_verify -c ../sgx_cert_rsa.der
-                            popd
-                            """
+                                cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                                ninja -v
+                                ctest -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                                cpack -G DEB -D CPACK_DEB_COMPONENT_INSTALL=ON -D CPACK_COMPONENTS_ALL=OEHOSTVERIFY
+                                if [ -d /opt/openenclave ]; then sudo rm -r /opt/openenclave; fi
+                                ## sudo dpkg -i open-enclave-hostverify*.deb
+                                cp openenclave/tests/host_verify/host/*.der ${WORKSPACE}/openenclave/samples/host_verify
+                                cp openenclave/tests/host_verify/host/*.bin ${WORKSPACE}/openenclave/samples/host_verify
+                                pushd ${WORKSPACE}/openenclave/samples/host_verify
+                                if [ ! -d build ]; then mkdir build; fi
+                                cd build
+                                cmake ..  -DBUILD_ENCLAVES=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                                make VERBOSE=1
+                                ./host_verify -r ../sgx_report.bin
+                                ./host_verify -c ../sgx_cert_ec.der
+                                ./host_verify -c ../sgx_cert_rsa.der
+                                popd
+                                """
                         // Note: Include the commands to build and run the quote verification test above
-                        ContainerRun("oeciteam/oetools-full-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
+                        ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
                     }
                 }
             }
@@ -124,36 +120,9 @@ pipeline {
                             dir('build') {
                                 bat """
                                     vcvars64.bat x64 && \
-                                    cmake.exe ${WORKSPACE}/openenclave \
-                                    -G Ninja \
-                                    -DBUILD_ENCLAVES=OFF \
-                                    -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-                                    -DCOMPONENT=OEHOSTVERIFY \
-                                    -DCPACK_GENERATOR=NuGet \
-                                    -DNUGET_PACKAGE_PATH=C:/oe_prereqs \
-                                    -Wdev && \
+                                    cmake.exe ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
                                     ninja -v && \
-                                    cpack -D CPACK_NUGET_COMPONENT_INSTALL=ON -DCPACK_COMPONENTS_ALL=OEHOSTVERIFY && \
-                                    copy tests\\host_verify\\host\\*.der ${WORKSPACE}\\openenclave\\samples\\host_verify && \
-                                    copy tests\\host_verify\\host\\*.bin ${WORKSPACE}\\openenclave\\samples\\host_verify && \
-                                    if exist C:\\oe (rmdir C:\\oe) && \
-                                    nuget.exe install open-enclave.OEHOSTVERIFY -Source ${WORKSPACE}\\openenclave\\build -OutputDirectory C:\\oe -ExcludeVersion && \
-                                    xcopy /E C:\\oe\\open-enclave.OEHOSTVERIFY\\openenclave C:\\openenclave\\ && \
-                                    pushd ${WORKSPACE}\\openenclave\\samples\\host_verify && \
-                                    if not exist build\\ (mkdir build) && \
-                                    cd build && \
-                                    cmake.exe .. \
-                                    -G Ninja \
-                                    -DBUILD_ENCLAVES=OFF \
-                                    -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-                                    -DCMAKE_PREFIX_PATH=C:/openenclave/lib/openenclave/cmake \
-                                    -DNUGET_PACKAGE_PATH=C:/oe_prereqs \
-                                    -Wdev && \
-                                    ninja -v && \
-                                    host_verify.exe -r ../sgx_report.bin && \
-                                    host_verify.exe -c ../sgx_cert_ec.der && \
-                                    host_verify.exe -c ../sgx_cert_rsa.der && \
-                                    popd
+                                    ctest.exe -V -C ${BUILD_TYPE} -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
                                     """
                             }
                         }

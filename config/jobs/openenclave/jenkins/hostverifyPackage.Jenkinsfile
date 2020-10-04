@@ -105,7 +105,7 @@ pipeline {
                             popd
                             """
                         // Note: Include the commands to build and run the quote verification test above
-                        ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
+                        ContainerRun("oeciteam/oetools-full-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
                     }
                 }
             }

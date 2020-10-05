@@ -237,7 +237,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2016,BUILD_TYPE=Release"
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2016,BUILD_TYPE=Release"
 
   - name: ci-oeedger8r-cpp-win-2016-debug
     extra_refs:
@@ -252,7 +252,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2016,BUILD_TYPE=Debug"
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2016,BUILD_TYPE=Debug"
 
   - name: ci-oeedger8r-cpp-win-2019-release
     extra_refs:
@@ -267,7 +267,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2019,BUILD_TYPE=Release"
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2019,BUILD_TYPE=Release"
 
   - name: ci-oeedger8r-cpp-win-2019-debug
     extra_refs:
@@ -282,4 +282,4 @@ periodics:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2019,BUILD_TYPE=Debug"
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2019,BUILD_TYPE=Debug"

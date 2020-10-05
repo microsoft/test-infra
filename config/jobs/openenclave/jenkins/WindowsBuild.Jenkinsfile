@@ -25,6 +25,15 @@ LVI_MITIGATION_SKIP_TESTS = env.LVI_MITIGATION_SKIP_TESTS ?: "OFF"
 pipeline {
     agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
     stages {
+        // Double Clen Base Environments just in case
+        stage( 'Sanitize Build Environment') {
+            steps {
+                script {
+                    cleanWs()
+                    checkout scm
+                }
+            }
+        }
         stage( 'Windows Build') {
             steps {
                 script {

@@ -11,7 +11,7 @@ TEST_INFRA ? PULL_NUMBER = "master" : null
 BUILD_TYPE = env.BUILD_TYPE ?: "Release"
 
 pipeline {
-    agent { label 'ACC-RHEL-8' }
+    agent none
     stages {
         // Double Clen Base Environments just in case
         stage( 'Sanitize Build Environment') {

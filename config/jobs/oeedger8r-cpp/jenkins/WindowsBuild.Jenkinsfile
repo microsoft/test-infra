@@ -18,7 +18,7 @@ BUILD_TYPE = env.BUILD_TYPE ?: "Release"
 EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS ?: ""
 
 pipeline {
-    agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
+    agent none
     stages {
         // Double Clen Base Environments just in case
         stage( 'Sanitize Build Environment') {

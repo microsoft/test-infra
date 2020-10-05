@@ -22,7 +22,6 @@ LVI_MITIGATION_SKIP_TESTS = env.LVI_MITIGATION_SKIP_TESTS ?: "OFF"
 
 pipeline {
     agent { label "OverWatch" }
-    cleanWs()
     stages {
         // Double Clen Base Environments just in case
         stage( 'Sanitize Build Environment') {

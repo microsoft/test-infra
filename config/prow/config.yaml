@@ -28,7 +28,7 @@ tide:
         - needs-rebases
   merge_method:
     openenclave-ci/openenclave: merge
-    openenclave-ci/test-infra: squash
+    openenclave-ci/test-infra: merge
     openenclave-ci/oeedger8r: merge
     openenclave/oeedger8r: merge
   blocker_label: tide/merge-blocker

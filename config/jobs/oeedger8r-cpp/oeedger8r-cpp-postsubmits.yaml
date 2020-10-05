@@ -143,7 +143,7 @@ postsubmits:
             - "-c"
             - "/testing/oeedger8r-cpp/cmake-build.sh -b=Debug --compiler=gcc"
 
-  - name: postoeedger8r-cpp-rhel-8-debug
+  - name: post-oeedger8r-cpp-rhel-8-debug
     branches:
     - master
     decorate: true
@@ -155,7 +155,7 @@ postsubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,BUILD_TYPE=Debug"
 
-  - name: postoeedger8r-cpp-rhel-8-reldebinfo
+  - name: post-oeedger8r-cpp-rhel-8-reldebinfo
     branches:
     - master
     decorate: true
@@ -179,7 +179,7 @@ postsubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2016,BUILD_TYPE=Release"
 
-  - name: postoeedger8r-cpp-win-2016-debug
+  - name: post-oeedger8r-cpp-win-2016-debug
     branches:
     - master
     decorate: true
@@ -203,7 +203,7 @@ postsubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master,TEST_INFRA=false,WINDOWS_VERSION=2019,BUILD_TYPE=Release"
 
-  - name: postoeedger8r-cpp-win-2019-debug
+  - name: post-oeedger8r-cpp-win-2019-debug
     branches:
     - master
     decorate: true

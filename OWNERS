@@ -1,3 +1,7 @@
+approvers:
+  - BRMcLaren
+  - oe-ci-robot
+  - rs--
 required_reviewers:
   - BRMcLaren
   - oe-ci-robot
@@ -6,9 +10,5 @@ reviewers:
   - BRMcLaren
   - oe-ci-robot
   - rs--
-approvers:
-  - BRMcLaren
-  - oe-ci-robot
-  - rs--
 labels:
-  - sig/test-infra
+  - sig/ci

@@ -1,11 +1,8 @@
-required_reviewers:
+approvers:
   - BRMcLaren
   - oe-ci-robot
 reviewers:
   - BRMcLaren
   - oe-ci-robot
-approvers:
-  - BRMcLaren
-  - oe-ci-robot
 labels:
-  - area/oeedger8r-cpp
+  - area/openenclave

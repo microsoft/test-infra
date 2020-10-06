@@ -1,0 +1,103 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: jenkins-master-volume
+provisioner: kubernetes.io/azure-file
+reclaimPolicy: Retain
+mountOptions:
+- dir_mode=0777
+- file_mode=0777
+- uid=1000
+- gid=1000
+- mfsymlinks
+- cache=strict
+parameters:
+  skuName: Standard_LRS
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-master-volume
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: jenkins-master-volume
+  resources:
+    requests:
+      storage: 200Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-master
+spec:
+  selector:
+    matchLabels:
+      app: jenkins-master
+  template:
+    metadata:
+      labels:
+        app: jenkins-master
+    spec:
+      containers:
+      - name: jenkins-master
+        image: jenkins/jenkins:lts
+        imagePullPolicy: Always
+        env:
+        - name: JAVA_OPTS
+          value: -Djenkins.install.runSetupWizard=false
+        - name: CASC_JENKINS_CONFIG
+          value: /var/jenkins_home/configuration/
+        volumeMounts:
+        - name: volume
+          mountPath: "/var/jenkins_home"
+        livenessProbe:
+          httpGet:
+            path: /login
+            port: 8080
+          failureThreshold: 10
+          initialDelaySeconds: 300
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /login
+            port: 8080
+          failureThreshold: 3
+          initialDelaySeconds: 300
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          requests:
+            cpu: "1"
+            memory: 4Gi
+          limits:
+            cpu: "4"
+            memory: 15Gi
+      volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: jenkins-master-volume
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-master-nodeport
+  labels:
+    app: jenkins-master
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  - name: slave
+    port: 50000
+    targetPort: 50000
+    protocol: TCP
+  selector:
+    app: jenkins-master

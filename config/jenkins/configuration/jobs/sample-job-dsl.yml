@@ -1,0 +1,42 @@
+jobs:
+  - script: |
+      folder("Testing") {
+        displayName("Testing")
+      }
+      pipelineJob("Testing/OpenEnclave-Testing") {
+        description("Run a test")
+        parameters {
+          stringParam("REPOSITORY_NAME", "openenclave/openenclave", "")
+          stringParam("BRANCH_NAME", "master", "")
+          stringParam("DOCKER_TAG", "latest", "")
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url("https://github.com/\^${REPOSITORY_NAME}.git")
+                }
+                branch("refs/heads/\^${BRANCH_NAME}")
+                extensions {
+                  submoduleOptions {
+                    wipeOutWorkspace()
+                  }
+                }
+              }
+            }
+            scriptPath(".jenkins/Jenkinsfile")
+          }
+        }
+        disabled(false)
+        configure {
+          it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
+            strategy {
+              'daysToKeep'('90')
+              'numToKeep'('180')
+              'artifactDaysToKeep'('90')
+              'artifactNumToKeep'('180')
+            }
+          }
+        }
+      }

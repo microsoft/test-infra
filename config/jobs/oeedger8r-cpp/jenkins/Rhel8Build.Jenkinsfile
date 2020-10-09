@@ -11,6 +11,9 @@ TEST_INFRA ? PULL_NUMBER = "master" : null
 BUILD_TYPE = env.BUILD_TYPE ?: "Release"
 
 pipeline {
+    options {
+        timeout(time: 30, unit: 'MINUTES') 
+    }
     agent { label 'ACC-RHEL-8' }
     stages {
         // Double Clen Base Environments just in case

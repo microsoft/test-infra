@@ -9,6 +9,7 @@ TEST_INFRA ? PULL_NUMBER = "master" : null
 
 // Some Defaults
 BUILD_TYPE = env.BUILD_TYPE ?: "Release"
+BUILD_MODE = env.BUILD_MODE ?: "hardware"
 
 pipeline {
     agent { label 'ACC-RHEL-8' }
@@ -25,22 +26,22 @@ pipeline {
         stage('RHEL 8 Build') {
             steps {
                 script {
-                    cleanWs()
-                    checkout scm
-                    def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
-                    runner.checkout("openenclave")
-                    runner.cmakeBuild("openenclave","${BUILD_TYPE}")
-                    cleanWs()
+                    withEnv(["OE_SIMULATION=1"]) {
+                        cleanWs()
+                        checkout scm
+                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                        runner.checkout("openenclave")
+                        runner.cmakeBuild("openenclave","${BUILD_TYPE}")
+                        cleanWs()
+                    }
                 }
             }
         }
     }
     post {
         always {
-            steps {
-                script {
-                    cleanWs()
-                }
+            script {
+                cleanWs()
             }
         }
     }

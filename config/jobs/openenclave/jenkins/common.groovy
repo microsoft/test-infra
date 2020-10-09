@@ -23,7 +23,7 @@ def cmakeBuild( String REPO_NAME, String BUILD_CONFIG ) {
 }
 
 
-def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG ) {
+def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String LVI_MITIGATION, String LVI_MITIGATION_SKIP_TESTS ) {
     bat """
         cd ${REPO_NAME} && \
         mkdir build && cd build &&\

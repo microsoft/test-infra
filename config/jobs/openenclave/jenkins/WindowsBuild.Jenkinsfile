@@ -17,6 +17,7 @@ COMPILER = env.COMPILER ?: "clang-7"
 
 // Some override for build configuration
 EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS ?: ""
+BUILD_MODE = env.BUILD_MODE ?: "hardware"
 
 // LVI_mitigation
 LVI_MITIGATION = env.LVI_MITIGATION ?: "ControlFlow"
@@ -37,21 +38,21 @@ pipeline {
         stage( 'Windows Build') {
             steps {
                 script {
-                    //docker.image("openenclave/windows-${WINDOWS_VERSION}:${DOCKER_TAG}").inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
-                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
-                        runner.checkout("openenclave")
-                        runner.cmakeBuildOE("openenclave","${BUILD_TYPE}")
-                    //}
+                    withEnv(["OE_SIMULATION=1"]) {
+                        //docker.image("openenclave/windows-${WINDOWS_VERSION}:${DOCKER_TAG}").inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
+                            def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                            runner.checkout("openenclave")
+                            runner.cmakeBuildOE("openenclave","${BUILD_TYPE}", "${LVI_MITIGATION}", "${LVI_MITIGATION_SKIP_TESTS}")
+                        //}
+                    }
                 }
             }
         }
-        post {
-            always {
-                steps {
-                    script {
-                        cleanWs()
-                    }
-                }
+    }
+    post {
+        always {
+            script {
+                cleanWs()
             }
         }
     }

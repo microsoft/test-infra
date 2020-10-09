@@ -106,7 +106,7 @@ pipeline {
 
         /* Windows nonSGX stage. */
         stage("Windows nonSGX Verify Quote") {
-            agent { label "SGXFLC-Windows-2019-Docker" }
+            agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
             steps {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
                     script{

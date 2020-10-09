@@ -35,4 +35,13 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            steps {
+                script {
+                    cleanWs()
+                }
+            }
+        }
+    }
 }

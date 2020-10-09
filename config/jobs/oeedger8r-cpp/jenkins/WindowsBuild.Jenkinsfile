@@ -44,4 +44,14 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
+            steps {
+                script {
+                    cleanWs()
+                }
+            }
+        }
+    }
 }

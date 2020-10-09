@@ -37,7 +37,8 @@ pipeline {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
                     script{
                         cleanWs()
-                        checkout("openenclave")
+                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                        runner.checkout("openenclave")
 
                         println("Generating certificates and reports ...")
                         def task = """
@@ -88,7 +89,8 @@ pipeline {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
                     script{
                         cleanWs()
-                        checkout("openenclave")
+                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                        runner.checkout("openenclave")
                         unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                         def task = """
                                 cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
@@ -108,8 +110,8 @@ pipeline {
             steps {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
                     script{
-                        cleanWs()
-                        checkout("openenclave")
+                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                        runner.checkout("openenclave")
                         docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                             unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                             dir('build') {
@@ -125,83 +127,5 @@ pipeline {
                 }
             }
         }
-    }
-}
-
-void checkout( String REPO_NAME ) {
-    if (isUnix()) {
-        sh  """
-            rm -rf ${REPO_NAME} && \
-            git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
-            cd ${REPO_NAME} && \
-            git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
-            if [[ $PULL_NUMBER -ne 'master' ]]; then
-                git checkout origin/pr/${PULL_NUMBER}
-            fi
-            """
-    }
-    else {
-        bat """
-            (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
-            git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
-            cd ${REPO_NAME} && \
-            git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
-            if NOT ${PULL_NUMBER}==master git checkout origin/pr/${PULL_NUMBER}
-            """
-    }
-}
-
-def ContainerRun(String imageName, String compiler, String task, String runArgs="") {
-    def image = docker.image(imageName)
-    image.pull()
-    image.inside(runArgs) {
-        dir("${WORKSPACE}/openenclave/build") {
-            Run(compiler, task)
-        }
-    }
-}
-
-def runTask(String task) {
-    dir("${WORKSPACE}/build") {
-        sh """#!/usr/bin/env bash
-                set -o errexit
-                set -o pipefail
-                source /etc/profile
-                ${task}
-            """
-    }
-}
-
-def Run(String compiler, String task, String compiler_version = "") {
-    def c_compiler
-    def cpp_compiler
-    switch(compiler) {
-        case "cross":
-            // In this case, the compiler is set by the CMake toolchain file. As
-            // such, it is not necessary to specify anything in the environment.
-            runTask(task)
-            return
-        case "clang-7":
-            c_compiler = "clang"
-            cpp_compiler = "clang++"
-            compiler_version = "7"
-            break
-        case "gcc":
-            c_compiler = "gcc"
-            cpp_compiler = "g++"
-            break
-        default:
-            // This is needed for backwards compatibility with the old
-            // implementation of the method.
-            c_compiler = "clang"
-            cpp_compiler = "clang++"
-            compiler_version = "8"
-    }
-    if (compiler_version) {
-        c_compiler += "-${compiler_version}"
-        cpp_compiler += "-${compiler_version}"
-    }
-    withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
-        runTask(task);
     }
 }

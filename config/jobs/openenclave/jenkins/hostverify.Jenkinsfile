@@ -129,9 +129,10 @@ pipeline {
     }
 }
 
-void checkout( String REPO_NAME ) {
+def checkout( String REPO_NAME ) {
     if (isUnix()) {
         sh  """
+            git gc && \
             rm -rf ${REPO_NAME} && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \
@@ -143,6 +144,7 @@ void checkout( String REPO_NAME ) {
     }
     else {
         bat """
+            git gc && \
             (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \

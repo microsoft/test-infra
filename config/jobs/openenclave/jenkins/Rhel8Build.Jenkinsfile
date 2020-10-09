@@ -31,6 +31,7 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                    runner.containerClean()
                     runner.checkout("openenclave")
                     runner.cmakeBuild("openenclave","${BUILD_TYPE}")
                     cleanWs()

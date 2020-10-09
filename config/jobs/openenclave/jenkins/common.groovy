@@ -72,6 +72,19 @@ def checkout( String REPO_NAME ) {
     }
 }
 
+def containerClean() {
+    if (isUnix()) {
+        sh  """
+            docker system prune -f
+            """
+    }
+    else {
+        bat """
+            docker system prune -f
+            """
+    }
+}
+
 def ContainerRun(String imageName, String compiler, String task, String runArgs="") {
     def image = docker.image(imageName)
     image.pull()

@@ -31,6 +31,7 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + '/config/jobs/oeedger8r-cpp/jenkins/common.groovy'
+                    runner.containerClean()
                     runner.checkout("oeedger8r-cpp")
                     runner.cmakeBuild("oeedger8r-cpp","${BUILD_TYPE}")
                     cleanWs()

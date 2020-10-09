@@ -33,6 +33,7 @@ pipeline {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
                     script{
                         cleanWs()
+                        cleanPastImages()
                         def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
                         runner.checkout("openenclave")
                         def task = """
@@ -74,5 +75,18 @@ pipeline {
                 }
             }
         }
+    }
+}
+
+
+def cleanPastImages() {
+    if (isUnix()) {
+        sh  """
+            docker system prune -f
+            """
+    } else {
+        bat """
+            docker system prune -f
+            """
     }
 }

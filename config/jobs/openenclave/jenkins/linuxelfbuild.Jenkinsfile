@@ -28,6 +28,7 @@ pipeline {
             steps {
                 script {
                     cleanWs()
+                    cleaUpDockerImages()
                     checkout scm
                 }
             }
@@ -157,5 +158,19 @@ def Run(String compiler, String task, String compiler_version = "") {
     }
     withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
         runTask(task);
+    }
+}
+
+
+def cleaUpDockerImages() {
+
+    if (isUnix()) {
+        sh  """
+            docker system prune -f
+            """
+    } else {
+        bat """
+            docker system prune -f
+            """
     }
 }

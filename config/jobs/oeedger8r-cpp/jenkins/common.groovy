@@ -21,6 +21,18 @@ def cmakeBuild( String REPO_NAME, String BUILD_CONFIG ) {
     }
 }
 
+void cleanContainers() {
+    if (isUnix()) {
+        sh  """
+            docker system prune -f
+            """ 
+    } else {
+        bat """
+            docker system prune -f
+            """
+    }
+}
+
 void checkout( String REPO_NAME ) {
     if (isUnix()) {
         sh  """

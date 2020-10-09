@@ -19,7 +19,7 @@ EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS ?: ""
 
 pipeline {
     options {
-        timeout(time: 30, unit: 'MINUTES') 
+        timeout(time: 1, unit: 'HOURS') 
     }
     agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
     stages {

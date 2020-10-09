@@ -61,7 +61,7 @@ pipeline {
             }
         }
         stage("Windows SGX1 clang-7 Release LVI_MITIGATION=ControlFlow") {
-            agent { label "SGXFLC-Windows-2019-Docker" }
+            agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
             steps {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
                     cleanWs()

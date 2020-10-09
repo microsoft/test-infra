@@ -23,6 +23,15 @@ LVI_MITIGATION_SKIP_TESTS = env.LVI_MITIGATION_SKIP_TESTS ?: "OFF"
 pipeline {
     agent { label "OverWatch" }
     stages {
+        // Double Clen Base Environments just in case
+        stage( 'Sanitize Build Environment') {
+            steps {
+                script {
+                    cleanWs()
+                    checkout scm
+                }
+            }
+        }
         /* Compile tests in SGX machine.  This will generate the necessary certs for the
         * host_verify test.
         */
@@ -33,9 +42,7 @@ pipeline {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
                     script{
                         cleanWs()
-                        cleanPastImages()
-                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
-                        runner.checkout("openenclave")
+                        checkout2("openenclave")
                         def task = """
                                 cmake ${WORKSPACE}/openenclave                               \
                                     -G Ninja                                                 \
@@ -47,7 +54,7 @@ pipeline {
                                     -Wdev
                                 ninja -v
                                 """
-                        runner.ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
+                        ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
                         stash includes: 'build/tests/**', name: "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
                     }
                 }
@@ -57,20 +64,17 @@ pipeline {
             agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
             steps {
                 timeout(GLOBAL_TIMEOUT_MINUTES) {
-                    script{
-                        cleanWs()
-                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
-                        runner.checkout("openenclave")
-                        unstash "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
-                        bat 'move build linuxbin'
-                        dir('build') {
-                        bat """
-                            vcvars64.bat x64 && \
-                            cmake.exe ${WORKSPACE}\\openenclave -G Ninja -DADD_WINDOWS_ENCLAVE_TESTS=ON -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DLINUX_BIN_DIR=${WORKSPACE}\\linuxbin\\tests -DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
-                            ninja -v && \
-                            ctest.exe -V -C ${BUILD_TYPE} --timeout ${CTEST_TIMEOUT_SECONDS}
-                            """
-                        }
+                    cleanWs()
+                    checkout2("openenclave")
+                    unstash "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
+                    bat 'move build linuxbin'
+                    dir('build') {
+                    bat """
+                        vcvars64.bat x64 && \
+                        cmake.exe ${WORKSPACE}\\openenclave -G Ninja -DADD_WINDOWS_ENCLAVE_TESTS=ON -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DLINUX_BIN_DIR=${WORKSPACE}\\linuxbin\\tests -DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
+                        ninja -v && \
+                        ctest.exe -V -C ${BUILD_TYPE} --timeout ${CTEST_TIMEOUT_SECONDS}
+                        """
                     }
                 }
             }
@@ -78,15 +82,80 @@ pipeline {
     }
 }
 
-
-def cleanPastImages() {
+void checkout2( String REPO_NAME ) {
     if (isUnix()) {
         sh  """
-            docker system prune -f
+            rm -rf ${REPO_NAME} && \
+            git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
+            cd ${REPO_NAME} && \
+            git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
+            if [[ $PULL_NUMBER -ne 'master' ]]; then
+                git checkout origin/pr/${PULL_NUMBER}
+            fi
             """
-    } else {
+    }
+    else {
         bat """
-            docker system prune -f
+            (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
+            git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
+            cd ${REPO_NAME} && \
+            git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
+            if NOT ${PULL_NUMBER}==master git checkout origin/pr/${PULL_NUMBER}
             """
+    }
+}
+
+def ContainerRun(String imageName, String compiler, String task, String runArgs="") {
+    def image = docker.image(imageName)
+    image.pull()
+    image.inside(runArgs) {
+        dir("${WORKSPACE}/openenclave/build") {
+            Run(compiler, task)
+        }
+    }
+}
+
+def runTask(String task) {
+    dir("${WORKSPACE}/build") {
+        sh """#!/usr/bin/env bash
+                set -o errexit
+                set -o pipefail
+                source /etc/profile
+                ${task}
+            """
+    }
+}
+
+def Run(String compiler, String task, String compiler_version = "") {
+    def c_compiler
+    def cpp_compiler
+    switch(compiler) {
+        case "cross":
+            // In this case, the compiler is set by the CMake toolchain file. As
+            // such, it is not necessary to specify anything in the environment.
+            runTask(task)
+            return
+        case "clang-7":
+            c_compiler = "clang"
+            cpp_compiler = "clang++"
+            compiler_version = "7"
+            break
+        case "gcc":
+            c_compiler = "gcc"
+            cpp_compiler = "g++"
+            break
+        default:
+            // This is needed for backwards compatibility with the old
+            // implementation of the method.
+            c_compiler = "clang"
+            cpp_compiler = "clang++"
+            compiler_version = "8"
+    }
+    if (compiler_version) {
+        c_compiler += "-${compiler_version}"
+        cpp_compiler += "-${compiler_version}"
+    }
+    withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
+        runTask(task);
     }
 }

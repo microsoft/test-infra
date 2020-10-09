@@ -88,6 +88,9 @@ pipeline {
 void checkout2( String REPO_NAME ) {
     if (isUnix()) {
         sh  """
+            export GIT_TRACE_PACKET=1
+            export GIT_TRACE=1
+            export GIT_CURL_VERBOSE=1
             rm -rf ${REPO_NAME} && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \
@@ -99,6 +102,9 @@ void checkout2( String REPO_NAME ) {
     }
     else {
         bat """
+            set GIT_TRACE_PACKET=1
+            set GIT_TRACE=1
+            set GIT_CURL_VERBOSE=1
             (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \

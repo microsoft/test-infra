@@ -41,10 +41,13 @@ pipeline {
             steps {
                 script {
                     //docker.image("openenclave/windows-${WINDOWS_VERSION}:${DOCKER_TAG}").inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
-                        def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                        cleanWs()
+                        checkout scm
+                        def runner = load pwd() + '/config/jobs/oeedger8r-cpp/jenkins/common.groovy'
                         runner.containerClean()
-                        runner.checkout("openenclave")
-                        runner.cmakeBuildOE("openenclave","${BUILD_TYPE}")
+                        runner.checkout("oeedger8r-cpp")
+                        runner.cmakeBuild("oeedger8r-cpp","${BUILD_TYPE}")
+                        cleanWs()
                     //}
                 }
             }

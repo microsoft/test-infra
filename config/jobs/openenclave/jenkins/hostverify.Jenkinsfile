@@ -16,6 +16,9 @@ DOCKER_TAG = env.DOCKER_TAG ?: "latest"
 BUILD_TYPE = env.BUILD_TYPE ?:"Release"
 
 pipeline {
+    options {
+        timeout(time: 30, unit: 'MINUTES') 
+    }
     agent { label "OverWatch" }
     stages {
         // Double Clen Base Environments just in case

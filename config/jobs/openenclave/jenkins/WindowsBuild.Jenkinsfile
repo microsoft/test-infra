@@ -23,6 +23,9 @@ LVI_MITIGATION = env.LVI_MITIGATION ?: "ControlFlow"
 LVI_MITIGATION_SKIP_TESTS = env.LVI_MITIGATION_SKIP_TESTS ?: "OFF"
 
 pipeline {
+    options {
+        timeout(time: 30, unit: 'MINUTES') 
+    }
     agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
     stages {
         // Double Clen Base Environments just in case

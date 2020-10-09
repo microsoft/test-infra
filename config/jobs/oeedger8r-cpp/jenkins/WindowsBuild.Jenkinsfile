@@ -18,6 +18,9 @@ BUILD_TYPE = env.BUILD_TYPE ?: "Release"
 EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS ?: ""
 
 pipeline {
+    options {
+        timeout(time: 30, unit: 'MINUTES') 
+    }
     agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
     stages {
         // Double Clen Base Environments just in case

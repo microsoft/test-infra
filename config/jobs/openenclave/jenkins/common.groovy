@@ -52,6 +52,7 @@ def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG ) {
 def checkout( String REPO_NAME ) {
     if (isUnix()) {
         sh  """
+            git config --global core.compression 0 && \
             rm -rf ${REPO_NAME} && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \
@@ -63,11 +64,24 @@ def checkout( String REPO_NAME ) {
     }
     else {
         bat """
+            git config --global core.compression 0 && \
             (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \
             git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
             if NOT ${PULL_NUMBER}==master git checkout origin/pr/${PULL_NUMBER}
+            """
+    }
+}
+
+void cleanContainers() {
+    if (isUnix()) {
+        sh  """
+            docker system prune -f
+            """ 
+    } else {
+        bat """
+            docker system prune -f
             """
     }
 }

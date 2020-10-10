@@ -21,9 +21,22 @@ def cmakeBuild( String REPO_NAME, String BUILD_CONFIG ) {
     }
 }
 
+void cleanContainers() {
+    if (isUnix()) {
+        sh  """
+            docker system prune -f
+            """ 
+    } else {
+        bat """
+            docker system prune -f
+            """
+    }
+}
+
 void checkout( String REPO_NAME ) {
     if (isUnix()) {
         sh  """
+            git config --global core.compression 0 && \
             rm -rf ${REPO_NAME} && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \
@@ -35,6 +48,7 @@ void checkout( String REPO_NAME ) {
     }
     else {
         bat """
+            git config --global core.compression 0 && \
             (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
             git clone --recursive --depth 1 https://github.com/openenclave/${REPO_NAME} && \
             cd ${REPO_NAME} && \

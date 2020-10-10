@@ -29,6 +29,8 @@ pipeline {
                 script {
                     cleanWs()
                     checkout scm
+                    def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                    runner.cleanContainers()
                 }
             }
         }

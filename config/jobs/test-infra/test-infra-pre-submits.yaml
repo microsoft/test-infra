@@ -413,6 +413,37 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,WINDOWS_VERSION=2016,BUILD_TYPE=Release,LVI_MITIGATION_SKIP_TESTS=ON,LVI_MITIGATION=None"
 
+  - name: pr-test-infra-validate-oe-win-build-2016-debug
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,WINDOWS_VERSION=2016,BUILD_TYPE=Debug,LVI_MITIGATION_SKIP_TESTS=OFF,LVI_MITIGATION=ControlFlow"
+
+
+  - name: pr-test-infra-validate-oe-win-build-2019-release
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,WINDOWS_VERSION=2019,BUILD_TYPE=Release,LVI_MITIGATION_SKIP_TESTS=ON,LVI_MITIGATION=None"
+
   - name: pr-test-infra-validate-oe-win-build-2019-debug
     branches:
     - master
@@ -426,8 +457,8 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,WINDOWS_VERSION=2019,BUILD_TYPE=Release,LVI_MITIGATION_SKIP_TESTS=OFF,LVI_MITIGATION=ControlFlow"
- 
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/WindowsBuild --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=true,WINDOWS_VERSION=2019,BUILD_TYPE=Debug,LVI_MITIGATION_SKIP_TESTS=OFF,LVI_MITIGATION=ControlFlow"
+
   - name: pr-test-infra-validate-openenclave-rhel-8-release
     branches:
     - master

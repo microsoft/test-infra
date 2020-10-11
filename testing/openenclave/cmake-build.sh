@@ -35,18 +35,18 @@ fi
 
 # Valid BUILDTYPE values are Debug|Release|RelWithDebInfo
 BUILD_TYPE="Debug"
-# Build a package. Default is disabled
-BUILD_PACKAGE=0
+# Build a package. Default is enabled
+BUILD_PACKAGE=1
 # Instal directory for package build
 OE_INSTALL_DIR="/opt/openenclave"
 # Flag for enabling full libcxx tests.
 ENABLE_FULL_LIBCXX_TESTS=0
 # Valid COMPILER_VALUE inputs are clang-7|gcc
 COMPILER_VALUE="clang-8"
-# Install a package. Default is disabled
-INSTALL_PACKAGE=0
-# Test a package. Default is disabled
-TEST_PACKAGE=0
+# Install a package. Default is enabled
+INSTALL_PACKAGE=1
+# Test a package. Default is enabled
+TEST_PACKAGE=1
 # Run in simulation mode. Default is disabled
 SIMULATION_MODE=1
 # build with ninja. Defailt is disabled
@@ -222,7 +222,7 @@ if [[ ${INSTALL_PACKAGE} -eq 1 ]]; then
     fi
 fi
 
-if [[ ${TEST_PACKAGE} -eq 1 ]]; then
+if [[ ${TEST_PACKAGE} -eq 1 ]] && [[ ${SIMULATION_MODE} -eq 1 ]]; then
     echo "Testing package installation"
     echo ""
     if [[ -d ~/samples ]]; then
@@ -231,5 +231,16 @@ if [[ ${TEST_PACKAGE} -eq 1 ]]; then
     cp -r /opt/openenclave/share/openenclave/samples ~/
     cd ~/samples
     source /opt/openenclave/share/openenclave/openenclaverc
-    echo "to do"
+    for i in * 
+    do
+        if [ -d ${i} ]; then
+            cd ${i}
+            mkdir build
+            cd build
+            cmake ..
+            make
+            make run
+            cd ../..
+        fi
+    done
 fi

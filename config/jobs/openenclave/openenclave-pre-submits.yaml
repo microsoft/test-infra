@@ -1154,7 +1154,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1604-Release-clang-7-snmalloc
     branches:
     - master
@@ -1185,7 +1185,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1604-RelWithDebInfo-clang-7-snmalloc
     branches:
     - master
@@ -1216,7 +1216,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1604-Debug-clang-7-snmalloc
     branches:
     - master
@@ -1247,7 +1247,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1298,7 +1298,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1349,7 +1349,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1400,7 +1400,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1804-Release-clang-7-snmalloc
     branches:
     - master
@@ -1445,7 +1445,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1804-RelWithDebInfo-clang-7-snmalloc
     branches:
     - master
@@ -1490,7 +1490,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1804-Debug-clang-7-snmalloc
     branches:
     - master
@@ -1535,7 +1535,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Release --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1610,7 +1610,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1685,7 +1685,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc -b=Debug --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1760,7 +1760,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1604-Release-clang-7-lvi-snmalloc
     branches:
     - master
@@ -1791,7 +1791,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1604-RelWithDebInfo-clang-7-lvi-snmalloc
     branches:
     - master
@@ -1822,7 +1822,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1604-Debug-clang-7-lvi-snmalloc
     branches:
     - master
@@ -1853,7 +1853,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1904,7 +1904,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -1955,7 +1955,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -2006,7 +2006,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1804-Release-clang-7-lvi-snmalloc
     branches:
     - master
@@ -2051,7 +2051,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1804-RelWithDebInfo-clang-7-lvi-snmalloc
     branches:
     - master
@@ -2096,7 +2096,7 @@ presubmits:
         - /bin/bash
         args:
         - -c
-        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-8'        
+        - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-7'        
   - name: pr-openenclave-sim-ubuntu-1804-Debug-clang-7-lvi-snmalloc
     branches:
     - master
@@ -2141,7 +2141,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Release --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -2216,7 +2216,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=RelWithDebInfo --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx
@@ -2291,7 +2291,7 @@ presubmits:
           - /bin/bash
           args:
           - -c
-          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-8 --hardware_mode'
+          - '/testing/openenclave/cmake-build.sh --enable_snmalloc --enable_lvi_mitigation -b=Debug --compiler=clang-7 --hardware_mode'
           volumeMounts:
           - mountPath: /dev/sgx
             name: dev-sgx

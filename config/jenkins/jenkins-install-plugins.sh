@@ -20,6 +20,7 @@ set -e
 readonly PLUGIN_URLS=(
     https://updates.jenkins-ci.org/latest/ace-editor.hpi
     https://updates.jenkins-ci.org/latest/apache-httpcomponents-client-4-api.hpi
+    https://updates.jenkins-ci.org/latest/authentication-tokens.hpi
     https://updates.jenkins-ci.org/latest/azure-commons.hpi
     https://updates.jenkins-ci.org/latest/azure-credentials.hpi
     https://updates.jenkins-ci.org/latest/azure-keyvault.hpi
@@ -27,6 +28,7 @@ readonly PLUGIN_URLS=(
     https://updates.jenkins-ci.org/latest/bootstrap4-api.hpi
     https://updates.jenkins-ci.org/latest/bouncycastle-api.hpi
     https://updates.jenkins-ci.org/latest/branch-api.hpi
+    https://updates.jenkins-ci.org/latest/checks-api.hpi
     https://updates.jenkins-ci.org/latest/cloudbees-folder.hpi
     https://updates.jenkins-ci.org/latest/cloud-stats.hpi
     https://updates.jenkins-ci.org/latest/command-launcher.hpi
@@ -35,6 +37,8 @@ readonly PLUGIN_URLS=(
     https://updates.jenkins-ci.org/latest/credentials-binding.hpi
     https://updates.jenkins-ci.org/latest/credentials.hpi
     https://updates.jenkins-ci.org/latest/display-url-api.hpi
+    https://updates.jenkins-ci.org/latest/docker-commons.hpi
+    https://updates.jenkins-ci.org/latest/docker-plugin.hpi
     https://updates.jenkins-ci.org/latest/durable-task.hpi
     https://updates.jenkins-ci.org/latest/echarts-api.hpi
     https://updates.jenkins-ci.org/latest/font-awesome-api.hpi
@@ -93,6 +97,7 @@ readonly PLUGIN_URLS=(
     https://updates.jenkins-ci.org/latest/workflow-scm-step.hpi
     https://updates.jenkins-ci.org/latest/workflow-step-api.hpi
     https://updates.jenkins-ci.org/latest/workflow-support.hpi
+    https://updates.jenkins-ci.org/latest/ws-cleanup.hpi
 )
 # Home directory for the Jenkins master.
 # This should not need to change unless you willfully changed the Jenkins home directly elsewhere
@@ -101,12 +106,12 @@ readonly JENKINS_HOME=/var/jenkins_home
 # ------------END-CONFIGURATION------------
 
 # Get Jenkins Master Pod ID
-readonly JENKINS_MASTER_POD=$(kubectl get pods --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' | grep jenkins-master)
+readonly JENKINS_MASTER_POD=$(kubectl get pods --field-selector=status.phase=Running -o 'jsonpath={.items[0].metadata.name}' -l app=jenkins-master)
 
 for PLUGIN_URL in ${PLUGIN_URLS[@]}; do
-    wget -q ${PLUGIN_URL}
     HPI_FILE=$(basename ${PLUGIN_URL})
     JPI_FILE=$(echo ${HPI_FILE} | sed 's/hpi/jpi/')
+    curl --location --fail --silent --show-error ${PLUGIN_URL} --output ${HPI_FILE}
     if [[ -f ${HPI_FILE} ]]; then
         # Check for existing JPI plugins
         kubectl exec ${JENKINS_MASTER_POD} -- bash -c " \

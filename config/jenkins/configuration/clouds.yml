@@ -1,0 +1,259 @@
+jenkins:
+  clouds:
+  - azureVM:
+      azureCredentialsId: "9e713c35-c19b-4ddd-8cd5-110c2733c2e5"
+      cloudName: "AzureVMAgents--"
+      deploymentTimeout: 1200
+      existingResourceGroupName: "<AZURE_VM_RESOURCE_GROUP>"
+      maxVirtualMachinesLimit: 10
+      resourceGroupReferenceType: "existing"
+      vmTemplates:
+      - agentLaunchMethod: "SSH"
+        builtInImage: "Windows Server 2016"
+        credentialsId: "JenkinsOEAdminAgents"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        enableMSI: false
+        enableUAMI: false
+        ephemeralOSDisk: false
+        executeInitScriptAsRoot: true
+        existingStorageAccountName: "<AZURE_VM_STORAGE_ACCOUNT>"
+        imageReference:
+          galleryImageDefinition: "ubuntu-18.04"
+          galleryImageVersion: "latest"
+          galleryName: "Production_Images"
+          galleryResourceGroup: "OE-Jenkins-Images"
+          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+        imageTopLevelType: "advanced"
+        initScript: "gpasswd -a oeadmin docker \nchmod g+rw /var/run/docker.sock\n\
+          sudo apt install -y lcov python python-pip llvm-7\nsudo pip install lcov_cobertura"
+        installDocker: false
+        installGit: false
+        installMaven: false
+        javaPath: "java"
+        labels: "ACC-1804"
+        location: "UK South"
+        noOfParallelJobs: 1
+        osDiskSize: 0
+        osType: "Linux"
+        preInstallSsh: true
+        retentionStrategy:
+          azureVMCloudPool:
+            poolSize: 5
+            retentionInHours: 24
+        shutdownOnIdle: false
+        storageAccountNameReferenceType: "existing"
+        storageAccountType: "Standard_LRS"
+        templateDisabled: false
+        templateName: "u1804"
+        usageMode: "Use this node as much as possible"
+        usePrivateIP: false
+        virtualMachineSize: "Standard_DC1s_v2"
+      - agentLaunchMethod: "SSH"
+        builtInImage: "Windows Server 2016"
+        credentialsId: "JenkinsOEAdminAgents"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        enableMSI: false
+        enableUAMI: false
+        ephemeralOSDisk: false
+        executeInitScriptAsRoot: true
+        existingStorageAccountName: "<AZURE_VM_STORAGE_ACCOUNT>"
+        imageReference:
+          galleryImageDefinition: "ubuntu-16.04"
+          galleryImageVersion: "latest"
+          galleryName: "Production_Images"
+          galleryResourceGroup: "OE-Jenkins-Images"
+          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+        imageTopLevelType: "advanced"
+        initScript: "gpasswd -a oeadmin docker \nchmod g+rw /var/run/docker.sock"
+        installDocker: false
+        installGit: false
+        installMaven: false
+        javaPath: "java"
+        labels: "ACC-1604"
+        location: "UK South"
+        noOfParallelJobs: 1
+        osDiskSize: 0
+        osType: "Linux"
+        preInstallSsh: true
+        retentionStrategy:
+          azureVMCloudPool:
+            poolSize: 5
+            retentionInHours: 24
+        shutdownOnIdle: false
+        storageAccountNameReferenceType: "existing"
+        storageAccountType: "Standard_LRS"
+        templateDisabled: false
+        templateName: "u1604"
+        usageMode: "Use this node as much as possible"
+        usePrivateIP: false
+        virtualMachineSize: "Standard_DC1s_v2"
+      - agentLaunchMethod: "SSH"
+        builtInImage: "Windows Server 2016"
+        credentialsId: "JenkinsOEAdminAgents"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        enableMSI: false
+        enableUAMI: false
+        ephemeralOSDisk: false
+        executeInitScriptAsRoot: true
+        existingStorageAccountName: "<AZURE_VM_STORAGE_ACCOUNT>"
+        imageReference:
+          galleryImageDefinition: "rhel-8"
+          galleryImageVersion: "latest"
+          galleryName: "Production_Images"
+          galleryResourceGroup: "OE-Jenkins-Images"
+          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+        imageTopLevelType: "advanced"
+        initScript: |-
+          gpasswd -a oeadmin docker
+          chmod g+rw /var/run/docker.sock
+
+          (echo n; echo; echo; echo; echo t; echo; echo 31; echo w) | fdisk /dev/sda
+          pvcreate /dev/sda4
+          vgextend rootvg /dev/sda4
+          lvextend -l +100%FREE /dev/rootvg/homelv
+          resize2fs /dev/rootvg/homelv
+        installDocker: false
+        installGit: false
+        installMaven: false
+        javaPath: "java"
+        labels: "ACC-RHEL-8"
+        location: "UK South"
+        noOfParallelJobs: 1
+        osDiskSize: 200
+        osType: "Linux"
+        preInstallSsh: true
+        retentionStrategy:
+          azureVMCloudPool:
+            poolSize: 5
+            retentionInHours: 24
+        shutdownOnIdle: false
+        storageAccountNameReferenceType: "existing"
+        storageAccountType: "Standard_LRS"
+        templateDisabled: false
+        templateName: "rhel8"
+        usageMode: "Use this node as much as possible"
+        usePrivateIP: false
+        virtualMachineSize: "Standard_DC2s_v2"
+      - agentLaunchMethod: "SSH"
+        builtInImage: "Windows Server 2016"
+        credentialsId: "JenkinsOEAdminAgents"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        enableMSI: false
+        enableUAMI: false
+        ephemeralOSDisk: false
+        executeInitScriptAsRoot: true
+        existingStorageAccountName: "<AZURE_VM_STORAGE_ACCOUNT>"
+        imageReference:
+          galleryImageDefinition: "ubuntu-16.04"
+          galleryImageVersion: "latest"
+          galleryName: "Production_Images"
+          galleryResourceGroup: "OE-Jenkins-Images"
+          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+        imageTopLevelType: "advanced"
+        initScript: |-
+          gpasswd -a oeadmin docker
+          chmod g+rw /var/run/docker.sock
+        installDocker: false
+        installGit: false
+        installMaven: false
+        javaPath: "java"
+        labels: "nonSGX"
+        location: "UK South"
+        noOfParallelJobs: 1
+        osDiskSize: 200
+        osType: "Linux"
+        preInstallSsh: true
+        retentionStrategy:
+          azureVMCloudPool:
+            poolSize: 5
+            retentionInHours: 24
+        shutdownOnIdle: false
+        storageAccountNameReferenceType: "existing"
+        storageAccountType: "Standard_LRS"
+        templateDisabled: false
+        templateName: "nonsgx"
+        usageMode: "Use this node as much as possible"
+        usePrivateIP: false
+        virtualMachineSize: "Standard_DC1s_v2"
+      - agentLaunchMethod: "SSH"
+        builtInImage: "Windows Server 2016"
+        credentialsId: "JenkinsOEAdminAgents"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        enableMSI: false
+        enableUAMI: false
+        ephemeralOSDisk: false
+        executeInitScriptAsRoot: true
+        existingStorageAccountName: "<AZURE_VM_STORAGE_ACCOUNT>"
+        imageReference:
+          galleryImageDefinition: "ws2016-SGX"
+          galleryImageVersion: "latest"
+          galleryName: "Production_Images"
+          galleryResourceGroup: "OE-Jenkins-Images"
+          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+        imageTopLevelType: "advanced"
+        installDocker: false
+        installGit: false
+        installMaven: false
+        javaPath: "java"
+        labels: "SGXFLC-Windows-2016-Docker"
+        location: "UK South"
+        noOfParallelJobs: 1
+        osDiskSize: 0
+        osType: "Windows"
+        preInstallSsh: true
+        retentionStrategy:
+          azureVMCloudPool:
+            poolSize: 5
+            retentionInHours: 24
+        shutdownOnIdle: false
+        storageAccountNameReferenceType: "existing"
+        storageAccountType: "Standard_LRS"
+        templateDisabled: false
+        templateName: "ws16"
+        usageMode: "Use this node as much as possible"
+        usePrivateIP: false
+        virtualMachineSize: "Standard_DC2s_v2"
+      - agentLaunchMethod: "SSH"
+        builtInImage: "Windows Server 2016"
+        credentialsId: "JenkinsOEAdminAgents"
+        diskType: "managed"
+        doNotUseMachineIfInitFails: true
+        enableMSI: false
+        enableUAMI: false
+        ephemeralOSDisk: false
+        executeInitScriptAsRoot: true
+        existingStorageAccountName: "<AZURE_VM_STORAGE_ACCOUNT>"
+        imageReference:
+          galleryImageDefinition: "ws2019-SGX"
+          galleryImageVersion: "latest"
+          galleryName: "Production_Images"
+          galleryResourceGroup: "OE-Jenkins-Images"
+          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+        imageTopLevelType: "advanced"
+        installDocker: false
+        installGit: false
+        installMaven: false
+        javaPath: "java"
+        labels: "SGXFLC-Windows-2019-Docker"
+        location: "UK South"
+        noOfParallelJobs: 1
+        osDiskSize: 200
+        osType: "Windows"
+        preInstallSsh: true
+        retentionStrategy:
+          azureVMCloudPool:
+            poolSize: 5
+            retentionInHours: 24
+        shutdownOnIdle: false
+        storageAccountNameReferenceType: "existing"
+        storageAccountType: "Standard_LRS"
+        templateDisabled: false
+        templateName: "ws19"
+        usageMode: "Use this node as much as possible"
+        usePrivateIP: false
+        virtualMachineSize: "Standard_DC2s_v2"

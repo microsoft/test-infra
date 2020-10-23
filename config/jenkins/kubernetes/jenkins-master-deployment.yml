@@ -25,7 +25,7 @@ spec:
   storageClassName: jenkins-master-volume
   resources:
     requests:
-      storage: 200Gi
+      storage: 1000Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -57,26 +57,26 @@ spec:
             path: /login
             port: 8080
           failureThreshold: 10
-          initialDelaySeconds: 300
-          periodSeconds: 10
+          initialDelaySeconds: 900
+          periodSeconds: 30
           successThreshold: 1
-          timeoutSeconds: 5
+          timeoutSeconds: 10
         readinessProbe:
           httpGet:
             path: /login
             port: 8080
           failureThreshold: 3
-          initialDelaySeconds: 300
-          periodSeconds: 10
+          initialDelaySeconds: 900
+          periodSeconds: 30
           successThreshold: 1
-          timeoutSeconds: 5
+          timeoutSeconds: 10
         resources:
           requests:
-            cpu: "1"
-            memory: 4Gi
+            cpu: "2"
+            memory: 8Gi
           limits:
-            cpu: "4"
-            memory: 15Gi
+            cpu: "8"
+            memory: 30Gi
       volumes:
       - name: volume
         persistentVolumeClaim:

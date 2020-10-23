@@ -11,16 +11,16 @@ set -e
 
 ## General Azure Configuration
 # WARNING: use a *new* resource group! This script WILL delete existing resources in your resource group.
-readonly RESOURCE_GROUP="${USER}-jenkins-test2"
+readonly RESOURCE_GROUP=""
 # Azure region code. To list all region codes use: `az account list-locations -o table`
-readonly LOCATION="canadacentral"
+readonly LOCATION="eastus"
 
 ## AKS Configurations
-readonly AKS_CLUSTER_NAME="${USER}-jenkins-akscluster"
-readonly AKS_PUBLIC_IP_NAME="${USER}-AKSPublicIP"
+readonly AKS_CLUSTER_NAME=""
+readonly AKS_PUBLIC_IP_NAME=""
 # For other node sizes see:
 # https://docs.microsoft.com/en-us/azure/virtual-machines/sizes
-readonly NODE_SIZE="Standard_DC8_v2"
+readonly NODE_SIZE="Standard_D8_v3"
 readonly MIN_NODE_COUNT="1"
 readonly MAX_NODE_COUNT="10"
 # (Optional) Provide an SSH key if you want to SSH into your AKS cluster nodes
@@ -28,7 +28,8 @@ readonly PATH_KEY="~/.ssh/id_rsa.pub"
 
 ## Jenkins Master configuration
 # This controls the URL that would be used to access the Jenkins master
-readonly DNS_LABEL="${USER}-jenkins-test"
+# E.g. https://prow-jenkins-test.eastus.cloudapp.azure.com/
+readonly DNS_LABEL="prow-jenkins-test"
 
 # ------------END-CONFIGURATION------------
 
@@ -45,7 +46,7 @@ az group create --location ${LOCATION} --name ${RESOURCE_GROUP}
 az aks create \
   --resource-group ${RESOURCE_GROUP} \
   --name ${AKS_CLUSTER_NAME} \
-  --max-count ${MAX_NODE_COUNT} \
+  --node-vm-size ${NODE_SIZE} \
   --vm-set-type VirtualMachineScaleSets \
   --load-balancer-sku standard \
   --location ${LOCATION} \

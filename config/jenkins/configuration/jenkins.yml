@@ -5,14 +5,14 @@ credentials:
     - credentials:
       - azure:
           azureEnvironmentName: "Azure"
-          clientId: "<AZURE_SP_CLIENT>"
+          clientId: "<AZURE_SP_CLIENT_ID>"
           clientSecret: "<AZURE_SP_SECRET>"
           id: "9e713c35-c19b-4ddd-8cd5-110c2733c2e5"
           scope: SYSTEM
-          subscriptionId: "<AZURE_SP_SUBSCRIPTION>"
+          subscriptionId: "<AZURE_SP_SUBSCRIPTION_ID>"
           tenant: "<AZURE_SP_TENANT>"
       - usernamePassword:
-          id: "fe7345fe-5152-40e9-a2bf-3ce7c38ad266"
+          id: "JenkinsOEAdminAgents"
           password: "<OEADMIN_PASSWORD>"
           scope: SYSTEM
           username: "oeadmin"
@@ -23,57 +23,6 @@ jenkins:
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
-  clouds:
-  - azureVM:
-      azureCredentialsId: "9e713c35-c19b-4ddd-8cd5-110c2733c2e5"
-      cloudName: "Global Parrot Swarm"
-      deploymentTimeout: 1200
-      existingResourceGroupName: "cyan-jenkins-test2"
-      maxVirtualMachinesLimit: 2
-      resourceGroupReferenceType: "existing"
-      vmTemplates:
-      - agentLaunchMethod: "SSH"
-        agentWorkspace: "/var/jenkins"
-        builtInImage: "Ubuntu 16.04 LTS"
-        credentialsId: "fe7345fe-5152-40e9-a2bf-3ce7c38ad266"
-        diskType: "managed"
-        doNotUseMachineIfInitFails: true
-        enableMSI: false
-        enableUAMI: false
-        ephemeralOSDisk: false
-        executeInitScriptAsRoot: true
-        existingStorageAccountName: "cyanvmstorage"
-        imageReference:
-          galleryImageDefinition: "ubuntu-16.04"
-          galleryImageVersion: "latest"
-          galleryName: "Production_Images"
-          galleryResourceGroup: "OE-Jenkins-Images"
-          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
-        imageTopLevelType: "advanced"
-        initScript: "gpasswd -a oeadmin docker \nchmod g+rw /var/run/docker.sock"
-        installDocker: false
-        installGit: false
-        installMaven: false
-        javaPath: "java"
-        labels: "ACC-1604"
-        location: "Canada Central"
-        newStorageAccountName: "cyanvmstorage"
-        noOfParallelJobs: 1
-        osDiskSize: 0
-        osType: "Linux"
-        preInstallSsh: true
-        retentionStrategy:
-          azureVMCloudRetentionStrategy:
-            idleTerminationMinutes: 10
-        shutdownOnIdle: false
-        storageAccountNameReferenceType: "existing"
-        storageAccountType: "Standard_LRS"
-        templateDesc: "Descriptive Parrots in Canada"
-        templateDisabled: false
-        templateName: "mynameiscanadianparrot"
-        usageMode: "Only build jobs with label expressions matching this node"
-        usePrivateIP: false
-        virtualMachineSize: "Standard_DC4s_v2"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -97,14 +46,14 @@ jenkins:
       allowsSignup: false
       enableCaptcha: false
       users:
-        - id: party
-          password: parrot
+        - id: jenkinsadmin
+          password: <JENKINSADMIN_PASSWORD>
   slaveAgentPort: 50000
   systemMessage: |
     Welcome to our build server.
 
     Config is now mostly handled by the 'Jenkins Configuration as Code' (JCasC) plugin.
-    JCasC config can be found in the jenkins.yaml file in the $JENKINS_HOME/jenkins.yaml folder.
+    JCasC config can be found in the jenkins.yaml file in the $JENKINS_HOME/configuration folder.
   updateCenter:
     sites:
     - id: "default"
@@ -142,8 +91,6 @@ unclassified:
     storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
-  gitHubPluginConfig:
-    hookUrl: "http://oe-jenk-master-test2.canadacentral.cloudapp.azure.com/github-webhook/"
   gitSCM:
     allowSecondFetch: false
     createAccountBasedOnEmail: false

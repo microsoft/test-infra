@@ -12,7 +12,7 @@ BUILD_TYPE = env.BUILD_TYPE ?: "Release"
 
 pipeline {
     options {
-        timeout(time: 30, unit: 'MINUTES') 
+        timeout(time: 60, unit: 'MINUTES') 
     }
     agent { label 'ACC-RHEL-8' }
     stages {

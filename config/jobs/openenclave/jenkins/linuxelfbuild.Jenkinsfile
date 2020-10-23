@@ -22,7 +22,7 @@ LVI_MITIGATION_SKIP_TESTS = env.LVI_MITIGATION_SKIP_TESTS ?: "OFF"
 
 pipeline {
     options {
-        timeout(time: 30, unit: 'MINUTES') 
+        timeout(time: 60, unit: 'MINUTES') 
     }
     agent { label "OverWatch" }
     stages {

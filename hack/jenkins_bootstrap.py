@@ -25,6 +25,7 @@ import requests
 import json
 from docopt import docopt
 from time import sleep
+from datetime import datetime
 
 
 class Trigger():
@@ -69,13 +70,17 @@ class Trigger():
         if self.parameters:
             build_url = self.url + "/job/" + self.job + "/buildWithParameters"
             print "Triggering a build via post @ ", build_url
-            build_request = requests.post(build_url, data=self.parameters,
+            build_request = ""
+            while build_request == "":
+                build_request = requests.post(build_url, data=self.parameters,
                                           auth=(self.user, self.password),
                                           headers={"Jenkins-Crumb": crumb.get('crumb')})
         else:
             build_url = self.url + "/job/" + self.job + "/build"
             print "Triggering a build via get @ ", build_url
-            build_request = requests.post(build_url,
+            build_request = ""
+            while build_request == "":
+                build_request = requests.post(build_url,
                                          auth=(self.user, self.password),
                                          headers={"Jenkins-Crumb": crumb.get('crumb')})
 
@@ -86,7 +91,7 @@ class Trigger():
             print "Your build somehow failed"
             print build_request.status_code
             print build_request.text
-            exit(1)
+            return ""
         return queue_url
 
     def waiting_for_job_to_start(self, queue_url):
@@ -98,7 +103,7 @@ class Trigger():
         waiting_for_job = True
         while waiting_for_job:
             queue_request = requests.get(queue_url)
-            if queue_request.json().get("why") != None:
+            if queue_request.ok and queue_request.json().get("why") != None:
                 print " . Waiting for job to start because :", queue_request.json().get("why").encode('utf-8').strip()
                 timer -= 1
                 sleep(self.sleep)
@@ -107,7 +112,7 @@ class Trigger():
                 # Refresh request to avoid synchronization issues
                 attempts = 0
                 queue_request = "" 
-                while attempts < 5 and queue_request == "":
+                while attempts < 10 * 60 and queue_request == "":
                     try:
                         queue_request = requests.get(queue_url)
                     except Exception:
@@ -122,7 +127,6 @@ class Trigger():
                     except Exception:
                         attempts += 1
                         sleep(self.sleep)
-                job_number = queue_request.json().get("executable").get("number")
                 print " Job is being build number: ", job_number
 
             if timer == 0:
@@ -152,10 +156,10 @@ class Trigger():
                                                      headers={"Jenkins-Crumb": crumb.get('crumb')})
             content_length = int(console_response.headers.get("Content-Length", -1))
             
-            while console_response.status_code != 200 and dns_fail_count <= 5 * 60 /self.sleep:
+            while console_response.status_code != 200 and dns_fail_count <= 10 * 60 /self.sleep:
                 
                 dns_fail_count += 1
-                if dns_fail_count >= 5 * 60 /self.sleep:
+                if dns_fail_count >= 10 * 60 /self.sleep:
                     print "Uh oh we have an issue ..."
                     print console_response.content
                     print console_response.headers
@@ -194,10 +198,29 @@ class Trigger():
                     check_job_status = 0
 
     def main(self):
-        queue_url = self.trigger_build()
-        job_number = self.waiting_for_job_to_start(queue_url)
-        self.console_output(job_number)
+        try:
+            dateTimeObj = datetime.now()
+            print(dateTimeObj)
+            queue_url = ""
+            while queue_url == "":
+                queue_url = self.trigger_build()
 
+            job_number = ""
+            while job_number == "":
+                job_number = self.waiting_for_job_to_start(queue_url)
+
+            self.console_output(job_number)
+            dateTimeObj = datetime.now()
+            print(dateTimeObj)
+        except Exception:
+            print("Exception!")
+            dateTimeObj = datetime.now()
+            print(dateTimeObj)
+        finally:
+            print("Finally!")
+            dateTimeObj = datetime.now()
+            print(dateTimeObj)
+            
 
 if __name__ == '__main__':
     arguments = docopt(__doc__)

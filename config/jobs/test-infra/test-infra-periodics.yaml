@@ -1,7 +1,7 @@
 periodics:
   - name: ci-test-infra-push-image-bootstrap-did
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -25,7 +25,7 @@ periodics:
 
   - name: ci-test-infra-push-build-image-ubuntu-1604
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -55,7 +55,7 @@ periodics:
 
   - name: ci-test-infra-push-build-image-ubuntu-1804
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -85,7 +85,7 @@ periodics:
 
   - name: ci-test-infra-push-build-image-rhel-8.1
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -109,7 +109,7 @@ periodics:
 
   - name: ci-test-infra-push-build-image-centos-7.5
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -133,7 +133,7 @@ periodics:
 
   - name: ci-test-infra-push-build-image-fedora-31
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -170,7 +170,7 @@ periodics:
 
   - name: ci-test-infra-validate-oeedger8r-rhel-8-release
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -185,7 +185,7 @@ periodics:
 
   - name: ci-test-infra-validate-oeedger8r-rhel-8-debug
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -200,7 +200,7 @@ periodics:
 
   - name: ci-test-infra-validate-oeedger8r-rhel-8-reldebinfo
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -215,7 +215,7 @@ periodics:
 
   - name: ci-test-infra-validate-oeedger8r-win-2016-release
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -230,7 +230,7 @@ periodics:
 
   - name: ci-test-infra-validate-oeedger8r-win-2019-debug
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -245,7 +245,7 @@ periodics:
 
   - name: ci-test-infra-validate-build-image-jenkins-op
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -275,7 +275,7 @@ periodics:
 
   - name: ci-test-infra-validate-host-verify-debug
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -290,7 +290,7 @@ periodics:
 
   - name: ci-test-infra-validate-host-verify-release
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -305,7 +305,7 @@ periodics:
 
   - name: ci-test-infra-validate-oe-elf-build-debug-clang-7
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -320,7 +320,7 @@ periodics:
 
   - name: ci-test-infra-validate-oe-elf-build-release-gcc
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -335,7 +335,7 @@ periodics:
 
   - name: ci-test-infra-validate-oe-win-build-2016-release
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -350,7 +350,7 @@ periodics:
 
   - name: ci-test-infra-validate-oe-win-build-2019-debug
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -365,7 +365,7 @@ periodics:
 
   - name: sanity-ci-test-infra-jenkins-ping-1
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -380,7 +380,7 @@ periodics:
 
   - name: sanity-ci-test-infra-jenkins-ping-2
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -395,7 +395,7 @@ periodics:
 
   - name: sanity-ci-test-infra-jenkins-ping-3
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -410,7 +410,7 @@ periodics:
 
   - name: ci-test-infra-validate-openenclave-rhel-8-release
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -425,7 +425,7 @@ periodics:
 
   - name: ci-test-infra-validate-openenclave-rhel-8-debug
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true
@@ -440,7 +440,7 @@ periodics:
 
   - name: ci-test-infra-validate-openenclave-rhel-8-reldebinfo
     extra_refs:
-    - org: openenclave-ci
+    - org: openenclave
       repo: test-infra
       base_ref: master
     decorate: true

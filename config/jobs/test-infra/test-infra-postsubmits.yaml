@@ -1,5 +1,5 @@
 postsubmits:
-  openenclave-ci/test-infra:
+  openenclave/test-infra:
   - name: post-test-infra-push-image-bootstrap-did
     branches:
     - master

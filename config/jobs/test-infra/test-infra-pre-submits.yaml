@@ -1,5 +1,5 @@
 presubmits:
-  openenclave-ci/test-infra:
+  openenclave/test-infra:
   - name: pr-test-infra-ping
     branches:
     - master

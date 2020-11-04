@@ -20,15 +20,6 @@ pipeline {
     }
     agent { label "OverWatch" }
     stages {
-        // Double Clen Base Environments just in case
-        stage( 'Sanitize Build Environment') {
-            steps {
-                script {
-                    cleanWs()
-                    checkout scm
-                }
-            }
-        }
         /* Compile tests in SGX machine.  This will generate the necessary certs for the
         * host_verify test.
         */

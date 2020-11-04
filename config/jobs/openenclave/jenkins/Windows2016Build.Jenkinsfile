@@ -27,15 +27,6 @@ pipeline {
     }
     agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
     stages {
-        // Double Clen Base Environments just in case
-        stage( 'Sanitize Build Environment') {
-            steps {
-                script {
-                    cleanWs()
-                    checkout scm
-                }
-            }
-        }
         stage( 'Windows Build') {
             steps {
                 withEnv(["OE_SIMULATION=1"]) {

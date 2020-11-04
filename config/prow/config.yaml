@@ -26,10 +26,20 @@ tide:
         - do-not-merge/invalid-owners-file
         - do-not-merge/work-in-progress
         - needs-rebases
+    - repos:
+        - openenclave/test-infra
+      labels:
+        - lgtm
+        - approved
+      missingLabels:
+        - do-not-merge
+        - do-not-merge/hold
+        - do-not-merge/invalid-owners-file
+        - do-not-merge/work-in-progress
+        - needs-rebases
   merge_method:
     openenclave-ci/openenclave: merge
-    openenclave-ci/test-infra: merge
-    openenclave-ci/oeedger8r: merge
+    openenclave/test-infra: merge
     openenclave/oeedger8r: merge
   blocker_label: tide/merge-blocker
   squash_label: tide/merge-method-squash

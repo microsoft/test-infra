@@ -40,11 +40,11 @@ pipeline {
             steps {
                 //withEnv(["OE_SIMULATION=1"]) {
                     script {
-                        docker.image("openenclave/windows-${WINDOWS_VERSION}:${DOCKER_TAG}").inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
+                        //docker.image("openenclave/windows-${WINDOWS_VERSION}:${DOCKER_TAG}").inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                             def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
                             runner.checkout("openenclave", "${OE_PULL_NUMBER}")
                             runner.cmakeBuildOE("openenclave","${BUILD_TYPE}")
-                        }
+                        //}
                     }
                 //}
             }

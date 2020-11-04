@@ -36,48 +36,47 @@ pipeline {
         stage("ACC-1804 Generate Quote") {
             agent { label "ACC-${LINUX_VERSION}"}
             steps{
-                timeout(GLOBAL_TIMEOUT_MINUTES) {
-                    script{
-                        cleanWs()
-                        checkout("openenclave", "${OE_PULL_NUMBER}")
+                script{
+                    cleanWs()
+                    checkout scm
+                    def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                    runner.checkout("openenclave", "${OE_PULL_NUMBER}")
+                    println("Generating certificates and reports ...")
+                    def task = """
+                            cmake ${WORKSPACE}/openenclave -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                            ninja -v
+                            pushd tests/host_verify/host
+                            openssl ecparam -name prime256v1 -genkey -noout -out keyec.pem
+                            openssl ec -in keyec.pem -pubout -out publicec.pem
+                            openssl genrsa -out keyrsa.pem 2048
+                            openssl rsa -in keyrsa.pem -outform PEM -pubout -out publicrsa.pem
+                            ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --cert keyec.pem publicec.pem --out sgx_cert_ec.der
+                            ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --cert keyrsa.pem publicrsa.pem --out sgx_cert_rsa.der
+                            ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --report --out sgx_report.bin
+                            popd
+                            """
+                    ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
 
-                        println("Generating certificates and reports ...")
-                        def task = """
-                                cmake ${WORKSPACE}/openenclave -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
-                                ninja -v
-                                pushd tests/host_verify/host
-                                openssl ecparam -name prime256v1 -genkey -noout -out keyec.pem
-                                openssl ec -in keyec.pem -pubout -out publicec.pem
-                                openssl genrsa -out keyrsa.pem 2048
-                                openssl rsa -in keyrsa.pem -outform PEM -pubout -out publicrsa.pem
-                                ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --cert keyec.pem publicec.pem --out sgx_cert_ec.der
-                                ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --cert keyrsa.pem publicrsa.pem --out sgx_cert_rsa.der
-                                ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --report --out sgx_report.bin
-                                popd
-                                """
-                        ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
-
-                        def ec_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_ec.der'
-                        def rsa_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_rsa.der'
-                        def report_created = fileExists 'build/tests/host_verify/host/sgx_report.bin'
-                        if (ec_cert_created) {
-                            println("EC cert file created successfully!")
-                        } else {
-                            error("Failed to create EC cert file.")
-                        }
-                        if (rsa_cert_created) {
-                            println("RSA cert file created successfully!")
-                        } else {
-                            error("Failed to create RSA cert file.")
-                        }
-                        if (report_created) {
-                            println("SGX report file created successfully!")
-                        } else {
-                            error("Failed to create SGX report file.")
-                        }
-
-                        stash includes: 'build/tests/host_verify/host/*.der,build/tests/host_verify/host/*.bin', name: "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
+                    def ec_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_ec.der'
+                    def rsa_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_rsa.der'
+                    def report_created = fileExists 'build/tests/host_verify/host/sgx_report.bin'
+                    if (ec_cert_created) {
+                        println("EC cert file created successfully!")
+                    } else {
+                        error("Failed to create EC cert file.")
                     }
+                    if (rsa_cert_created) {
+                        println("RSA cert file created successfully!")
+                    } else {
+                        error("Failed to create RSA cert file.")
+                    }
+                    if (report_created) {
+                        println("SGX report file created successfully!")
+                    } else {
+                        error("Failed to create SGX report file.")
+                    }
+
+                    stash includes: 'build/tests/host_verify/host/*.der,build/tests/host_verify/host/*.bin', name: "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                 }
             }
         }
@@ -87,19 +86,19 @@ pipeline {
         stage("Linux nonSGX Verify Quote") {
             agent { label "ACC-${LINUX_VERSION}"}
             steps{
-                timeout(GLOBAL_TIMEOUT_MINUTES) {
-                    script{
-                        cleanWs()
-                        checkout("openenclave", "${OE_PULL_NUMBER}")
-                        unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
-                        def task = """
-                                cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
-                                ninja -v
-                                ctest -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
-                                """
-                        // Note: Include the commands to build and run the quote verification test above
-                        ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
-                    }
+                script{
+                    cleanWs()
+                    checkout scm
+                    def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                    runner.checkout("openenclave", "${OE_PULL_NUMBER}")
+                    unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
+                    def task = """
+                            cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                            ninja -v
+                            ctest -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                            """
+                    // Note: Include the commands to build and run the quote verification test above
+                    ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
                 }
             }
         }
@@ -108,22 +107,22 @@ pipeline {
         stage("Windows nonSGX Verify Quote") {
             agent { label "SGXFLC-Windows-2019-Docker" }
             steps {
-                timeout(GLOBAL_TIMEOUT_MINUTES) {
-                    script{
-                        cleanWs()
-                        checkout("openenclave", "${OE_PULL_NUMBER}")
-                        //docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
-                            unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
-                            dir('build') {
-                                bat """
-                                    vcvars64.bat x64 && \
-                                    cmake.exe ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
-                                    ninja -v && \
-                                    ctest.exe -V -C ${BUILD_TYPE} -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
-                                    """
-                            }
-                        //}
-                    }
+                script{
+                    cleanWs()
+                    checkout scm
+                    def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                    runner.checkout("openenclave", "${OE_PULL_NUMBER}")
+                    //docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
+                        unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
+                        dir('build') {
+                            bat """
+                                vcvars64.bat x64 && \
+                                cmake.exe ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
+                                ninja -v && \
+                                ctest.exe -V -C ${BUILD_TYPE} -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                                """
+                        }
+                    //}
                 }
             }
         }

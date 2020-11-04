@@ -41,33 +41,35 @@ pipeline {
         stage("Ubuntu 1804 SGX1 clang-7 Release LVI_MITIGATION=ControlFlow") {
             agent { label "ACC-${LINUX_VERSION}"}
             steps{
-                timeout(GLOBAL_TIMEOUT_MINUTES) {
-                    script{
-                        cleanWs()
-                        checkout2("openenclave", "${OE_PULL_NUMBER}")
-                        def task = """
-                                cmake ${WORKSPACE}/openenclave                               \
-                                    -G Ninja                                                 \
-                                    -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                         \
-                                    -DHAS_QUOTE_PROVIDER=ON                                  \
-                                    -DLVI_MITIGATION=${LVI_MITIGATION}                       \
-                                    -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \
-                                    -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} \
-                                    -Wdev
-                                ninja -v
-                                """
-                        ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
-                        stash includes: 'build/tests/**', name: "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
-                    }
+                script {
+                    cleanWs()
+                    checkout scm
+                    def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                    runner.checkout("openenclave", "${OE_PULL_NUMBER}")
+                    def task = """
+                            cmake ${WORKSPACE}/openenclave                               \
+                                -G Ninja                                                 \
+                                -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                         \
+                                -DHAS_QUOTE_PROVIDER=ON                                  \
+                                -DLVI_MITIGATION=${LVI_MITIGATION}                       \
+                                -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \
+                                -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} \
+                                -Wdev
+                            ninja -v
+                            """
+                    ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
+                    stash includes: 'build/tests/**', name: "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
                 }
             }
         }
         stage("Windows SGX1 clang-7 Release LVI_MITIGATION=ControlFlow") {
             agent { label "SGXFLC-Windows-2019-Docker" }
             steps {
-                timeout(GLOBAL_TIMEOUT_MINUTES) {
+                script {
                     cleanWs()
-                    checkout2("openenclave", "${OE_PULL_NUMBER}")
+                    checkout scm
+                    def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
+                    runner.checkout("openenclave", "${OE_PULL_NUMBER}")
                     unstash "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
                     bat 'move build linuxbin'
                     dir('build') {

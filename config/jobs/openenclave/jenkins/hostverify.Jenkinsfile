@@ -46,7 +46,7 @@ pipeline {
                             ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --report --out sgx_report.bin
                             popd
                             """
-                    ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
+                    runner.ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
 
                     def ec_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_ec.der'
                     def rsa_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_rsa.der'
@@ -89,7 +89,7 @@ pipeline {
                             ctest -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
                             """
                     // Note: Include the commands to build and run the quote verification test above
-                    ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
+                    runner.ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
                 }
             }
         }
@@ -117,83 +117,5 @@ pipeline {
                 }
             }
         }
-    }
-}
-
-void checkout( String REPO_NAME , String OE_PULL_NUMBER) {
-    if (isUnix()) {
-        sh  """
-            rm -rf ${REPO_NAME} && \
-            git clone --recursive --depth 1 https://github.com/openenclave-ci/${REPO_NAME} && \
-            cd ${REPO_NAME} && \
-            git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
-            if [[ ${OE_PULL_NUMBER} -ne 'master' ]]; then
-                git checkout origin/pr/${OE_PULL_NUMBER}
-            fi
-            """
-    }
-    else {
-        bat """
-            (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
-            git clone --recursive --depth 1 https://github.com/openenclave-ci/${REPO_NAME} && \
-            cd ${REPO_NAME} && \
-            git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
-            if NOT ${OE_PULL_NUMBER}==master git checkout origin/pr/${OE_PULL_NUMBER}
-            """
-    }
-}
-
-def ContainerRun(String imageName, String compiler, String task, String runArgs="") {
-    def image = docker.image(imageName)
-    image.pull()
-    image.inside(runArgs) {
-        dir("${WORKSPACE}/openenclave/build") {
-            Run(compiler, task)
-        }
-    }
-}
-
-def runTask(String task) {
-    dir("${WORKSPACE}/build") {
-        sh """#!/usr/bin/env bash
-                set -o errexit
-                set -o pipefail
-                source /etc/profile
-                ${task}
-            """
-    }
-}
-
-def Run(String compiler, String task, String compiler_version = "") {
-    def c_compiler
-    def cpp_compiler
-    switch(compiler) {
-        case "cross":
-            // In this case, the compiler is set by the CMake toolchain file. As
-            // such, it is not necessary to specify anything in the environment.
-            runTask(task)
-            return
-        case "clang-7":
-            c_compiler = "clang"
-            cpp_compiler = "clang++"
-            compiler_version = "7"
-            break
-        case "gcc":
-            c_compiler = "gcc"
-            cpp_compiler = "g++"
-            break
-        default:
-            // This is needed for backwards compatibility with the old
-            // implementation of the method.
-            c_compiler = "clang"
-            cpp_compiler = "clang++"
-            compiler_version = "8"
-    }
-    if (compiler_version) {
-        c_compiler += "-${compiler_version}"
-        cpp_compiler += "-${compiler_version}"
-    }
-    withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
-        runTask(task);
     }
 }

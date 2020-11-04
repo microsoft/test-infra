@@ -15,15 +15,6 @@ pipeline {
     }
     agent { label 'ACC-RHEL-8' }
     stages {
-        // Double Clen Base Environments just in case
-        stage( 'Sanitize Build Environment') {
-            steps {
-                script {
-                    cleanWs()
-                    checkout scm
-                }
-            }
-        }
         stage('RHEL 8 Build') {
             steps {
                 script {

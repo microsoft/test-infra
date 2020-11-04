@@ -29,7 +29,7 @@ pipeline {
     stages {
         stage( 'Windows Build') {
             steps {
-                withEnv(["OE_SIMULATION=1"]) {
+                //withEnv(["OE_SIMULATION=1"]) {
                     script {
                         //docker.image("openenclave/windows-${WINDOWS_VERSION}:${DOCKER_TAG}").inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                             def runner = load pwd() + '/config/jobs/openenclave/jenkins/common.groovy'
@@ -37,7 +37,7 @@ pipeline {
                             runner.cmakeBuildOE("openenclave","${BUILD_TYPE}")
                         //}
                     }
-                }
+                //}
             }
         }
     }

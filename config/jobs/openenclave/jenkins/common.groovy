@@ -38,7 +38,7 @@ def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EX
                 -Wdev
             ninja -v
             ninja -v package
-            sudo ninja -v install
+            sudo ninja -v install || ninja -v install
             cp -r /opt/openenclave/share/openenclave/samples ~/
             cd ~/samples
             . /opt/openenclave/share/openenclave/openenclaverc

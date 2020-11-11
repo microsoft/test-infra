@@ -1,14 +1,14 @@
 required_reviewers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs
   - rs--
 reviewers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs
   - rs--
 approvers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs
   - rs--
 labels:
   - sig/ci

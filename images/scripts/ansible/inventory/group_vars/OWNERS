@@ -1,9 +1,9 @@
 required_reviewers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs
 reviewers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs
 approvers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs

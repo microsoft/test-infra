@@ -1,8 +1,8 @@
 approvers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs
 reviewers:
   - BRMcLaren
-  - oe-ci-robot
+  - cyandevs
 labels:
   - area/test-infra

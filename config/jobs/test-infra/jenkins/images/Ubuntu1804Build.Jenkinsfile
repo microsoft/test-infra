@@ -46,7 +46,11 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def dockerImage = docker.build("openenclave/ubuntu-${LINUX_VERSION}:${BUILD_NUMBER}",". -f images/ubuntu/${LINUX_VERSION}/Dockerfile")
-
+                    for(repo in SUPPORTED_REPOS){
+                        for(build_type in BUILD_TYPES){
+                            
+                        }
+                    }
                     docker.withRegistry('', 'dockerhub_openenclave_id') {
                         /* Push the container to the custom Registry */
                         dockerImage.push()

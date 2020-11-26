@@ -23,9 +23,6 @@ EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=Con
 // Repo hardcoded
 REPO="test-infra"
 
-// Shared library config, check out common.groovy!
-def SHARED_LIBRARY="/config/jobs/"+"${REPO}"+"/jenkins/images/common.groovy"
-
 pipeline {
     environment {
         registry = "openenclave/ubuntu-${LINUX_VERSION}"
@@ -46,9 +43,13 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def dockerImage = docker.build("openenclave/ubuntu-${LINUX_VERSION}:${BUILD_NUMBER}",". -f images/ubuntu/${LINUX_VERSION}/Dockerfile")
+                    
+                    // TEST IMAGEs
                     for(repo in SUPPORTED_REPOS){
+                        def SHARED_LIBRARY="/config/jobs/"+"${REPO}"+"/jenkins/common.groovy"
                         for(build_type in BUILD_TYPES){
-                            
+                            def runner = load pwd() + "${SHARED_LIBRARY}"
+                            runner.cleanup("${REPO}")
                         }
                     }
                     docker.withRegistry('', 'dockerhub_openenclave_id') {

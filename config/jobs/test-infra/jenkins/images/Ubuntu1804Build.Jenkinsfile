@@ -20,9 +20,6 @@ String[] SUPPORTED_REPOS = ['oeedger8r-cpp']
 // Some override for build configuration
 EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=ControlFlow -DLVI_MITIGATION_SKIP_TESTS=OFF -DUSE_SNMALLOC=ON"
 
-// Repo hardcoded
-REPO="test-infra"
-
 pipeline {
     environment {
         registry = "openenclave/ubuntu-${LINUX_VERSION}"
@@ -42,20 +39,29 @@ pipeline {
                     // BUILD IMAGE
                     cleanWs()
                     checkout scm
-                    def dockerImage = docker.build("openenclave/ubuntu-${LINUX_VERSION}:${BUILD_NUMBER}",". -f images/ubuntu/${LINUX_VERSION}/Dockerfile")
+                    //def dockerImage = docker.build("openenclave/ubuntu-${LINUX_VERSION}:${BUILD_NUMBER}",". -f images/ubuntu/${LINUX_VERSION}/Dockerfile")
                     
                     // TEST IMAGEs
                     for(repo in SUPPORTED_REPOS){
-                        def SHARED_LIBRARY="/config/jobs/"+"${REPO}"+"/jenkins/common.groovy"
+                        sh  """
+                            echo HERE
+                            echo ${repo}
+                            """
+                        def SHARED_LIBRARY="config/jobs/"+"${repo}"+"/jenkins/common.groovy"
+                        sh  """
+                            ls -l
+                            echo ${SHARED_LIBRARY}
+                            cat ${SHARED_LIBRARY}
+                            """
                         for(build_type in BUILD_TYPES){
                             def runner = load pwd() + "${SHARED_LIBRARY}"
                             runner.cleanup("${REPO}")
                         }
                     }
-                    docker.withRegistry('', 'dockerhub_openenclave_id') {
+                    //docker.withRegistry('', 'dockerhub_openenclave_id') {
                         /* Push the container to the custom Registry */
-                        dockerImage.push()
-                    }
+                        //dockerImage.push()
+                    //}
                 }
             }
         }

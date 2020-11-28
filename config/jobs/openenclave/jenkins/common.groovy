@@ -1,15 +1,16 @@
 // Common openenclave jenkins functions
 
-def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS ) {
+def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER="") {
 
     if (isUnix()) {
-        sh  """
-            cd ${REPO_NAME} && \
-            mkdir build && cd build &&\
-            cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -Wdev
-            ninja -v
-            ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
-            """
+        def task =  """
+                    cd ${REPO_NAME} && \
+                    mkdir build && cd build &&\
+                    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -Wdev
+                    ninja -v
+                    ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                    """
+        Run(COMPILER, task)
     } else {
         bat """
             cd ${REPO_NAME} && \
@@ -40,38 +41,39 @@ def cleanup( String REPO_NAME) {
     }
 }
 
-def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
+def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER="") {
     if (isUnix()) {
-        sh  """
-            cd ${REPO_NAME} && \
-            mkdir build && cd build && \
-            cmake .. \
-                -G Ninja                                                 \
-                -DCMAKE_BUILD_TYPE=RelWithDebInfo                        \
-                -DCMAKE_INSTALL_PREFIX:PATH='/opt/openenclave'           \
-                -DCPACK_GENERATOR=DEB                                    \
-                -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \
-                ${EXTRA_CMAKE_ARGS}                                      \
-                -Wdev
-            ninja -v
-            ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
-            ninja -v package
-            sudo ninja -v install
-            cp -r /opt/openenclave/share/openenclave/samples ~/
-            cd ~/samples
-            . /opt/openenclave/share/openenclave/openenclaverc
-            for i in *; do
-                if [ -d \${i} ]; then
-                    cd \${i}
-                    mkdir build
-                    cd build
-                    cmake ..
-                    make
-                    make run
-                    cd ../..
-                fi
-            done
-            """
+        def task =  """
+                    cd ${REPO_NAME} && \
+                    mkdir build && cd build && \
+                    cmake .. \
+                        -G Ninja                                                 \
+                        -DCMAKE_BUILD_TYPE=RelWithDebInfo                        \
+                        -DCMAKE_INSTALL_PREFIX:PATH='/opt/openenclave'           \
+                        -DCPACK_GENERATOR=DEB                                    \
+                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \
+                        ${EXTRA_CMAKE_ARGS}                                      \
+                        -Wdev
+                    ninja -v
+                    ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                    ninja -v package
+                    sudo ninja -v install
+                    cp -r /opt/openenclave/share/openenclave/samples ~/
+                    cd ~/samples
+                    . /opt/openenclave/share/openenclave/openenclaverc
+                    for i in *; do
+                        if [ -d \${i} ]; then
+                            cd \${i}
+                            mkdir build
+                            cd build
+                            cmake ..
+                            make
+                            make run
+                            cd ../..
+                        fi
+                    done
+                    """
+        Run(COMPILER, task)
     }
     else {
         bat """
@@ -102,22 +104,23 @@ def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EX
 
 // There are a bunch of edgecases, it was easier to have a seperate function for simulation mode.
 // WHY WOULD SOMEONE WANT TO BUILD SNMALLOC LVI SIMULATION MODE WHEN BY DESIGN ONLY HALF THE SAMPELS WOULD WORK?!
-def cmakeBuildPackageOESim( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
+def cmakeBuildPackageOESim( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER="") {
     if (isUnix()) {
-        sh  """
-            cd ${REPO_NAME} && \
-            mkdir build && cd build && \
-            cmake .. \
-                -G Ninja                                                 \
-                -DCMAKE_BUILD_TYPE=RelWithDebInfo                        \
-                -DCMAKE_INSTALL_PREFIX:PATH='/opt/openenclave'           \
-                -DCPACK_GENERATOR=DEB                                    \
-                -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \
-                ${EXTRA_CMAKE_ARGS}                                      \
-                -Wdev
-            ninja -v
-            ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
-            """
+        def task =  """
+                    cd ${REPO_NAME} && \
+                    mkdir build && cd build && \
+                    cmake .. \
+                        -G Ninja                                                 \
+                        -DCMAKE_BUILD_TYPE=RelWithDebInfo                        \
+                        -DCMAKE_INSTALL_PREFIX:PATH='/opt/openenclave'           \
+                        -DCPACK_GENERATOR=DEB                                    \
+                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \
+                        ${EXTRA_CMAKE_ARGS}                                      \
+                        -Wdev
+                    ninja -v
+                    ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                    """
+        Run(COMPILER, task)
     }
     else {
         bat """

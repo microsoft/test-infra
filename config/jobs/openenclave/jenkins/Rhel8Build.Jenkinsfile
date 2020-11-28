@@ -10,11 +10,16 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"RHEL-8"
 
 // Some Defaults
 BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
+OE_SIMULATION=BUILD_MODE=="simulation"?1:0
 String[] BUILD_TYPES = ['Debug', 'RelWithDebInfo', 'Release']
 
-
 // Some override for build configuration
-EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:""
+LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
+LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
+USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
+COMPILER=env.COMPILER?env.COMPILER:"gcc"
+
+EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
 
 // Repo hardcoded
 REPO="openenclave"
@@ -41,7 +46,15 @@ pipeline {
                                 runner.cleanup("${REPO}")
                                 try{
                                     runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                                    runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
+                                    if("${OE_SIMULATION}" == "1" ){
+                                        withEnv(["OE_SIMULATION=${OE_SIMULATION}"]) {
+                                            runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                        }
+                                    }else{
+                                        // Need to modify to distinguish between yum and deb, just run sim mode for testing
+                                        //runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                        runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                    }
                                 } catch (Exception e) {
                                     // Do something with the exception 
                                     error "Program failed, please read logs..."

@@ -8,7 +8,7 @@
 
 This repository contains tools and configuration files for the testing and automation needs of the OpenEnclave project.
 
-CI Job Management
+CI Job Managemen
 ------------------------------
 
 Open Enclave uses a [prow](https://github.com/kubernetes/test-infra/blob/master/prow) instance at [oe-prow](https://oe-prow-status.westus2.cloudapp.azure.com/) to handle CI and automation for the entire organization. Everyone can participate in a self-service PR-based workflow, where changes are automatically deployed after they have been reviewed. All job configs are located in [config/jobs](config/jobs). For more about how to build with prow, please see the [kubernetes/test-infra](https://github.com/kubernetes/test-infra#ci-job-management) project.

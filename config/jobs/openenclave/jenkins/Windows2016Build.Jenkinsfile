@@ -14,11 +14,12 @@ BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"Release"
 BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
 
 // Some override for build configuration
-EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=ControlFlow -DLVI_MITIGATION_SKIP_TESTS=OFF -DUSE_SNMALLOC=ON"
+LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
+LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
+USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
+COMPILER=env.COMPILER?env.COMPILER:"msvc"
 
-// LVI_mitigation
-LVI_MITIGATION = env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
-LVI_MITIGATION_SKIP_TESTS = env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
+EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
 
 // Repo hardcoded
 REPO="openenclave"
@@ -41,7 +42,7 @@ pipeline {
                             checkout scm
                             def runner = load pwd() + "${SHARED_LIBRARY}"
                             runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                            runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
+                            runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${COMPILER}")
                         //}
                     }
                 }

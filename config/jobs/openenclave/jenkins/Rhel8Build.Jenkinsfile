@@ -15,6 +15,7 @@ String[] BUILD_TYPES = ['Debug', 'RelWithDebInfo', 'Release']
 
 // Some override for build configuration
 EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:""
+COMPILER=env.COMPILER?env.COMPILER:"clang-8"
 
 // Repo hardcoded
 REPO="openenclave"
@@ -41,7 +42,7 @@ pipeline {
                                 runner.cleanup("${REPO}")
                                 try{
                                     runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                                    runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
+                                    runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
                                 } catch (Exception e) {
                                     // Do something with the exception 
                                     error "Program failed, please read logs..."

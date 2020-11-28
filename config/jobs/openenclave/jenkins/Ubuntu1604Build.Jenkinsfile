@@ -18,6 +18,7 @@ String[] BUILD_TYPES = ['Debug', 'RelWithDebInfo', 'Release']
 LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
 LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
 USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
+COMPILER=env.COMPILER?env.COMPILER:"clang-7"
 
 EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
 
@@ -48,10 +49,10 @@ pipeline {
                                     runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
                                     if("${OE_SIMULATION}" == "1" ){
                                         withEnv(["OE_SIMULATION=${OE_SIMULATION}"]) {
-                                            runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
+                                            runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
                                         }
                                     }else{
-                                        runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
+                                        runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
                                     }
                                 } catch (Exception e) {
                                     // Do something with the exception 

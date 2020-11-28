@@ -1,6 +1,6 @@
 // Common openenclave jenkins functions
 
-def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS ) {
+def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER = "" ) {
 
     if (isUnix()) {
         sh  """
@@ -40,7 +40,7 @@ def cleanup( String REPO_NAME) {
     }
 }
 
-def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
+def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER = "") {
     if (isUnix()) {
         sh  """
             cd ${REPO_NAME} && \
@@ -102,7 +102,7 @@ def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EX
 
 // There are a bunch of edgecases, it was easier to have a seperate function for simulation mode.
 // WHY WOULD SOMEONE WANT TO BUILD SNMALLOC LVI SIMULATION MODE WHEN BY DESIGN ONLY HALF THE SAMPELS WOULD WORK?!
-def cmakeBuildPackageOESim( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
+def cmakeBuildPackageOESim( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER = "") {
     if (isUnix()) {
         sh  """
             cd ${REPO_NAME} && \
@@ -212,7 +212,7 @@ def Run(String compiler, String task, String compiler_version = "") {
             // implementation of the method.
             c_compiler = "clang"
             cpp_compiler = "clang++"
-            compiler_version = "8"
+            compiler_version = "7"
     }
     if (compiler_version) {
         c_compiler += "-${compiler_version}"

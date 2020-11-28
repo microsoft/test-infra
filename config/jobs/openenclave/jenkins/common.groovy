@@ -212,7 +212,7 @@ def Run(String compiler, String task, String compiler_version = "") {
             // implementation of the method.
             c_compiler = "clang"
             cpp_compiler = "clang++"
-            compiler_version = "7"
+            compiler_version = "8"
     }
     if (compiler_version) {
         c_compiler += "-${compiler_version}"

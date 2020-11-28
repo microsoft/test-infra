@@ -49,10 +49,10 @@ pipeline {
                                     runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
                                     if("${OE_SIMULATION}" == "1" ){
                                         withEnv(["OE_SIMULATION=${OE_SIMULATION}"]) {
-                                            runner.cmakeBuildTestPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                            runner.cmakeBuildTestPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}", false)
                                         }
                                     }else{
-                                        runner.cmakeBuildTestPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                        runner.cmakeBuildTestPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}", true)
                                     }
                                 } catch (Exception e) {
                                     // Do something with the exception 

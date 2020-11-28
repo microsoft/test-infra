@@ -40,6 +40,22 @@ def cleanup( String REPO_NAME) {
     }
 }
 
+
+/**
+ * Open Enclave has many build types, build up the task then execute based on simulation, args, package etc
+*/
+def cmakeBuildTestPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String SIMULATION, String COMPILER="" , String PACKAGE=true) {
+    if (isUnix()) {
+        def task = """
+                   """
+
+    }else{
+        def task = """
+                   """
+    }
+}
+
+
 def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER = "" ) {
     if (isUnix()) {
         sh  """

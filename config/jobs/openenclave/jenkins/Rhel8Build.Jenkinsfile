@@ -42,7 +42,13 @@ pipeline {
                                 runner.cleanup("${REPO}")
                                 try{
                                     runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                                    runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                    if("${OE_SIMULATION}" == "1" ){
+                                        withEnv(["OE_SIMULATION=${OE_SIMULATION}"]) {
+                                            runner.cmakeBuildTestPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                        }
+                                    }else{
+                                        runner.cmakeBuildTestPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                    }
                                 } catch (Exception e) {
                                     // Do something with the exception 
                                     error "Program failed, please read logs..."

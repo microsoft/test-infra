@@ -3,13 +3,39 @@
 def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS, String COMPILER = "" ) {
 
     if (isUnix()) {
-        sh  """
-            cd ${REPO_NAME} && \
-            mkdir build && cd build &&\
-            cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -Wdev
-            ninja -v
-            ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
-            """
+        def c_compiler
+        def cpp_compiler
+        switch(compiler) {
+            case "cross":
+                // In this case, the compiler is set by the CMake toolchain file. As
+                // such, it is not necessary to specify anything in the environment.
+                runTask(task)
+                return
+            case "clang-7":
+                c_compiler = "clang"
+                cpp_compiler = "clang++"
+                compiler_version = "7"
+                break
+            case "gcc":
+                c_compiler = "gcc"
+                cpp_compiler = "g++"
+                break
+            default:
+                // This is needed for backwards compatibility with the old
+                // implementation of the method.
+                c_compiler = "clang"
+                cpp_compiler = "clang++"
+                compiler_version = "8"
+        }
+        withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
+            sh  """
+                cd ${REPO_NAME} && \
+                mkdir build && cd build &&\
+                cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -Wdev
+                ninja -v
+                ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                """
+        }
     } else {
         bat """
             cd ${REPO_NAME} && \

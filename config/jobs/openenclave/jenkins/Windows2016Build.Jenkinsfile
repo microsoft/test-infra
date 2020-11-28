@@ -12,6 +12,7 @@ WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"2016"
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"Release"
 BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
+OE_SIMULATION=BUILD_MODE=="simulation"?1:0
 
 // Some override for build configuration
 LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
@@ -42,7 +43,13 @@ pipeline {
                             checkout scm
                             def runner = load pwd() + "${SHARED_LIBRARY}"
                             runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                            runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${COMPILER}")
+                            if("${OE_SIMULATION}" == "1" ){
+                                withEnv(["OE_SIMULATION=${OE_SIMULATION}"]) {
+                                    runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                                }
+                            }else{
+                                runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}", "${COMPILER}")
+                            }
                         //}
                     }
                 }

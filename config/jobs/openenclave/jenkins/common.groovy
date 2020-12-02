@@ -1,10 +1,10 @@
 // Common openenclave jenkins functions
 
-def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS ) {
+def cmakeBuildOE( String BUILD_CONFIG, String EXTRA_CMAKE_ARGS ) {
 
     if (isUnix()) {
         sh  """
-            cd ${REPO_NAME} && \
+            cd openenclave && \
             mkdir build && cd build &&\
             cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -Wdev
             ninja -v
@@ -12,7 +12,7 @@ def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS
             """
     } else {
         bat """
-            cd ${REPO_NAME} && \
+            cd openenclave && \
             mkdir build && cd build &&\
             vcvars64.bat x64 && \
             cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} && \
@@ -23,12 +23,12 @@ def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS
 }
 
 // Clean up environment, do not fail on error.
-def cleanup( String REPO_NAME) {
+def cleanup() {
     if (isUnix()) {
         try {
                 sh  """
                     set +e
-                    rm -rf ${REPO_NAME}
+                    rm -rf openenclave
                     rm -rf ~/samples
                     sudo rm -rf /opt/openenclave || rm -rf /opt/openenclave
                     """
@@ -40,10 +40,10 @@ def cleanup( String REPO_NAME) {
     }
 }
 
-def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
+def cmakeBuildPackageInstallOE( String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
     if (isUnix()) {
         sh  """
-            cd ${REPO_NAME} && \
+            cd openenclave && \
             mkdir build && cd build && \
             cmake .. \
                 -G Ninja                                                 \
@@ -75,10 +75,10 @@ def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EX
     }
     else {
         bat """
-            cd ${REPO_NAME} && \
+            cd openenclave && \
             mkdir build && cd build &&\
             vcvars64.bat x64 && \
-            cmake.exe ${WORKSPACE}\\${REPO_NAME} -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet ${EXTRA_CMAKE_ARGS} -Wdev && \
+            cmake.exe ${WORKSPACE}\\openenclave -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet ${EXTRA_CMAKE_ARGS} -Wdev && \
             ninja.exe && \
             ctest.exe -V -C ${BUILD_CONFIG} --timeout ${CTEST_TIMEOUT_SECONDS} && \
             cpack.exe -D CPACK_NUGET_COMPONENT_INSTALL=ON -DCPACK_COMPONENTS_ALL=OEHOSTVERIFY && \
@@ -102,10 +102,10 @@ def cmakeBuildPackageInstallOE( String REPO_NAME, String BUILD_CONFIG, String EX
 
 // There are a bunch of edgecases, it was easier to have a seperate function for simulation mode.
 // WHY WOULD SOMEONE WANT TO BUILD SNMALLOC LVI SIMULATION MODE WHEN BY DESIGN ONLY HALF THE SAMPELS WOULD WORK?!
-def cmakeBuildPackageOESim( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
+def cmakeBuildPackageOESim( String BUILD_CONFIG, String EXTRA_CMAKE_ARGS) {
     if (isUnix()) {
         sh  """
-            cd ${REPO_NAME} && \
+            cd openenclave && \
             mkdir build && cd build && \
             cmake .. \
                 -G Ninja                                                 \
@@ -121,23 +121,23 @@ def cmakeBuildPackageOESim( String REPO_NAME, String BUILD_CONFIG, String EXTRA_
     }
     else {
         bat """
-            cd ${REPO_NAME} && \
+            cd openenclave && \
             mkdir build && cd build &&\
             vcvars64.bat x64 && \
-            cmake.exe ${WORKSPACE}\\${REPO_NAME} -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet ${EXTRA_CMAKE_ARGS} -Wdev && \
+            cmake.exe ${WORKSPACE}\\openenclave -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet ${EXTRA_CMAKE_ARGS} -Wdev && \
             ninja.exe && \
             ctest.exe -V -C ${BUILD_CONFIG} --timeout ${CTEST_TIMEOUT_SECONDS}
             """
     }
 }
 
-def checkout( String REPO_NAME, String OE_PULL_NUMBER) {
+def checkout( String OE_PULL_NUMBER) {
     if (isUnix()) {
         sh  """
             git config --global core.compression 0 && \
-            rm -rf ${REPO_NAME} && \
-            git clone --recursive --depth 1 https://github.com/openenclave-ci/${REPO_NAME} && \
-            cd ${REPO_NAME} && \
+            rm -rf openenclave && \
+            git clone --recursive --depth 1 https://github.com/openenclave-ci/openenclave && \
+            cd openenclave && \
             git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
             if [[ ${OE_PULL_NUMBER} -ne 'master' ]]; then
                 git checkout origin/pr/${OE_PULL_NUMBER}
@@ -147,9 +147,9 @@ def checkout( String REPO_NAME, String OE_PULL_NUMBER) {
     else {
         bat """
             git config --global core.compression 0 && \
-            (if exist ${REPO_NAME} rmdir /s/q ${REPO_NAME}) && \
-            git clone --recursive --depth 1 https://github.com/openenclave-ci/${REPO_NAME} && \
-            cd ${REPO_NAME} && \
+            (if exist openenclave rmdir /s/q openenclave) && \
+            git clone --recursive --depth 1 https://github.com/openenclave-ci/openenclave && \
+            cd openenclave && \
             git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
             if NOT ${OE_PULL_NUMBER}==master git checkout origin/pr/${OE_PULL_NUMBER}
             """

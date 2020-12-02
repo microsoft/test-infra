@@ -40,8 +40,8 @@ pipeline {
                             cleanWs()
                             checkout scm
                             def runner = load pwd() + "${SHARED_LIBRARY}"
-                            runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                            runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
+                            runner.checkout( "${OE_PULL_NUMBER}")
+                            runner.cmakeBuildPackageInstallOE("${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
                         //}
                     }
                 }

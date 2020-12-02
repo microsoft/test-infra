@@ -38,15 +38,15 @@ pipeline {
                                 cleanWs()
                                 checkout scm
                                 def runner = load pwd() + "${SHARED_LIBRARY}"
-                                runner.cleanup("${REPO}")
+                                runner.cleanup()
                                 try{
-                                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                                    runner.checkout("${OE_PULL_NUMBER}")
                                     runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
                                 } catch (Exception e) {
                                     // Do something with the exception 
                                     error "Program failed, please read logs..."
                                 } finally {
-                                    runner.cleanup("${REPO}")
+                                    runner.cleanup()
                                 }
                             }
                         }

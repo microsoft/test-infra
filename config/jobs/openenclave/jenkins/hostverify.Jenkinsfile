@@ -37,7 +37,7 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                    runner.checkout("${OE_PULL_NUMBER}")
                     println("Generating certificates and reports ...")
                     def task = """
                             cmake ${WORKSPACE}/openenclave -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
@@ -87,7 +87,7 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                    runner.checkout("${OE_PULL_NUMBER}")
                     unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                     def task = """
                             cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
@@ -108,7 +108,7 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                    runner.checkout("${OE_PULL_NUMBER}")
                     //docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
                         unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                         dir('build') {

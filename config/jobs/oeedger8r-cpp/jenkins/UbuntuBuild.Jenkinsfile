@@ -16,7 +16,10 @@ pipeline {
     options {
         timeout(time: 60, unit: 'MINUTES') 
     }
-    agent { label "ACC-${LINUX_VERSION}" }
+    agent { 
+        label "ACC-${LINUX_VERSION}"
+        docker "openenclave/ubuntu-${LINUX_VERSION}"
+    }
 
     stages {
         stage('Build'){

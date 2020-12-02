@@ -1,7 +1,3 @@
-// Timeout configs
-GLOBAL_TIMEOUT_MINUTES = 120
-CTEST_TIMEOUT_SECONDS = 1200
-
 // Pull Request Information
 OE_PULL_NUMBER=env.OE_PULL_NUMBER?env.OE_PULL_NUMBER:"master"
 
@@ -10,22 +6,11 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
 
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
-OE_SIMULATION=BUILD_MODE=="simulation"?1:0
-String[] BUILD_TYPES = ['Debug', 'RelWithDebInfo', 'Release']
-
-// Some override for build configuration
-LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
-LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
-USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
-
-EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
-
-// Repo hardcoded
-REPO="openenclave"
+COMPILER=env.COMPILER?env.COMPILER:"clang-7"
+String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/"+"${REPO}"+"/jenkins/common.groovy"
+SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
 pipeline {
     options {
@@ -43,21 +28,15 @@ pipeline {
                                 cleanWs()
                                 checkout scm
                                 def runner = load pwd() + "${SHARED_LIBRARY}"
-                                runner.cleanup("${REPO}")
+                                runner.cleanup()
                                 try{
-                                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                                    if("${OE_SIMULATION}" == "1" ){
-                                        withEnv(["OE_SIMULATION=${OE_SIMULATION}"]) {
-                                            runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
-                                        }
-                                    }else{
-                                        runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
-                                    }
+                                    runner.checkout("${OE_PULL_NUMBER}")
+                                    runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}")
                                 } catch (Exception e) {
                                     // Do something with the exception 
                                     error "Program failed, please read logs..."
                                 } finally {
-                                    runner.cleanup("${REPO}")
+                                    runner.cleanup()
                                 }
                             }
                         }

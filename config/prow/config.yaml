@@ -83,7 +83,7 @@ github_reporter:
     - presubmit
     - postsubmit
 sinker:
-  resync_period: 1m
+  resync_period: 30s
   max_prowjob_age: 48h
   max_pod_age: 48h
   terminated_pod_ttl: 30m

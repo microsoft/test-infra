@@ -114,6 +114,21 @@ presets:
   - name: JENKINS_URL
     value: https://oe-prow-jenk-testing.eastus2.cloudapp.azure.com
 
+  - name: JENKINS_TOKEN_INTEL
+    valueFrom:
+      secretKeyRef:
+        name: jenkins-token-intel
+        key: jenkins-token-intel
+
+  - name: JENKINS_USER_INTEL
+    value: build_runner
+  
+  - name: JENKINS_URL_INTEL
+    valueFrom:
+      secretKeyRef:
+        name: jenkins-url-intel
+        key: jenkins-url-intel
+
   - name: DOCKER_USER
     value: openenclave
 

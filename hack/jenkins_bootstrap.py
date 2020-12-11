@@ -57,10 +57,10 @@ class Trigger:
         while dns_fail_count < 5 * 60 and crumb == "":
             try:
                 url = self.url + '/crumbIssuer/api/json'
-                print('Fetching: ', url)
+                print('Fetching: ', url.encode('utf-8').strip())
                 response = requests.get(url)
-                print('Status to Crumb Fetch: ' + str(response.status_code))
-                print('Response: ' + response.json())
+                print('Status to Crumb Fetch: ' + str(response.status_code.encode('utf-8').strip()))
+                print('Response: ' + response.json().encode('utf-8').strip())
             except Exception as err:
                 print('Exception' + str(err))
                 dns_fail_count += 1
@@ -85,8 +85,8 @@ class Trigger:
         else:
             queue_url = None
             print("Your build somehow failed")
-            print(build_request.status_code)
-            print(build_request.text)
+            print(build_request.status_code.encode('utf-8').strip())
+            print(build_request.text.encode('utf-8').strip())
             exit(1)
 
         if queue_url.startswith('/'):
@@ -189,7 +189,7 @@ class Trigger:
             else:
                 check_job_status = 0
                 # Print to screen console
-                print(console_response.text)
+                print(console_response.text.encode('utf-8').strip())
                 sleep(self.sleep)
                 start_at = int(console_response.headers.get("X-Text-Size", 0))
                 # Check to see if all data is included and no continuation and go into look at status

@@ -8,21 +8,9 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"clang-7"
 String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
-BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
-OE_SIMULATION=BUILD_MODE=="simulation"?1:0
-
-// Some override for build configuration
-LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
-LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
-USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
-
-EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
-
-// Repo hardcoded
-REPO="openenclave"
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
+SHARED_LIBRARY="/config/jobs/oeedger8r-cpp/jenkins/common.groovy"
 
 pipeline {
     options {
@@ -31,36 +19,37 @@ pipeline {
     agent { label "ACC-${LINUX_VERSION}" }
 
     stages {
+        stage('Checkout'){
+            steps{
+                cleanWs()
+                checkout scm
+            }
+        }
         stage('Build'){
             steps{
                 script{
+                    def runner = load pwd() + "${SHARED_LIBRARY}"
                     for(BUILD_TYPE in BUILD_TYPES){
                         stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
-                            script {
-                                cleanWs()
-                                checkout scm
-                                def runner = load pwd() + "${SHARED_LIBRARY}"
+                            try{
                                 runner.cleanup()
-                                try{
-                                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                                    if("${OE_SIMULATION}" == "1" ){
-                                        withEnv(["OE_SIMULATION=${OE_SIMULATION}"]) {
-                                            runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
-                                        }
-                                    }else{
-                                        runner.cmakeBuildPackageInstallOE("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
-                                    }
-                                } catch (Exception e) {
-                                    // Do something with the exception 
-                                    error "Program failed, please read logs..."
-                                } finally {
-                                    runner.cleanup()
-                                }
+                                runner.checkout("${PULL_NUMBER}")
+                                runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
+                            } catch (Exception e) {
+                                // Do something with the exception 
+                                error "Program failed, please read logs..."
+                            } finally {
+                                runner.cleanup()
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    post ('Clean Up'){
+        always{
+            cleanWs()
         }
     }
 }

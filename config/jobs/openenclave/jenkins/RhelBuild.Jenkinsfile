@@ -9,14 +9,8 @@ DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"gcc"
 String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
 
-// Some override for build configuration
-EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:""
-
-// Repo hardcoded
-REPO="openenclave"
-
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/"+"${REPO}"+"/jenkins/common.groovy"
+SHARED_LIBRARY="/config/jobs/oeedger8r-cpp/jenkins/common.groovy"
 
 pipeline {
     options {
@@ -25,30 +19,37 @@ pipeline {
     agent { label "ACC-RHEL-${LINUX_VERSION}" }
 
     stages {
+        stage('Checkout'){
+            steps{
+                cleanWs()
+                checkout scm
+            }
+        }
         stage('Build'){
             steps{
                 script{
+                    def runner = load pwd() + "${SHARED_LIBRARY}"
                     for(BUILD_TYPE in BUILD_TYPES){
-                        stage("${LINUX_VERSION} Build - ${BUILD_TYPE}"){
-                            script {
-                                cleanWs()
-                                checkout scm
-                                def runner = load pwd() + "${SHARED_LIBRARY}"
+                        stage("RHEL ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                            try{
                                 runner.cleanup()
-                                try{
-                                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                                    runner.cmakeBuildPackageOESim("${REPO}","${BUILD_TYPE}", "${EXTRA_CMAKE_ARGS}")
-                                } catch (Exception e) {
-                                    // Do something with the exception 
-                                    error "Program failed, please read logs..."
-                                } finally {
-                                    runner.cleanup()
-                                }
+                                runner.checkout("${PULL_NUMBER}")
+                                runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
+                            } catch (Exception e) {
+                                // Do something with the exception 
+                                error "Program failed, please read logs..."
+                            } finally {
+                                runner.cleanup()
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    post ('Clean Up'){
+        always{
+            cleanWs()
         }
     }
 }

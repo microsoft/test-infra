@@ -16,6 +16,10 @@ USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
 
 EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
 
+// TODO Implement simulatioN mode just default for now
+OE_SIMULATION=env.OE_SIMULATION?1:0
+// Do not package on simulation
+PACKAGE=env.OE_SIMULATION?"ON":"OFF"
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 

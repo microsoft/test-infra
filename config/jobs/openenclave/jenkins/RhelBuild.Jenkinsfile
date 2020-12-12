@@ -10,7 +10,7 @@ COMPILER=env.COMPILER?env.COMPILER:"gcc"
 String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/oeedger8r-cpp/jenkins/common.groovy"
+SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
 pipeline {
     options {
@@ -34,7 +34,7 @@ pipeline {
                             try{
                                 runner.cleanup()
                                 runner.checkout("${PULL_NUMBER}")
-                                runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
+                                runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."

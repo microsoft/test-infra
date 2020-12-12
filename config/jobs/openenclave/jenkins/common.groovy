@@ -79,9 +79,9 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
         } else {
             bat """
                 vcvars64.bat x64 && \
-                cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} && \
-                ninja -v -j 4 && \
-                ctest.exe -V --output-on-failure
+                cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet && \
+                ninja.exe && \
+                ctest.exe -V -C ${BUILD_CONFIG} --output-on-failure
                 """
         }
     }

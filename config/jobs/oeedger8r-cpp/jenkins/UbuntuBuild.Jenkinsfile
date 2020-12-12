@@ -1,5 +1,5 @@
 // Pull Request Information
-OE_PULL_NUMBER=env.OE_PULL_NUMBER?env.OE_PULL_NUMBER:"master"
+PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
 LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
@@ -33,7 +33,7 @@ pipeline {
                         stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
                             try{
                                 runner.cleanup()
-                                runner.checkout("${OE_PULL_NUMBER}")
+                                runner.checkout("${PULL_NUMBER}")
                                 runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
                             } catch (Exception e) {
                                 // Do something with the exception 

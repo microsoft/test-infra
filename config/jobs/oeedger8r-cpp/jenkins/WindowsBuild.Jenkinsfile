@@ -1,5 +1,5 @@
 // Pull Request Information
-OE_PULL_NUMBER=env.OE_PULL_NUMBER?env.OE_PULL_NUMBER:"master"
+PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
 WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"2019"
@@ -34,7 +34,7 @@ pipeline {
                             script {
                                 try{
                                     runner.cleanup()
-                                    runner.checkout("${OE_PULL_NUMBER}")
+                                    runner.checkout("${PULL_NUMBER}")
                                     runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
                                 } catch (Exception e) {
                                     // Do something with the exception 

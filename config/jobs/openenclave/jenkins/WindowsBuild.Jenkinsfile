@@ -7,8 +7,7 @@ WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"2019"
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"MSVC"
-String[] BUILD_TYPES=['Debug', 'Release']
-
+BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"Debug"
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
@@ -29,19 +28,17 @@ pipeline {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    for(BUILD_TYPE in BUILD_TYPES){
-                        stage("Windows ${WINDOWS_VERSION} Build - ${BUILD_TYPE}"){
-                            script {
-                                try{
-                                    runner.cleanup()
-                                    runner.checkout("${PULL_NUMBER}")
-                                    runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}")
-                                } catch (Exception e) {
-                                    // Do something with the exception 
-                                    error "Program failed, please read logs..."
-                                } finally {
-                                    runner.cleanup()
-                                }
+                    stage("Windows ${WINDOWS_VERSION} Build - ${BUILD_TYPE}"){
+                        script {
+                            try{
+                                runner.cleanup()
+                                runner.checkout("${PULL_NUMBER}")
+                                runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}")
+                            } catch (Exception e) {
+                                // Do something with the exception 
+                                error "Program failed, please read logs..."
+                            } finally {
+                                runner.cleanup()
                             }
                         }
                     }

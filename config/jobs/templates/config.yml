@@ -26,6 +26,8 @@ pipelines:
     Ubuntu1604BuildGCC
     Ubuntu1804BuildClang-7
     Ubuntu1804BuildGCC
-    Windows2016Build
-    Windows2019Build
+    Windows2016BuildRelease
+    Windows2016BuildDebug
+    Windows2019BuildRelease
+    Windows2019BuildDebug
     

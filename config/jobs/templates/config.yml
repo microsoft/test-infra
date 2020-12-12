@@ -8,9 +8,19 @@ repos:
   test-infra
   oeedger8r-cpp
   openenclave
+  openenclave-mbedtls
 
 pipelines:
   oeedger8r-cpp:
+    Rhel8BuildClang-8
+    Rhel8BuildGCC
+    Ubuntu1604BuildClang-7
+    Ubuntu1604BuildGCC
+    Ubuntu1804BuildClang-7
+    Ubuntu1804BuildGCC
+    Windows2016Build
+    Windows2019Build
+  openenclave-mbedtls:
     Rhel8BuildClang-8
     Rhel8BuildGCC
     Ubuntu1604BuildClang-7

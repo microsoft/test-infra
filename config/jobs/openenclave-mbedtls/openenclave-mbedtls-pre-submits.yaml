@@ -1,40 +1,9 @@
 presubmits:
   openenclave/openenclave-mbedtls:
-  - name: pr-openenclave-mbedtls-ubuntu-1604
-    branches:
-    - openenclave-mbedtls-2.16
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-      - image: openenclave/ubuntu-1604:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - "/testing/openenclave-mbedtls/make-build.sh"
 
-  - name: pr-openenclave-mbedtls-ubuntu-1804
+  - name: pr-openenclave-mbedtls-Rhel8BuildClang-8
     branches:
-    - openenclave-mbedtls-2.16
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-      - image: openenclave/ubuntu-1804:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - "/testing/openenclave-mbedtls/make-build.sh"
-
-  - name: pr-openenclave-mbedtls-jenkins-ping
-    branches:
-    - openenclave-mbedtls-2.16
+    - master
     always_run: true
     decorate: true
     skip_report: false
@@ -45,35 +14,109 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/jenkins-ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-ping
+  - name: pr-openenclave-mbedtls-Rhel8BuildGCC
     branches:
-    - openenclave-mbedtls-2.16
+    - master
     always_run: true
     decorate: true
     skip_report: false
     max_concurrency: 10
     spec:
       containers:
-      - image: openenclave/jenkinsoperator:latest
-        command:
-        - /bin/bash
-        args:
-        - -c
-        - "echo ping"
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
-#  - name: pr-openenclave-mbedtls-rhel8-clang-8
-#    branches:
-#    - openenclave-mbedtls-2.16
-#    always_run: true
-#    decorate: true
-#    skip_report: false
-#    max_concurrency: 10
-#    spec:
-#      containers:
-#        - image: openenclave/jenkinsoperator:latest
-#          command:
-#            - sh
-#            - "-c"
-#            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER,TEST_INFRA=false,BUILD_TYPE=Release"
+  - name: pr-openenclave-mbedtls-Ubuntu1604BuildClang-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-mbedtls-Ubuntu1604BuildGCC
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-mbedtls-Ubuntu1804BuildClang-7
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-mbedtls-Ubuntu1804BuildGCC
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-mbedtls-Windows2016Build
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-mbedtls-Windows2019Build
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        

@@ -1,2 +1,2 @@
-presubmits:
+postsubmits:
   openenclave/openenclave-ci:

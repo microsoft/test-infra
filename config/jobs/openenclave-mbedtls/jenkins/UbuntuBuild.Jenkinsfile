@@ -10,7 +10,7 @@ COMPILER=env.COMPILER?env.COMPILER:"clang-7"
 String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/oeedger8r-cpp/jenkins/common.groovy"
+SHARED_LIBRARY="/config/jobs/openenclave-mbedtls/jenkins/common.groovy"
 
 pipeline {
     options {

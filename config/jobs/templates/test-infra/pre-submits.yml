@@ -1,0 +1,14 @@
+  - name: pr-test-infra-${repo}-${pipeline}
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job ${repo}/job/${pipeline} --jenkins-user \$JENKINS_USER --url \$JENKINS_URL --jenkins-password \$JENKINS_TOKEN --parameters PULL_NUMBER=\$PULL_NUMBER"

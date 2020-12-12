@@ -1,0 +1,18 @@
+build-configs:
+  postsubmits
+  periodics
+  pre-submits
+
+repos:
+  oeedger8r-cpp
+
+oeedger8r-cpp:
+  pipelines:
+    Rhel8BuildClang-8
+    Rhel8BuildGCC
+    Ubuntu1604BuildClang-7
+    Ubuntu1604BuildGCC
+    Ubuntu1804BuildClang-7
+    Ubuntu1804BuildGCC
+    Windows2016Build
+    Windows2019Build

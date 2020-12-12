@@ -23,14 +23,11 @@ def cmakeBuildOE( String REPO_NAME, String BUILD_CONFIG, String EXTRA_CMAKE_ARGS
 }
 
 // Clean up environment, do not fail on error.
-def cleanup( String REPO_NAME) {
+def cleanup() {
     if (isUnix()) {
         try {
                 sh  """
-                    set +e
-                    rm -rf ${REPO_NAME}
-                    rm -rf ~/samples
-                    sudo rm -rf /opt/openenclave || rm -rf /opt/openenclave
+                    sudo rm -rf openenclave || rm -rf openenclave || echo 'Workspace is clean'
                     """
             } catch (Exception e) {
                 // Do something with the exception 

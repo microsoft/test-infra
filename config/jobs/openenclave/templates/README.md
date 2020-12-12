@@ -1,1 +1,0 @@
-This folder contains generator scripts and templates for mass producing the 100+ openenclave templates, it is not maintained use at own risk.

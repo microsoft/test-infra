@@ -8,6 +8,7 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"clang-7"
 String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
+BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
 OE_SIMULATION=BUILD_MODE=="simulation"?1:0
 
 // Some override for build configuration
@@ -39,7 +40,7 @@ pipeline {
                                 cleanWs()
                                 checkout scm
                                 def runner = load pwd() + "${SHARED_LIBRARY}"
-                                runner.cleanup("${REPO}")
+                                runner.cleanup()
                                 try{
                                     runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
                                     if("${OE_SIMULATION}" == "1" ){
@@ -53,7 +54,7 @@ pipeline {
                                     // Do something with the exception 
                                     error "Program failed, please read logs..."
                                 } finally {
-                                    runner.cleanup("${REPO}")
+                                    runner.cleanup()
                                 }
                             }
                         }

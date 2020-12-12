@@ -1,18 +1,14 @@
-// Timeout configs
-GLOBAL_TIMEOUT_MINUTES = 120
-CTEST_TIMEOUT_SECONDS = 1200
-
 // Pull Request Information
-OE_PULL_NUMBER=env.OE_PULL_NUMBER?env.OE_PULL_NUMBER:"master"
+PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1604"
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
 
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
+COMPILER=env.COMPILER?env.COMPILER:"clang-7"
+String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
 OE_SIMULATION=BUILD_MODE=="simulation"?1:0
-String[] BUILD_TYPES = ['Debug', 'RelWithDebInfo', 'Release']
 
 // Some override for build configuration
 LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
@@ -25,7 +21,7 @@ EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${L
 REPO="openenclave"
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/"+"${REPO}"+"/jenkins/common.groovy"
+SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
 pipeline {
     options {

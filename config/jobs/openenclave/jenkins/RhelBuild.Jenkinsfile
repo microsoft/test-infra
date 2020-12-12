@@ -1,17 +1,13 @@
-// Timeout configs
-GLOBAL_TIMEOUT_MINUTES = 120
-CTEST_TIMEOUT_SECONDS = 1200
-
 // Pull Request Information
-OE_PULL_NUMBER=env.OE_PULL_NUMBER?env.OE_PULL_NUMBER:"master"
+PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"RHEL-8"
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"8"
 
 // Some Defaults
-BUILD_MODE=env.BUILD_MODE?env.BUILD_MODE:"hardware"
-String[] BUILD_TYPES = ['Debug', 'RelWithDebInfo', 'Release']
-
+DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
+COMPILER=env.COMPILER?env.COMPILER:"gcc"
+String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
 
 // Some override for build configuration
 EXTRA_CMAKE_ARGS = env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:""
@@ -26,7 +22,7 @@ pipeline {
     options {
         timeout(time: 60, unit: 'MINUTES') 
     }
-    agent { label "ACC-${LINUX_VERSION}" }
+    agent { label "ACC-RHEL-${LINUX_VERSION}" }
 
     stages {
         stage('Build'){

@@ -3,7 +3,9 @@ build-configs:
   periodics
   pre-submits
 
+#Test-infra needs to be first due to the inverse integrations
 repos:
+  test-infra
   oeedger8r-cpp
 
 oeedger8r-cpp:

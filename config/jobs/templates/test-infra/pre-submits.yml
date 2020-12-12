@@ -11,4 +11,4 @@
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job ${repo}/job/${pipeline} --jenkins-user \$JENKINS_USER --url \$JENKINS_URL --jenkins-password \$JENKINS_TOKEN --parameters PULL_NUMBER=\$PULL_NUMBER"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/${repo}/job/${pipeline} --jenkins-user \$JENKINS_USER --url \$JENKINS_URL --jenkins-password \$JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=\$PULL_NUMBER"

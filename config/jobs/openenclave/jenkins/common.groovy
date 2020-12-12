@@ -29,7 +29,7 @@ void checkout( String PULL_NUMBER="master" ) {
     }
 }
 
-/** Build oeedgr8r based on build config, compiler and platform
+/** Build openenclave based on build config, compiler and platform
   * TODO: Add container support
 **/
 def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang-7" ) {

@@ -7,14 +7,15 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"8"
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"gcc"
-String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
+//String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
+String[] BUILD_TYPES=['Debug', 'Release']
 
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
 pipeline {
     options {
-        timeout(time: 60, unit: 'MINUTES') 
+        timeout(time: 120, unit: 'MINUTES') 
     }
     agent { label "ACC-RHEL-${LINUX_VERSION}" }
 

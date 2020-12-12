@@ -22,7 +22,7 @@ do
         then
             echo "  openenclave/${repo}:" >> $PWD/../$repo/$repo-$build_config.yaml
         fi
-        pipelines=$(yq r $PWD/config.yml $repo.pipelines)
+        pipelines=$(yq r $PWD/config.yml pipelines.$repo)
 
         # Generate each pipeline permutation
         for pipeline in $pipelines

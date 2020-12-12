@@ -85,7 +85,7 @@ class Trigger:
         else:
             queue_url = None
             print("Your build somehow failed")
-            print(build_request.status_code.encode('utf-8').strip())
+            print(build_request.status_code)
             print(build_request.text.encode('utf-8').strip())
             exit(1)
 

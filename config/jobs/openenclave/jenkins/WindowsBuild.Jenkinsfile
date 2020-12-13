@@ -54,7 +54,7 @@ pipeline {
                         }
                     }
                     if("${PACKAGE}" == "ON" ){
-                        stage("Windows ${WINDOWS_VERSION} Build - ${BUILD_TYPE}"){
+                        stage("Windows ${WINDOWS_VERSION} Package - ${BUILD_TYPE}"){
                             script {
                                 try{
                                     runner.openenclavepackageInstall("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")

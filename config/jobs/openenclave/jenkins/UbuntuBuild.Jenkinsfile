@@ -28,7 +28,7 @@ SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
 pipeline {
     options {
-        timeout(time: 120, unit: 'MINUTES') 
+        timeout(time: 180, unit: 'MINUTES') 
     }
     agent { label "ACC-${LINUX_VERSION}" }
 

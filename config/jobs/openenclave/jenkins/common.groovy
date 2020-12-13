@@ -9,7 +9,7 @@ void checkout( String PULL_NUMBER="master" ) {
         sh  """
             git config --global core.compression 0 && \
             rm -rf openenclave && \
-            git clone --recursive --depth 1 --shallow-submodules https://github.com/openenclave/openenclave && \
+            git clone --recursive --depth 1 https://github.com/openenclave/openenclave && \
             cd openenclave && \
             git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
             if [[ ${PULL_NUMBER} -ne 'master' ]]; then
@@ -21,7 +21,7 @@ void checkout( String PULL_NUMBER="master" ) {
         bat """
             git config --global core.compression 0 && \
             (if exist openenclave rmdir /s/q openenclave) && \
-            git clone --recursive --depth 1 --shallow-submodules https://github.com/openenclave/openenclave && \
+            git clone --recursive --depth 1 https://github.com/openenclave/openenclave && \
             cd openenclave && \
             git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
             if NOT ${PULL_NUMBER}==master git checkout origin/pr/${PULL_NUMBER}

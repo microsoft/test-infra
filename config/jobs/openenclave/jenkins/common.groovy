@@ -180,6 +180,7 @@ def cleanup() {
         try {
                 sh  """
                     sudo rm -rf openenclave || rm -rf openenclave || echo 'Workspace is clean'
+                    sudo rm -rf /opt/openenclave || rm -rf /opt/openenclave || echo 'Workspace is clean'
                     """
             } catch (Exception e) {
                 // Do something with the exception 

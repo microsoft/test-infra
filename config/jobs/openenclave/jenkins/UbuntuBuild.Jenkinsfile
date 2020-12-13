@@ -13,6 +13,9 @@ String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
 LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
 LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
 USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
+// Remove once 1604 is deprecated, 1604 gcc snmalloc will not work. Handle edge case explictly
+USE_SNMALLOC=expression { COMPILER == 'gcc' }?:USE_SNMALLOC
+
 // TODO Implement simulatioN mode just default for now
 OE_SIMULATION=env.OE_SIMULATION?1:0
 // Do not package on simulation

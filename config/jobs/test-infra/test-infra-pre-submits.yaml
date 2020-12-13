@@ -166,21 +166,6 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Rhel8RelWithDebInfoGCCClang-8
-    branches:
-    - master
-    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8RelWithDebInfoGCCClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
-
   - name: pr-test-infra-openenclave-Rhel8RelWithDebInfoGCC
     branches:
     - master

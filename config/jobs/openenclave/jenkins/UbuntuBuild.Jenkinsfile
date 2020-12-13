@@ -52,10 +52,11 @@ pipeline {
                                 error "Program failed, please read logs..."
                             }
                         }
+                        sh  """
+                            echo PACKAGE VALUE IS ${PACKAGE}
+                            """
                         if("${PACKAGE}" == "ON" ){
                             stage("Ubuntu ${LINUX_VERSION} Package - ${BUILD_TYPE}"){
-                                
-
                                 try{
                                     runner.openenclavepackageInstall("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
                                 } catch (Exception e) {

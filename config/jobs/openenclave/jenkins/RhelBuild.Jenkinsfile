@@ -8,7 +8,10 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"8"
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"gcc"
 //String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
-String[] BUILD_TYPES=['Debug', 'Release']
+BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"RelWithDebInfo"
+
+// Hardware and simulation build modes. 1 is simulation, 0 is hardware
+String[] SIMULATION_MODES=[0,1]
 
 EXTRA_CMAKE_ARGS=""
 
@@ -32,7 +35,7 @@ pipeline {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    for(BUILD_TYPE in BUILD_TYPES){
+                    //for(BUILD_TYPE in BUILD_TYPES){
                         stage("RHEL ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
                             try{
                                 runner.cleanup()
@@ -45,7 +48,7 @@ pipeline {
                                 runner.cleanup()
                             }
                         }
-                    }
+                    //}
                 }
             }
         }

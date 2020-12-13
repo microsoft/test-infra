@@ -133,7 +133,7 @@ postsubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
-  - name: post-test-infra-openenclave-Rhel8BuildClang-8
+  - name: post-test-infra-openenclave-Rhel8RelWithDebInfoGCCClang-8
     branches:
     - master
     decorate: true
@@ -143,9 +143,9 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8RelWithDebInfoGCCClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
-  - name: post-test-infra-openenclave-Rhel8BuildGCC
+  - name: post-test-infra-openenclave-Rhel8RelWithDebInfoGCC
     branches:
     - master
     decorate: true
@@ -155,7 +155,55 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8RelWithDebInfoGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
+  - name: post-test-infra-openenclave-Rhel8DebugClang-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
+  - name: post-test-infra-openenclave-Rhel8DebugGCC
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
+  - name: post-test-infra-openenclave-Rhel8ReleaseClang-8
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
+  - name: post-test-infra-openenclave-Rhel8ReleaseGCC
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: post-test-infra-openenclave-Ubuntu1604BuildClang-7
     branches:

@@ -165,21 +165,6 @@ periodics:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
-  - name: ci-test-infra-openenclave-Rhel8RelWithDebInfoClang-8
-    extra_refs:
-    - org: openenclave
-      repo: test-infra
-      base_ref: master
-    decorate: true
-    interval: 60m
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8RelWithDebInfoClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
-
   - name: ci-test-infra-openenclave-Rhel8RelWithDebInfoGCC
     extra_refs:
     - org: openenclave

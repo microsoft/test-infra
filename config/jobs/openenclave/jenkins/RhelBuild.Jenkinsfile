@@ -8,7 +8,7 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"8"
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"gcc"
 //String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
-BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"RelWithDebInfo"
+BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"Debug"
 
 // Hardware and simulation build modes. 1 is simulation, 0 is hardware
 String[] SIMULATION_MODES=[0,1]

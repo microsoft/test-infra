@@ -45,16 +45,14 @@ pipeline {
                             try{
                                 runner.cleanup()
                                 runner.checkout("${PULL_NUMBER}")
-                                //runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                                runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
                                 
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."
                             }
                         }
-                        sh  """
-                            echo PACKAGE VALUE IS ${PACKAGE}
-                            """
+
                         if("${PACKAGE}" == "ON" ){
                             stage("Ubuntu ${LINUX_VERSION} Package - ${BUILD_TYPE}"){
                                 try{

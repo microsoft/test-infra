@@ -45,12 +45,24 @@ pipeline {
                             try{
                                 runner.cleanup()
                                 runner.checkout("${PULL_NUMBER}")
-                                runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                                //runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."
-                            } finally {
-                                runner.cleanup()
+                            }
+                        }
+                    }
+                    if("${PACKAGE}" == "ON" ){
+                        stage("Windows ${WINDOWS_VERSION} Build - ${BUILD_TYPE}"){
+                            script {
+                                try{
+                                    runner.cleanup()
+                                    runner.checkout("${PULL_NUMBER}")
+                                    runner.openenclavepackageInstall("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                                } catch (Exception e) {
+                                    // Do something with the exception 
+                                    error "Program failed, please read logs..."
+                                }
                             }
                         }
                     }

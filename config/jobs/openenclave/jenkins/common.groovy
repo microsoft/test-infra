@@ -71,7 +71,7 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
             }
             withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
                 sh  """
-                    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS} -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin -Wdev
+                    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS} -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin -DCMAKE_INSTALL_PREFIX:PATH='/opt/openenclave' -DCPACK_GENERATOR=DEB -Wdev
                     ninja -v
                     ctest --output-on-failure --timeout
                     """

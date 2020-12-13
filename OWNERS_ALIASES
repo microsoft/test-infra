@@ -3,8 +3,17 @@ aliases:
   - BRMcLaren
   - rs--
   - CyanDevs
-
+  sig-api:
+  sig-architecture:
+  sig-attestation:
   sig-ci:
   - BRMcLaren
   - rs--
   - CyanDevs
+  sig-optee:
+  sig-release:
+  - rs--
+  sig-sgx:
+  sig-testing:
+  sig-tools:
+  sig-website:

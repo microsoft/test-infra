@@ -19,7 +19,8 @@ EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${L
 // TODO Implement simulatioN mode just default for now
 OE_SIMULATION=env.OE_SIMULATION?1:0
 // Do not package on simulation
-PACKAGE=env.OE_SIMULATION?"ON":"OFF"
+PACKAGE=expression { OE_SIMULATION == '0' }?"ON":"OFF"
+
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 

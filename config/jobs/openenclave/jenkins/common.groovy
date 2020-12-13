@@ -131,7 +131,7 @@ def openenclavepackageInstall( String BUILD_CONFIG="Release", String COMPILER="c
 
             withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
                 sh  """
-                    ninja -v package
+                    sudo ninja -v package
                     sudo ninja -v install
                     cp -r /opt/openenclave/share/openenclave/samples ~/
                     cd ~/samples

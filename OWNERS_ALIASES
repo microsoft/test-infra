@@ -1,0 +1,10 @@
+aliases:  
+  test-infra-oncall:
+  - BRMcLaren
+  - rs--
+  - CyanDevs
+
+  sig-ci:
+  - BRMcLaren
+  - rs--
+  - CyanDevs

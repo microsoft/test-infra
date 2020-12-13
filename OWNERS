@@ -1,14 +1,18 @@
 approvers:
   - BRMcLaren
-  - oe-ci-robot
   - rs--
+  - CyanDevs 
+  - test-infra-oncall
 required_reviewers:
   - BRMcLaren
-  - oe-ci-robot
   - rs--
+  - CyanDevs 
+  - test-infra-oncall
 reviewers:
   - BRMcLaren
-  - oe-ci-robot
   - rs--
+  - CyanDevs 
+  - test-infra-oncall
 labels:
   - sig/ci
+  - sig/testing

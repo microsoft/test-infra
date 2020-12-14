@@ -4,26 +4,20 @@ PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 // OS Version Configuration
 LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
 
-// Some Defaults
+// Some Defaults for general build info
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"clang-7"
 BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"RelWithDebInfo"
-
-// Hardware and simulation build modes. 1 is simulation, 0 is hardware
-String[] SIMULATION_MODES=[0,1]
 
 // Some override for build configuration
 LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
 LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
 USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
-// Remove once 1604 is deprecated, 1604 gcc snmalloc will not work. Handle edge case explictly
-USE_SNMALLOC=expression { COMPILER == 'gcc' }?"OFF":USE_SNMALLOC
 
-// TODO Implement simulatioN mode just default for now
-OE_SIMULATION=env.OE_SIMULATION?1:0
-// Do not package on simulation
-PACKAGE=expression { OE_SIMULATION == '0' }?"ON":"OFF"
+// Edge casee, snmalloc will not work on old gcc versions and 1604 default is old. Remove after 1604 deprecation.
+USE_SNMALLOC=expression { return COMPILER == 'gcc' && LINUX_VERSION =='1604'}?"OFF":USE_SNMALLOC
 
+// Openenclave extra build configs 
 EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
 
 // Shared library config, check out common.groovy!

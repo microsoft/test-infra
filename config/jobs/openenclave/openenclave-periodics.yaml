@@ -555,21 +555,6 @@ periodics:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Win2016Release
-    extra_refs:
-    - org: openenclave
-      repo: openenclave
-      base_ref: master
-    decorate: true
-    interval: 60m
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
-
   - name: ci-openenclave-Win2016RelSnmalloc
     extra_refs:
     - org: openenclave
@@ -584,6 +569,21 @@ periodics:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-Win2016Release
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
   - name: ci-openenclave-Win2019Debug
     extra_refs:
@@ -615,6 +615,21 @@ periodics:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
+  - name: ci-openenclave-Win2019RelSnmalloc
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
   - name: ci-openenclave-Win2019Release
     extra_refs:
     - org: openenclave
@@ -630,7 +645,7 @@ periodics:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Win2019RelSnmalloc
+  - name: ci-openenclave-hostverify-1604-2016
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -643,4 +658,109 @@ periodics:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/hostverify-1604-2016 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-hostverify-1604-2019
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/hostverify-1604-2019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-hostverify-1804-2016
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/hostverify-1804-2016 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-hostverify-1804-2019
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/hostverify-1804-2019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-linuxElf-1604-2016
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/linuxElf-1604-2016 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-linuxElf-1604-2019
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/linuxElf-1604-2019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-linuxElf-1804-2016
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/linuxElf-1804-2016 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+
+  - name: ci-openenclave-linuxElf-1804-2019
+    extra_refs:
+    - org: openenclave
+      repo: openenclave
+      base_ref: master
+    decorate: true
+    interval: 60m
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/linuxElf-1804-2019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        

@@ -70,16 +70,16 @@ pipelines:
     Ubuntu1804ReleaseGCCSnmalloc
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016Release
     Win2016RelSnmalloc
+    Win2016Release
     Win2019Debug
     Win2019DebugSnmalloc
-    Win2019Release
     Win2019RelSnmalloc
-    linuxelf1604-2016
-    linuxelf1804-2016
-    linuxelf1604-2019
-    linuxelf1804-2019
+    Win2019Release
+    hostverify-1604-2019
+    hostverify-1804-2019
+    linuxElf-1604-2019
+    linuxElf-1804-2019
   openenclave-build:
     ping
   openenclave-ci:

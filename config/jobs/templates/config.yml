@@ -51,10 +51,10 @@ pipelines:
     Ubuntu1804DebugGCC
     Ubuntu1804ReleaseGCC
     Ubuntu1804RelWithDebInfoGCC
-    Windows2016BuildRel
-    Windows2016BuildDebug
-    Windows2019BuildRel
-    Windows2019BuildDebug
+    Windows2016Release
+    Windows2016Debug
+    Windows2019Release
+    Windows2019Debug
   openenclave-build:
     ping
   openenclave-ci:

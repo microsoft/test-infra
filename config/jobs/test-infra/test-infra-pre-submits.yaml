@@ -421,7 +421,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Windows2016BuildRel
+  - name: pr-test-infra-openenclave-Windows2016Release
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -434,9 +434,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016BuildRel --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Windows2016BuildDebug
+  - name: pr-test-infra-openenclave-Windows2016Debug
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -449,9 +449,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016BuildDebug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Windows2019BuildRel
+  - name: pr-test-infra-openenclave-Windows2019Release
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -464,9 +464,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019BuildRel --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Windows2019BuildDebug
+  - name: pr-test-infra-openenclave-Windows2019Debug
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -479,7 +479,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019BuildDebug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-build-ping
     branches:

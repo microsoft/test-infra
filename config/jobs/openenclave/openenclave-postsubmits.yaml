@@ -217,7 +217,7 @@ postsubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
-  - name: post-openenclave-Windows2016BuildRel
+  - name: post-openenclave-Windows2016Release
     branches:
     - master
     decorate: true
@@ -227,9 +227,9 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2016BuildRel --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
-  - name: post-openenclave-Windows2016BuildDebug
+  - name: post-openenclave-Windows2016Debug
     branches:
     - master
     decorate: true
@@ -239,9 +239,9 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2016BuildDebug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2016Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
-  - name: post-openenclave-Windows2019BuildRel
+  - name: post-openenclave-Windows2019Release
     branches:
     - master
     decorate: true
@@ -251,9 +251,9 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2019BuildRel --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
-  - name: post-openenclave-Windows2019BuildDebug
+  - name: post-openenclave-Windows2019Debug
     branches:
     - master
     decorate: true
@@ -263,4 +263,4 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2019BuildDebug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Windows2019Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        

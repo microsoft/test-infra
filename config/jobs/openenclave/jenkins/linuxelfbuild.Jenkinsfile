@@ -41,9 +41,9 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                    runner.checkout("${PULL_NUMBER}")
                     def task = """
-                            cmake ${WORKSPACE}/openenclave                               \
+                            cmake ${WORKSPACE}/openenclave/build                         \
                                 -G Ninja                                                 \
                                 -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                         \
                                 -DHAS_QUOTE_PROVIDER=ON                                  \
@@ -65,13 +65,13 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                    runner.checkout("${PULL_NUMBER}")
                     unstash "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
                     bat 'move build linuxbin'
                     dir('build') {
                     bat """
                         vcvars64.bat x64 && \
-                        cmake.exe ${WORKSPACE}\\openenclave -G Ninja -DADD_WINDOWS_ENCLAVE_TESTS=ON -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DLINUX_BIN_DIR=${WORKSPACE}\\linuxbin\\tests -DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
+                        cmake.exe ${WORKSPACE}\\openenclave\\build -G Ninja -DADD_WINDOWS_ENCLAVE_TESTS=ON -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DLINUX_BIN_DIR=${WORKSPACE}\\linuxbin\\tests -DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
                         ninja -v && \
                         ctest.exe -V -C ${BUILD_TYPE} --timeout ${CTEST_TIMEOUT_SECONDS}
                         """

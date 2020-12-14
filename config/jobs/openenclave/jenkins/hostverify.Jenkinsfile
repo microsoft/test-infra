@@ -1,24 +1,28 @@
-// Timeout configs
-GLOBAL_TIMEOUT_MINUTES = 120
-CTEST_TIMEOUT_SECONDS = 1200
-
 // Pull Request Information
-OE_PULL_NUMBER=env.OE_PULL_NUMBER?env.OE_PULL_NUMBER:"master"
+PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
 LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
 WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"2019"
 
-// Some Defaults
+// Some Defaults for general build info
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"Release"
-COMPILER= env.COMPILER?env.COMPILER:"clang-7"
+COMPILER=env.COMPILER?env.COMPILER:"clang-7"
+BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"RelWithDebInfo"
 
-// Repo hardcoded
-REPO="openenclave"
+// Some override for build configuration
+LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
+LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
+USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
+
+// Edge casee, snmalloc will not work on old gcc versions and 1604 default is old. Remove after 1604 deprecation.
+USE_SNMALLOC=expression { return COMPILER == 'gcc' && LINUX_VERSION =='1604'}?"OFF":USE_SNMALLOC
+
+// Openenclave extra build configs 
+EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/"+"${REPO}"+"/jenkins/common.groovy"
+SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
 pipeline {
     options {
@@ -37,10 +41,10 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                    runner.checkout("${PULL_NUMBER}")
                     println("Generating certificates and reports ...")
                     def task = """
-                            cmake ${WORKSPACE}/openenclave -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                            cmake ${WORKSPACE}/openenclave/build -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
                             ninja -v
                             pushd tests/host_verify/host
                             openssl ecparam -name prime256v1 -genkey -noout -out keyec.pem
@@ -87,10 +91,10 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
+                    runner.checkout("${PULL_NUMBER}")
                     unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                     def task = """
-                            cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                            cmake ${WORKSPACE}/openenclave/build -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
                             ninja -v
                             ctest -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
                             """
@@ -108,18 +112,16 @@ pipeline {
                     cleanWs()
                     checkout scm
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${REPO}", "${OE_PULL_NUMBER}")
-                    //docker.image('openenclave/windows-2019:latest').inside('-it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"') { c ->
-                        unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
-                        dir('build') {
-                            bat """
-                                vcvars64.bat x64 && \
-                                cmake.exe ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
-                                ninja -v && \
-                                ctest.exe -V -C ${BUILD_TYPE} -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
-                                """
-                        }
-                    //}
+                    runner.checkout("${PULL_NUMBER}")
+                    unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
+                    dir('openenclave/build') {
+                        bat """
+                            vcvars64.bat x64 && \
+                            cmake.exe ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
+                            ninja -v && \
+                            ctest.exe -V -C ${BUILD_TYPE} -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                            """
+                    }
                 }
             }
         }

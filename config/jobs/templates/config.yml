@@ -34,27 +34,48 @@ pipelines:
     Windows2019Build
   openenclave:
     ping
-    Rhel8RelWithDebInfoGCC
     Rhel8DebugClang-8
+    Rhel8DebugClang-8Snmalloc
     Rhel8DebugGCC
+    Rhel8DebugGCCSnmalloc
+    Rhel8RelWithDebInfoGCC
+    Rhel8RelWithDebInfoGCCSnmalloc
     Rhel8ReleaseClang-8
+    Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseGCC
+    Rhel8ReleaseGCCSnmalloc
     Ubuntu1604DebugClang-7
-    Ubuntu1604ReleaseClang-7
-    Ubuntu1604RelWithDebInfoClang-7
+    Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugGCC
-    Ubuntu1604ReleaseGCC
+    Ubuntu1604DebugGCCSnmalloc
+    Ubuntu1604RelWithDebInfoClang-7
+    Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoGCC
+    Ubuntu1604RelWithDebInfoGCCSnmalloc
+    Ubuntu1604ReleaseClang-7
+    Ubuntu1604ReleaseClang-7Snmalloc
+    Ubuntu1604ReleaseGCC
+    Ubuntu1604ReleaseGCCSnmalloc
     Ubuntu1804DebugClang-7
-    Ubuntu1804ReleaseClang-7
-    Ubuntu1804RelWithDebInfoClang-7
+    Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugGCC
-    Ubuntu1804ReleaseGCC
+    Ubuntu1804DebugGCCSnmalloc
+    Ubuntu1804RelWithDebInfoClang-7
+    Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoGCC
-    Windows2016Release
+    Ubuntu1804RelWithDebInfoGCCSnmalloc
+    Ubuntu1804ReleaseClang-7
+    Ubuntu1804ReleaseClang-7Snmalloc
+    Ubuntu1804ReleaseGCC
+    Ubuntu1804ReleaseGCCSnmalloc
     Windows2016Debug
-    Windows2019Release
+    Windows2016DebugSnmalloc
+    Windows2016Release
+    Windows2016ReleaseSnmalloc
     Windows2019Debug
+    Windows2019DebugSnmalloc
+    Windows2019Release
+    Windows2019ReleaseSnmalloc
   openenclave-build:
     ping
   openenclave-ci:

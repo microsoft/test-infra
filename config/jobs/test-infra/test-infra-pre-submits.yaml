@@ -166,21 +166,6 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Rhel8RelWithDebInfoGCC
-    branches:
-    - master
-    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8RelWithDebInfoGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
-
   - name: pr-test-infra-openenclave-Rhel8DebugClang-8
     branches:
     - master
@@ -195,6 +180,21 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Rhel8DebugClang-8Snmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8DebugGCC
     branches:
@@ -211,6 +211,51 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-test-infra-openenclave-Rhel8DebugGCCSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Rhel8RelWithDebInfoGCC
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8RelWithDebInfoGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Rhel8RelWithDebInfoGCCSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8RelWithDebInfoGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-test-infra-openenclave-Rhel8ReleaseClang-8
     branches:
     - master
@@ -225,6 +270,21 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Rhel8ReleaseClang-8Snmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8ReleaseGCC
     branches:
@@ -241,6 +301,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-test-infra-openenclave-Rhel8ReleaseGCCSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7
     branches:
     - master
@@ -256,7 +331,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -269,22 +344,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
-
-  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7
-    branches:
-    - master
-    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604DebugGCC
     branches:
@@ -301,7 +361,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseGCC
+  - name: pr-test-infra-openenclave-Ubuntu1604DebugGCCSnmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -314,7 +374,37 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7Snmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoGCC
     branches:
@@ -331,6 +421,81 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoGCCSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7Snmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseGCC
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseGCCSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7
     branches:
     - master
@@ -346,7 +511,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -359,22 +524,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
-
-  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7
-    branches:
-    - master
-    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
-    decorate: true
-    skip_report: false
-    max_concurrency: 10
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804DebugGCC
     branches:
@@ -391,7 +541,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseGCC
+  - name: pr-test-infra-openenclave-Ubuntu1804DebugGCCSnmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -404,7 +554,37 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7Snmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoGCC
     branches:
@@ -421,7 +601,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Windows2016Release
+  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoGCCSnmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -434,7 +614,67 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7Snmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseGCC
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseGCCSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Windows2016Debug
     branches:
@@ -451,7 +691,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Windows2019Release
+  - name: pr-test-infra-openenclave-Windows2016DebugSnmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
@@ -464,7 +704,37 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Windows2016Release
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Windows2016ReleaseSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2016ReleaseSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Windows2019Debug
     branches:
@@ -480,6 +750,51 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Windows2019DebugSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Windows2019Release
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-openenclave-Windows2019ReleaseSnmalloc
+    branches:
+    - master
+    run_if_changed: "^(config/jobs/openenclave/jenkins/*)"
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Windows2019ReleaseSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-build-ping
     branches:

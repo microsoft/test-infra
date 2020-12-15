@@ -60,6 +60,11 @@ readonly AZURE_VM_RESOURCE_GROUP=""
 # To list all region codes use: `az account list-locations -o table`
 readonly AZURE_VM_LOCATION=""
 
+# Azure VM Image Gallery that contains the necessary VM images for workers
+readonly AZURE_VM_GALLERY_NAME=""
+readonly AZURE_VM_GALLERY_RESOURCE_GROUP=""
+readonly AZURE_VM_GALLERY_SUBSCRIPTION_ID=""
+
 ## Let's Encrypt Configuration ------------
 # Email to be used as a Let's Encrypt account
 readonly LETSENCRYPT_EMAIL=""
@@ -285,7 +290,10 @@ configure_jenkins () {
   kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_LOCATION>/${AZURE_LOCATION}/" ${JENKINS_HOME}/configuration/jenkins.yml
   kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_RESOURCE_GROUP>/${AZURE_VM_RESOURCE_GROUP}/" ${JENKINS_HOME}/configuration/clouds.yml
   kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_LOCATION>/${AZURE_VM_LOCATION}/" ${JENKINS_HOME}/configuration/clouds.yml
-
+  kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_GALLERY_NAME>/${AZURE_VM_GALLERY_NAME}/" ${JENKINS_HOME}/configuration/clouds.yml
+  kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_GALLERY_RESOURCE_GROUP>/${AZURE_VM_GALLERY_RESOURCE_GROUP}/" ${JENKINS_HOME}/configuration/clouds.yml
+  kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_GALLERY_SUBSCRIPTION_ID>/${AZURE_VM_GALLERY_NAME_SUBSCRIPTION_ID}/" ${JENKINS_HOME}/configuration/clouds.yml
+  
   # Apply secrets within pod
   kubectl exec ${JENKINS_MASTER_POD} -- sh -c 'sed -i "s/<JENKINSADMIN_PASSWORD>/${SECRET_JENKINSADMIN_PASSWORD}/" ${JENKINS_HOME}/configuration/jenkins.yml'
   kubectl exec ${JENKINS_MASTER_POD} -- sh -c 'sed -i "s/<OEADMIN_PASSWORD>/${SECRET_OEADMIN_PASSWORD}/" ${JENKINS_HOME}/configuration/jenkins.yml'

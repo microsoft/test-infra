@@ -23,9 +23,9 @@ jenkins:
         imageReference:
           galleryImageDefinition: "ubuntu-18.04"
           galleryImageVersion: "latest"
-          galleryName: "Production_Images"
-          galleryResourceGroup: "OE-Jenkins-Images"
-          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+          galleryName: "<AZURE_VM_GALLERY_NAME>"
+          galleryResourceGroup: "<AZURE_VM_GALLERY_RESOURCE_GROUP>"
+          gallerySubscriptionId: "<AZURE_VM_GALLERY_SUBSCRIPTION_ID>"
         imageTopLevelType: "advanced"
         initScript: "gpasswd -a oeadmin docker \nchmod g+rw /var/run/docker.sock"
         installDocker: false
@@ -62,9 +62,9 @@ jenkins:
         imageReference:
           galleryImageDefinition: "ubuntu-16.04"
           galleryImageVersion: "latest"
-          galleryName: "Production_Images"
-          galleryResourceGroup: "OE-Jenkins-Images"
-          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+          galleryName: "<AZURE_VM_GALLERY_NAME>"
+          galleryResourceGroup: "<AZURE_VM_GALLERY_RESOURCE_GROUP>"
+          gallerySubscriptionId: "<AZURE_VM_GALLERY_SUBSCRIPTION_ID>"
         imageTopLevelType: "advanced"
         initScript: "gpasswd -a oeadmin docker \nchmod g+rw /var/run/docker.sock"
         installDocker: false
@@ -101,9 +101,9 @@ jenkins:
         imageReference:
           galleryImageDefinition: "rhel-8"
           galleryImageVersion: "latest"
-          galleryName: "Production_Images"
-          galleryResourceGroup: "OE-Jenkins-Images"
-          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+          galleryName: "<AZURE_VM_GALLERY_NAME>"
+          galleryResourceGroup: "<AZURE_VM_GALLERY_RESOURCE_GROUP>"
+          gallerySubscriptionId: "<AZURE_VM_GALLERY_SUBSCRIPTION_ID>"
         imageTopLevelType: "advanced"
         initScript: |-
           gpasswd -a oeadmin docker
@@ -148,9 +148,9 @@ jenkins:
         imageReference:
           galleryImageDefinition: "ws2016-SGX"
           galleryImageVersion: "latest"
-          galleryName: "Production_Images"
-          galleryResourceGroup: "OE-Jenkins-Images"
-          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+          galleryName: "<AZURE_VM_GALLERY_NAME>"
+          galleryResourceGroup: "<AZURE_VM_GALLERY_RESOURCE_GROUP>"
+          gallerySubscriptionId: "<AZURE_VM_GALLERY_SUBSCRIPTION_ID>"
         imageTopLevelType: "advanced"
         installDocker: false
         installGit: false
@@ -187,9 +187,9 @@ jenkins:
         imageReference:
           galleryImageDefinition: "ws2019-SGX"
           galleryImageVersion: "latest"
-          galleryName: "Production_Images"
-          galleryResourceGroup: "OE-Jenkins-Images"
-          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
+          galleryName: "<AZURE_VM_GALLERY_NAME>"
+          galleryResourceGroup: "<AZURE_VM_GALLERY_RESOURCE_GROUP>"
+          gallerySubscriptionId: "<AZURE_VM_GALLERY_SUBSCRIPTION_ID>"
         imageTopLevelType: "advanced"
         installDocker: false
         installGit: false

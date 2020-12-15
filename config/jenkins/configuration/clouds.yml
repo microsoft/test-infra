@@ -248,7 +248,7 @@ jenkins:
         storageAccountNameReferenceType: "new"
         storageAccountType: "Standard_LRS"
         templateDisabled: false
-        templateName: "ubuntu1804"
-        usageMode: "Use this node as much as possible"
+        templateName: "overwatch"
+        usageMode: "Only build jobs with label expressions matching this node"
         usePrivateIP: false
-        virtualMachineSize: "Standard_D2_v2"
+        virtualMachineSize: "Standard_D4_v2"

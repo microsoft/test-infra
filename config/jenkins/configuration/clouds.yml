@@ -223,19 +223,12 @@ jenkins:
         ephemeralOSDisk: false
         executeInitScriptAsRoot: true
         existingStorageAccountName: ""
-        imageReference:
-          galleryImageDefinition: "ubuntu-18.04"
-          galleryImageVersion: "latest"
-          galleryName: "Production_Images"
-          galleryResourceGroup: "OE-Jenkins-Images"
-          gallerySubscriptionId: "c4fdda6e-bfbd-4b8e-9703-037b3a45bf37"
-        imageTopLevelType: "advanced"
-        initScript: "gpasswd -a oeadmin docker \nchmod g+rw /var/run/docker.sock"
-        installDocker: false
-        installGit: false
+        imageTopLevelType: "basic"
+        installDocker: true
+        installGit: true
         installMaven: false
         javaPath: "java"
-        labels: "Overwatch"
+        labels: "OverWatch"
         location: "<AZURE_VM_LOCATION>"
         noOfParallelJobs: 4
         osDiskSize: 0

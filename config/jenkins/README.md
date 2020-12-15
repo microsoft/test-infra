@@ -14,12 +14,13 @@ Credentials: Jenkins + Azure Key Vault
 * [An Azure subscription](https://docs.microsoft.com/en-us/azure/cost-management-billing/manage/create-subscription)
 * An Azure Service Principal for Jenkins (hence known as the "Jenkins Service Principal") with permissions listed in the "Jenkins Service Principal Permissions"
 * [An Azure Key Vault](https://azure.microsoft.com/en-ca/services/key-vault/)
+* [An Azure Image Gallery](https://docs.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries) containing images for VM agent deployments (if using VM Agents plugin)
 
 ### Jenkins Service Principal Permissions:
-* User (you) requires permission to modify the password of the Jenkins Service Principal
+* Deployer (you) requires permission to modify the password of the Jenkins Service Principal
 * Service Principal needs to have an access policy to allow the "get" and "list" permissions in the specified Key Vault
 * Service Principal needs read-only access to Image Gallery specified in configuration/clouds.yml (if using VM Agents plugin)
-* Service Principal needs contributor access to the VM Resource Group specified (if using VM Agents plugin) or the resource group set for "AZURE_VM_RESOURCE_GROUP"
+* After Jenkins is deployed, the Service Principal needs contributor access to the VM Resource Group specified (if using VM Agents plugin) or the resource group set for "AZURE_VM_RESOURCE_GROUP"
 
 ### Dependencies
 #### Azure CLI

@@ -19,7 +19,7 @@ jobs:
                     scm {
                         git {
                             remote {
-                                github("openenclave-ci/test-infra", "https")
+                                github("openenclave/test-infra", "https")
                             }
                             branch("refs/heads/master")
                             extensions {

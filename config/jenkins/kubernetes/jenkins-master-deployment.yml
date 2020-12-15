@@ -1,4 +1,24 @@
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-master-nodeport
+  labels:
+    app: jenkins-master
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  - name: slave
+    port: 50000
+    targetPort: 50000
+    protocol: TCP
+  selector:
+    app: jenkins-master
+---
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -49,6 +69,41 @@ spec:
           value: -Djenkins.install.runSetupWizard=false
         - name: CASC_JENKINS_CONFIG
           value: /var/jenkins_home/configuration/
+        - name: SECRET_JENKINSADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: jenkinsadmin
+              key: password
+        - name: SECRET_OEADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: oeadmin
+              key: password
+        - name: SECRET_JENKINS_REMOTE_TRIGGER_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: jenkinsremotetrigger
+              key: password
+        - name: SECRET_AZURE_SERVICE_PRINCIPAL_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: jenkinssp
+              key: clientid
+        - name: SECRET_AZURE_SERVICE_PRINCIPAL_SUBSCRIPTION_ID
+          valueFrom:
+            secretKeyRef:
+              name: jenkinssp
+              key: subscriptionid
+        - name: SECRET_AZURE_SERVICE_PRINCIPAL_TENANT_ID
+          valueFrom:
+            secretKeyRef:
+              name: jenkinssp
+              key: tenantid
+        - name: SECRET_AZURE_SERVICE_PRINCIPAL_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: jenkinssp
+              key: secret
         volumeMounts:
         - name: volume
           mountPath: "/var/jenkins_home"
@@ -57,19 +112,16 @@ spec:
             path: /login
             port: 8080
           failureThreshold: 10
-          initialDelaySeconds: 900
+          initialDelaySeconds: 1800
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 10
-        readinessProbe:
+        startupProbe:
           httpGet:
             path: /login
             port: 8080
-          failureThreshold: 3
-          initialDelaySeconds: 900
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 10
+          failureThreshold: 60
+          timeoutSeconds: 30
         resources:
           requests:
             cpu: "2"
@@ -81,23 +133,3 @@ spec:
       - name: volume
         persistentVolumeClaim:
           claimName: jenkins-master-volume
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jenkins-master-nodeport
-  labels:
-    app: jenkins-master
-spec:
-  type: NodePort
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8080
-    protocol: TCP
-  - name: slave
-    port: 50000
-    targetPort: 50000
-    protocol: TCP
-  selector:
-    app: jenkins-master

@@ -1,12 +1,18 @@
 # Introduction 
 This is used to setup and manage a scaling Jenkins service using the Azure Kubernetes Service.
 
-Jenkins image: Jenkins LTS
-Storage: Azure Persistent Volumes
-Ingress: F5's Nginx
-SSL Certificates: Jetstack's Cert Manager & Let's Encrypt
-Configuration: Managed by Jenkins Configuration as Code Plugin
-Credentials: Jenkins + Azure Key Vault
+Below are the notable service providers and last known working version.
+
+| Service                  | Provider                              | Versions       |
+| ------------------------ | ------------------------------------- | -------------- |
+| Jenkins                  | Jenkins CI                            | LTS            |
+| Infrastructure           | Kubernetes & Azure Kubernetes Service | 1.18.8         |
+| Storage                  | Azure Persistent File Shares          | N/A            |
+| Ingress                  | F5 Nginx Ingress Controller           | v0.41.2        |
+| SSL Certificate Manager  | Jetstack Cert Manager                 | 1.1.0          |
+| SSL Certificate Provider | Let's Encrypt                         | N/A            |
+| Jenkins Configuration    | Jenkins Configuration as Code Plugin  | 1.46           |
+| Jenkins Credentials      | Jenkins Azure Key Vault Plugin        | 2.1            |
 
 # Getting Started
 ## Requirements
@@ -26,7 +32,9 @@ Credentials: Jenkins + Azure Key Vault
 #### Azure CLI
 Used to run commands for Azure
 https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
-`curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash`
+```
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
 #### Kubernetes CLI
 Used to run commands for Kubernetes
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
@@ -40,7 +48,9 @@ kubectl version --client
 #### Helm 3
 Used to install Helm Charts for Jenkins ingress
 https://helm.sh/docs/intro/install/
-`curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | sudo bash`
+```
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | sudo bash
+```
 
 ## Installation process
 1. Open deploy_jenkins.sh and add in desired configuration. Detailed instructions are written in-script.
@@ -72,17 +82,23 @@ _For more information, see https://github.com/jenkinsci/configuration-as-code-pl
 _Job DSL API Reference: https://jenkinsci.github.io/job-dsl-plugin/_
 
 ## AKS Cluster Service Principal
-
-The two Service Principals used will expire in 1 year.
+The Service Principal used to create the AKS cluster will expire in 1 year. Before that expiry, you will need to update your AKS cluster with new credentials. Refer to this guide for more information: https://docs.microsoft.com/en-us/azure/aks/update-credentials
 
 ## SSL Certificate
-
 The SSL certificates are managed by Jetstack's Cert Manager. Each certificate is valid for 3 months, and will be automatically renewed when within 1 month of expiry.
 
-# Known Issues
+# Known Issues and Troubleshooting
 ## Service Principal issues
 ### Invalid secret for Service Principal
 This is usually due to a delay with the Service Principal being propogated out within Azure. Open up deploy_jenkins.sh and manually replace `AKS_SP_ID` and `AKS_SP_SECRET` with corresponding values. For convenience you can find the values in the output of the last run of deploy_jenkins.sh.
+
+## SSL Certificates
+### Certificate not issued or valid
+You may have a misconfigured resource or you have hit Let's Encrypt's 50 certificate weekly limit.
+* Ensure Jenkins ingress has the correct domain with `kubectl describe jenkins-ingress`
+* Ensure Cert Manager services are running with `kubectl get pods -n ingress`
+* Check for errors with `kubectl describe certificaterequests` and equivalent commands for the `orders` and `challenge` resources.
+* Check for errors with https://letsdebug.net/
 
 ## Jenkins
 ### Plugins not initialized or missing
@@ -90,10 +106,10 @@ As Jenkins requires a reload after installing plugins, ensure that you are runni
 
 # References
 ## Azure
-Azure Key Vault: https://docs.microsoft.com/en-us/azure/key-vault/
-Azure Kubernetes Service: https://docs.microsoft.com/en-us/azure/aks/
+* Azure Key Vault: https://docs.microsoft.com/en-us/azure/key-vault/
+* Azure Kubernetes Service: https://docs.microsoft.com/en-us/azure/aks/
 
 ## Jenkins
-Jenkins LTS: https://www.jenkins.io/changelog-stable/
-Jenkins Configuration as Code: https://github.com/jenkinsci/configuration-as-code-plugin
-Jenkins Job DSL API Reference: https://jenkinsci.github.io/job-dsl-plugin/ 
+* Jenkins LTS: https://www.jenkins.io/changelog-stable/
+* Jenkins Configuration as Code: https://github.com/jenkinsci/configuration-as-code-plugin
+* Jenkins Job DSL API Reference: https://jenkinsci.github.io/job-dsl-plugin/ 

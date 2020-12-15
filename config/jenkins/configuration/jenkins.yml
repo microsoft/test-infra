@@ -10,7 +10,7 @@ credentials:
           id: "9e713c35-c19b-4ddd-8cd5-110c2733c2e5"
           scope: SYSTEM
           subscriptionId: "<AZURE_SP_SUBSCRIPTION_ID>"
-          tenant: "<AZURE_SP_TENANT>"
+          tenant: "<AZURE_SP_TENANT_ID>"
       - usernamePassword:
           id: "JenkinsOEAdminAgents"
           password: "<OEADMIN_PASSWORD>"
@@ -22,7 +22,7 @@ jenkins:
   - "Ping"
   authorizationStrategy:
     loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+      allowAnonymousRead: true
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -32,7 +32,7 @@ jenkins:
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
-  numExecutors: 1
+  numExecutors: 0
   primaryView:
     all:
       name: "all"
@@ -46,8 +46,8 @@ jenkins:
       allowsSignup: false
       enableCaptcha: false
       users:
-        - id: jenkinsadmin
-          password: <JENKINSADMIN_PASSWORD>
+        - id: "jenkinsadmin"
+          password: "<JENKINSADMIN_PASSWORD>"
   slaveAgentPort: 50000
   systemMessage: |
     Welcome to our build server.
@@ -101,7 +101,8 @@ unclassified:
   junitTestResultStorage:
     storage: "file"
   location:
-    adminAddress: "address not configured yet <nobody@nowhere>"
+    adminAddress: "<JENKINSADMIN_EMAIL>"
+    url: "https://<DNS_LABAEL>.<AZURE_LOCATION>.cloudapp.azure.com/"
   mailer:
     charset: "UTF-8"
     useSsl: false

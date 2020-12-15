@@ -1,0 +1,89 @@
+jobs:
+  - script: |
+        folder("OpenEnclave") {
+            displayName("OpenEnclave")
+        }
+        pipelineJob("OpenEnclave/Rhel8Build") {
+            description()
+            keepDependencies(false)
+            parameters {
+            stringParam {
+                name("OE_PULL_NUMBER")
+                defaultValue("master")
+                description("")
+                trim(true)
+                }
+            stringParam {
+                name("LINUX_VERSION")
+                defaultValue("1804")
+                description("")
+                trim(true)
+            }
+            stringParam {
+                name("WINDOWS_VERSION")
+                defaultValue("2019")
+                description("")
+                trim(true)
+            }
+            stringParam {
+                name("BUILD_TYPE")
+                defaultValue("Debug")
+                description("")
+                trim(true)
+            }
+            stringParam{
+                name("EXTRA_CMAKE_ARGS")
+                defaultValue("")
+                description("")
+                trim(true)
+            }
+            }
+            authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
+            definition {
+                cpsScm {
+                    scm {
+                        git {
+                            remote {
+                                github("openenclave-ci/test-infra", "https")
+                            }
+                            branch("refs/heads/master")
+                            extensions {
+                            cleanBeforeCheckout()
+                            cleanAfterCheckout()
+                            cloneOptions {
+                                depth(1)
+                                honorRefspec(false)
+                                noTags(false)
+                                reference("")
+                                shallow(true)
+                                timeout(10)
+                            }
+                            pruneBranches()
+                            submoduleOptions {
+                                disable(false)
+                                parentCredentials(false)
+                                recursive(true)
+                                reference("")
+                                timeout(10)
+                                tracking(false)
+                            }
+                            wipeOutWorkspace()
+                            }
+                        }
+                    }
+                    scriptPath("config/jobs/openenclave/jenkins/Rhel8Build.Jenkinsfile")
+                    lightweight(true)
+                }
+            }
+            disabled(false)
+            configure {
+            it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
+                strategy {
+                'daysToKeep'('2')
+                'numToKeep'('100')
+                'artifactDaysToKeep'('-1')
+                'artifactNumToKeep'('-1')
+                }
+            }
+            }
+        }

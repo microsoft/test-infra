@@ -1,0 +1,44 @@
+jobs:
+  - script: |
+        folder("OpenEnclave") {
+            displayName("OpenEnclave")
+        }
+        pipelineJob("OpenEnclave/Windows2019Build") {
+            description()
+            keepDependencies(false)
+            parameters {
+            stringParam("OE_PULL_NUMBER", "master", "")
+            stringParam("LINUX_VERSION", "1804", "")
+            stringParam("WINDOWS_VERSION", "2019", "")
+            stringParam("BUILD_TYPE", "Debug", "")
+            stringParam("EXTRA_CMAKE_ARGS", "", "")
+            }
+            authenticationToken("<JENKINS_REMOTE_TRIGGER_TOKEN>")
+            definition {
+                cpsScm {
+                    scm {
+                        git {
+                            remote {
+                                github("openenclave-ci/test-infra", "https")
+                            }
+                            branch("refs/heads/master")
+                            extensions {
+                            wipeOutWorkspace()
+                            }
+                        }
+                    }
+                    scriptPath("config/jobs/openenclave/jenkins/WindowsBuild.Jenkinsfile")
+                }
+            }
+            disabled(false)
+            configure {
+            it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
+                strategy {
+                'daysToKeep'('2')
+                'numToKeep'('100')
+                'artifactDaysToKeep'('-1')
+                'artifactNumToKeep'('-1')
+                }
+            }
+            }
+        }

@@ -292,7 +292,7 @@ configure_jenkins () {
   kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_LOCATION>/${AZURE_VM_LOCATION}/" ${JENKINS_HOME}/configuration/clouds.yml
   kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_GALLERY_NAME>/${AZURE_VM_GALLERY_NAME}/" ${JENKINS_HOME}/configuration/clouds.yml
   kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_GALLERY_RESOURCE_GROUP>/${AZURE_VM_GALLERY_RESOURCE_GROUP}/" ${JENKINS_HOME}/configuration/clouds.yml
-  kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_GALLERY_SUBSCRIPTION_ID>/${AZURE_VM_GALLERY_NAME_SUBSCRIPTION_ID}/" ${JENKINS_HOME}/configuration/clouds.yml
+  kubectl exec ${JENKINS_MASTER_POD} -- sed -i "s/<AZURE_VM_GALLERY_SUBSCRIPTION_ID>/${AZURE_VM_GALLERY_SUBSCRIPTION_ID}/" ${JENKINS_HOME}/configuration/clouds.yml
   
   # Apply secrets within pod
   kubectl exec ${JENKINS_MASTER_POD} -- sh -c 'sed -i "s/<JENKINSADMIN_PASSWORD>/${SECRET_JENKINSADMIN_PASSWORD}/" ${JENKINS_HOME}/configuration/jenkins.yml'
@@ -319,6 +319,8 @@ install_jenkins_plugins () {
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     # This creates a new pod and terminates the currently running pod, so plugins are reloaded.
+    echo "Waiting for first pod to be ready to avoid conflicts..."
+    kubectl wait --for=condition=ready pod -l app=jenkins-master --timeout=30m
     kubectl patch deployment jenkins-master -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$(date +%s)\"}}}}}"
   fi
 }

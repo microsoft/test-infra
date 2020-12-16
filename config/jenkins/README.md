@@ -26,7 +26,7 @@ Below are the notable service providers and last known working version.
 * Deployer (you) requires permission to modify the password of the Jenkins Service Principal
 * Service Principal needs to have an access policy to allow the "get" and "list" permissions in the specified Key Vault
 * Service Principal needs read-only access to Image Gallery specified in configuration/clouds.yml (if using VM Agents plugin)
-* After Jenkins is deployed, the Service Principal needs contributor access to the VM Resource Group specified (if using VM Agents plugin) or the resource group set for "AZURE_VM_RESOURCE_GROUP"
+* Service Principal needs contributor access to the VM Resource Group specified (if using VM Agents plugin), or you must manually create the resource group set for "AZURE_VM_RESOURCE_GROUP" and grant the Service Principal permissions directly on the resource group.
 
 ### Dependencies
 #### Azure CLI

@@ -161,9 +161,9 @@ label:
 
 config_updater:
   maps:
-    config/prow/config.yaml:
+    config/prow/primary/config.yaml:
       name: config
-    config/prow/plugins.yaml:
+    config/prow/primary/plugins.yaml:
       name: plugins
     config/jobs/**/*.yaml:
       name: job-config

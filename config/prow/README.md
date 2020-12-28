@@ -83,11 +83,10 @@ export CLIENT_SECRET= # password output from above
 
 ```
 export LOCATION="westus2"
-export RESOURCE_GROUP="OpenEnclaveCICDProd"
-export AKS_CLUSTER_NAME="oe-prow-prod"
+export RESOURCE_GROUP="OpenEnclaveProws"
+export AKS_CLUSTER_NAME="oe-prow-prod-primary"
 export NODE_SIZE="Standard_D2s_v3"
 export MIN_NODE_COUNT="15"
-export MAX_POD="10"
 export MAX_NODE_COUNT="100"
 export PATH_KEY="~/.ssh/id_rsa.pub"
 export DNS_LABEL="oe-prow-status"
@@ -113,7 +112,6 @@ az aks create --resource-group ${RESOURCE_GROUP} \
     --min-count ${MIN_NODE_COUNT} \
     --node-count ${MIN_NODE_COUNT} \
     --max-count ${MAX_NODE_COUNT} \
-    --max-pod ${MAX_POD} \
     --network-plugin azure \
     --ssh-key-value ${PATH_KEY} \
     --zones 1 2 3
@@ -307,8 +305,8 @@ Events:
 
 ## Configure plugins and.. well, config!
 ```
-kubectl create configmap config --from-file=config.yaml=$PWD/config/prow/config.yaml  --dry-run=client -o yaml | kubectl replace configmap config -f -
-kubectl create configmap plugins --from-file=$PWD/config/prow/plugins.yaml --dry-run=client -o yaml   | kubectl replace configmap plugins -f -
+kubectl create configmap config --from-file=config.yaml=$PWD/config/prow/primary/config.yaml  --dry-run=client -o yaml | kubectl replace configmap config -f -
+kubectl create configmap plugins --from-file=$PWD/config/prow/primary/plugins.yaml --dry-run=client -o yaml   | kubectl replace configmap plugins -f -
 ```
 
 ## Get some jobs going to sanity check

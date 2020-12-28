@@ -1,0 +1,177 @@
+plugins:
+  openenclave-ci:
+  - approve
+  - assign
+  - blunderbuss
+  - config-updater
+  - dco
+  - goose
+  - help
+  - hold
+  - invalidcommitmsg
+  - label
+  - lifecycle
+  - lgtm
+  - owners-label
+  - override
+  - retitle
+  - size
+  - shrug
+  - trigger
+  - verify-owners
+  - welcome
+  - wip
+
+## Remove the below upon transfer of test-infra to oe from here until...
+  openenclave/test-infra:
+  - approve
+  - assign
+  - blunderbuss
+  - config-updater
+  - dco
+  - goose
+  - help
+  - hold
+  - invalidcommitmsg
+  - label
+  - lifecycle
+  - lgtm
+  - owners-label
+  - override
+  - retitle
+  - size
+  - shrug
+  - trigger
+  - verify-owners
+  - welcome
+  - wip
+  openenclave/openenclave-ci:
+  - approve
+  - assign
+  - blunderbuss
+  - config-updater
+  - dco
+  - goose
+  - help
+  - hold
+  - invalidcommitmsg
+  - label
+  - lifecycle
+  - lgtm
+  - owners-label
+  - override
+  - retitle
+  - size
+  - shrug
+  - trigger
+  - verify-owners
+  - welcome
+  - wip
+
+  openenclave/openenclave-mbedtls:
+  - approve
+  - assign
+  - blunderbuss
+  - config-updater
+  - dco
+  - goose
+  - help
+  - hold
+  - invalidcommitmsg
+  - label
+  - lifecycle
+  - lgtm
+  - owners-label
+  - override
+  - retitle
+  - size
+  - shrug
+  - trigger
+  - verify-owners
+  - welcome
+  - wip
+
+  openenclave/openenclave-curl:
+  - approve
+  - assign
+  - blunderbuss
+  - config-updater
+  - dco
+  - goose
+  - help
+  - hold
+  - invalidcommitmsg
+  - label
+  - lifecycle
+  - lgtm
+  - owners-label
+  - override
+  - retitle
+  - size
+  - shrug
+  - trigger
+  - verify-owners
+  - welcome
+  - wip
+
+  openenclave/oeedger8r-cpp:
+  - approve
+  - assign
+  - blunderbuss
+  - config-updater
+  - dco
+  - goose
+  - help
+  - hold
+  - invalidcommitmsg
+  - label
+  - lifecycle
+  - lgtm
+  - owners-label
+  - override
+  - retitle
+  - size
+  - shrug
+  - trigger
+  - verify-owners
+  - welcome
+  - wip
+
+## .. here. Once again, delete the above.
+
+# Lower bounds in number of lines changed; XS is assumed to be zero.
+size:
+  s:   10
+  m:   30
+  l:   100
+  xl:  500
+  xxl: 1000
+
+label:
+  additional_labels:
+    - api-review
+    - community/discussion
+    - community/maintenance
+    - community/question
+    - platform/azure
+    - platform/other
+    - tide/merge-method-merge
+    - tide/merge-method-rebase
+    - tide/merge-method-squash
+
+config_updater:
+  maps:
+    config/prow/secondary/config.yaml:
+      name: config
+    config/prow/secondary/plugins.yaml:
+      name: plugins
+    config/jobs/**/*.yml:
+      name: job-config
+      gzip: true
+
+welcome:
+- repos:
+  - openenclave-ci/oeedger8r-cpp
+  - openenclave-ci/test-infra
+  - openenclave-ci/openenclave
+  message_template: "Welcome @{{.AuthorLogin}}! <br><br>It looks like this is your first PR to <a href='https://github.com/{{.Org}}/{{.Repo}}'>{{.Org}}/{{.Repo}}</a> 🎉. Please refer to our [pull request process documentation](404) to help your PR have a smooth ride to approval. <br><br>You will be prompted by a bot to use commands during the review process. Do not be afraid to follow the prompts! It is okay to experiment. [Here is the bot commands documentation](https://go.k8s.io/bot-commands). <br><br>You can also check if {{.Org}}/{{.Repo}} has [its own contribution guidelines](https://github.com/{{.Org}}/{{.Repo}}/tree/master/CONTRIBUTING.md). <br><br>You may want to refer to our [testing guide](404) if you run into trouble with your tests not passing. <br><br>If you are having difficulty getting your pull request seen, please follow the [recommended escalation practices](404). We want to make sure your contribution gets all the attention it needs! <br><br>Thank you, and welcome to openenclave. :smiley:"

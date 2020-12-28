@@ -1,0 +1,124 @@
+prowjob_namespace: default
+pod_namespace: test-pods
+log_level: debug
+tide:
+  sync_period: 1m
+  queries:
+    - orgs:
+        - openenclave-ci
+      labels:
+        - lgtm
+        - approved
+      missingLabels:
+        - do-not-merge
+        - do-not-merge/hold
+        - do-not-merge/invalid-owners-file
+        - do-not-merge/work-in-progress
+        - needs-rebases
+    - repos:
+        - openenclave/oeedger8r-cpp
+      labels:
+        - lgtm
+        - approved
+      missingLabels:
+        - do-not-merge
+        - do-not-merge/hold
+        - do-not-merge/invalid-owners-file
+        - do-not-merge/work-in-progress
+        - needs-rebases
+    - repos:
+        - openenclave/test-infra
+      labels:
+        - lgtm
+        - approved
+      missingLabels:
+        - do-not-merge
+        - do-not-merge/hold
+        - do-not-merge/invalid-owners-file
+        - do-not-merge/work-in-progress
+        - needs-rebases
+  merge_method:
+    openenclave-ci/openenclave: merge
+    openenclave/test-infra: merge
+    openenclave/oeedger8r: merge
+  blocker_label: tide/merge-blocker
+  squash_label: tide/merge-method-squash
+  rebase_label: tide/merge-method-rebase
+  merge_label: tide/merge-method-merge
+plank:
+  job_url_template: 'https://storage.googleapis.com/oe-prow-artifacts/{{if eq .Spec.Type "presubmit"}}pr-logs/pull{{else if eq .Spec.Type "batch"}}pr-logs/pull{{else}}logs{{end}}{{if eq .Spec.Type "presubmit"}}/{{.Spec.Refs.Org}}_{{.Spec.Refs.Repo}}/{{with index .Spec.Refs.Pulls 0}}{{.Number}}{{end}}{{else if eq .Spec.Type "batch"}}/batch{{end}}/{{.Spec.Job}}/{{.Status.BuildID}}/build-log.txt'
+  #TODO Fix Prow Config Report Template
+  report_templates:
+    '*': '[Full PR test history](https://oe-prow-status.eastus2.cloudapp.azure.com/pr-history?org={{.Spec.Refs.Org}}&repo={{.Spec.Refs.Repo}}&pr={{with index .Spec.Refs.Pulls 0}}{{.Number}}{{end}}). [Your PR dashboard](https://oe-prow-status.eastus2.cloudapp.azure.com/pr?query=is%3Apr%20state%3Aopen%20author%3{{with index .Spec.Refs.Pulls 0}}{{.Author}}{{end}}). Please help us cut down on flakes by opening an issue when you hit one in your PR.'
+  pod_pending_timeout: 30m
+  pod_unscheduled_timeout: 30m
+  default_decoration_configs:
+    '*':
+      timeout: 2h
+      grace_period: 15m
+      utility_images:
+        clonerefs: "gcr.io/k8s-prow/clonerefs:v20200710-7fa016752a"
+        initupload: "gcr.io/k8s-prow/initupload:v20200710-7fa016752a"
+        entrypoint: "gcr.io/k8s-prow/entrypoint:v20200710-7fa016752a"
+        sidecar: "gcr.io/k8s-prow/sidecar:v20200710-7fa016752a"
+      gcs_configuration:
+        bucket: oe-prow-artifacts
+        path_strategy: explicit
+      gcs_credentials_secret: gcs-credentials
+      resources:
+        clonerefs:
+          requests:
+            cpu: 100m
+        initupload:
+          requests:
+            cpu: 100m
+        place_entrypoint:
+          requests:
+            cpu: 100m
+        sidecar:
+          requests:
+            cpu: 100m
+github_reporter:
+  job_types_to_report:
+    - presubmit
+    - postsubmit
+sinker:
+  resync_period: 1m
+  max_prowjob_age: 48h
+  max_pod_age: 48h
+  terminated_pod_ttl: 30m
+slack_reporter_configs:
+  # Wildcard (i.e. catch-all) slack config
+  "*":
+    job_types_to_report:
+      - postsubmit
+      - periodic
+      - batch
+    job_states_to_report:
+      - failure
+      - error
+    channel: test-failures
+    # The template shown below is the default
+    report_template: "Job {{.Spec.Job}} of type {{.Spec.Type}} ended with state {{.Status.State}}. <{{.Status.URL}}|View logs>"
+presets:
+- env:
+  - name: JENKINS_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: jenkins-token
+        key: jenkins-token
+
+  - name: JENKINS_USER
+    value: party
+  
+  - name: JENKINS_URL
+    value: https://oe-prow-jenk-testing.eastus2.cloudapp.azure.com
+
+  - name: DOCKER_USER
+    value: openenclave
+
+  - name: DOCKER_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: docker-password
+        key: docker-password

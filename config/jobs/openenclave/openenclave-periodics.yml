@@ -6,7 +6,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -21,7 +21,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -36,7 +36,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -51,7 +51,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -66,7 +66,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -81,7 +81,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -96,7 +96,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -111,7 +111,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -126,7 +126,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -141,7 +141,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -156,7 +156,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -171,7 +171,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -186,7 +186,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -201,7 +201,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -216,7 +216,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -231,7 +231,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -246,7 +246,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -261,7 +261,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -276,7 +276,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -291,7 +291,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -306,7 +306,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -321,7 +321,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -336,7 +336,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -351,7 +351,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -366,7 +366,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -381,7 +381,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -396,7 +396,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -411,7 +411,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -426,7 +426,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -441,7 +441,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -456,7 +456,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -471,7 +471,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -486,7 +486,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -501,7 +501,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -516,7 +516,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -531,7 +531,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -546,7 +546,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -561,7 +561,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -576,7 +576,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -591,7 +591,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -606,7 +606,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -621,7 +621,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -636,7 +636,7 @@ periodics:
       repo: openenclave
       base_ref: master
     decorate: true
-    interval: 60m
+    interval: 12h
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest

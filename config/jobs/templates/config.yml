@@ -49,7 +49,7 @@ pipelines:
     Rhel8DebugGCCSnmalloc
     Rhel8RelWithDebInfoGCC
     Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2
+    Rhel8RelWithDebInfoGCCSnmallocE2E
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E

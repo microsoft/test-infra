@@ -165,6 +165,6 @@ config_updater:
       name: config
     config/prow/secondary/plugins.yaml:
       name: plugins
-    config/jobs/**/*.yml:
+    config/jobs/**/*.yaml:
       name: job-config
       gzip: true

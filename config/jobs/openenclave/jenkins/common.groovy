@@ -29,6 +29,30 @@ void checkout( String PULL_NUMBER="master" ) {
     }
 }
 
+/* installOpenEnclavePrereqs
+*  Runs ansible configuration on vanilla vm to allow e2e variant
+*/
+void installOpenEnclavePrereqs() {
+    dir ('openenclave') {
+        if (isUnix()) {
+            sh  """
+                sudo bash scripts/ansible/install-ansible.sh
+                # Run ACC Playbook
+                for i in 1 2 3 4 5
+                do
+                    sudo \$(which ansible-playbook) scripts/ansible/oe-contributors-acc-setup.yml && break
+                    sleep 60
+                done
+                """
+        }
+        else {
+            // Not implemented yes
+            bat """
+                """
+        }
+    }
+}
+
 /** Build openenclave based on build config, compiler and platform
   * TODO: Add container support
 **/

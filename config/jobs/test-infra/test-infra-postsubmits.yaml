@@ -841,6 +841,18 @@ postsubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
+  - name: post-test-infra-openenclave-Win2016DebugSnmallocE2E
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
   - name: post-test-infra-openenclave-Win2016RelSnmalloc
     branches:
     - master
@@ -852,6 +864,18 @@ postsubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
+  - name: post-test-infra-openenclave-Win2016RelSnmallocE2E
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: post-test-infra-openenclave-Win2016Release
     branches:
@@ -889,6 +913,18 @@ postsubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
+  - name: post-test-infra-openenclave-Win2019DebugSnmallocE2E
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
   - name: post-test-infra-openenclave-Win2019RelSnmalloc
     branches:
     - master
@@ -900,6 +936,18 @@ postsubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+
+  - name: post-test-infra-openenclave-Win2019RelSnmallocE2E
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: post-test-infra-openenclave-Win2019Release
     branches:

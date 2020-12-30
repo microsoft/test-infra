@@ -93,11 +93,15 @@ pipelines:
     Ubuntu1804ReleaseGCCSnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
+    Win2016DebugSnmallocE2E
     Win2016RelSnmalloc
+    Win2016RelSnmallocE2E
     Win2016Release
     Win2019Debug
     Win2019DebugSnmalloc
+    Win2019DebugSnmallocE2E
     Win2019RelSnmalloc
+    Win2019RelSnmallocE2E
     Win2019Release
   openenclave-build:
     ping

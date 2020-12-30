@@ -46,6 +46,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Rhel8DebugClang-8SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Rhel8DebugGCC
     branches:
     - master
@@ -106,6 +121,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8RelWithDebInfoGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Rhel8RelWithDebInfoGCCSnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8RelWithDebInfoGCCSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Rhel8ReleaseClang-8
     branches:
     - master
@@ -136,6 +166,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Rhel8ReleaseClang-8SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Rhel8ReleaseGCC
     branches:
     - master
@@ -151,7 +196,7 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-openenclave-Rhel8ReleaseGCCSnmalloc
+  - name: pr-openenclave-Rhel8ReleaseGCCSnmallocE2E
     branches:
     - master
     always_run: true
@@ -164,7 +209,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseGCCSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-Ubuntu1604DebugClang-7
     branches:
@@ -196,6 +241,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Ubuntu1604DebugClang-7SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Ubuntu1604DebugGCC
     branches:
     - master
@@ -225,6 +285,21 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Ubuntu1604DebugGCCSnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugGCCSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-Ubuntu1604RelWithDebInfoClang-7
     branches:
@@ -256,6 +331,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Ubuntu1604RelWithDebInfoGCC
     branches:
     - master
@@ -285,6 +375,21 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Ubuntu1604RelWithDebInfoGCCSnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoGCCSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-Ubuntu1604ReleaseClang-7
     branches:
@@ -316,6 +421,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Ubuntu1604ReleaseClang-7SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Ubuntu1604ReleaseGCC
     branches:
     - master
@@ -346,6 +466,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Ubuntu1604ReleaseGCCSnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseGCCSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Ubuntu1804DebugClang-7
     branches:
     - master
@@ -375,6 +510,21 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Ubuntu1804DebugClang-7SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-Ubuntu1804DebugGCC
     branches:
@@ -436,6 +586,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Ubuntu1804RelWithDebInfoGCC
     branches:
     - master
@@ -465,6 +630,21 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Ubuntu1804RelWithDebInfoGCCSnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoGCCSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-Ubuntu1804ReleaseClang-7
     branches:
@@ -496,6 +676,21 @@ presubmits:
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
+  - name: pr-openenclave-Ubuntu1804ReleaseClang-7SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
   - name: pr-openenclave-Ubuntu1804ReleaseGCC
     branches:
     - master
@@ -525,6 +720,21 @@ presubmits:
             - sh
             - "-c"
             - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseGCCSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Ubuntu1804ReleaseGCCSnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseGCCSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-Win2016Debug
     branches:

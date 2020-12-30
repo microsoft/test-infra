@@ -34,6 +34,14 @@ pipelines:
     Windows2019Build
   openenclave:
     ping
+    HostVerifyDeb16042019
+    HostVerifyDeb18042019
+    HostVerifyRel16042019
+    HostVerifyRel18042019
+    LinuxElfDeb16042019
+    LinuxElfDeb18042019
+    LinuxElfRel16042019
+    LinuxElfRel18042019
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
@@ -41,11 +49,12 @@ pipelines:
     Rhel8DebugGCCSnmalloc
     Rhel8RelWithDebInfoGCC
     Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
+    Rhel8RelWithDebInfoGCCSnmallocE2
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
     Rhel8ReleaseGCC
+    Rhel8ReleaseGCCSnmalloc
     Rhel8ReleaseGCCSnmallocE2E
     Ubuntu1604DebugClang-7
     Ubuntu1604DebugClang-7Snmalloc
@@ -84,20 +93,12 @@ pipelines:
     Ubuntu1804ReleaseGCCSnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016Release
     Win2016RelSnmalloc
+    Win2016Release
     Win2019Debug
     Win2019DebugSnmalloc
-    Win2019Release
     Win2019RelSnmalloc
-    HostVerifyRel16042019
-    HostVerifyRel18042019
-    HostVerifyDeb16042019
-    HostVerifyDeb18042019
-    LinuxElfRel18042019
-    LinuxElfRel16042019
-    LinuxElfDeb18042019
-    LinuxElfDeb16042019
+    Win2019Release
   openenclave-build:
     ping
   openenclave-ci:

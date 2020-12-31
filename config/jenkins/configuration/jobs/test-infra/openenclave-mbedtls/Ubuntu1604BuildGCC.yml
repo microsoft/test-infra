@@ -53,6 +53,12 @@ jobs:
                     description("")
                     trim(true)
                 }
+                stringParam {
+                    name("OE_SIMULATION")
+                    defaultValue("1")
+                    description("")
+                    trim(true)
+                }
             }
             authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
             definition {

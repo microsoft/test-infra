@@ -79,6 +79,19 @@ do
     done
 done
 
+# load buildmodemap into memory
+buildmodes=$(yq r $PWD/config.yml buildmodes)
+declare -A buildmodemap
+for buildmode in $buildmodes
+do
+    buildmodemaps=$(yq r $PWD/config.yml buildmodesmap.$buildmode)
+    for buildmodekey in $buildmodemaps
+    do
+        buildmodemap["$buildmodekey"]="$buildmode"
+        echo "$buildmodekey maps to - > ${buildmodemap[$buildmodekey]}"
+    done
+done
+
 # load lvimap into memory
 lvioptions=$(yq r $PWD/config.yml lvioptions)
 declare -A lvimap

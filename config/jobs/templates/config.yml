@@ -145,6 +145,13 @@ buildtype:
   Release
   RelWithDebInfo 
 
+### Build options
+# 1 = simulation, 0 = hardware. Legacy reasons.
+
+buildmodes:
+  1
+  0
+
 ### Compiler options
 compilers:
   gcc
@@ -155,6 +162,73 @@ compilers:
 lvioptions:
   ControlFlow
   None
+
+### Build modes
+# 1 = simulation, 0 = hardware. Legacy reasons. Default to simulation, ALL openenclave jobs are 0
+buildmodesmap:
+  1:
+  0:
+    Rhel8DebugClang-8
+    Rhel8DebugClang-8Snmalloc
+    Rhel8DebugClang-8SnmallocE2E
+    Rhel8DebugGCC
+    Rhel8DebugGCCSnmalloc
+    Rhel8RelWithDebInfoGCC
+    Rhel8RelWithDebInfoGCCSnmalloc
+    Rhel8RelWithDebInfoGCCSnmallocE2E
+    Rhel8ReleaseClang-8
+    Rhel8ReleaseClang-8Snmalloc
+    Rhel8ReleaseClang-8SnmallocE2E
+    Rhel8ReleaseGCC
+    Rhel8ReleaseGCCSnmalloc
+    Rhel8ReleaseGCCSnmallocE2E
+    Ubuntu1604DebugClang-7
+    Ubuntu1604DebugClang-7Snmalloc
+    Ubuntu1604DebugClang-7SnmallocE2E
+    Ubuntu1604DebugGCC
+    Ubuntu1604DebugGCCSnmalloc
+    Ubuntu1604DebugGCCSnmallocE2E
+    Ubuntu1604RelWithDebInfoClang-7
+    Ubuntu1604RelWithDebInfoClang-7Snmalloc
+    Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
+    Ubuntu1604RelWithDebInfoGCC
+    Ubuntu1604RelWithDebInfoGCCSnmalloc
+    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
+    Ubuntu1604ReleaseClang-7
+    Ubuntu1604ReleaseClang-7Snmalloc
+    Ubuntu1604ReleaseClang-7SnmallocE2E
+    Ubuntu1604ReleaseGCC
+    Ubuntu1604ReleaseGCCSnmalloc
+    Ubuntu1604ReleaseGCCSnmallocE2E
+    Ubuntu1804DebugClang-7
+    Ubuntu1804DebugClang-7Snmalloc
+    Ubuntu1804DebugClang-7SnmallocE2E
+    Ubuntu1804DebugGCC
+    Ubuntu1804DebugGCCSnmalloc
+    Ubuntu1804RelWithDebInfoClang-7
+    Ubuntu1804RelWithDebInfoClang-7Snmalloc
+    Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
+    Ubuntu1804RelWithDebInfoGCC
+    Ubuntu1804RelWithDebInfoGCCSnmalloc
+    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
+    Ubuntu1804ReleaseClang-7
+    Ubuntu1804ReleaseClang-7Snmalloc
+    Ubuntu1804ReleaseClang-7SnmallocE2E
+    Ubuntu1804ReleaseGCC
+    Ubuntu1804ReleaseGCCSnmalloc
+    Ubuntu1804ReleaseGCCSnmallocE2E
+    Win2016Debug
+    Win2016DebugSnmalloc
+    Win2016DebugSnmallocE2E
+    Win2016RelSnmalloc
+    Win2016RelSnmallocE2E
+    Win2016Release
+    Win2019Debug
+    Win2019DebugSnmalloc
+    Win2019DebugSnmallocE2E
+    Win2019RelSnmalloc
+    Win2019RelSnmallocE2E
+    Win2019Release
 
 buildtypemap:
   Debug:

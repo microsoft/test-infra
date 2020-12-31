@@ -1,11 +1,6 @@
 #!/bin/bash 
 set +x
 
-# Get repo name
-repos=$(yq r $PWD/config.yml repos)
-
-build_configs=$(yq r $PWD/config.yml build-configs)
-
 # load jobmap into memory
 jobs=$(yq r $PWD/config.yml jobs)
 declare -A jobmap
@@ -16,6 +11,19 @@ do
     do
         jobmap["$jobkey"]="$job"
         echo "$jobkey maps to - > ${jobmap[$jobkey]}"
+    done
+done
+
+# load builttype maps into memory
+buildtypes=$(yq r $PWD/config.yml buildtype)
+declare -A buildtypemap
+for buildtype in $buildtypes
+do
+    buildtypemaps=$(yq r $PWD/config.yml buildtypemap.$buildtype)
+    for buildtypekey in $buildtypemaps
+    do
+        buildtypemap["$buildtypekey"]="$buildtype"
+        echo "$buildtypekey maps to - > ${buildtypemap[$buildtypekey]}"
     done
 done
 
@@ -83,6 +91,11 @@ do
         echo "$lvikey maps to - > ${lvimap[$lvikey]}"
     done
 done
+
+# Get repo name
+repos=$(yq r $PWD/config.yml repos)
+
+build_configs=$(yq r $PWD/config.yml build-configs)
 
 for repo in $repos
 do

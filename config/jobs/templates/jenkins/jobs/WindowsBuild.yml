@@ -21,6 +21,12 @@ jobs:
                     trim(true)
                 }
                 stringParam {
+                    name("BUILD_TYPE")
+                    defaultValue("${buildtypemap[${pipeline}]}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
                     name("WINDOWS_VERSION")
                     defaultValue("${windowsversionmap[${pipeline}]}")
                     description("")

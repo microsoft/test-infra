@@ -30,6 +30,12 @@ jobs:
                     trim(true)
                 }
                 stringParam {
+                    name("BUILD_TYPE")
+                    defaultValue("")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
                     name("COMPILER")
                     defaultValue("clang-7")
                     description("")

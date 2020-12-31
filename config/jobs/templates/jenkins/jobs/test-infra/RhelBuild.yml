@@ -30,6 +30,12 @@ jobs:
                     trim(true)
                 }
                 stringParam {
+                    name("BUILD_TYPE")
+                    defaultValue("${buildtypemap[${pipeline}]}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
                     name("COMPILER")
                     defaultValue("${compilermap[${pipeline}]}")
                     description("")

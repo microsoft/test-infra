@@ -410,7 +410,7 @@ snmallocmap:
     Win2019RelSnmallocE2E
 
 ### Map parameter to each job option
-windowsversions:
+windowsversionsmap:
   2016:
     Win2016Debug
     Win2016DebugSnmalloc

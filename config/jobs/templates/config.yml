@@ -569,8 +569,8 @@ jobs:
   RhelBuild
   UbuntuBuild
   WindowsBuild
-  hostverify
-  linuxelfbuild
+  HostVerify
+  LinuxElfBuild
   ping
 
 jobmaps:
@@ -648,12 +648,12 @@ jobmaps:
     Win2019Release
     Windows2016Build
     Windows2019Build
-  hostverify:
+  HostVerify:
     HostVerifyDeb16042019
     HostVerifyDeb18042019
     HostVerifyRel16042019
     HostVerifyRel18042019
-  linuxelfbuild:
+  LinuxElfBuild:
     LinuxElfDeb16042019
     LinuxElfDeb18042019
     LinuxElfRel16042019

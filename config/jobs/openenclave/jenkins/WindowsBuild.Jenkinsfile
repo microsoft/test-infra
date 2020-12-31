@@ -2,7 +2,7 @@
 PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
-WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"2019"
+WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"Windows-2019"
 
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
@@ -23,7 +23,7 @@ pipeline {
     options {
         timeout(time: 180, unit: 'MINUTES') 
     }
-    agent { label "SGXFLC-Windows-${WINDOWS_VERSION}-Docker" }
+    agent { label "ACC-${WINDOWS_VERSION}" }
 
     stages {
         stage('Checkout'){

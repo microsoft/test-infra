@@ -6,8 +6,8 @@ CTEST_TIMEOUT_SECONDS = 1200
 OE_PULL_NUMBER=env.OE_PULL_NUMBER?env.OE_PULL_NUMBER:"master"
 
 // OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
-WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"2019"
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
+WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"Windows-2019"
 
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
@@ -59,7 +59,7 @@ pipeline {
             }
         }
         stage("Windows SGX1 clang-7 Release LVI_MITIGATION=ControlFlow") {
-            agent { label "SGXFLC-Windows-2019-Docker" }
+            agent { label "ACC-${WINDOWS_VERSION}" }
             steps {
                 script {
                     cleanWs()

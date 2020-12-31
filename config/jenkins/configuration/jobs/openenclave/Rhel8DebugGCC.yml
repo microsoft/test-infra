@@ -16,7 +16,7 @@ jobs:
                 }
                 stringParam {
                     name("LINUX_VERSION")
-                    defaultValue("8")
+                    defaultValue("RHEL-8")
                     description("")
                     trim(true)
                 }

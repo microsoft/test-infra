@@ -2,7 +2,7 @@
 PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"8"
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"RHEL-8"
 
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
@@ -16,7 +16,7 @@ pipeline {
     options {
         timeout(time: 60, unit: 'MINUTES') 
     }
-    agent { label "ACC-RHEL-${LINUX_VERSION}" }
+    agent { label "ACC-${LINUX_VERSION}" }
 
     stages {
         stage('Checkout'){

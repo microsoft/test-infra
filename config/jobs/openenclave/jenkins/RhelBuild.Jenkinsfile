@@ -2,8 +2,7 @@
 PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"8"
-
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"RHEL-8"
 // Some Defaults for general build info
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
 COMPILER=env.COMPILER?env.COMPILER:"gcc"
@@ -24,7 +23,7 @@ pipeline {
     options {
         timeout(time: 180, unit: 'MINUTES') 
     }
-    agent { label "ACC-RHEL-${LINUX_VERSION}" }
+    agent { label "ACC-${LINUX_VERSION}" }
 
     stages {
         // Check out test infra repo as need shared libs

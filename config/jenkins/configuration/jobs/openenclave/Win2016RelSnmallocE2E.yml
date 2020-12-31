@@ -28,7 +28,7 @@ jobs:
                 }
                 stringParam {
                     name("WINDOWS_VERSION")
-                    defaultValue("2016")
+                    defaultValue("Windows-2016")
                     description("")
                     trim(true)
                 }

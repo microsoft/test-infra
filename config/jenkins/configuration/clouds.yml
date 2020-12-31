@@ -32,7 +32,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "ACC-1804"
+        labels: "ACC-Ubuntu-1804"
         location: "UK South"
         noOfParallelJobs: 1
         osDiskSize: 0
@@ -71,7 +71,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "ACC-1604"
+        labels: "ACC-Ubuntu-1604"
         location: "UK South"
         noOfParallelJobs: 1
         osDiskSize: 0
@@ -156,7 +156,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "SGXFLC-Windows-2016-Docker"
+        labels: "ACC-Windows-2016"
         location: "UK South"
         noOfParallelJobs: 1
         osDiskSize: 200
@@ -168,7 +168,7 @@ jenkins:
         shutdownOnIdle: false
         storageAccountNameReferenceType: "new"
         storageAccountType: "Standard_LRS"
-        templateDesc: "SGXFLC-Windows-2016-Docker"
+        templateDesc: "ACC-Windows-2016"
         templateDisabled: false
         templateName: "ws16"
         usageMode: "Only build jobs with label expressions matching this node"
@@ -195,7 +195,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "SGXFLC-Windows-2019-Docker"
+        labels: "ACC-Windows-2019"
         location: "UK South"
         noOfParallelJobs: 1
         osDiskSize: 200
@@ -207,7 +207,7 @@ jenkins:
         shutdownOnIdle: false
         storageAccountNameReferenceType: "new"
         storageAccountType: "Standard_LRS"
-        templateDesc: "SGXFLC-Windows-2019-Docker"
+        templateDesc: "ACC-Windows-2019"
         templateDisabled: false
         templateName: "ws19"
         usageMode: "Only build jobs with label expressions matching this node"
@@ -276,7 +276,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "ACC-1804"
+        labels: "ACC-Ubuntu-1804"
         location: "East US"
         noOfParallelJobs: 1
         osDiskSize: 0
@@ -315,7 +315,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "ACC-1604"
+        labels: "ACC-Ubuntu-1604"
         location: "East US"
         noOfParallelJobs: 1
         osDiskSize: 0
@@ -400,7 +400,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "SGXFLC-Windows-2016-Docker"
+        labels: "ACC-Windows-2016"
         location: "East US"
         noOfParallelJobs: 1
         osDiskSize: 200
@@ -412,7 +412,7 @@ jenkins:
         shutdownOnIdle: false
         storageAccountNameReferenceType: "new"
         storageAccountType: "Standard_LRS"
-        templateDesc: "SGXFLC-Windows-2016-Docker"
+        templateDesc: "ACC-Windows-2016"
         templateDisabled: false
         templateName: "ws16"
         usageMode: "Only build jobs with label expressions matching this node"
@@ -439,7 +439,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "SGXFLC-Windows-2019-Docker"
+        labels: "ACC-Windows-2019"
         location: "East US"
         noOfParallelJobs: 1
         osDiskSize: 200
@@ -451,7 +451,7 @@ jenkins:
         shutdownOnIdle: false
         storageAccountNameReferenceType: "new"
         storageAccountType: "Standard_LRS"
-        templateDesc: "SGXFLC-Windows-2019-Docker"
+        templateDesc: "ACC-Windows-2019"
         templateDisabled: false
         templateName: "ws19"
         usageMode: "Only build jobs with label expressions matching this node"
@@ -520,7 +520,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "ACC-1804"
+        labels: "ACC-Ubuntu-1804"
         location: "West US 2"
         noOfParallelJobs: 1
         osDiskSize: 0
@@ -559,7 +559,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "ACC-1604"
+        labels: "ACC-Ubuntu-1604"
         location: "West US 2"
         noOfParallelJobs: 1
         osDiskSize: 0
@@ -644,7 +644,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "SGXFLC-Windows-2016-Docker"
+        labels: "ACC-Windows-2016"
         location: "West US 2"
         noOfParallelJobs: 1
         osDiskSize: 200
@@ -656,7 +656,7 @@ jenkins:
         shutdownOnIdle: false
         storageAccountNameReferenceType: "new"
         storageAccountType: "Standard_LRS"
-        templateDesc: "SGXFLC-Windows-2016-Docker"
+        templateDesc: "ACC-Windows-2016"
         templateDisabled: false
         templateName: "ws16"
         usageMode: "Only build jobs with label expressions matching this node"
@@ -683,7 +683,7 @@ jenkins:
         installGit: false
         installMaven: false
         javaPath: "java"
-        labels: "SGXFLC-Windows-2019-Docker"
+        labels: "ACC-Windows-2019"
         location: "West US 2"
         noOfParallelJobs: 1
         osDiskSize: 200
@@ -695,7 +695,7 @@ jenkins:
         shutdownOnIdle: false
         storageAccountNameReferenceType: "new"
         storageAccountType: "Standard_LRS"
-        templateDesc: "SGXFLC-Windows-2019-Docker"
+        templateDesc: "ACC-Windows-2019"
         templateDisabled: false
         templateName: "ws19"
         usageMode: "Only build jobs with label expressions matching this node"

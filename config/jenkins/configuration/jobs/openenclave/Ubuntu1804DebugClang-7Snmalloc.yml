@@ -16,7 +16,7 @@ jobs:
                 }
                 stringParam {
                     name("LINUX_VERSION")
-                    defaultValue("1804")
+                    defaultValue("Ubuntu-1804")
                     description("")
                     trim(true)
                 }

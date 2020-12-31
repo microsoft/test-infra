@@ -70,8 +70,9 @@ git -C ${JENKINS_HOME}/test-infra/ diff --name-only ${LOCAL} ${REMOTE} -- config
         mv ${JENKINS_HOME}/configuration ${JENKINS_HOME}/configuration_old
     fi
 
-    # Remove git index.lock file if exists
+    # Remove git *.lock file if exists
     rm -f ${JENKINS_HOME}/test-infra/.git/index.lock
+    rm -f ${JENKINS_HOME}/test-infra/.git/shallow.lock
 
     # Pull in new commits
     git -C ${JENKINS_HOME}/test-infra/ clean -dfx

@@ -1,0 +1,28 @@
+---
+jobs:
+  - script: |
+        folder("{repo}") {
+            displayName("${repo}")
+        }
+        folder("test-infra/${repo}") {
+            displayName("${repo}")
+        }
+        job("test-infra/${repo}/${pipeline}") {
+            description()
+            keepDependencies(false)
+            authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
+            steps {
+                shell("echo 'pong'")
+            }
+            disabled(false)
+            configure {
+                it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
+                    strategy {
+                        'daysToKeep'('2')
+                        'numToKeep'('100')
+                        'artifactDaysToKeep'('-1')
+                        'artifactNumToKeep'('-1')
+                    }
+                }
+            }
+        }

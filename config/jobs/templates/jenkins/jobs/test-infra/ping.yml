@@ -7,7 +7,7 @@ jobs:
         folder("test-infra/${repo}") {
             displayName("${repo}")
         }
-        job("test-infra/${repo}/ping") {
+        job("test-infra/${repo}/${pipeline}") {
             description()
             keepDependencies(false)
             authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')

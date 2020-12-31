@@ -38,6 +38,12 @@ jobs:
                     description("")
                     trim(true)
                 }
+                stringParam {
+                    name("LVI_MITIGATION")
+                    defaultValue("${lvimap[${pipeline}]=NONE}")
+                    description("")
+                    trim(true)
+                }
             } 
             authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
             definition {

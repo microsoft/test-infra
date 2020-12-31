@@ -67,6 +67,20 @@ do
     for snmallockey in $snmallocmaps
     do
         snmallocmap["$snmallockey"]="$snmallocoption"
+        echo "$snmallockey maps to - > ${snmallocmap[$snmallockey]}"
+    done
+done
+
+# load lvimap into memory
+lvioptions=$(yq r $PWD/config.yml lvioptions)
+declare -A lvimap
+for lvioption in $lvioptions
+do
+    lvioptionsmaps=$(yq r $PWD/config.yml lvioptionsmaps.$lvioption)
+    for lvikey in $lvioptionsmaps
+    do
+        lvimap["$lvikey"]="$lvioption"
+        echo "$lvikey maps to - > ${lvimap[$lvikey]}"
     done
 done
 

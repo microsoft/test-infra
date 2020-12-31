@@ -34,7 +34,7 @@ jobs:
                 }
                 stringParam {
                     name("USE_SNMALLOC")
-                    defaultValue("'OFF'")
+                    defaultValue("OFF")
                     description("")
                     trim(true)
                 }

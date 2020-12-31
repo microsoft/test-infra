@@ -37,7 +37,7 @@ jobs:
                 }
                 stringParam {
                     name("USE_SNMALLOC")
-                    defaultValue("${snmallocmap[${pipeline}]='OFF'}")
+                    defaultValue("${snmallocmap[${pipeline}]=OFF}")
                     description("")
                     trim(true)
                 }

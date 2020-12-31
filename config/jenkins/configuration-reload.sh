@@ -53,6 +53,19 @@ if [[ ! -d ${JENKINS_HOME}/test-infra ]]; then
     exit 0
 fi
 
+# Remove git locks if exists
+# this occurs due to git operations that are unusually slow in previous runs that were killed by the job timeout
+LOCK_FILES=(
+    .git/index.lock
+    .git/shallow.lock
+    .git/logs/HEAD.lock
+)
+for LOCK_FILE in "${LOCK_FILES[@]}"; do
+    if [[ -f ${JENKINS_HOME}/test-infra/${LOCK_FILE} ]]; then
+        rm ${JENKINS_HOME}/test-infra/${LOCK_FILE}
+    fi
+done
+
 # Determine if there are new commits on master
 git -C ${JENKINS_HOME}/test-infra/ fetch --depth=1
 LOCAL=$(git -C ${JENKINS_HOME}/test-infra rev-parse ${BRANCH})

@@ -128,9 +128,25 @@ pipelines:
   public-talks:
     ping
 
+### Configure which jobs have  which parameters.
+
+### Platform options
 windowsversions:
   2016
   2019
+linuxversions:
+  1604
+  1804
+  8
+
+### Compiler options
+compilers:
+  gcc
+  clang-7
+  clang-8
+
+
+### Map parameter to each job option
 windowsversions:
   2016:
     Win2016Debug
@@ -148,10 +164,14 @@ windowsversions:
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
-linuxversions:
-  1604
-  1804
-  8
+    HostVerifyDeb16042019
+    HostVerifyDeb18042019
+    HostVerifyRel16042019
+    HostVerifyRel18042019
+    LinuxElfDeb16042019
+    LinuxElfDeb18042019
+    LinuxElfRel16042019
+    LinuxElfRel18042019
 linuxversionsmap:
   1604:
     Ubuntu1604BuildClang-7
@@ -174,7 +194,15 @@ linuxversionsmap:
     Ubuntu1604ReleaseGCC
     Ubuntu1604ReleaseGCCSnmalloc
     Ubuntu1604ReleaseGCCSnmallocE2E
+    HostVerifyDeb16042019
+    HostVerifyRel16042019
+    LinuxElfDeb16042019
+    LinuxElfRel16042019
   1804:
+    HostVerifyDeb18042019
+    HostVerifyRel18042019
+    LinuxElfDeb18042019
+    LinuxElfRel18042019
     Ubuntu1804BuildClang-7
     Ubuntu1804BuildGCC
     Ubuntu1804DebugClang-7
@@ -211,10 +239,8 @@ linuxversionsmap:
     Rhel8ReleaseGCC
     Rhel8ReleaseGCCSnmalloc
     Rhel8ReleaseGCCSnmallocE2E
-compilers:
-  gcc
-  clang-7
-  clang-8
+
+# Map compilers to jobs that use them
 compilermap:
   gcc:
     Ubuntu1604BuildGCC
@@ -274,6 +300,8 @@ compilermap:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
+
+# Map each JenkinsFile type to to builds that use them
 jobs:
   RhelBuild
   UbuntuBuild

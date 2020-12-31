@@ -99,7 +99,7 @@ jobs:
                             }
                         }
                     }
-                    scriptPath("config/jobs/openenclave-mbedtls/jenkins/UbuntuBuild.Jenkinsfile")
+                    scriptPath("config/jobs/openenclave-mbedtls/jenkins/WindowsBuild.Jenkinsfile")
                 }
             }
             disabled(false)

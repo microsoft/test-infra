@@ -99,7 +99,7 @@ jobs:
                             }
                         }
                     }
-                    scriptPath("config/jobs/oeedger8r-cpp/jenkins/UbuntuBuild.Jenkinsfile")
+                    scriptPath("config/jobs/oeedger8r-cpp/jenkins/WindowsBuild.Jenkinsfile")
                 }
             }
             disabled(false)

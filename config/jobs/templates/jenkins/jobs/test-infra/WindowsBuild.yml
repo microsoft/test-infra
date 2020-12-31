@@ -99,7 +99,7 @@ jobs:
                             }
                         }
                     }
-                    scriptPath("config/jobs/${repo}/jenkins/UbuntuBuild.Jenkinsfile")
+                    scriptPath("config/jobs/${repo}/jenkins/${jobmap[$pipeline]}.Jenkinsfile")
                 }
             }
             disabled(false)

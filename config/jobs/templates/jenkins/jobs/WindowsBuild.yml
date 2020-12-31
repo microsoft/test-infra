@@ -96,7 +96,7 @@ jobs:
                             }
                         }
                     }
-                    scriptPath("config/jobs/${repo}/jenkins/WindowsBuild.Jenkinsfile")
+                    scriptPath("config/jobs/${repo}/jenkins/${jobmap[$pipeline]}.Jenkinsfile")
                 }
             }
             disabled(false)

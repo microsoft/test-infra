@@ -1,18 +1,106 @@
 ---
 jobs:
   - script: |
-        folder("{repo}") {
-            displayName("${repo}")
+        folder("test-infra") {
+            displayName("test-infra")
         }
         folder("test-infra/${repo}") {
             displayName("${repo}")
         }
-        job("test-infra/${repo}/${pipeline}") {
+        pipelineJob("test-infra/${repo}/${pipeline}") {
             description()
             keepDependencies(false)
+            parameters {
+                stringParam {
+                    name("OE_TEST_INFRA_PULL_NUMBER")
+                    defaultValue("master")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("LINUX_VERSION")
+                    defaultValue("${linuxversionmap[${pipeline}]}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("WINDOWS_VERSION")
+                    defaultValue("${windowsversionmap[${pipeline}]}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("BUILD_TYPE")
+                    defaultValue("${buildtypemap[${pipeline}]}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("COMPILER")
+                    defaultValue("${compilermap[${pipeline}]}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("USE_SNMALLOC")
+                    defaultValue("${snmallocmap[${pipeline}]=OFF}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("LVI_MITIGATION")
+                    defaultValue("${lvimap[${pipeline}]=NONE}")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("DOCKER_TAG")
+                    defaultValue("latest")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("OE_SIMULATION")
+                    defaultValue("${buildmodemap[${pipeline}]=1}")
+                    description("")
+                    trim(true)
+                }
+            }
             authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
-            steps {
-                shell("echo 'pong'")
+            definition {
+                cpsScm {
+                    scm {
+                        git {
+                            remote {
+                                github("openenclave/test-infra", "https")
+                            }
+                            branch('origin/pr/$OE_TEST_INFRA_PULL_NUMBER')
+                            extensions {
+                                cleanBeforeCheckout()
+                                cleanAfterCheckout()
+                                cloneOptions {
+                                    depth(1)
+                                    honorRefspec(false)
+                                    noTags(false)
+                                    reference("")
+                                    shallow(true)
+                                    timeout(10)
+                                }
+                                pruneBranches()
+                                submoduleOptions {
+                                    disable(false)
+                                    parentCredentials(false)
+                                    recursive(true)
+                                    reference("")
+                                    timeout(10)
+                                    tracking(false)
+                                }
+                                wipeOutWorkspace()
+                            }
+                        }
+                    }
+                    scriptPath("config/jobs/${repo}/jenkins/${jobmap[$pipeline]}.Jenkinsfile")
+                }
             }
             disabled(false)
             configure {

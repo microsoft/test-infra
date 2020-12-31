@@ -1,1 +1,28 @@
-           
+---
+jobs:
+  - script: |
+        folder("{repo}") {
+            displayName("openenclave")
+        }
+        folder("test-infra/openenclave") {
+            displayName("openenclave")
+        }
+        job("test-infra/openenclave/HostVerifyDeb16042019") {
+            description()
+            keepDependencies(false)
+            authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
+            steps {
+                shell("echo 'pong'")
+            }
+            disabled(false)
+            configure {
+                it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
+                    strategy {
+                        'daysToKeep'('2')
+                        'numToKeep'('100')
+                        'artifactDaysToKeep'('-1')
+                        'artifactNumToKeep'('-1')
+                    }
+                }
+            }
+        }           

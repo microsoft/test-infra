@@ -1,1 +1,25 @@
-        
+---
+jobs:
+  - script: |
+        folder("openenclave") {
+            displayName("openenclave")
+        }
+        job("openenclave/LinuxElfRel18042019") {
+            description()
+            keepDependencies(false)
+            authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
+            steps {
+                shell("echo 'pong'")
+            }
+            disabled(false)
+            configure {
+                it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
+                    strategy {
+                        'daysToKeep'('2')
+                        'numToKeep'('100')
+                        'artifactDaysToKeep'('-1')
+                        'artifactNumToKeep'('-1')
+                    }
+                }
+            }
+        }        

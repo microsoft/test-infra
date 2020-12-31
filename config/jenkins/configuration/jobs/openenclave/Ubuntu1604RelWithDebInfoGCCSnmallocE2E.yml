@@ -51,6 +51,12 @@ jobs:
                     trim(true)
                 }
                 stringParam {
+                    name("DOCKER_TAG")
+                    defaultValue("latest")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
                     name("OE_SIMULATION")
                     defaultValue("0")
                     description("")

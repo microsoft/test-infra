@@ -18,7 +18,7 @@ repos:
   openenclave-template
   public-talks
 
-# These corrrespond to the pipelines each repo has and are stored in the <Job DSL> directory
+# These corrrespond to the pipelines each repo has and are stored in the config/jenkins/configuration/jobs directory
 pipelines:
   gperftools:
     ping

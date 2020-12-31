@@ -32,6 +32,12 @@ jobs:
                     description("")
                     trim(true)
                 }
+                stringParam {
+                    name("USE_SNMALLOC")
+                    defaultValue("'OFF'")
+                    description("")
+                    trim(true)
+                }
             } 
             authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
             definition {

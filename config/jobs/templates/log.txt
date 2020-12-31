@@ -1,0 +1,1069 @@
+Rhel8BuildClang-8 maps to - > RhelBuild
+Rhel8BuildGCC maps to - > RhelBuild
+Rhel8DebugClang-8 maps to - > RhelBuild
+Rhel8DebugClang-8Snmalloc maps to - > RhelBuild
+Rhel8DebugClang-8SnmallocE2E maps to - > RhelBuild
+Rhel8DebugGCC maps to - > RhelBuild
+Rhel8DebugGCCSnmalloc maps to - > RhelBuild
+Rhel8RelWithDebInfoGCC maps to - > RhelBuild
+Rhel8RelWithDebInfoGCCSnmalloc maps to - > RhelBuild
+Rhel8RelWithDebInfoGCCSnmallocE2E maps to - > RhelBuild
+Rhel8ReleaseClang-8 maps to - > RhelBuild
+Rhel8ReleaseClang-8Snmalloc maps to - > RhelBuild
+Rhel8ReleaseClang-8SnmallocE2E maps to - > RhelBuild
+Rhel8ReleaseGCC maps to - > RhelBuild
+Rhel8ReleaseGCCSnmalloc maps to - > RhelBuild
+Rhel8ReleaseGCCSnmallocE2E maps to - > RhelBuild
+Ubuntu1604BuildClang-7 maps to - > UbuntuBuild
+Ubuntu1604BuildGCC maps to - > UbuntuBuild
+Ubuntu1604DebugClang-7 maps to - > UbuntuBuild
+Ubuntu1604DebugClang-7Snmalloc maps to - > UbuntuBuild
+Ubuntu1604DebugClang-7SnmallocE2E maps to - > UbuntuBuild
+Ubuntu1604DebugGCC maps to - > UbuntuBuild
+Ubuntu1604DebugGCCSnmalloc maps to - > UbuntuBuild
+Ubuntu1604DebugGCCSnmallocE2E maps to - > UbuntuBuild
+Ubuntu1604RelWithDebInfoClang-7 maps to - > UbuntuBuild
+Ubuntu1604RelWithDebInfoClang-7Snmalloc maps to - > UbuntuBuild
+Ubuntu1604RelWithDebInfoClang-7SnmallocE2E maps to - > UbuntuBuild
+Ubuntu1604RelWithDebInfoGCC maps to - > UbuntuBuild
+Ubuntu1604RelWithDebInfoGCCSnmalloc maps to - > UbuntuBuild
+Ubuntu1604RelWithDebInfoGCCSnmallocE2E maps to - > UbuntuBuild
+Ubuntu1604ReleaseClang-7 maps to - > UbuntuBuild
+Ubuntu1604ReleaseClang-7Snmalloc maps to - > UbuntuBuild
+Ubuntu1604ReleaseClang-7SnmallocE2E maps to - > UbuntuBuild
+Ubuntu1604ReleaseGCC maps to - > UbuntuBuild
+Ubuntu1604ReleaseGCCSnmalloc maps to - > UbuntuBuild
+Ubuntu1604ReleaseGCCSnmallocE2E maps to - > UbuntuBuild
+Ubuntu1804BuildClang-7 maps to - > UbuntuBuild
+Ubuntu1804BuildGCC maps to - > UbuntuBuild
+Ubuntu1804DebugClang-7 maps to - > UbuntuBuild
+Ubuntu1804DebugClang-7Snmalloc maps to - > UbuntuBuild
+Ubuntu1804DebugClang-7SnmallocE2E maps to - > UbuntuBuild
+Ubuntu1804DebugGCC maps to - > UbuntuBuild
+Ubuntu1804DebugGCCSnmalloc maps to - > UbuntuBuild
+Ubuntu1804RelWithDebInfoClang-7 maps to - > UbuntuBuild
+Ubuntu1804RelWithDebInfoClang-7Snmalloc maps to - > UbuntuBuild
+Ubuntu1804RelWithDebInfoClang-7SnmallocE2E maps to - > UbuntuBuild
+Ubuntu1804RelWithDebInfoGCC maps to - > UbuntuBuild
+Ubuntu1804RelWithDebInfoGCCSnmalloc maps to - > UbuntuBuild
+Ubuntu1804RelWithDebInfoGCCSnmallocE2E maps to - > UbuntuBuild
+Ubuntu1804ReleaseClang-7 maps to - > UbuntuBuild
+Ubuntu1804ReleaseClang-7Snmalloc maps to - > UbuntuBuild
+Ubuntu1804ReleaseClang-7SnmallocE2E maps to - > UbuntuBuild
+Ubuntu1804ReleaseGCC maps to - > UbuntuBuild
+Ubuntu1804ReleaseGCCSnmalloc maps to - > UbuntuBuild
+Ubuntu1804ReleaseGCCSnmallocE2E maps to - > UbuntuBuild
+Win2016Debug maps to - > WindowsBuild
+Win2016DebugSnmalloc maps to - > WindowsBuild
+Win2016DebugSnmallocE2E maps to - > WindowsBuild
+Win2016RelSnmalloc maps to - > WindowsBuild
+Win2016RelSnmallocE2E maps to - > WindowsBuild
+Win2016Release maps to - > WindowsBuild
+Win2019Debug maps to - > WindowsBuild
+Win2019DebugSnmalloc maps to - > WindowsBuild
+Win2019DebugSnmallocE2E maps to - > WindowsBuild
+Win2019RelSnmalloc maps to - > WindowsBuild
+Win2019RelSnmallocE2E maps to - > WindowsBuild
+Win2019Release maps to - > WindowsBuild
+Windows2016Build maps to - > WindowsBuild
+Windows2019Build maps to - > WindowsBuild
+HostVerifyDeb16042019 maps to - > hostverify
+HostVerifyDeb18042019 maps to - > hostverify
+HostVerifyRel16042019 maps to - > hostverify
+HostVerifyRel18042019 maps to - > hostverify
+LinuxElfDeb16042019 maps to - > linuxelfbuild
+LinuxElfDeb18042019 maps to - > linuxelfbuild
+LinuxElfRel16042019 maps to - > linuxelfbuild
+LinuxElfRel18042019 maps to - > linuxelfbuild
+ping maps to - > ping
+Ubuntu1604BuildGCC maps to - > gcc
+Ubuntu1804BuildGCC maps to - > gcc
+Rhel8BuildGCC maps to - > gcc
+Rhel8DebugGCC maps to - > gcc
+Rhel8DebugGCCSnmalloc maps to - > gcc
+Rhel8RelWithDebInfoGCC maps to - > gcc
+Rhel8RelWithDebInfoGCCSnmalloc maps to - > gcc
+Rhel8RelWithDebInfoGCCSnmallocE2E maps to - > gcc
+Rhel8ReleaseGCC maps to - > gcc
+Rhel8ReleaseGCCSnmalloc maps to - > gcc
+Rhel8ReleaseGCCSnmallocE2E maps to - > gcc
+Ubuntu1604DebugGCC maps to - > gcc
+Ubuntu1604DebugGCCSnmalloc maps to - > gcc
+Ubuntu1604DebugGCCSnmallocE2E maps to - > gcc
+Ubuntu1604RelWithDebInfoGCC maps to - > gcc
+Ubuntu1604RelWithDebInfoGCCSnmalloc maps to - > gcc
+Ubuntu1604RelWithDebInfoGCCSnmallocE2E maps to - > gcc
+Ubuntu1604ReleaseGCC maps to - > gcc
+Ubuntu1604ReleaseGCCSnmalloc maps to - > gcc
+Ubuntu1604ReleaseGCCSnmallocE2E maps to - > gcc
+Ubuntu1804DebugGCC maps to - > gcc
+Ubuntu1804DebugGCCSnmalloc maps to - > gcc
+Ubuntu1804RelWithDebInfoGCC maps to - > gcc
+Ubuntu1804RelWithDebInfoGCCSnmalloc maps to - > gcc
+Ubuntu1804RelWithDebInfoGCCSnmallocE2E maps to - > gcc
+Ubuntu1804ReleaseGCC maps to - > gcc
+Ubuntu1804ReleaseGCCSnmalloc maps to - > gcc
+Ubuntu1804ReleaseGCCSnmallocE2E maps to - > gcc
+Ubuntu1604BuildClang-7 maps to - > clang-7
+Ubuntu1804BuildClang-7 maps to - > clang-7
+Ubuntu1604DebugClang-7 maps to - > clang-7
+Ubuntu1604DebugClang-7Snmalloc maps to - > clang-7
+Ubuntu1604DebugClang-7SnmallocE2E maps to - > clang-7
+Ubuntu1604RelWithDebInfoClang-7 maps to - > clang-7
+Ubuntu1604RelWithDebInfoClang-7Snmalloc maps to - > clang-7
+Ubuntu1604RelWithDebInfoClang-7SnmallocE2E maps to - > clang-7
+Ubuntu1604ReleaseClang-7 maps to - > clang-7
+Ubuntu1604ReleaseClang-7Snmalloc maps to - > clang-7
+Ubuntu1604ReleaseClang-7SnmallocE2E maps to - > clang-7
+Ubuntu1804DebugClang-7 maps to - > clang-7
+Ubuntu1804DebugClang-7Snmalloc maps to - > clang-7
+Ubuntu1804DebugClang-7SnmallocE2E maps to - > clang-7
+Ubuntu1804RelWithDebInfoClang-7 maps to - > clang-7
+Ubuntu1804RelWithDebInfoClang-7Snmalloc maps to - > clang-7
+Ubuntu1804RelWithDebInfoClang-7SnmallocE2E maps to - > clang-7
+Ubuntu1804ReleaseClang-7 maps to - > clang-7
+Ubuntu1804ReleaseClang-7Snmalloc maps to - > clang-7
+Ubuntu1804ReleaseClang-7SnmallocE2E maps to - > clang-7
+Rhel8BuildClang-8 maps to - > clang-8
+Rhel8DebugClang-8 maps to - > clang-8
+Rhel8DebugClang-8Snmalloc maps to - > clang-8
+Rhel8DebugClang-8SnmallocE2E maps to - > clang-8
+Rhel8ReleaseClang-8 maps to - > clang-8
+Rhel8ReleaseClang-8Snmalloc maps to - > clang-8
+Rhel8ReleaseClang-8SnmallocE2E maps to - > clang-8
+Ubuntu1604BuildClang-7 maps to - > 1604
+Ubuntu1604BuildGCC maps to - > 1604
+Ubuntu1604DebugClang-7 maps to - > 1604
+Ubuntu1604DebugClang-7Snmalloc maps to - > 1604
+Ubuntu1604DebugClang-7SnmallocE2E maps to - > 1604
+Ubuntu1604DebugGCC maps to - > 1604
+Ubuntu1604DebugGCCSnmalloc maps to - > 1604
+Ubuntu1604DebugGCCSnmallocE2E maps to - > 1604
+Ubuntu1604RelWithDebInfoClang-7 maps to - > 1604
+Ubuntu1604RelWithDebInfoClang-7Snmalloc maps to - > 1604
+Ubuntu1604RelWithDebInfoClang-7SnmallocE2E maps to - > 1604
+Ubuntu1604RelWithDebInfoGCC maps to - > 1604
+Ubuntu1604RelWithDebInfoGCCSnmalloc maps to - > 1604
+Ubuntu1604RelWithDebInfoGCCSnmallocE2E maps to - > 1604
+Ubuntu1604ReleaseClang-7 maps to - > 1604
+Ubuntu1604ReleaseClang-7Snmalloc maps to - > 1604
+Ubuntu1604ReleaseClang-7SnmallocE2E maps to - > 1604
+Ubuntu1604ReleaseGCC maps to - > 1604
+Ubuntu1604ReleaseGCCSnmalloc maps to - > 1604
+Ubuntu1604ReleaseGCCSnmallocE2E maps to - > 1604
+HostVerifyDeb16042019 maps to - > 1604
+HostVerifyRel16042019 maps to - > 1604
+LinuxElfDeb16042019 maps to - > 1604
+LinuxElfRel16042019 maps to - > 1604
+HostVerifyDeb18042019 maps to - > 1804
+HostVerifyRel18042019 maps to - > 1804
+LinuxElfDeb18042019 maps to - > 1804
+LinuxElfRel18042019 maps to - > 1804
+Ubuntu1804BuildClang-7 maps to - > 1804
+Ubuntu1804BuildGCC maps to - > 1804
+Ubuntu1804DebugClang-7 maps to - > 1804
+Ubuntu1804DebugClang-7Snmalloc maps to - > 1804
+Ubuntu1804DebugClang-7SnmallocE2E maps to - > 1804
+Ubuntu1804DebugGCC maps to - > 1804
+Ubuntu1804DebugGCCSnmalloc maps to - > 1804
+Ubuntu1804RelWithDebInfoClang-7 maps to - > 1804
+Ubuntu1804RelWithDebInfoClang-7Snmalloc maps to - > 1804
+Ubuntu1804RelWithDebInfoClang-7SnmallocE2E maps to - > 1804
+Ubuntu1804RelWithDebInfoGCC maps to - > 1804
+Ubuntu1804RelWithDebInfoGCCSnmalloc maps to - > 1804
+Ubuntu1804RelWithDebInfoGCCSnmallocE2E maps to - > 1804
+Ubuntu1804ReleaseClang-7 maps to - > 1804
+Ubuntu1804ReleaseClang-7Snmalloc maps to - > 1804
+Ubuntu1804ReleaseClang-7SnmallocE2E maps to - > 1804
+Ubuntu1804ReleaseGCC maps to - > 1804
+Ubuntu1804ReleaseGCCSnmalloc maps to - > 1804
+Ubuntu1804ReleaseGCCSnmallocE2E maps to - > 1804
+Rhel8BuildClang-8 maps to - > 8
+Rhel8BuildGCC maps to - > 8
+Rhel8DebugClang-8 maps to - > 8
+Rhel8DebugClang-8Snmalloc maps to - > 8
+Rhel8DebugClang-8SnmallocE2E maps to - > 8
+Rhel8DebugGCC maps to - > 8
+Rhel8DebugGCCSnmalloc maps to - > 8
+Rhel8RelWithDebInfoGCC maps to - > 8
+Rhel8RelWithDebInfoGCCSnmalloc maps to - > 8
+Rhel8RelWithDebInfoGCCSnmallocE2E maps to - > 8
+Rhel8ReleaseClang-8 maps to - > 8
+Rhel8ReleaseClang-8Snmalloc maps to - > 8
+Rhel8ReleaseClang-8SnmallocE2E maps to - > 8
+Rhel8ReleaseGCC maps to - > 8
+Rhel8ReleaseGCCSnmalloc maps to - > 8
+Rhel8ReleaseGCCSnmallocE2E maps to - > 8
+generating gperftools postsubmits ping template
+generating test-infra gperftools postsubmits ping template
+generating gperftools postsubmits ping template
+generating gperftools periodics ping template
+generating test-infra gperftools periodics ping template
+generating gperftools periodics ping template
+generating gperftools pre-submits ping template
+generating test-infra gperftools pre-submits ping template
+generating gperftools pre-submits ping template
+generating oeedger8r-cpp postsubmits ping template
+generating test-infra oeedger8r-cpp postsubmits ping template
+generating oeedger8r-cpp postsubmits ping template
+generating oeedger8r-cpp postsubmits Rhel8BuildClang-8 template
+generating test-infra oeedger8r-cpp postsubmits Rhel8BuildClang-8 template
+generating oeedger8r-cpp postsubmits Rhel8BuildClang-8 template
+generating oeedger8r-cpp postsubmits Rhel8BuildGCC template
+generating test-infra oeedger8r-cpp postsubmits Rhel8BuildGCC template
+generating oeedger8r-cpp postsubmits Rhel8BuildGCC template
+generating oeedger8r-cpp postsubmits Ubuntu1604BuildClang-7 template
+generating test-infra oeedger8r-cpp postsubmits Ubuntu1604BuildClang-7 template
+generating oeedger8r-cpp postsubmits Ubuntu1604BuildClang-7 template
+generating oeedger8r-cpp postsubmits Ubuntu1604BuildGCC template
+generating test-infra oeedger8r-cpp postsubmits Ubuntu1604BuildGCC template
+generating oeedger8r-cpp postsubmits Ubuntu1604BuildGCC template
+generating oeedger8r-cpp postsubmits Ubuntu1804BuildClang-7 template
+generating test-infra oeedger8r-cpp postsubmits Ubuntu1804BuildClang-7 template
+generating oeedger8r-cpp postsubmits Ubuntu1804BuildClang-7 template
+generating oeedger8r-cpp postsubmits Ubuntu1804BuildGCC template
+generating test-infra oeedger8r-cpp postsubmits Ubuntu1804BuildGCC template
+generating oeedger8r-cpp postsubmits Ubuntu1804BuildGCC template
+generating oeedger8r-cpp postsubmits Windows2016Build template
+generating test-infra oeedger8r-cpp postsubmits Windows2016Build template
+generating oeedger8r-cpp postsubmits Windows2016Build template
+generating oeedger8r-cpp postsubmits Windows2019Build template
+generating test-infra oeedger8r-cpp postsubmits Windows2019Build template
+generating oeedger8r-cpp postsubmits Windows2019Build template
+generating oeedger8r-cpp periodics ping template
+generating test-infra oeedger8r-cpp periodics ping template
+generating oeedger8r-cpp periodics ping template
+generating oeedger8r-cpp periodics Rhel8BuildClang-8 template
+generating test-infra oeedger8r-cpp periodics Rhel8BuildClang-8 template
+generating oeedger8r-cpp periodics Rhel8BuildClang-8 template
+generating oeedger8r-cpp periodics Rhel8BuildGCC template
+generating test-infra oeedger8r-cpp periodics Rhel8BuildGCC template
+generating oeedger8r-cpp periodics Rhel8BuildGCC template
+generating oeedger8r-cpp periodics Ubuntu1604BuildClang-7 template
+generating test-infra oeedger8r-cpp periodics Ubuntu1604BuildClang-7 template
+generating oeedger8r-cpp periodics Ubuntu1604BuildClang-7 template
+generating oeedger8r-cpp periodics Ubuntu1604BuildGCC template
+generating test-infra oeedger8r-cpp periodics Ubuntu1604BuildGCC template
+generating oeedger8r-cpp periodics Ubuntu1604BuildGCC template
+generating oeedger8r-cpp periodics Ubuntu1804BuildClang-7 template
+generating test-infra oeedger8r-cpp periodics Ubuntu1804BuildClang-7 template
+generating oeedger8r-cpp periodics Ubuntu1804BuildClang-7 template
+generating oeedger8r-cpp periodics Ubuntu1804BuildGCC template
+generating test-infra oeedger8r-cpp periodics Ubuntu1804BuildGCC template
+generating oeedger8r-cpp periodics Ubuntu1804BuildGCC template
+generating oeedger8r-cpp periodics Windows2016Build template
+generating test-infra oeedger8r-cpp periodics Windows2016Build template
+generating oeedger8r-cpp periodics Windows2016Build template
+generating oeedger8r-cpp periodics Windows2019Build template
+generating test-infra oeedger8r-cpp periodics Windows2019Build template
+generating oeedger8r-cpp periodics Windows2019Build template
+generating oeedger8r-cpp pre-submits ping template
+generating test-infra oeedger8r-cpp pre-submits ping template
+generating oeedger8r-cpp pre-submits ping template
+generating oeedger8r-cpp pre-submits Rhel8BuildClang-8 template
+generating test-infra oeedger8r-cpp pre-submits Rhel8BuildClang-8 template
+generating oeedger8r-cpp pre-submits Rhel8BuildClang-8 template
+generating oeedger8r-cpp pre-submits Rhel8BuildGCC template
+generating test-infra oeedger8r-cpp pre-submits Rhel8BuildGCC template
+generating oeedger8r-cpp pre-submits Rhel8BuildGCC template
+generating oeedger8r-cpp pre-submits Ubuntu1604BuildClang-7 template
+generating test-infra oeedger8r-cpp pre-submits Ubuntu1604BuildClang-7 template
+generating oeedger8r-cpp pre-submits Ubuntu1604BuildClang-7 template
+generating oeedger8r-cpp pre-submits Ubuntu1604BuildGCC template
+generating test-infra oeedger8r-cpp pre-submits Ubuntu1604BuildGCC template
+generating oeedger8r-cpp pre-submits Ubuntu1604BuildGCC template
+generating oeedger8r-cpp pre-submits Ubuntu1804BuildClang-7 template
+generating test-infra oeedger8r-cpp pre-submits Ubuntu1804BuildClang-7 template
+generating oeedger8r-cpp pre-submits Ubuntu1804BuildClang-7 template
+generating oeedger8r-cpp pre-submits Ubuntu1804BuildGCC template
+generating test-infra oeedger8r-cpp pre-submits Ubuntu1804BuildGCC template
+generating oeedger8r-cpp pre-submits Ubuntu1804BuildGCC template
+generating oeedger8r-cpp pre-submits Windows2016Build template
+generating test-infra oeedger8r-cpp pre-submits Windows2016Build template
+generating oeedger8r-cpp pre-submits Windows2016Build template
+generating oeedger8r-cpp pre-submits Windows2019Build template
+generating test-infra oeedger8r-cpp pre-submits Windows2019Build template
+generating oeedger8r-cpp pre-submits Windows2019Build template
+generating openenclave postsubmits ping template
+generating test-infra openenclave postsubmits ping template
+generating openenclave postsubmits ping template
+generating openenclave postsubmits HostVerifyDeb16042019 template
+generating test-infra openenclave postsubmits HostVerifyDeb16042019 template
+generating openenclave postsubmits HostVerifyDeb16042019 template
+generating openenclave postsubmits HostVerifyDeb18042019 template
+generating test-infra openenclave postsubmits HostVerifyDeb18042019 template
+generating openenclave postsubmits HostVerifyDeb18042019 template
+generating openenclave postsubmits HostVerifyRel16042019 template
+generating test-infra openenclave postsubmits HostVerifyRel16042019 template
+generating openenclave postsubmits HostVerifyRel16042019 template
+generating openenclave postsubmits HostVerifyRel18042019 template
+generating test-infra openenclave postsubmits HostVerifyRel18042019 template
+generating openenclave postsubmits HostVerifyRel18042019 template
+generating openenclave postsubmits LinuxElfDeb16042019 template
+generating test-infra openenclave postsubmits LinuxElfDeb16042019 template
+generating openenclave postsubmits LinuxElfDeb16042019 template
+generating openenclave postsubmits LinuxElfDeb18042019 template
+generating test-infra openenclave postsubmits LinuxElfDeb18042019 template
+generating openenclave postsubmits LinuxElfDeb18042019 template
+generating openenclave postsubmits LinuxElfRel16042019 template
+generating test-infra openenclave postsubmits LinuxElfRel16042019 template
+generating openenclave postsubmits LinuxElfRel16042019 template
+generating openenclave postsubmits LinuxElfRel18042019 template
+generating test-infra openenclave postsubmits LinuxElfRel18042019 template
+generating openenclave postsubmits LinuxElfRel18042019 template
+generating openenclave postsubmits Rhel8DebugClang-8 template
+generating test-infra openenclave postsubmits Rhel8DebugClang-8 template
+generating openenclave postsubmits Rhel8DebugClang-8 template
+generating openenclave postsubmits Rhel8DebugClang-8Snmalloc template
+generating test-infra openenclave postsubmits Rhel8DebugClang-8Snmalloc template
+generating openenclave postsubmits Rhel8DebugClang-8Snmalloc template
+generating openenclave postsubmits Rhel8DebugClang-8SnmallocE2E template
+generating test-infra openenclave postsubmits Rhel8DebugClang-8SnmallocE2E template
+generating openenclave postsubmits Rhel8DebugClang-8SnmallocE2E template
+generating openenclave postsubmits Rhel8DebugGCC template
+generating test-infra openenclave postsubmits Rhel8DebugGCC template
+generating openenclave postsubmits Rhel8DebugGCC template
+generating openenclave postsubmits Rhel8DebugGCCSnmalloc template
+generating test-infra openenclave postsubmits Rhel8DebugGCCSnmalloc template
+generating openenclave postsubmits Rhel8DebugGCCSnmalloc template
+generating openenclave postsubmits Rhel8RelWithDebInfoGCC template
+generating test-infra openenclave postsubmits Rhel8RelWithDebInfoGCC template
+generating openenclave postsubmits Rhel8RelWithDebInfoGCC template
+generating openenclave postsubmits Rhel8RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave postsubmits Rhel8RelWithDebInfoGCCSnmalloc template
+generating openenclave postsubmits Rhel8RelWithDebInfoGCCSnmalloc template
+generating openenclave postsubmits Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave postsubmits Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating openenclave postsubmits Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating openenclave postsubmits Rhel8ReleaseClang-8 template
+generating test-infra openenclave postsubmits Rhel8ReleaseClang-8 template
+generating openenclave postsubmits Rhel8ReleaseClang-8 template
+generating openenclave postsubmits Rhel8ReleaseClang-8Snmalloc template
+generating test-infra openenclave postsubmits Rhel8ReleaseClang-8Snmalloc template
+generating openenclave postsubmits Rhel8ReleaseClang-8Snmalloc template
+generating openenclave postsubmits Rhel8ReleaseClang-8SnmallocE2E template
+generating test-infra openenclave postsubmits Rhel8ReleaseClang-8SnmallocE2E template
+generating openenclave postsubmits Rhel8ReleaseClang-8SnmallocE2E template
+generating openenclave postsubmits Rhel8ReleaseGCC template
+generating test-infra openenclave postsubmits Rhel8ReleaseGCC template
+generating openenclave postsubmits Rhel8ReleaseGCC template
+generating openenclave postsubmits Rhel8ReleaseGCCSnmalloc template
+generating test-infra openenclave postsubmits Rhel8ReleaseGCCSnmalloc template
+generating openenclave postsubmits Rhel8ReleaseGCCSnmalloc template
+generating openenclave postsubmits Rhel8ReleaseGCCSnmallocE2E template
+generating test-infra openenclave postsubmits Rhel8ReleaseGCCSnmallocE2E template
+generating openenclave postsubmits Rhel8ReleaseGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1604DebugClang-7 template
+generating test-infra openenclave postsubmits Ubuntu1604DebugClang-7 template
+generating openenclave postsubmits Ubuntu1604DebugClang-7 template
+generating openenclave postsubmits Ubuntu1604DebugClang-7Snmalloc template
+generating test-infra openenclave postsubmits Ubuntu1604DebugClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1604DebugClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1604DebugClang-7SnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1604DebugClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1604DebugClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1604DebugGCC template
+generating test-infra openenclave postsubmits Ubuntu1604DebugGCC template
+generating openenclave postsubmits Ubuntu1604DebugGCC template
+generating openenclave postsubmits Ubuntu1604DebugGCCSnmalloc template
+generating test-infra openenclave postsubmits Ubuntu1604DebugGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1604DebugGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1604DebugGCCSnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1604DebugGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1604DebugGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7 template
+generating test-infra openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7 template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7 template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating test-infra openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoGCC template
+generating test-infra openenclave postsubmits Ubuntu1604RelWithDebInfoGCC template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoGCC template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave postsubmits Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1604ReleaseClang-7 template
+generating test-infra openenclave postsubmits Ubuntu1604ReleaseClang-7 template
+generating openenclave postsubmits Ubuntu1604ReleaseClang-7 template
+generating openenclave postsubmits Ubuntu1604ReleaseClang-7Snmalloc template
+generating test-infra openenclave postsubmits Ubuntu1604ReleaseClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1604ReleaseClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1604ReleaseGCC template
+generating test-infra openenclave postsubmits Ubuntu1604ReleaseGCC template
+generating openenclave postsubmits Ubuntu1604ReleaseGCC template
+generating openenclave postsubmits Ubuntu1604ReleaseGCCSnmalloc template
+generating test-infra openenclave postsubmits Ubuntu1604ReleaseGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1604ReleaseGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1604ReleaseGCCSnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1604ReleaseGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1604ReleaseGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1804DebugClang-7 template
+generating test-infra openenclave postsubmits Ubuntu1804DebugClang-7 template
+generating openenclave postsubmits Ubuntu1804DebugClang-7 template
+generating openenclave postsubmits Ubuntu1804DebugClang-7Snmalloc template
+generating test-infra openenclave postsubmits Ubuntu1804DebugClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1804DebugClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1804DebugClang-7SnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1804DebugClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1804DebugClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1804DebugGCC template
+generating test-infra openenclave postsubmits Ubuntu1804DebugGCC template
+generating openenclave postsubmits Ubuntu1804DebugGCC template
+generating openenclave postsubmits Ubuntu1804DebugGCCSnmalloc template
+generating test-infra openenclave postsubmits Ubuntu1804DebugGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1804DebugGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7 template
+generating test-infra openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7 template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7 template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating test-infra openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoGCC template
+generating test-infra openenclave postsubmits Ubuntu1804RelWithDebInfoGCC template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoGCC template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave postsubmits Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1804ReleaseClang-7 template
+generating test-infra openenclave postsubmits Ubuntu1804ReleaseClang-7 template
+generating openenclave postsubmits Ubuntu1804ReleaseClang-7 template
+generating openenclave postsubmits Ubuntu1804ReleaseClang-7Snmalloc template
+generating test-infra openenclave postsubmits Ubuntu1804ReleaseClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1804ReleaseClang-7Snmalloc template
+generating openenclave postsubmits Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating openenclave postsubmits Ubuntu1804ReleaseGCC template
+generating test-infra openenclave postsubmits Ubuntu1804ReleaseGCC template
+generating openenclave postsubmits Ubuntu1804ReleaseGCC template
+generating openenclave postsubmits Ubuntu1804ReleaseGCCSnmalloc template
+generating test-infra openenclave postsubmits Ubuntu1804ReleaseGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1804ReleaseGCCSnmalloc template
+generating openenclave postsubmits Ubuntu1804ReleaseGCCSnmallocE2E template
+generating test-infra openenclave postsubmits Ubuntu1804ReleaseGCCSnmallocE2E template
+generating openenclave postsubmits Ubuntu1804ReleaseGCCSnmallocE2E template
+generating openenclave postsubmits Win2016Debug template
+generating test-infra openenclave postsubmits Win2016Debug template
+generating openenclave postsubmits Win2016Debug template
+generating openenclave postsubmits Win2016DebugSnmalloc template
+generating test-infra openenclave postsubmits Win2016DebugSnmalloc template
+generating openenclave postsubmits Win2016DebugSnmalloc template
+generating openenclave postsubmits Win2016DebugSnmallocE2E template
+generating test-infra openenclave postsubmits Win2016DebugSnmallocE2E template
+generating openenclave postsubmits Win2016DebugSnmallocE2E template
+generating openenclave postsubmits Win2016RelSnmalloc template
+generating test-infra openenclave postsubmits Win2016RelSnmalloc template
+generating openenclave postsubmits Win2016RelSnmalloc template
+generating openenclave postsubmits Win2016RelSnmallocE2E template
+generating test-infra openenclave postsubmits Win2016RelSnmallocE2E template
+generating openenclave postsubmits Win2016RelSnmallocE2E template
+generating openenclave postsubmits Win2016Release template
+generating test-infra openenclave postsubmits Win2016Release template
+generating openenclave postsubmits Win2016Release template
+generating openenclave postsubmits Win2019Debug template
+generating test-infra openenclave postsubmits Win2019Debug template
+generating openenclave postsubmits Win2019Debug template
+generating openenclave postsubmits Win2019DebugSnmalloc template
+generating test-infra openenclave postsubmits Win2019DebugSnmalloc template
+generating openenclave postsubmits Win2019DebugSnmalloc template
+generating openenclave postsubmits Win2019DebugSnmallocE2E template
+generating test-infra openenclave postsubmits Win2019DebugSnmallocE2E template
+generating openenclave postsubmits Win2019DebugSnmallocE2E template
+generating openenclave postsubmits Win2019RelSnmalloc template
+generating test-infra openenclave postsubmits Win2019RelSnmalloc template
+generating openenclave postsubmits Win2019RelSnmalloc template
+generating openenclave postsubmits Win2019RelSnmallocE2E template
+generating test-infra openenclave postsubmits Win2019RelSnmallocE2E template
+generating openenclave postsubmits Win2019RelSnmallocE2E template
+generating openenclave postsubmits Win2019Release template
+generating test-infra openenclave postsubmits Win2019Release template
+generating openenclave postsubmits Win2019Release template
+generating openenclave periodics ping template
+generating test-infra openenclave periodics ping template
+generating openenclave periodics ping template
+generating openenclave periodics HostVerifyDeb16042019 template
+generating test-infra openenclave periodics HostVerifyDeb16042019 template
+generating openenclave periodics HostVerifyDeb16042019 template
+generating openenclave periodics HostVerifyDeb18042019 template
+generating test-infra openenclave periodics HostVerifyDeb18042019 template
+generating openenclave periodics HostVerifyDeb18042019 template
+generating openenclave periodics HostVerifyRel16042019 template
+generating test-infra openenclave periodics HostVerifyRel16042019 template
+generating openenclave periodics HostVerifyRel16042019 template
+generating openenclave periodics HostVerifyRel18042019 template
+generating test-infra openenclave periodics HostVerifyRel18042019 template
+generating openenclave periodics HostVerifyRel18042019 template
+generating openenclave periodics LinuxElfDeb16042019 template
+generating test-infra openenclave periodics LinuxElfDeb16042019 template
+generating openenclave periodics LinuxElfDeb16042019 template
+generating openenclave periodics LinuxElfDeb18042019 template
+generating test-infra openenclave periodics LinuxElfDeb18042019 template
+generating openenclave periodics LinuxElfDeb18042019 template
+generating openenclave periodics LinuxElfRel16042019 template
+generating test-infra openenclave periodics LinuxElfRel16042019 template
+generating openenclave periodics LinuxElfRel16042019 template
+generating openenclave periodics LinuxElfRel18042019 template
+generating test-infra openenclave periodics LinuxElfRel18042019 template
+generating openenclave periodics LinuxElfRel18042019 template
+generating openenclave periodics Rhel8DebugClang-8 template
+generating test-infra openenclave periodics Rhel8DebugClang-8 template
+generating openenclave periodics Rhel8DebugClang-8 template
+generating openenclave periodics Rhel8DebugClang-8Snmalloc template
+generating test-infra openenclave periodics Rhel8DebugClang-8Snmalloc template
+generating openenclave periodics Rhel8DebugClang-8Snmalloc template
+generating openenclave periodics Rhel8DebugClang-8SnmallocE2E template
+generating test-infra openenclave periodics Rhel8DebugClang-8SnmallocE2E template
+generating openenclave periodics Rhel8DebugClang-8SnmallocE2E template
+generating openenclave periodics Rhel8DebugGCC template
+generating test-infra openenclave periodics Rhel8DebugGCC template
+generating openenclave periodics Rhel8DebugGCC template
+generating openenclave periodics Rhel8DebugGCCSnmalloc template
+generating test-infra openenclave periodics Rhel8DebugGCCSnmalloc template
+generating openenclave periodics Rhel8DebugGCCSnmalloc template
+generating openenclave periodics Rhel8RelWithDebInfoGCC template
+generating test-infra openenclave periodics Rhel8RelWithDebInfoGCC template
+generating openenclave periodics Rhel8RelWithDebInfoGCC template
+generating openenclave periodics Rhel8RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave periodics Rhel8RelWithDebInfoGCCSnmalloc template
+generating openenclave periodics Rhel8RelWithDebInfoGCCSnmalloc template
+generating openenclave periodics Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave periodics Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating openenclave periodics Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating openenclave periodics Rhel8ReleaseClang-8 template
+generating test-infra openenclave periodics Rhel8ReleaseClang-8 template
+generating openenclave periodics Rhel8ReleaseClang-8 template
+generating openenclave periodics Rhel8ReleaseClang-8Snmalloc template
+generating test-infra openenclave periodics Rhel8ReleaseClang-8Snmalloc template
+generating openenclave periodics Rhel8ReleaseClang-8Snmalloc template
+generating openenclave periodics Rhel8ReleaseClang-8SnmallocE2E template
+generating test-infra openenclave periodics Rhel8ReleaseClang-8SnmallocE2E template
+generating openenclave periodics Rhel8ReleaseClang-8SnmallocE2E template
+generating openenclave periodics Rhel8ReleaseGCC template
+generating test-infra openenclave periodics Rhel8ReleaseGCC template
+generating openenclave periodics Rhel8ReleaseGCC template
+generating openenclave periodics Rhel8ReleaseGCCSnmalloc template
+generating test-infra openenclave periodics Rhel8ReleaseGCCSnmalloc template
+generating openenclave periodics Rhel8ReleaseGCCSnmalloc template
+generating openenclave periodics Rhel8ReleaseGCCSnmallocE2E template
+generating test-infra openenclave periodics Rhel8ReleaseGCCSnmallocE2E template
+generating openenclave periodics Rhel8ReleaseGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1604DebugClang-7 template
+generating test-infra openenclave periodics Ubuntu1604DebugClang-7 template
+generating openenclave periodics Ubuntu1604DebugClang-7 template
+generating openenclave periodics Ubuntu1604DebugClang-7Snmalloc template
+generating test-infra openenclave periodics Ubuntu1604DebugClang-7Snmalloc template
+generating openenclave periodics Ubuntu1604DebugClang-7Snmalloc template
+generating openenclave periodics Ubuntu1604DebugClang-7SnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1604DebugClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1604DebugClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1604DebugGCC template
+generating test-infra openenclave periodics Ubuntu1604DebugGCC template
+generating openenclave periodics Ubuntu1604DebugGCC template
+generating openenclave periodics Ubuntu1604DebugGCCSnmalloc template
+generating test-infra openenclave periodics Ubuntu1604DebugGCCSnmalloc template
+generating openenclave periodics Ubuntu1604DebugGCCSnmalloc template
+generating openenclave periodics Ubuntu1604DebugGCCSnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1604DebugGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1604DebugGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1604RelWithDebInfoClang-7 template
+generating test-infra openenclave periodics Ubuntu1604RelWithDebInfoClang-7 template
+generating openenclave periodics Ubuntu1604RelWithDebInfoClang-7 template
+generating openenclave periodics Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating test-infra openenclave periodics Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating openenclave periodics Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating openenclave periodics Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1604RelWithDebInfoGCC template
+generating test-infra openenclave periodics Ubuntu1604RelWithDebInfoGCC template
+generating openenclave periodics Ubuntu1604RelWithDebInfoGCC template
+generating openenclave periodics Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave periodics Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating openenclave periodics Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating openenclave periodics Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1604ReleaseClang-7 template
+generating test-infra openenclave periodics Ubuntu1604ReleaseClang-7 template
+generating openenclave periodics Ubuntu1604ReleaseClang-7 template
+generating openenclave periodics Ubuntu1604ReleaseClang-7Snmalloc template
+generating test-infra openenclave periodics Ubuntu1604ReleaseClang-7Snmalloc template
+generating openenclave periodics Ubuntu1604ReleaseClang-7Snmalloc template
+generating openenclave periodics Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1604ReleaseGCC template
+generating test-infra openenclave periodics Ubuntu1604ReleaseGCC template
+generating openenclave periodics Ubuntu1604ReleaseGCC template
+generating openenclave periodics Ubuntu1604ReleaseGCCSnmalloc template
+generating test-infra openenclave periodics Ubuntu1604ReleaseGCCSnmalloc template
+generating openenclave periodics Ubuntu1604ReleaseGCCSnmalloc template
+generating openenclave periodics Ubuntu1604ReleaseGCCSnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1604ReleaseGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1604ReleaseGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1804DebugClang-7 template
+generating test-infra openenclave periodics Ubuntu1804DebugClang-7 template
+generating openenclave periodics Ubuntu1804DebugClang-7 template
+generating openenclave periodics Ubuntu1804DebugClang-7Snmalloc template
+generating test-infra openenclave periodics Ubuntu1804DebugClang-7Snmalloc template
+generating openenclave periodics Ubuntu1804DebugClang-7Snmalloc template
+generating openenclave periodics Ubuntu1804DebugClang-7SnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1804DebugClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1804DebugClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1804DebugGCC template
+generating test-infra openenclave periodics Ubuntu1804DebugGCC template
+generating openenclave periodics Ubuntu1804DebugGCC template
+generating openenclave periodics Ubuntu1804DebugGCCSnmalloc template
+generating test-infra openenclave periodics Ubuntu1804DebugGCCSnmalloc template
+generating openenclave periodics Ubuntu1804DebugGCCSnmalloc template
+generating openenclave periodics Ubuntu1804RelWithDebInfoClang-7 template
+generating test-infra openenclave periodics Ubuntu1804RelWithDebInfoClang-7 template
+generating openenclave periodics Ubuntu1804RelWithDebInfoClang-7 template
+generating openenclave periodics Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating test-infra openenclave periodics Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating openenclave periodics Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating openenclave periodics Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1804RelWithDebInfoGCC template
+generating test-infra openenclave periodics Ubuntu1804RelWithDebInfoGCC template
+generating openenclave periodics Ubuntu1804RelWithDebInfoGCC template
+generating openenclave periodics Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave periodics Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating openenclave periodics Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating openenclave periodics Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1804ReleaseClang-7 template
+generating test-infra openenclave periodics Ubuntu1804ReleaseClang-7 template
+generating openenclave periodics Ubuntu1804ReleaseClang-7 template
+generating openenclave periodics Ubuntu1804ReleaseClang-7Snmalloc template
+generating test-infra openenclave periodics Ubuntu1804ReleaseClang-7Snmalloc template
+generating openenclave periodics Ubuntu1804ReleaseClang-7Snmalloc template
+generating openenclave periodics Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating openenclave periodics Ubuntu1804ReleaseGCC template
+generating test-infra openenclave periodics Ubuntu1804ReleaseGCC template
+generating openenclave periodics Ubuntu1804ReleaseGCC template
+generating openenclave periodics Ubuntu1804ReleaseGCCSnmalloc template
+generating test-infra openenclave periodics Ubuntu1804ReleaseGCCSnmalloc template
+generating openenclave periodics Ubuntu1804ReleaseGCCSnmalloc template
+generating openenclave periodics Ubuntu1804ReleaseGCCSnmallocE2E template
+generating test-infra openenclave periodics Ubuntu1804ReleaseGCCSnmallocE2E template
+generating openenclave periodics Ubuntu1804ReleaseGCCSnmallocE2E template
+generating openenclave periodics Win2016Debug template
+generating test-infra openenclave periodics Win2016Debug template
+generating openenclave periodics Win2016Debug template
+generating openenclave periodics Win2016DebugSnmalloc template
+generating test-infra openenclave periodics Win2016DebugSnmalloc template
+generating openenclave periodics Win2016DebugSnmalloc template
+generating openenclave periodics Win2016DebugSnmallocE2E template
+generating test-infra openenclave periodics Win2016DebugSnmallocE2E template
+generating openenclave periodics Win2016DebugSnmallocE2E template
+generating openenclave periodics Win2016RelSnmalloc template
+generating test-infra openenclave periodics Win2016RelSnmalloc template
+generating openenclave periodics Win2016RelSnmalloc template
+generating openenclave periodics Win2016RelSnmallocE2E template
+generating test-infra openenclave periodics Win2016RelSnmallocE2E template
+generating openenclave periodics Win2016RelSnmallocE2E template
+generating openenclave periodics Win2016Release template
+generating test-infra openenclave periodics Win2016Release template
+generating openenclave periodics Win2016Release template
+generating openenclave periodics Win2019Debug template
+generating test-infra openenclave periodics Win2019Debug template
+generating openenclave periodics Win2019Debug template
+generating openenclave periodics Win2019DebugSnmalloc template
+generating test-infra openenclave periodics Win2019DebugSnmalloc template
+generating openenclave periodics Win2019DebugSnmalloc template
+generating openenclave periodics Win2019DebugSnmallocE2E template
+generating test-infra openenclave periodics Win2019DebugSnmallocE2E template
+generating openenclave periodics Win2019DebugSnmallocE2E template
+generating openenclave periodics Win2019RelSnmalloc template
+generating test-infra openenclave periodics Win2019RelSnmalloc template
+generating openenclave periodics Win2019RelSnmalloc template
+generating openenclave periodics Win2019RelSnmallocE2E template
+generating test-infra openenclave periodics Win2019RelSnmallocE2E template
+generating openenclave periodics Win2019RelSnmallocE2E template
+generating openenclave periodics Win2019Release template
+generating test-infra openenclave periodics Win2019Release template
+generating openenclave periodics Win2019Release template
+generating openenclave pre-submits ping template
+generating test-infra openenclave pre-submits ping template
+generating openenclave pre-submits ping template
+generating openenclave pre-submits HostVerifyDeb16042019 template
+generating test-infra openenclave pre-submits HostVerifyDeb16042019 template
+generating openenclave pre-submits HostVerifyDeb16042019 template
+generating openenclave pre-submits HostVerifyDeb18042019 template
+generating test-infra openenclave pre-submits HostVerifyDeb18042019 template
+generating openenclave pre-submits HostVerifyDeb18042019 template
+generating openenclave pre-submits HostVerifyRel16042019 template
+generating test-infra openenclave pre-submits HostVerifyRel16042019 template
+generating openenclave pre-submits HostVerifyRel16042019 template
+generating openenclave pre-submits HostVerifyRel18042019 template
+generating test-infra openenclave pre-submits HostVerifyRel18042019 template
+generating openenclave pre-submits HostVerifyRel18042019 template
+generating openenclave pre-submits LinuxElfDeb16042019 template
+generating test-infra openenclave pre-submits LinuxElfDeb16042019 template
+generating openenclave pre-submits LinuxElfDeb16042019 template
+generating openenclave pre-submits LinuxElfDeb18042019 template
+generating test-infra openenclave pre-submits LinuxElfDeb18042019 template
+generating openenclave pre-submits LinuxElfDeb18042019 template
+generating openenclave pre-submits LinuxElfRel16042019 template
+generating test-infra openenclave pre-submits LinuxElfRel16042019 template
+generating openenclave pre-submits LinuxElfRel16042019 template
+generating openenclave pre-submits LinuxElfRel18042019 template
+generating test-infra openenclave pre-submits LinuxElfRel18042019 template
+generating openenclave pre-submits LinuxElfRel18042019 template
+generating openenclave pre-submits Rhel8DebugClang-8 template
+generating test-infra openenclave pre-submits Rhel8DebugClang-8 template
+generating openenclave pre-submits Rhel8DebugClang-8 template
+generating openenclave pre-submits Rhel8DebugClang-8Snmalloc template
+generating test-infra openenclave pre-submits Rhel8DebugClang-8Snmalloc template
+generating openenclave pre-submits Rhel8DebugClang-8Snmalloc template
+generating openenclave pre-submits Rhel8DebugClang-8SnmallocE2E template
+generating test-infra openenclave pre-submits Rhel8DebugClang-8SnmallocE2E template
+generating openenclave pre-submits Rhel8DebugClang-8SnmallocE2E template
+generating openenclave pre-submits Rhel8DebugGCC template
+generating test-infra openenclave pre-submits Rhel8DebugGCC template
+generating openenclave pre-submits Rhel8DebugGCC template
+generating openenclave pre-submits Rhel8DebugGCCSnmalloc template
+generating test-infra openenclave pre-submits Rhel8DebugGCCSnmalloc template
+generating openenclave pre-submits Rhel8DebugGCCSnmalloc template
+generating openenclave pre-submits Rhel8RelWithDebInfoGCC template
+generating test-infra openenclave pre-submits Rhel8RelWithDebInfoGCC template
+generating openenclave pre-submits Rhel8RelWithDebInfoGCC template
+generating openenclave pre-submits Rhel8RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave pre-submits Rhel8RelWithDebInfoGCCSnmalloc template
+generating openenclave pre-submits Rhel8RelWithDebInfoGCCSnmalloc template
+generating openenclave pre-submits Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave pre-submits Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating openenclave pre-submits Rhel8RelWithDebInfoGCCSnmallocE2E template
+generating openenclave pre-submits Rhel8ReleaseClang-8 template
+generating test-infra openenclave pre-submits Rhel8ReleaseClang-8 template
+generating openenclave pre-submits Rhel8ReleaseClang-8 template
+generating openenclave pre-submits Rhel8ReleaseClang-8Snmalloc template
+generating test-infra openenclave pre-submits Rhel8ReleaseClang-8Snmalloc template
+generating openenclave pre-submits Rhel8ReleaseClang-8Snmalloc template
+generating openenclave pre-submits Rhel8ReleaseClang-8SnmallocE2E template
+generating test-infra openenclave pre-submits Rhel8ReleaseClang-8SnmallocE2E template
+generating openenclave pre-submits Rhel8ReleaseClang-8SnmallocE2E template
+generating openenclave pre-submits Rhel8ReleaseGCC template
+generating test-infra openenclave pre-submits Rhel8ReleaseGCC template
+generating openenclave pre-submits Rhel8ReleaseGCC template
+generating openenclave pre-submits Rhel8ReleaseGCCSnmalloc template
+generating test-infra openenclave pre-submits Rhel8ReleaseGCCSnmalloc template
+generating openenclave pre-submits Rhel8ReleaseGCCSnmalloc template
+generating openenclave pre-submits Rhel8ReleaseGCCSnmallocE2E template
+generating test-infra openenclave pre-submits Rhel8ReleaseGCCSnmallocE2E template
+generating openenclave pre-submits Rhel8ReleaseGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1604DebugClang-7 template
+generating test-infra openenclave pre-submits Ubuntu1604DebugClang-7 template
+generating openenclave pre-submits Ubuntu1604DebugClang-7 template
+generating openenclave pre-submits Ubuntu1604DebugClang-7Snmalloc template
+generating test-infra openenclave pre-submits Ubuntu1604DebugClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1604DebugClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1604DebugClang-7SnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1604DebugClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1604DebugClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1604DebugGCC template
+generating test-infra openenclave pre-submits Ubuntu1604DebugGCC template
+generating openenclave pre-submits Ubuntu1604DebugGCC template
+generating openenclave pre-submits Ubuntu1604DebugGCCSnmalloc template
+generating test-infra openenclave pre-submits Ubuntu1604DebugGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1604DebugGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1604DebugGCCSnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1604DebugGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1604DebugGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7 template
+generating test-infra openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7 template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7 template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating test-infra openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoGCC template
+generating test-infra openenclave pre-submits Ubuntu1604RelWithDebInfoGCC template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoGCC template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave pre-submits Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1604RelWithDebInfoGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1604ReleaseClang-7 template
+generating test-infra openenclave pre-submits Ubuntu1604ReleaseClang-7 template
+generating openenclave pre-submits Ubuntu1604ReleaseClang-7 template
+generating openenclave pre-submits Ubuntu1604ReleaseClang-7Snmalloc template
+generating test-infra openenclave pre-submits Ubuntu1604ReleaseClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1604ReleaseClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1604ReleaseClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1604ReleaseGCC template
+generating test-infra openenclave pre-submits Ubuntu1604ReleaseGCC template
+generating openenclave pre-submits Ubuntu1604ReleaseGCC template
+generating openenclave pre-submits Ubuntu1604ReleaseGCCSnmalloc template
+generating test-infra openenclave pre-submits Ubuntu1604ReleaseGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1604ReleaseGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1604ReleaseGCCSnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1604ReleaseGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1604ReleaseGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1804DebugClang-7 template
+generating test-infra openenclave pre-submits Ubuntu1804DebugClang-7 template
+generating openenclave pre-submits Ubuntu1804DebugClang-7 template
+generating openenclave pre-submits Ubuntu1804DebugClang-7Snmalloc template
+generating test-infra openenclave pre-submits Ubuntu1804DebugClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1804DebugClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1804DebugClang-7SnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1804DebugClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1804DebugClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1804DebugGCC template
+generating test-infra openenclave pre-submits Ubuntu1804DebugGCC template
+generating openenclave pre-submits Ubuntu1804DebugGCC template
+generating openenclave pre-submits Ubuntu1804DebugGCCSnmalloc template
+generating test-infra openenclave pre-submits Ubuntu1804DebugGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1804DebugGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7 template
+generating test-infra openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7 template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7 template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating test-infra openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoGCC template
+generating test-infra openenclave pre-submits Ubuntu1804RelWithDebInfoGCC template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoGCC template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating test-infra openenclave pre-submits Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1804RelWithDebInfoGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1804ReleaseClang-7 template
+generating test-infra openenclave pre-submits Ubuntu1804ReleaseClang-7 template
+generating openenclave pre-submits Ubuntu1804ReleaseClang-7 template
+generating openenclave pre-submits Ubuntu1804ReleaseClang-7Snmalloc template
+generating test-infra openenclave pre-submits Ubuntu1804ReleaseClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1804ReleaseClang-7Snmalloc template
+generating openenclave pre-submits Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1804ReleaseClang-7SnmallocE2E template
+generating openenclave pre-submits Ubuntu1804ReleaseGCC template
+generating test-infra openenclave pre-submits Ubuntu1804ReleaseGCC template
+generating openenclave pre-submits Ubuntu1804ReleaseGCC template
+generating openenclave pre-submits Ubuntu1804ReleaseGCCSnmalloc template
+generating test-infra openenclave pre-submits Ubuntu1804ReleaseGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1804ReleaseGCCSnmalloc template
+generating openenclave pre-submits Ubuntu1804ReleaseGCCSnmallocE2E template
+generating test-infra openenclave pre-submits Ubuntu1804ReleaseGCCSnmallocE2E template
+generating openenclave pre-submits Ubuntu1804ReleaseGCCSnmallocE2E template
+generating openenclave pre-submits Win2016Debug template
+generating test-infra openenclave pre-submits Win2016Debug template
+generating openenclave pre-submits Win2016Debug template
+generating openenclave pre-submits Win2016DebugSnmalloc template
+generating test-infra openenclave pre-submits Win2016DebugSnmalloc template
+generating openenclave pre-submits Win2016DebugSnmalloc template
+generating openenclave pre-submits Win2016DebugSnmallocE2E template
+generating test-infra openenclave pre-submits Win2016DebugSnmallocE2E template
+generating openenclave pre-submits Win2016DebugSnmallocE2E template
+generating openenclave pre-submits Win2016RelSnmalloc template
+generating test-infra openenclave pre-submits Win2016RelSnmalloc template
+generating openenclave pre-submits Win2016RelSnmalloc template
+generating openenclave pre-submits Win2016RelSnmallocE2E template
+generating test-infra openenclave pre-submits Win2016RelSnmallocE2E template
+generating openenclave pre-submits Win2016RelSnmallocE2E template
+generating openenclave pre-submits Win2016Release template
+generating test-infra openenclave pre-submits Win2016Release template
+generating openenclave pre-submits Win2016Release template
+generating openenclave pre-submits Win2019Debug template
+generating test-infra openenclave pre-submits Win2019Debug template
+generating openenclave pre-submits Win2019Debug template
+generating openenclave pre-submits Win2019DebugSnmalloc template
+generating test-infra openenclave pre-submits Win2019DebugSnmalloc template
+generating openenclave pre-submits Win2019DebugSnmalloc template
+generating openenclave pre-submits Win2019DebugSnmallocE2E template
+generating test-infra openenclave pre-submits Win2019DebugSnmallocE2E template
+generating openenclave pre-submits Win2019DebugSnmallocE2E template
+generating openenclave pre-submits Win2019RelSnmalloc template
+generating test-infra openenclave pre-submits Win2019RelSnmalloc template
+generating openenclave pre-submits Win2019RelSnmalloc template
+generating openenclave pre-submits Win2019RelSnmallocE2E template
+generating test-infra openenclave pre-submits Win2019RelSnmallocE2E template
+generating openenclave pre-submits Win2019RelSnmallocE2E template
+generating openenclave pre-submits Win2019Release template
+generating test-infra openenclave pre-submits Win2019Release template
+generating openenclave pre-submits Win2019Release template
+generating openenclave-build postsubmits ping template
+generating test-infra openenclave-build postsubmits ping template
+generating openenclave-build postsubmits ping template
+generating openenclave-build periodics ping template
+generating test-infra openenclave-build periodics ping template
+generating openenclave-build periodics ping template
+generating openenclave-build pre-submits ping template
+generating test-infra openenclave-build pre-submits ping template
+generating openenclave-build pre-submits ping template
+generating openenclave-ci postsubmits ping template
+generating test-infra openenclave-ci postsubmits ping template
+generating openenclave-ci postsubmits ping template
+generating openenclave-ci periodics ping template
+generating test-infra openenclave-ci periodics ping template
+generating openenclave-ci periodics ping template
+generating openenclave-ci pre-submits ping template
+generating test-infra openenclave-ci pre-submits ping template
+generating openenclave-ci pre-submits ping template
+generating openenclave-curl postsubmits ping template
+generating test-infra openenclave-curl postsubmits ping template
+generating openenclave-curl postsubmits ping template
+generating openenclave-curl postsubmits Ubuntu1604BuildClang-7 template
+generating test-infra openenclave-curl postsubmits Ubuntu1604BuildClang-7 template
+generating openenclave-curl postsubmits Ubuntu1604BuildClang-7 template
+generating openenclave-curl postsubmits Ubuntu1804BuildClang-7 template
+generating test-infra openenclave-curl postsubmits Ubuntu1804BuildClang-7 template
+generating openenclave-curl postsubmits Ubuntu1804BuildClang-7 template
+generating openenclave-curl periodics ping template
+generating test-infra openenclave-curl periodics ping template
+generating openenclave-curl periodics ping template
+generating openenclave-curl periodics Ubuntu1604BuildClang-7 template
+generating test-infra openenclave-curl periodics Ubuntu1604BuildClang-7 template
+generating openenclave-curl periodics Ubuntu1604BuildClang-7 template
+generating openenclave-curl periodics Ubuntu1804BuildClang-7 template
+generating test-infra openenclave-curl periodics Ubuntu1804BuildClang-7 template
+generating openenclave-curl periodics Ubuntu1804BuildClang-7 template
+generating openenclave-curl pre-submits ping template
+generating test-infra openenclave-curl pre-submits ping template
+generating openenclave-curl pre-submits ping template
+generating openenclave-curl pre-submits Ubuntu1604BuildClang-7 template
+generating test-infra openenclave-curl pre-submits Ubuntu1604BuildClang-7 template
+generating openenclave-curl pre-submits Ubuntu1604BuildClang-7 template
+generating openenclave-curl pre-submits Ubuntu1804BuildClang-7 template
+generating test-infra openenclave-curl pre-submits Ubuntu1804BuildClang-7 template
+generating openenclave-curl pre-submits Ubuntu1804BuildClang-7 template
+generating openenclave-mbedtls postsubmits ping template
+generating test-infra openenclave-mbedtls postsubmits ping template
+generating openenclave-mbedtls postsubmits ping template
+generating openenclave-mbedtls postsubmits Rhel8BuildClang-8 template
+generating test-infra openenclave-mbedtls postsubmits Rhel8BuildClang-8 template
+generating openenclave-mbedtls postsubmits Rhel8BuildClang-8 template
+generating openenclave-mbedtls postsubmits Rhel8BuildGCC template
+generating test-infra openenclave-mbedtls postsubmits Rhel8BuildGCC template
+generating openenclave-mbedtls postsubmits Rhel8BuildGCC template
+generating openenclave-mbedtls postsubmits Ubuntu1604BuildClang-7 template
+generating test-infra openenclave-mbedtls postsubmits Ubuntu1604BuildClang-7 template
+generating openenclave-mbedtls postsubmits Ubuntu1604BuildClang-7 template
+generating openenclave-mbedtls postsubmits Ubuntu1604BuildGCC template
+generating test-infra openenclave-mbedtls postsubmits Ubuntu1604BuildGCC template
+generating openenclave-mbedtls postsubmits Ubuntu1604BuildGCC template
+generating openenclave-mbedtls postsubmits Ubuntu1804BuildClang-7 template
+generating test-infra openenclave-mbedtls postsubmits Ubuntu1804BuildClang-7 template
+generating openenclave-mbedtls postsubmits Ubuntu1804BuildClang-7 template
+generating openenclave-mbedtls postsubmits Ubuntu1804BuildGCC template
+generating test-infra openenclave-mbedtls postsubmits Ubuntu1804BuildGCC template
+generating openenclave-mbedtls postsubmits Ubuntu1804BuildGCC template
+generating openenclave-mbedtls postsubmits Windows2016Build template
+generating test-infra openenclave-mbedtls postsubmits Windows2016Build template
+generating openenclave-mbedtls postsubmits Windows2016Build template
+generating openenclave-mbedtls postsubmits Windows2019Build template
+generating test-infra openenclave-mbedtls postsubmits Windows2019Build template
+generating openenclave-mbedtls postsubmits Windows2019Build template
+generating openenclave-mbedtls periodics ping template
+generating test-infra openenclave-mbedtls periodics ping template
+generating openenclave-mbedtls periodics ping template
+generating openenclave-mbedtls periodics Rhel8BuildClang-8 template
+generating test-infra openenclave-mbedtls periodics Rhel8BuildClang-8 template
+generating openenclave-mbedtls periodics Rhel8BuildClang-8 template
+generating openenclave-mbedtls periodics Rhel8BuildGCC template
+generating test-infra openenclave-mbedtls periodics Rhel8BuildGCC template
+generating openenclave-mbedtls periodics Rhel8BuildGCC template
+generating openenclave-mbedtls periodics Ubuntu1604BuildClang-7 template
+generating test-infra openenclave-mbedtls periodics Ubuntu1604BuildClang-7 template
+generating openenclave-mbedtls periodics Ubuntu1604BuildClang-7 template
+generating openenclave-mbedtls periodics Ubuntu1604BuildGCC template
+generating test-infra openenclave-mbedtls periodics Ubuntu1604BuildGCC template
+generating openenclave-mbedtls periodics Ubuntu1604BuildGCC template
+generating openenclave-mbedtls periodics Ubuntu1804BuildClang-7 template
+generating test-infra openenclave-mbedtls periodics Ubuntu1804BuildClang-7 template
+generating openenclave-mbedtls periodics Ubuntu1804BuildClang-7 template
+generating openenclave-mbedtls periodics Ubuntu1804BuildGCC template
+generating test-infra openenclave-mbedtls periodics Ubuntu1804BuildGCC template
+generating openenclave-mbedtls periodics Ubuntu1804BuildGCC template
+generating openenclave-mbedtls periodics Windows2016Build template
+generating test-infra openenclave-mbedtls periodics Windows2016Build template
+generating openenclave-mbedtls periodics Windows2016Build template
+generating openenclave-mbedtls periodics Windows2019Build template
+generating test-infra openenclave-mbedtls periodics Windows2019Build template
+generating openenclave-mbedtls periodics Windows2019Build template
+generating openenclave-mbedtls pre-submits ping template
+generating test-infra openenclave-mbedtls pre-submits ping template
+generating openenclave-mbedtls pre-submits ping template
+generating openenclave-mbedtls pre-submits Rhel8BuildClang-8 template
+generating test-infra openenclave-mbedtls pre-submits Rhel8BuildClang-8 template
+generating openenclave-mbedtls pre-submits Rhel8BuildClang-8 template
+generating openenclave-mbedtls pre-submits Rhel8BuildGCC template
+generating test-infra openenclave-mbedtls pre-submits Rhel8BuildGCC template
+generating openenclave-mbedtls pre-submits Rhel8BuildGCC template
+generating openenclave-mbedtls pre-submits Ubuntu1604BuildClang-7 template
+generating test-infra openenclave-mbedtls pre-submits Ubuntu1604BuildClang-7 template
+generating openenclave-mbedtls pre-submits Ubuntu1604BuildClang-7 template
+generating openenclave-mbedtls pre-submits Ubuntu1604BuildGCC template
+generating test-infra openenclave-mbedtls pre-submits Ubuntu1604BuildGCC template
+generating openenclave-mbedtls pre-submits Ubuntu1604BuildGCC template
+generating openenclave-mbedtls pre-submits Ubuntu1804BuildClang-7 template
+generating test-infra openenclave-mbedtls pre-submits Ubuntu1804BuildClang-7 template
+generating openenclave-mbedtls pre-submits Ubuntu1804BuildClang-7 template
+generating openenclave-mbedtls pre-submits Ubuntu1804BuildGCC template
+generating test-infra openenclave-mbedtls pre-submits Ubuntu1804BuildGCC template
+generating openenclave-mbedtls pre-submits Ubuntu1804BuildGCC template
+generating openenclave-mbedtls pre-submits Windows2016Build template
+generating test-infra openenclave-mbedtls pre-submits Windows2016Build template
+generating openenclave-mbedtls pre-submits Windows2016Build template
+generating openenclave-mbedtls pre-submits Windows2019Build template
+generating test-infra openenclave-mbedtls pre-submits Windows2019Build template
+generating openenclave-mbedtls pre-submits Windows2019Build template
+generating openenclave-site postsubmits ping template
+generating test-infra openenclave-site postsubmits ping template
+generating openenclave-site postsubmits ping template
+generating openenclave-site periodics ping template
+generating test-infra openenclave-site periodics ping template
+generating openenclave-site periodics ping template
+generating openenclave-site pre-submits ping template
+generating test-infra openenclave-site pre-submits ping template
+generating openenclave-site pre-submits ping template
+generating openenclave-template postsubmits ping template
+generating test-infra openenclave-template postsubmits ping template
+generating openenclave-template postsubmits ping template
+generating openenclave-template periodics ping template
+generating test-infra openenclave-template periodics ping template
+generating openenclave-template periodics ping template
+generating openenclave-template pre-submits ping template
+generating test-infra openenclave-template pre-submits ping template
+generating openenclave-template pre-submits ping template
+generating public-talks postsubmits ping template
+generating test-infra public-talks postsubmits ping template
+generating public-talks postsubmits ping template
+generating public-talks periodics ping template
+generating test-infra public-talks periodics ping template
+generating public-talks periodics ping template
+generating public-talks pre-submits ping template
+generating test-infra public-talks pre-submits ping template
+generating public-talks pre-submits ping template

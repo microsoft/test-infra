@@ -45,7 +45,7 @@ do
     done
 done
 
-# load linuxversionmap into memory
+# load windowsversionmap into memory
 windowsversions=$(yq r $PWD/config.yml windowsversions)
 declare -A windowsversionmap
 for windowsversion in $windowsversions
@@ -55,6 +55,18 @@ do
     do
         windowsversionmap["$windowsversionkey"]="$windowsversion"
         echo "$windowsversionkey maps to - > ${windowsversionmap[$windowsversionkey]}"
+    done
+done
+
+# load snmallocmap into memory
+snmallocoptions=$(yq r $PWD/config.yml snmallocoptions)
+declare -A snmallocmap
+for snmallocoption in $snmallocoptions
+do
+    snmallocmaps=$(yq r $PWD/config.yml snmallocmap.$snmallocoption)
+    for snmallockey in $snmallocmaps
+    do
+        snmallocmap["$snmallockey"]="$snmallocoption"
     done
 done
 

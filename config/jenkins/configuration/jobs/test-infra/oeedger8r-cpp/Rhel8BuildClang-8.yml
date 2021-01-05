@@ -8,7 +8,6 @@ jobs:
             displayName("oeedger8r-cpp")
         }
         pipelineJob("test-infra/oeedger8r-cpp/Rhel8BuildClang-8") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

@@ -8,7 +8,6 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("test-infra/openenclave/HostVerifyDeb18042019") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

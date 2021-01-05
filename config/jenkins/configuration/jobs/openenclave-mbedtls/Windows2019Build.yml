@@ -5,7 +5,6 @@ jobs:
             displayName("openenclave-mbedtls")
         }
         pipelineJob("openenclave-mbedtls/Windows2019Build") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

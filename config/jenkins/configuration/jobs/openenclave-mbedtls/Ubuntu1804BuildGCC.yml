@@ -5,7 +5,6 @@ jobs:
             displayName("openenclave-mbedtls")
         }
         pipelineJob("openenclave-mbedtls/Ubuntu1804BuildGCC") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

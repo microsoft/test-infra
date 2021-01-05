@@ -5,7 +5,6 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("openenclave/Ubuntu1604DebugClang-7Snmalloc") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

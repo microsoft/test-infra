@@ -5,7 +5,6 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("openenclave/Ubuntu1604ReleaseGCCSnmalloc") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

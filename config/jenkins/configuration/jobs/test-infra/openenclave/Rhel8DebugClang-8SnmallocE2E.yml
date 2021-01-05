@@ -8,7 +8,6 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("test-infra/openenclave/Rhel8DebugClang-8SnmallocE2E") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

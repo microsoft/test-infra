@@ -8,4 +8,4 @@
           command:
             - sh
             - "-c"
-            - "sleep \$(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job ${repo}/job/${pipeline} --jenkins-user \$JENKINS_USER --url \$JENKINS_URL --jenkins-password \$JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"
+            - "sleep \$(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --wait-timer 300 --job ${repo}/job/${pipeline} --jenkins-user \$JENKINS_USER --url \$JENKINS_URL --jenkins-password \$JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"

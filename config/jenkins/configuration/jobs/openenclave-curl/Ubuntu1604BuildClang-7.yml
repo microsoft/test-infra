@@ -5,7 +5,6 @@ jobs:
             displayName("openenclave-curl")
         }
         pipelineJob("openenclave-curl/Ubuntu1604BuildClang-7") {
-            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

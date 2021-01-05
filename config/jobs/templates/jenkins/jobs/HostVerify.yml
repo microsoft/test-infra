@@ -5,6 +5,7 @@ jobs:
             displayName("${repo}")
         }
         pipelineJob("${repo}/${pipeline}") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

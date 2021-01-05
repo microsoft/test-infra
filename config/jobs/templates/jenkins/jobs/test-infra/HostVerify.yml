@@ -8,6 +8,7 @@ jobs:
             displayName("${repo}")
         }
         pipelineJob("test-infra/${repo}/${pipeline}") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

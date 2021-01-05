@@ -8,6 +8,7 @@ jobs:
             displayName("oeedger8r-cpp")
         }
         pipelineJob("test-infra/oeedger8r-cpp/Ubuntu1804BuildGCC") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

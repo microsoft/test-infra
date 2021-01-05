@@ -5,6 +5,7 @@ jobs:
             displayName("openenclave-mbedtls")
         }
         pipelineJob("openenclave-mbedtls/Ubuntu1604BuildClang-7") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

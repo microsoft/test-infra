@@ -5,6 +5,7 @@ jobs:
             displayName("openenclave-site")
         }
         job("openenclave-site/ping") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

@@ -8,6 +8,7 @@ jobs:
             displayName("openenclave-mbedtls")
         }
         pipelineJob("test-infra/openenclave-mbedtls/Ubuntu1804BuildClang-7") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

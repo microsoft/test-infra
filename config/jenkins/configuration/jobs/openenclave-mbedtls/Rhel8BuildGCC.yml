@@ -5,6 +5,7 @@ jobs:
             displayName("openenclave-mbedtls")
         }
         pipelineJob("openenclave-mbedtls/Rhel8BuildGCC") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

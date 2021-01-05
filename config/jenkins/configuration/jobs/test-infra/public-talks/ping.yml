@@ -8,6 +8,7 @@ jobs:
             displayName("public-talks")
         }
         job("test-infra/public-talks/ping") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

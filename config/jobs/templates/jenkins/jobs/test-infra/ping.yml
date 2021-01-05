@@ -8,6 +8,7 @@ jobs:
             displayName("${repo}")
         }
         job("test-infra/${repo}/${pipeline}") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

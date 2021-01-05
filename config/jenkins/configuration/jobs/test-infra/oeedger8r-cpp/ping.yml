@@ -8,6 +8,7 @@ jobs:
             displayName("oeedger8r-cpp")
         }
         job("test-infra/oeedger8r-cpp/ping") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

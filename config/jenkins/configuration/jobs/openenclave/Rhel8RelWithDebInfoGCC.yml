@@ -5,6 +5,7 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("openenclave/Rhel8RelWithDebInfoGCC") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

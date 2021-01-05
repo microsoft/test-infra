@@ -8,6 +8,7 @@ jobs:
             displayName("gperftools")
         }
         job("test-infra/gperftools/ping") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

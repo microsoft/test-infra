@@ -8,6 +8,7 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("test-infra/openenclave/Win2019RelSnmalloc") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

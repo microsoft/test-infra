@@ -8,6 +8,7 @@ jobs:
             displayName("openenclave-template")
         }
         job("test-infra/openenclave-template/ping") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

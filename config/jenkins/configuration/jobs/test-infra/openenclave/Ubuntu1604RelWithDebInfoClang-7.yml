@@ -8,6 +8,7 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("test-infra/openenclave/Ubuntu1604RelWithDebInfoClang-7") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

@@ -5,6 +5,7 @@ jobs:
             displayName("${repo}")
         }
         job("${repo}/${pipeline}") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

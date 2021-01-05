@@ -5,6 +5,7 @@ jobs:
             displayName("oeedger8r-cpp")
         }
         pipelineJob("oeedger8r-cpp/Ubuntu1604BuildGCC") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

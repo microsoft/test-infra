@@ -8,6 +8,7 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("test-infra/openenclave/LinuxElfRel16042019") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

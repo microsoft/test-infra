@@ -5,6 +5,7 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("openenclave/Rhel8ReleaseClang-8Snmalloc") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

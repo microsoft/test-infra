@@ -5,6 +5,7 @@ jobs:
             displayName("openenclave")
         }
         pipelineJob("openenclave/Ubuntu1804RelWithDebInfoClang-7") {
+            quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {

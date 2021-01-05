@@ -5,6 +5,7 @@ jobs:
             displayName("public-talks")
         }
         job("public-talks/ping") {
+            quietPeriod(0)
             label('OverWatch')
             description()
             keepDependencies(false)

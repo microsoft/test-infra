@@ -30,21 +30,6 @@ periodics:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-oeedger8r-cpp-Rhel8BuildGCC
-    extra_refs:
-    - org: openenclave
-      repo: oeedger8r-cpp
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
-
   - name: ci-oeedger8r-cpp-Ubuntu1604BuildClang-7
     extra_refs:
     - org: openenclave
@@ -60,21 +45,6 @@ periodics:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-oeedger8r-cpp-Ubuntu1604BuildGCC
-    extra_refs:
-    - org: openenclave
-      repo: oeedger8r-cpp
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1604BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
-
   - name: ci-oeedger8r-cpp-Ubuntu1804BuildClang-7
     extra_refs:
     - org: openenclave
@@ -89,21 +59,6 @@ periodics:
             - sh
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
-
-  - name: ci-oeedger8r-cpp-Ubuntu1804BuildGCC
-    extra_refs:
-    - org: openenclave
-      repo: oeedger8r-cpp
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1804BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
   - name: ci-oeedger8r-cpp-Windows2016Build
     extra_refs:

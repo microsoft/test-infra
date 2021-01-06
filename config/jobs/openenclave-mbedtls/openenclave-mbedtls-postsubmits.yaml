@@ -25,18 +25,6 @@ postsubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
-  - name: post-openenclave-mbedtls-Rhel8BuildGCC
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
-
   - name: post-openenclave-mbedtls-Ubuntu1604BuildClang-7
     branches:
     - master
@@ -49,18 +37,6 @@ postsubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
-  - name: post-openenclave-mbedtls-Ubuntu1604BuildGCC
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
-
   - name: post-openenclave-mbedtls-Ubuntu1804BuildClang-7
     branches:
     - master
@@ -72,18 +48,6 @@ postsubmits:
             - sh
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
-
-  - name: post-openenclave-mbedtls-Ubuntu1804BuildGCC
-    branches:
-    - master
-    decorate: true
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:latest
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildGCC --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
   - name: post-openenclave-mbedtls-Windows2016Build
     branches:

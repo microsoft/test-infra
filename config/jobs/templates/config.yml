@@ -25,11 +25,8 @@ pipelines:
   oeedger8r-cpp:
     ping
     Rhel8BuildClang-8
-    Rhel8BuildGCC
     Ubuntu1604BuildClang-7
-    Ubuntu1604BuildGCC
     Ubuntu1804BuildClang-7
-    Ubuntu1804BuildGCC
     Windows2016Build
     Windows2019Build
   openenclave:
@@ -45,52 +42,27 @@ pipelines:
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Rhel8DebugGCC
-    Rhel8DebugGCCSnmalloc
-    Rhel8RelWithDebInfoGCC
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Rhel8ReleaseGCC
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
     Ubuntu1604DebugClang-7
     Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugClang-7SnmallocE2E
-    Ubuntu1604DebugGCC
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
     Ubuntu1604RelWithDebInfoClang-7
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1604RelWithDebInfoGCC
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
     Ubuntu1604ReleaseClang-7
     Ubuntu1604ReleaseClang-7Snmalloc
     Ubuntu1604ReleaseClang-7SnmallocE2E
-    Ubuntu1604ReleaseGCC
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
     Ubuntu1804DebugClang-7
     Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugClang-7SnmallocE2E
-    Ubuntu1804DebugGCC
-    Ubuntu1804DebugGCCSnmalloc
     Ubuntu1804RelWithDebInfoClang-7
     Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1804RelWithDebInfoGCC
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
     Ubuntu1804ReleaseClang-7
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
-    Ubuntu1804ReleaseGCC
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
     Win2016DebugSnmallocE2E
@@ -114,11 +86,8 @@ pipelines:
   openenclave-mbedtls:
     ping
     Rhel8BuildClang-8
-    Rhel8BuildGCC
     Ubuntu1604BuildClang-7
-    Ubuntu1604BuildGCC
     Ubuntu1804BuildClang-7
-    Ubuntu1804BuildGCC
     Windows2016Build
     Windows2019Build
   openenclave-site:
@@ -171,52 +140,27 @@ buildmodesmap:
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Rhel8DebugGCC
-    Rhel8DebugGCCSnmalloc
-    Rhel8RelWithDebInfoGCC
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Rhel8ReleaseGCC
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
     Ubuntu1604DebugClang-7
     Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugClang-7SnmallocE2E
-    Ubuntu1604DebugGCC
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
     Ubuntu1604RelWithDebInfoClang-7
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1604RelWithDebInfoGCC
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
     Ubuntu1604ReleaseClang-7
     Ubuntu1604ReleaseClang-7Snmalloc
     Ubuntu1604ReleaseClang-7SnmallocE2E
-    Ubuntu1604ReleaseGCC
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
     Ubuntu1804DebugClang-7
     Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugClang-7SnmallocE2E
-    Ubuntu1804DebugGCC
-    Ubuntu1804DebugGCCSnmalloc
     Ubuntu1804RelWithDebInfoClang-7
     Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1804RelWithDebInfoGCC
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
     Ubuntu1804ReleaseClang-7
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
-    Ubuntu1804ReleaseGCC
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
     Win2016DebugSnmallocE2E
@@ -235,19 +179,12 @@ buildtypemap:
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Rhel8DebugGCC
-    Rhel8DebugGCCSnmalloc
     Ubuntu1604DebugClang-7
     Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugClang-7SnmallocE2E
-    Ubuntu1604DebugGCC
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
     Ubuntu1804DebugClang-7
     Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugClang-7SnmallocE2E
-    Ubuntu1804DebugGCC
-    Ubuntu1804DebugGCCSnmalloc
     Win2016Debug
     Win2016DebugSnmalloc
     Win2016DebugSnmallocE2E
@@ -258,21 +195,12 @@ buildtypemap:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Rhel8ReleaseGCC
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
     Ubuntu1604ReleaseClang-7
     Ubuntu1604ReleaseClang-7Snmalloc
     Ubuntu1604ReleaseClang-7SnmallocE2E
-    Ubuntu1604ReleaseGCC
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
     Ubuntu1804ReleaseClang-7
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
-    Ubuntu1804ReleaseGCC
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
     Win2016RelSnmalloc
     Win2016RelSnmallocE2E
     Win2016Release
@@ -280,73 +208,39 @@ buildtypemap:
     Win2019RelSnmallocE2E
     Win2019Release
   RelWithDebInfo:
-    Rhel8RelWithDebInfoGCC
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
     Ubuntu1604RelWithDebInfoClang-7
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1604RelWithDebInfoGCC
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
     Ubuntu1804RelWithDebInfoClang-7
     Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1804RelWithDebInfoGCC
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
 
 lvioptionsmaps:
   ControlFlow:
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Rhel8DebugGCC
-    Rhel8DebugGCCSnmalloc
-    Rhel8RelWithDebInfoGCC
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Rhel8ReleaseGCC
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
     Ubuntu1604DebugClang-7
     Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugClang-7SnmallocE2E
-    Ubuntu1604DebugGCC
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
     Ubuntu1604RelWithDebInfoClang-7
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1604RelWithDebInfoGCC
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
     Ubuntu1604ReleaseClang-7
     Ubuntu1604ReleaseClang-7Snmalloc
     Ubuntu1604ReleaseClang-7SnmallocE2E
-    Ubuntu1604ReleaseGCC
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
     Ubuntu1804DebugClang-7
     Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugClang-7SnmallocE2E
-    Ubuntu1804DebugGCC
-    Ubuntu1804DebugGCCSnmalloc
     Ubuntu1804RelWithDebInfoClang-7
     Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1804RelWithDebInfoGCC
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
     Ubuntu1804ReleaseClang-7
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
-    Ubuntu1804ReleaseGCC
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
     Win2016DebugSnmallocE2E
@@ -370,36 +264,20 @@ snmallocmap:
   ON:
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Rhel8DebugGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
     Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugClang-7SnmallocE2E
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
     Ubuntu1604ReleaseClang-7Snmalloc
     Ubuntu1604ReleaseClang-7SnmallocE2E
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
     Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugClang-7SnmallocE2E
-    Ubuntu1804DebugGCCSnmalloc
     Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
     Win2016DebugSnmalloc
     Win2016DebugSnmallocE2E
     Win2016RelSnmalloc
@@ -438,25 +316,15 @@ windowsversionsmap:
 linuxversionsmap:
   Ubuntu-1604:
     Ubuntu1604BuildClang-7
-    Ubuntu1604BuildGCC
     Ubuntu1604DebugClang-7
     Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugClang-7SnmallocE2E
-    Ubuntu1604DebugGCC
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
     Ubuntu1604RelWithDebInfoClang-7
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1604RelWithDebInfoGCC
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
     Ubuntu1604ReleaseClang-7
     Ubuntu1604ReleaseClang-7Snmalloc
     Ubuntu1604ReleaseClang-7SnmallocE2E
-    Ubuntu1604ReleaseGCC
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
     HostVerifyDeb16042019
     HostVerifyRel16042019
     LinuxElfDeb16042019
@@ -467,73 +335,27 @@ linuxversionsmap:
     LinuxElfDeb18042019
     LinuxElfRel18042019
     Ubuntu1804BuildClang-7
-    Ubuntu1804BuildGCC
     Ubuntu1804DebugClang-7
     Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugClang-7SnmallocE2E
-    Ubuntu1804DebugGCC
-    Ubuntu1804DebugGCCSnmalloc
     Ubuntu1804RelWithDebInfoClang-7
     Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1804RelWithDebInfoGCC
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
     Ubuntu1804ReleaseClang-7
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
-    Ubuntu1804ReleaseGCC
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
   RHEL-8:
     Rhel8BuildClang-8
-    Rhel8BuildGCC
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Rhel8DebugGCC
-    Rhel8DebugGCCSnmalloc
-    Rhel8RelWithDebInfoGCC
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Rhel8ReleaseGCC
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
 
 # Map compilers to jobs that use them
 compilermap:
   gcc:
-    Ubuntu1604BuildGCC
-    Ubuntu1804BuildGCC
-    Rhel8BuildGCC
-    Rhel8DebugGCC
-    Rhel8DebugGCCSnmalloc
-    Rhel8RelWithDebInfoGCC
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
-    Rhel8ReleaseGCC
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
-    Ubuntu1604DebugGCC
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
-    Ubuntu1604RelWithDebInfoGCC
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
-    Ubuntu1604ReleaseGCC
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
-    Ubuntu1804DebugGCC
-    Ubuntu1804DebugGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCC
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
-    Ubuntu1804ReleaseGCC
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
   clang-7:
     Ubuntu1604BuildClang-7
     Ubuntu1804BuildClang-7
@@ -578,61 +400,33 @@ jobmaps:
     ping
   RhelBuild:
     Rhel8BuildClang-8
-    Rhel8BuildGCC
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Rhel8DebugGCC
-    Rhel8DebugGCCSnmalloc
-    Rhel8RelWithDebInfoGCC
-    Rhel8RelWithDebInfoGCCSnmalloc
-    Rhel8RelWithDebInfoGCCSnmallocE2E
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Rhel8ReleaseGCC
-    Rhel8ReleaseGCCSnmalloc
-    Rhel8ReleaseGCCSnmallocE2E
   UbuntuBuild:
     Ubuntu1604BuildClang-7
-    Ubuntu1604BuildGCC
     Ubuntu1604DebugClang-7
     Ubuntu1604DebugClang-7Snmalloc
     Ubuntu1604DebugClang-7SnmallocE2E
-    Ubuntu1604DebugGCC
-    Ubuntu1604DebugGCCSnmalloc
-    Ubuntu1604DebugGCCSnmallocE2E
     Ubuntu1604RelWithDebInfoClang-7
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
     Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1604RelWithDebInfoGCC
-    Ubuntu1604RelWithDebInfoGCCSnmalloc
-    Ubuntu1604RelWithDebInfoGCCSnmallocE2E
     Ubuntu1604ReleaseClang-7
     Ubuntu1604ReleaseClang-7Snmalloc
     Ubuntu1604ReleaseClang-7SnmallocE2E
-    Ubuntu1604ReleaseGCC
-    Ubuntu1604ReleaseGCCSnmalloc
-    Ubuntu1604ReleaseGCCSnmallocE2E
     Ubuntu1804BuildClang-7
-    Ubuntu1804BuildGCC
     Ubuntu1804DebugClang-7
     Ubuntu1804DebugClang-7Snmalloc
     Ubuntu1804DebugClang-7SnmallocE2E
-    Ubuntu1804DebugGCC
-    Ubuntu1804DebugGCCSnmalloc
     Ubuntu1804RelWithDebInfoClang-7
     Ubuntu1804RelWithDebInfoClang-7Snmalloc
     Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
-    Ubuntu1804RelWithDebInfoGCC
-    Ubuntu1804RelWithDebInfoGCCSnmalloc
-    Ubuntu1804RelWithDebInfoGCCSnmallocE2E
     Ubuntu1804ReleaseClang-7
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
-    Ubuntu1804ReleaseGCC
-    Ubuntu1804ReleaseGCCSnmalloc
-    Ubuntu1804ReleaseGCCSnmallocE2E
   WindowsBuild:
     Win2016Debug
     Win2016DebugSnmalloc

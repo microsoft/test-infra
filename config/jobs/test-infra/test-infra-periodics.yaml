@@ -13,7 +13,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job gperftools/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job gperftools/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-oeedger8r-cpp-ping
     extra_refs:
@@ -28,7 +28,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-oeedger8r-cpp-Rhel8BuildClang-8
     extra_refs:
@@ -43,7 +43,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-oeedger8r-cpp-Ubuntu1604BuildClang-7
     extra_refs:
@@ -58,7 +58,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-oeedger8r-cpp-Ubuntu1804BuildClang-7
     extra_refs:
@@ -73,7 +73,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-oeedger8r-cpp-Windows2016Build
     extra_refs:
@@ -88,7 +88,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-oeedger8r-cpp-Windows2019Build
     extra_refs:
@@ -103,7 +103,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-ping
     extra_refs:
@@ -118,7 +118,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-HostVerifyDeb16042019
     extra_refs:
@@ -133,7 +133,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-HostVerifyDeb18042019
     extra_refs:
@@ -148,7 +148,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-HostVerifyRel16042019
     extra_refs:
@@ -163,7 +163,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-HostVerifyRel18042019
     extra_refs:
@@ -178,7 +178,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/HostVerifyRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-LinuxElfDeb16042019
     extra_refs:
@@ -193,7 +193,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-LinuxElfDeb18042019
     extra_refs:
@@ -208,7 +208,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-LinuxElfRel16042019
     extra_refs:
@@ -223,7 +223,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-LinuxElfRel18042019
     extra_refs:
@@ -238,7 +238,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/LinuxElfRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Rhel8DebugClang-8
     extra_refs:
@@ -253,7 +253,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Rhel8DebugClang-8Snmalloc
     extra_refs:
@@ -268,7 +268,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Rhel8DebugClang-8SnmallocE2E
     extra_refs:
@@ -283,7 +283,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Rhel8ReleaseClang-8
     extra_refs:
@@ -298,7 +298,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Rhel8ReleaseClang-8Snmalloc
     extra_refs:
@@ -313,7 +313,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Rhel8ReleaseClang-8SnmallocE2E
     extra_refs:
@@ -328,7 +328,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604DebugClang-7
     extra_refs:
@@ -343,7 +343,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604DebugClang-7Snmalloc
     extra_refs:
@@ -358,7 +358,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604DebugClang-7SnmallocE2E
     extra_refs:
@@ -373,7 +373,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7
     extra_refs:
@@ -388,7 +388,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7Snmalloc
     extra_refs:
@@ -403,7 +403,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
     extra_refs:
@@ -418,7 +418,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604ReleaseClang-7
     extra_refs:
@@ -433,7 +433,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604ReleaseClang-7Snmalloc
     extra_refs:
@@ -448,7 +448,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1604ReleaseClang-7SnmallocE2E
     extra_refs:
@@ -463,7 +463,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804DebugClang-7
     extra_refs:
@@ -478,7 +478,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804DebugClang-7Snmalloc
     extra_refs:
@@ -493,7 +493,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804DebugClang-7SnmallocE2E
     extra_refs:
@@ -508,7 +508,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7
     extra_refs:
@@ -523,7 +523,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7Snmalloc
     extra_refs:
@@ -538,7 +538,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
     extra_refs:
@@ -553,7 +553,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804ReleaseClang-7
     extra_refs:
@@ -568,7 +568,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804ReleaseClang-7Snmalloc
     extra_refs:
@@ -583,7 +583,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Ubuntu1804ReleaseClang-7SnmallocE2E
     extra_refs:
@@ -598,7 +598,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2016Debug
     extra_refs:
@@ -613,7 +613,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2016DebugSnmalloc
     extra_refs:
@@ -628,7 +628,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2016DebugSnmallocE2E
     extra_refs:
@@ -643,7 +643,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2016RelSnmalloc
     extra_refs:
@@ -658,7 +658,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2016RelSnmallocE2E
     extra_refs:
@@ -673,7 +673,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2016Release
     extra_refs:
@@ -688,7 +688,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2019Debug
     extra_refs:
@@ -703,7 +703,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2019DebugSnmalloc
     extra_refs:
@@ -718,7 +718,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2019DebugSnmallocE2E
     extra_refs:
@@ -733,7 +733,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2019RelSnmalloc
     extra_refs:
@@ -748,7 +748,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2019RelSnmallocE2E
     extra_refs:
@@ -763,7 +763,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-Win2019Release
     extra_refs:
@@ -778,7 +778,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave/job/Win2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-build-ping
     extra_refs:
@@ -793,7 +793,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-build/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-build/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-ci-ping
     extra_refs:
@@ -808,7 +808,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-ci/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-ci/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-curl-ping
     extra_refs:
@@ -823,7 +823,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-curl/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-curl/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-curl-Ubuntu1604BuildClang-7
     extra_refs:
@@ -838,7 +838,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-curl/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-curl/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-curl-Ubuntu1804BuildClang-7
     extra_refs:
@@ -853,7 +853,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-curl/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-curl/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-mbedtls-ping
     extra_refs:
@@ -868,7 +868,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-mbedtls-Rhel8BuildClang-8
     extra_refs:
@@ -883,7 +883,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-mbedtls-Ubuntu1604BuildClang-7
     extra_refs:
@@ -898,7 +898,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-mbedtls-Ubuntu1804BuildClang-7
     extra_refs:
@@ -913,7 +913,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-mbedtls-Windows2016Build
     extra_refs:
@@ -928,7 +928,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-mbedtls-Windows2019Build
     extra_refs:
@@ -943,7 +943,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-site-ping
     extra_refs:
@@ -958,7 +958,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-site/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-site/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-openenclave-template-ping
     extra_refs:
@@ -973,7 +973,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-template/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job openenclave-template/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: ci-test-infra-public-talks-ping
     extra_refs:
@@ -988,4 +988,4 @@ periodics:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job public-talks/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "python /hack/jenkins_bootstrap.py --job public-talks/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=master"        

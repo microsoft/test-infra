@@ -52,7 +52,7 @@ pipeline {
                             ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --report --out sgx_report.bin
                             popd
                             """
-                    runner.ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
+                    runner.ContainerRun("openenclave/ubuntu-1804:latest", "clang-7", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
 
                     def ec_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_ec.der'
                     def rsa_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_rsa.der'
@@ -95,7 +95,7 @@ pipeline {
                             ctest -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
                             """
                     // Note: Include the commands to build and run the quote verification test above
-                    runner.ContainerRun("openenclave/ubuntu-${LINUX_VERSION}:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
+                    runner.ContainerRun("openenclave/ubuntu-1804:latest", "clang-7", task, "--cap-add=SYS_PTRACE")
                 }
             }
         }

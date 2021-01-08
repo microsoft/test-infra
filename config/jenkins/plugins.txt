@@ -19,6 +19,7 @@ credentials
 display-url-api
 docker-commons
 docker-plugin
+docker-workflow
 durable-task
 echarts-api
 font-awesome-api

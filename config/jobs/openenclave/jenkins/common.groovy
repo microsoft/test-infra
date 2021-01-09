@@ -216,17 +216,19 @@ def cleanup() {
 
 /// This is copy and pasted from the deprecated openenclave-ci repo and is used for multiphase tests, we should consider cleaning this up and refactoring 
 def ContainerRun(String imageName, String compiler, String task, String runArgs="") {
-    def image = docker.image(imageName)
-    image.pull()
-    image.inside(runArgs) {
-        dir("${WORKSPACE}/openenclave/build") {
-            Run(compiler, task)
+    docker.withRegistry("https://oejenkinscidockerregistry.azurecr.io", "oejenkinscidockerregistry") {
+        def image = docker.image(imageName)
+        image.pull()
+        image.inside(runArgs) {
+            dir ('openenclave/build') {
+                Run(compiler, task)
+            }
         }
     }
 }
 
 def runTask(String task) {
-    dir("${WORKSPACE}/build") {
+    dir ('openenclave/build') {
         sh """#!/usr/bin/env bash
                 set -o errexit
                 set -o pipefail
@@ -267,6 +269,24 @@ def Run(String compiler, String task, String compiler_version = "") {
     }
     withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
         runTask(task);
+    }
+}
+
+def exec_with_retry(int max_retries = 10, int retry_timeout = 30, Closure body) {
+    int retry_count = 1
+    while (retry_count <= max_retries) {
+        try {
+            body.call()
+            break
+        } catch (Exception e) {
+            if (retry_count == max_retries) {
+                throw e
+            }
+            println("Command failed. Retry count ${retry_count}/${max_retries}. Retrying in ${retry_timeout} seconds")
+            sleep(retry_timeout)
+            retry_count += 1
+            continue
+        }
     }
 }
 

@@ -40,7 +40,7 @@ pipeline {
                     runner.checkout("${OE_PULL_NUMBER}")
                     println("Generating certificates and reports ...")
                     def task = """
-                            cmake ${WORKSPACE}/openenclave -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                            cmake ${WORKSPACE}/openenclave -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${build_type} -Wdev
                             ninja -v
                             pushd tests/host_verify/host
                             openssl ecparam -name prime256v1 -genkey -noout -out keyec.pem
@@ -50,6 +50,7 @@ pipeline {
                             ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --cert keyec.pem publicec.pem --out sgx_cert_ec.der
                             ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --cert keyrsa.pem publicrsa.pem --out sgx_cert_rsa.der
                             ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --report --out sgx_report.bin
+                            ../../tools/oecert/host/oecert ../../tools/oecert/enc/oecert_enc --evidence --out sgx_evidence.bin --endorsements sgx_endorsements.bin
                             popd
                             """
                     runner.ContainerRun("openenclave/ubuntu-1804:latest", "clang-7", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
@@ -57,8 +58,9 @@ pipeline {
                     def ec_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_ec.der'
                     def rsa_cert_created = fileExists 'build/tests/host_verify/host/sgx_cert_rsa.der'
                     def report_created = fileExists 'build/tests/host_verify/host/sgx_report.bin'
+                    def evidence_created = fileExists 'build/tests/host_verify/host/sgx_evidence.bin'
                     if (ec_cert_created) {
-                        println("EC cert file created successfully!")
+                    println("EC cert file created successfully!")
                     } else {
                         error("Failed to create EC cert file.")
                     }
@@ -71,6 +73,11 @@ pipeline {
                         println("SGX report file created successfully!")
                     } else {
                         error("Failed to create SGX report file.")
+                    }
+                    if (evidence_created) {
+                        println("SGX evidence file created successfully!")
+                    } else {
+                        error("Failed to create SGX evidence file.")
                     }
 
                     stash includes: 'build/tests/host_verify/host/*.der,build/tests/host_verify/host/*.bin', name: "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"

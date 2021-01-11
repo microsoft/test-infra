@@ -44,7 +44,7 @@ pipeline {
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
-                    stage("RHEL ${LINUX_VERSION} Setup"){
+                    stage("${LINUX_VERSION} Setup"){
                         try{
                             runner.cleanup()
                             runner.checkout("${PULL_NUMBER}")

@@ -33,6 +33,10 @@ pipelines:
     Windows2019Build
   openenclave:
     ping
+    AArch64GNU1604Debug
+    AArch64GNU1604Release
+    AArch64GNU1804Debug
+    AArch64GNU1804Release
     HostVerifyDeb16042019
     HostVerifyDeb18042019
     HostVerifyRel16042019
@@ -201,6 +205,8 @@ buildtypemap:
     Win2019Debug
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
+    AArch64GNU1604Debug
+    AArch64GNU1804Debug
   Release:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
@@ -217,6 +223,8 @@ buildtypemap:
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
+    AArch64GNU1604Release
+    AArch64GNU1804Release
   RelWithDebInfo:
     Ubuntu1604RelWithDebInfoClang-7
     Ubuntu1604RelWithDebInfoClang-7Snmalloc
@@ -334,6 +342,8 @@ linuxversionsmap:
     HostVerifyRel16042019
     LinuxElfDeb16042019
     LinuxElfRel16042019
+    AArch64GNU1604Debug
+    AArch64GNU1604Release
   Ubuntu-1804:
     Ubuntu1804BuildClang-8
     HostVerifyDeb18042019
@@ -350,6 +360,8 @@ linuxversionsmap:
     Ubuntu1804ReleaseClang-7
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
+    AArch64GNU1804Debug
+    AArch64GNU1804Release
   RHEL-8:
     Rhel8BuildClang-8
     Rhel8DebugClang-8
@@ -401,11 +413,17 @@ jobs:
   WindowsBuild
   HostVerify
   LinuxElfBuild
+  ArchLinux
   ping
 
 jobmaps:
   ping:
     ping
+  ArchLinux:
+    AArch64GNU1604Debug
+    AArch64GNU1604Release
+    AArch64GNU1804Debug
+    AArch64GNU1804Release
   RhelBuild:
     Rhel8BuildClang-8
     Rhel8DebugClang-8

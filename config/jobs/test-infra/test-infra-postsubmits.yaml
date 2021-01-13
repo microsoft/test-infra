@@ -13,7 +13,7 @@ postsubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra-images/job/Ubuntu1604Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
-  - name: post-test-infra-test-infra-images-Ubuntu1604Build
+  - name: post-test-infra-test-infra-images-Ubuntu1804Build
     branches:
     - master
     decorate: true
@@ -23,7 +23,7 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra-images/job/Ubuntu1604Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra-images/job/Ubuntu1804Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  OE_TEST_INFRA_PULL_NUMBER=master"        
 
   - name: post-test-infra-test-infra-images-Windows2019Build
     branches:

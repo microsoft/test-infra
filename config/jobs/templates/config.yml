@@ -105,7 +105,7 @@ pipelines:
     ping
   test-infra-images:
     Ubuntu1604Build
-    Ubuntu1604Build
+    Ubuntu1804Build
     Windows2019Build
 
 ### Configure which jobs have  which parameters.

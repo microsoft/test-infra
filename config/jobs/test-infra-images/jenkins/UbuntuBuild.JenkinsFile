@@ -6,7 +6,7 @@ DOCKER_REPO=expression { return LINUX_VERSION == 'Ubuntu-1804'}?1804:1604
 LINUX_VERSION="1804"
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/image-pushing/common.groovy"
+SHARED_LIBRARY="/config/jobs/test-infra-images/common.groovy"
 
 // DevKits
 DEVKITS_URI="https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz"

@@ -1,8 +1,9 @@
 // OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
+UBUNTU_VERSION=expression { return LINUX_VERSION == '1804'}?18.04:16.04
 
 // Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/image-pushing/UbuntuBuild.JenkinsFile"
+SHARED_LIBRARY="/config/jobs/image-pushing/common.groovy"
 
 // DevKits
 DEVKITS_URI="https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz"
@@ -17,17 +18,25 @@ pipeline {
     agent { label "ACC-${LINUX_VERSION}" }
 
     stages {
-        stage("Checkout") {
-            cleanWs()
-            checkout scm
-        }
-        stage('Building image') {
+        stage('Checkout'){
             steps{
-                script {
+                cleanWs()
+                checkout scm
+            }
+        }
+        stage('Build'){
+            steps{
+                script{
                     def builder = load pwd() + "${SHARED_LIBRARY}"
-                    oefull1604 = builder.dockerImage("openenclave/ubuntu-1804:${DOCKER_TAG}", ".jenkins/infrastructure/dockerfiles/Dockerfile.full", "--build-arg ubuntu_version=16.04 --build-arg devkits_uri=${DEVKITS_URI}")
+                    oefull1604 = builder.dockerImage("openenclave/ubuntu-${LINUX_VERSION}:${DOCKER_TAG}", "images/ubuntu/Dockerfile", "--build-arg ubuntu_version=${UBUNTU_VERSION} --build-arg devkits_uri=${DEVKITS_URI}")
+                
                 }
             }
+        }
+    }
+    post ('Clean Up'){
+        always{
+            cleanWs()
         }
     }
 }

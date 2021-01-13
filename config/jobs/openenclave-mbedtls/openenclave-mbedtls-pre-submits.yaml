@@ -14,7 +14,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-mbedtls-Rhel8BuildClang-8
     branches:
@@ -29,7 +29,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-mbedtls-Ubuntu1604BuildClang-7
     branches:
@@ -44,7 +44,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-mbedtls-Ubuntu1804BuildClang-7
     branches:
@@ -59,7 +59,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-mbedtls-Windows2016Build
     branches:
@@ -74,7 +74,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-mbedtls-Windows2019Build
     branches:
@@ -89,4 +89,4 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        

@@ -14,7 +14,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/gperftools/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/gperftools/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-oeedger8r-cpp-ping
     branches:
@@ -29,7 +29,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-oeedger8r-cpp-Rhel8BuildClang-8
     branches:
@@ -44,7 +44,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1604BuildClang-7
     branches:
@@ -59,7 +59,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1804BuildClang-7
     branches:
@@ -74,7 +74,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1604BuildClang-8
     branches:
@@ -119,7 +119,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-oeedger8r-cpp-Windows2019Build
     branches:
@@ -134,7 +134,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-ping
     branches:
@@ -149,7 +149,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-AArch64GNU1604Debug
     branches:
@@ -224,7 +224,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-HostVerifyDeb18042019
     branches:
@@ -239,7 +239,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-HostVerifyRel16042019
     branches:
@@ -254,7 +254,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-HostVerifyRel18042019
     branches:
@@ -269,7 +269,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/HostVerifyRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-LinuxElfDeb16042019
     branches:
@@ -284,7 +284,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfDeb16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-LinuxElfDeb18042019
     branches:
@@ -299,7 +299,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfDeb18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-LinuxElfRel16042019
     branches:
@@ -314,7 +314,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfRel16042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-LinuxElfRel18042019
     branches:
@@ -329,7 +329,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/LinuxElfRel18042019 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8DebugClang-8
     branches:
@@ -344,7 +344,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8DebugClang-8Snmalloc
     branches:
@@ -359,7 +359,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8DebugClang-8SnmallocE2E
     branches:
@@ -374,7 +374,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8ReleaseClang-8
     branches:
@@ -389,7 +389,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8ReleaseClang-8Snmalloc
     branches:
@@ -404,7 +404,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Rhel8ReleaseClang-8SnmallocE2E
     branches:
@@ -419,7 +419,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7
     branches:
@@ -434,7 +434,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7Snmalloc
     branches:
@@ -449,7 +449,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7SnmallocE2E
     branches:
@@ -464,7 +464,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7
     branches:
@@ -479,7 +479,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7Snmalloc
     branches:
@@ -494,7 +494,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
     branches:
@@ -509,7 +509,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7
     branches:
@@ -524,7 +524,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7Snmalloc
     branches:
@@ -539,7 +539,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7SnmallocE2E
     branches:
@@ -554,7 +554,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7
     branches:
@@ -569,7 +569,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7Snmalloc
     branches:
@@ -584,7 +584,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7SnmallocE2E
     branches:
@@ -599,7 +599,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7
     branches:
@@ -614,7 +614,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7Snmalloc
     branches:
@@ -629,7 +629,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
     branches:
@@ -644,7 +644,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7
     branches:
@@ -659,7 +659,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7Snmalloc
     branches:
@@ -674,7 +674,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7SnmallocE2E
     branches:
@@ -689,7 +689,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2016Debug
     branches:
@@ -704,7 +704,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2016DebugSnmalloc
     branches:
@@ -719,7 +719,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2016DebugSnmallocE2E
     branches:
@@ -734,7 +734,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2016RelSnmalloc
     branches:
@@ -749,7 +749,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2016RelSnmallocE2E
     branches:
@@ -764,7 +764,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2016Release
     branches:
@@ -779,7 +779,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2016Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2019Debug
     branches:
@@ -794,7 +794,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019Debug --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2019DebugSnmalloc
     branches:
@@ -809,7 +809,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2019DebugSnmallocE2E
     branches:
@@ -824,7 +824,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2019RelSnmalloc
     branches:
@@ -839,7 +839,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019RelSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2019RelSnmallocE2E
     branches:
@@ -854,7 +854,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019RelSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2019Release
     branches:
@@ -869,7 +869,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Win2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-build-ping
     branches:
@@ -884,7 +884,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-build/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-build/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-ci-ping
     branches:
@@ -899,7 +899,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-ci/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-ci/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-curl-ping
     branches:
@@ -914,7 +914,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-curl-Ubuntu1604BuildClang-7
     branches:
@@ -929,7 +929,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-curl-Ubuntu1804BuildClang-7
     branches:
@@ -944,7 +944,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-ping
     branches:
@@ -959,7 +959,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-Rhel8BuildClang-8
     branches:
@@ -974,7 +974,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-Ubuntu1604BuildClang-7
     branches:
@@ -989,7 +989,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-Ubuntu1804BuildClang-7
     branches:
@@ -1004,7 +1004,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-Windows2016Build
     branches:
@@ -1019,7 +1019,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-Windows2019Build
     branches:
@@ -1034,7 +1034,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-site-ping
     branches:
@@ -1049,7 +1049,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-site/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-site/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-template-ping
     branches:
@@ -1064,7 +1064,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-template/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/openenclave-template/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-public-talks-ping
     branches:
@@ -1079,4 +1079,4 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job test-infra/job/public-talks/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra/job/public-talks/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        

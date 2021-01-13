@@ -25,9 +25,12 @@ pipeline {
             steps{
                 cleanWs()
                 checkout scm
+                sh  """
+                    echo pajamas
+                    """
             }
         }
-        stage('Docker Build ${LINUX_VERSION} Image'){
+        stage('Docker Build Image'){
             steps{
                 script{
                     def builder = load pwd() + "${SHARED_LIBRARY}"
@@ -37,7 +40,7 @@ pipeline {
             }
         }
 
-        stage('Docker Test ${LINUX_VERSION} Image'){
+        stage('Docker Test Image'){
             steps{
                 script{
                     sh  """
@@ -47,7 +50,7 @@ pipeline {
             }
         }
 
-        stage('Docker Push ${LINUX_VERSION} Image'){
+        stage('Docker Push Image'){
             steps{
                 script{
                     sh  """

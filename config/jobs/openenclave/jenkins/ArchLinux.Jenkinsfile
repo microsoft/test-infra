@@ -38,26 +38,6 @@ pipeline {
             }
         }
 
-        // Temporarily run always as e2e
-        stage('Install Prereqs (Optional)'){
-            steps{
-                script{
-                    def runner = load pwd() + "${SHARED_LIBRARY}"
-
-                    stage("RHEL ${LINUX_VERSION} Setup"){
-                        try{
-                            runner.cleanup()
-                            runner.checkout("${PULL_NUMBER}")
-                            runner.AArch64GNUTest("${BUILD_TYPE}")
-                        } catch (Exception e) {
-                            // Do something with the exception 
-                            error "Program failed, please read logs..."
-                        }
-                    }
-                }
-            }
-        }
-
         // Go through Build stages
         stage('Build'){
             steps{
@@ -65,11 +45,11 @@ pipeline {
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
                     // Build and test in Hardware mode, do not clean up as we will package
-                    stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                    stage("AArch64GNU ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
                         try{
                             runner.cleanup()
                             runner.checkout("${PULL_NUMBER}")
-                            runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                            runner.AArch64GNUTest("${BUILD_TYPE}")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."

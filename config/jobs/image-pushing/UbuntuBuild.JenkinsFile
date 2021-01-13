@@ -1,6 +1,9 @@
 // OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"1804"
-UBUNTU_VERSION=expression { return LINUX_VERSION == '1804'}?18.04:16.04
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
+UBUNTU_VERSION=expression { return LINUX_VERSION == 'Ubuntu-1804'}?18.04:16.04
+DOCKER_REPO=expression { return LINUX_VERSION == 'Ubuntu-1804'}?1804:1604
+
+LINUX_VERSION="1804"
 
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/image-pushing/common.groovy"
@@ -28,7 +31,7 @@ pipeline {
             steps{
                 script{
                     def builder = load pwd() + "${SHARED_LIBRARY}"
-                    oefull1604 = builder.dockerImage("openenclave/ubuntu-${LINUX_VERSION}:${DOCKER_TAG}", "images/ubuntu/Dockerfile", "--build-arg ubuntu_version=${UBUNTU_VERSION} --build-arg devkits_uri=${DEVKITS_URI}")
+                    oefull1604 = builder.dockerImage("openenclave/ubuntu-${DOCKER_REPO}:${DOCKER_TAG}", "images/ubuntu/Dockerfile", "--build-arg ubuntu_version=${UBUNTU_VERSION} --build-arg devkits_uri=${DEVKITS_URI}")
                 
                 }
             }

@@ -57,6 +57,8 @@ pipeline {
                                             -DHAS_QUOTE_PROVIDER=OFF                                                \
                                             -Wdev
                                             ninja -v
+                                        echo 'here'
+                                        ls -l
                                         """
                             runner.ContainerRun("oeciteam/oetools-full-18.04", "cross", task, "--cap-add=SYS_PTRACE")
                         } catch (Exception e) {

@@ -43,13 +43,23 @@ pipeline {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-
+                    runner.checkout("${OE_PULL_NUMBER}")
                     // Build and test in Hardware mode, do not clean up as we will package
                     stage("AArch64GNU ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
                         try{
                             runner.cleanup()
                             runner.checkout("${PULL_NUMBER}")
-                            runner.AArch64GNUTest("${BUILD_TYPE}")
+                            def task =  """
+                                        cmake ${WORKSPACE}/openenclave                                                            \
+                                            -G Ninja                                                           \
+                                            -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                                   \
+                                            -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-cross.cmake                    \
+                                            -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64  \
+                                            -DHAS_QUOTE_PROVIDER=OFF                                           \
+                                            -Wdev
+                                            ninja -v
+                                        """
+                            runner.ContainerRun("oeciteam/oetools-full-18.04", "cross", task, "--cap-add=SYS_PTRACE")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."

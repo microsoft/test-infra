@@ -53,22 +53,6 @@ void installOpenEnclavePrereqs() {
     }
 }
 
-def AArch64GNUTest(String BUILD_TYPE) {
-    dir ('openenclave/build') {
-        def task = """
-                    cmake ..                                                               \
-                        -G Ninja                                                           \
-                        -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                                   \
-                        -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-cross.cmake                    \
-                        -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64  \
-                        -DHAS_QUOTE_PROVIDER=OFF                                           \
-                        -Wdev
-                    ninja -v
-                    """
-        ContainerRun("oeciteam/oetools-full-18.04", "cross", task, "--cap-add=SYS_PTRACE")
-    }
-}
-
 /** Build openenclave based on build config, compiler and platform
   * TODO: Add container support
 **/

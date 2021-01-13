@@ -25,9 +25,6 @@ pipeline {
             steps{
                 cleanWs()
                 checkout scm
-                sh  """
-                    echo pajamas
-                    """
             }
         }
         stage('Docker Build Image'){

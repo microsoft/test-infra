@@ -43,7 +43,6 @@ pipeline {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    runner.checkout("${OE_PULL_NUMBER}")
                     // Build and test in Hardware mode, do not clean up as we will package
                     stage("AArch64GNU ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
                         try{

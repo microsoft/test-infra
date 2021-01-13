@@ -27,12 +27,32 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build'){
+        stage('Docker Build ${LINUX_VERSION} Image'){
             steps{
                 script{
                     def builder = load pwd() + "${SHARED_LIBRARY}"
                     oefull1604 = builder.dockerImage("openenclave/ubuntu-${DOCKER_REPO}:${DOCKER_TAG}", "images/ubuntu/Dockerfile", "--build-arg ubuntu_version=${UBUNTU_VERSION} --build-arg devkits_uri=${DEVKITS_URI}")
                 
+                }
+            }
+        }
+
+        stage('Docker Test ${LINUX_VERSION} Image'){
+            steps{
+                script{
+                    sh  """
+                        echo test
+                        """                
+                }
+            }
+        }
+
+        stage('Docker Push ${LINUX_VERSION} Image'){
+            steps{
+                script{
+                    sh  """
+                        echo test
+                        """                
                 }
             }
         }

@@ -221,7 +221,24 @@ class Trigger:
     def main(self):
         queue_url = self.trigger_build()
         job_url = self.waiting_for_job_to_start(queue_url)
-        self.console_output(job_url)
+        try:
+            self.console_output(job_url)
+        except Exception:
+            print("Aborting job...")
+        finally:
+            console_requests = requests.session()
+            response = console_requests.get(self.url + '/crumbIssuer/api/json', auth=(self.user, self.password))
+            abort_url = job_url + "/stop"
+            print("ensuring build has stopped...")
+            requests.post(abort_url, data=self.parameters,
+                                          auth=(self.user, self.password),
+                                          headers={"Jenkins-Crumb": response.json().get('crumb')})
+            abort_url = job_url + "/kill"
+            print("ensuring build has been killed...")
+            requests.post(abort_url, data=self.parameters,
+                                          auth=(self.user, self.password),
+                                          headers={"Jenkins-Crumb": response.json().get('crumb')})
+
 
 
 if __name__ == '__main__':

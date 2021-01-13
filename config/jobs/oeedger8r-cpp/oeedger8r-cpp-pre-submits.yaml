@@ -14,7 +14,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-oeedger8r-cpp-Rhel8BuildClang-8
     branches:
@@ -29,7 +29,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-oeedger8r-cpp-Ubuntu1604BuildClang-7
     branches:
@@ -44,7 +44,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-oeedger8r-cpp-Ubuntu1804BuildClang-7
     branches:
@@ -59,7 +59,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-oeedger8r-cpp-Ubuntu1604BuildClang-8
     branches:
@@ -104,7 +104,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-oeedger8r-cpp-Windows2019Build
     branches:
@@ -119,4 +119,4 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job oeedger8r-cpp/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        

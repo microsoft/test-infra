@@ -1,0 +1,65 @@
+// OS Version Configuration
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
+UBUNTU_VERSION=expression { return LINUX_VERSION == 'Ubuntu-1804'}?18.04:16.04
+DOCKER_REPO=expression { return LINUX_VERSION == 'Ubuntu-1804'}?1804:1604
+
+LINUX_VERSION="1804"
+
+// Shared library config, check out common.groovy!
+SHARED_LIBRARY="/config/jobs/image-pushing/common.groovy"
+
+// DevKits
+DEVKITS_URI="https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz"
+
+// Docker tag
+DOCKER_TAG="latest"
+
+pipeline {
+    options {
+        timeout(time: 60, unit: 'MINUTES') 
+    }
+    agent { label "ACC-${LINUX_VERSION}" }
+
+    stages {
+        stage('Checkout'){
+            steps{
+                cleanWs()
+                checkout scm
+            }
+        }
+        stage('Docker Build ${LINUX_VERSION} Image'){
+            steps{
+                script{
+                    def builder = load pwd() + "${SHARED_LIBRARY}"
+                    oefull1604 = builder.dockerImage("openenclave/ubuntu-${DOCKER_REPO}:${DOCKER_TAG}", "images/ubuntu/Dockerfile", "--build-arg ubuntu_version=${UBUNTU_VERSION} --build-arg devkits_uri=${DEVKITS_URI}")
+                
+                }
+            }
+        }
+
+        stage('Docker Test ${LINUX_VERSION} Image'){
+            steps{
+                script{
+                    sh  """
+                        echo test
+                        """                
+                }
+            }
+        }
+
+        stage('Docker Push ${LINUX_VERSION} Image'){
+            steps{
+                script{
+                    sh  """
+                        echo test
+                        """                
+                }
+            }
+        }
+    }
+    post ('Clean Up'){
+        always{
+            cleanWs()
+        }
+    }
+}

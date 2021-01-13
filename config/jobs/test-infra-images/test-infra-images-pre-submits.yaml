@@ -1,0 +1,47 @@
+presubmits:
+  openenclave/test-infra-images:
+
+  - name: pr-test-infra-images-Ubuntu1604Build
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra-images/job/Ubuntu1604Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-images-Ubuntu1604Build
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra-images/job/Ubuntu1604Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-test-infra-images-Windows2019Build
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 10
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:latest
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job test-infra-images/job/Windows2019Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        

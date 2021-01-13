@@ -4,12 +4,18 @@ LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/image-pushing/UbuntuBuild.JenkinsFile"
 
+// DevKits
+DEVKITS_URI="https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz"
+
+// Docker tag
+DOCKER_TAG="latest"
+
 pipeline {
-    environment {
-        registry = "docker_hub_account/repository_name"
-        registryCredential = 'dockerhub'
+    options {
+        timeout(time: 60, unit: 'MINUTES') 
     }
-    agent agent { label "ACC-${LINUX_VERSION}" }
+    agent { label "ACC-${LINUX_VERSION}" }
+
     stages {
         stage("Checkout") {
             cleanWs()
@@ -19,7 +25,7 @@ pipeline {
             steps{
                 script {
                     def builder = load pwd() + "${SHARED_LIBRARY}"
-                    oefull1604 = oe.dockerImage("oetools-full-16.04:${DOCKER_TAG}", ".jenkins/infrastructure/dockerfiles/Dockerfile.full", "${buildArgs} --build-arg ubuntu_version=16.04 --build-arg devkits_uri=${DEVKITS_URI}")
+                    oefull1604 = builder.dockerImage("openenclave/ubuntu-1804:${DOCKER_TAG}", ".jenkins/infrastructure/dockerfiles/Dockerfile.full", "--build-arg ubuntu_version=16.04 --build-arg devkits_uri=${DEVKITS_URI}")
                 }
             }
         }

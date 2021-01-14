@@ -3,6 +3,7 @@ PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
 
 // OS Version Configuration
 LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
+DOCKER_IMAGE="openenclave/" + LINUX_VERSION.toLowerCase()
 
 // Some Defaults
 DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
@@ -28,18 +29,20 @@ pipeline {
         stage('Build'){
             steps{
                 script{
-                    def runner = load pwd() + "${SHARED_LIBRARY}"
-                    for(BUILD_TYPE in BUILD_TYPES){
-                        stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
-                            try{
-                                runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
-                            } catch (Exception e) {
-                                // Do something with the exception 
-                                error "Program failed, please read logs..."
-                            } finally {
-                                runner.cleanup()
+                    docker.image("${DOCKER_IMAGE}").inside {
+                        def runner = load pwd() + "${SHARED_LIBRARY}"
+                        for(BUILD_TYPE in BUILD_TYPES){
+                            stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                                try{
+                                    runner.cleanup()
+                                    runner.checkout("${PULL_NUMBER}")
+                                    runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
+                                } catch (Exception e) {
+                                    // Do something with the exception 
+                                    error "Program failed, please read logs..."
+                                } finally {
+                                    runner.cleanup()
+                                }
                             }
                         }
                     }

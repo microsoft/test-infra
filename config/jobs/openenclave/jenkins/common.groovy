@@ -14,10 +14,26 @@ void checkout( String PULL_NUMBER="master" ) {
             git clone --recursive --depth 1 https://github.com/openenclave/openenclave && \
             cd openenclave && \
             git fetch origin +refs/pull/*/merge:refs/remotes/origin/pr/*
-            if [[ ${PULL_NUMBER} -ne 'master' ]]; then
+            if [ '${PULL_NUMBER}' != 'master' ]
+            then
                 echo 'checking out  ${PULL_NUMBER}'
                 git checkout origin/pr/${PULL_NUMBER}
             fi
+            echo 'Current branch'
+            git branch
+            echo ${PULL_NUMBER}
+            echo 'master'
+
+            if [ ${PULL_NUMBER} != 'master' ]
+            then
+                echo 'checking out  ${PULL_NUMBER}'
+                git checkout origin/pr/${PULL_NUMBER}
+            fi
+            echo 'Current branch'
+            git branch
+            echo '${PULL_NUMBER}'
+            echo 'master'
+            git checkout origin/pr/${PULL_NUMBER}
             """
     }
     else {

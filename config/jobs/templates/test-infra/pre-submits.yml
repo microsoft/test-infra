@@ -4,7 +4,7 @@
     run_if_changed: "^(config/jobs/${repo}/*)"
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest

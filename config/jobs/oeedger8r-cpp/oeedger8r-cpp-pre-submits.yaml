@@ -7,7 +7,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -22,7 +22,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -37,7 +37,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -52,7 +52,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -67,7 +67,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -82,7 +82,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -97,7 +97,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest
@@ -112,7 +112,7 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 10
+    max_concurrency: 2
     spec:
       containers:
         - image: openenclave/jenkinsoperator:latest

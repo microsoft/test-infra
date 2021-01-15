@@ -19,7 +19,7 @@ EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${L
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
-// Wherther to run as an e2e test
+// whether to run as an e2e test
 E2E=env.E2E?env.E2E:"OFF"
 
 pipeline {

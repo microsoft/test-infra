@@ -12,7 +12,7 @@ BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"RelWithDebInfo"
 // Some override for build configuration
 LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
 LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
-LVI_MITIGATION_BINDIR=env.DLVI_MITIGATION_BINDIR?env.DLVI_MITIGATION_BINDIR:"/usr/local/lvi-mitigation/bin "
+LVI_MITIGATION_BINDIR=env.DLVI_MITIGATION_BINDIR?env.DLVI_MITIGATION_BINDIR:"/usr/local/lvi-mitigation/bin"
 USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
 // Hack to disable environment lvi
 env.LVI_MITIGATION=""
@@ -26,7 +26,7 @@ EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${L
 // Shared library config, check out common.groovy!
 SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
 
-// Wherther to run as an e2e test
+// whether to run as an e2e test
 E2E=env.E2E?env.E2E:"OFF"
 
 pipeline {

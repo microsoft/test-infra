@@ -7,8 +7,6 @@
 void checkout( String PULL_NUMBER="master" ) {
     if (isUnix()) {
         sh  """
-            echo HEREEEEEEEEE
-            echo ${PULL_NUMBER}
             git config --global core.compression 0 && \
             rm -rf openenclave && \
             git clone --recursive --depth 1 https://github.com/openenclave/openenclave && \
@@ -19,21 +17,6 @@ void checkout( String PULL_NUMBER="master" ) {
                 echo 'checking out  ${PULL_NUMBER}'
                 git checkout origin/pr/${PULL_NUMBER}
             fi
-            echo 'Current branch'
-            git branch
-            echo ${PULL_NUMBER}
-            echo 'master'
-
-            if [ ${PULL_NUMBER} != 'master' ]
-            then
-                echo 'checking out  ${PULL_NUMBER}'
-                git checkout origin/pr/${PULL_NUMBER}
-            fi
-            echo 'Current branch'
-            git branch
-            echo '${PULL_NUMBER}'
-            echo 'master'
-            git checkout origin/pr/${PULL_NUMBER}
             """
     }
     else {

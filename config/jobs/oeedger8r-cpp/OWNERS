@@ -8,4 +8,4 @@ reviewers:
   - oeedger8r-cpp-maintainers
   - test-infra-oncall
 labels:
- - config/jobs/oeedger8r-cpp  
+  - config/jobs/oeedger8r-cpp

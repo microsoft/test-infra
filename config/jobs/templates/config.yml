@@ -72,7 +72,7 @@ pipelines:
     Ubuntu1804ReleaseClang-7SnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016DebugSnmallocE2E
+    Win2016DebSnmallocE2E
     Win2016RelSnmalloc
     Win2016RelSnmallocE2E
     Win2016Release
@@ -174,7 +174,7 @@ buildmodesmap:
     Ubuntu1804ReleaseClang-7SnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016DebugSnmallocE2E
+    Win2016DebSnmallocE2E
     Win2016RelSnmalloc
     Win2016RelSnmallocE2E
     Win2016Release
@@ -206,7 +206,7 @@ buildtypemap:
     Ubuntu1804DebugClang-7SnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016DebugSnmallocE2E
+    Win2016DebSnmallocE2E
     Win2019Debug
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
@@ -260,7 +260,7 @@ lvioptionsmaps:
     Ubuntu1804ReleaseClang-7SnmallocE2E
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016DebugSnmallocE2E
+    Win2016DebSnmallocE2E
     Win2016RelSnmalloc
     Win2016RelSnmallocE2E
     Win2016Release
@@ -296,7 +296,7 @@ snmallocmap:
     Ubuntu1804ReleaseClang-7Snmalloc
     Ubuntu1804ReleaseClang-7SnmallocE2E
     Win2016DebugSnmalloc
-    Win2016DebugSnmallocE2E
+    Win2016DebSnmallocE2E
     Win2016RelSnmalloc
     Win2016RelSnmallocE2E
     Win2019DebugSnmalloc
@@ -309,7 +309,7 @@ windowsversionsmap:
   Windows-2016:
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016DebugSnmallocE2E
+    Win2016DebSnmallocE2E
     Win2016RelSnmalloc
     Win2016RelSnmallocE2E
     Win2016Release
@@ -468,7 +468,7 @@ jobmaps:
   WindowsBuild:
     Win2016Debug
     Win2016DebugSnmalloc
-    Win2016DebugSnmallocE2E
+    Win2016DebSnmallocE2E
     Win2016RelSnmalloc
     Win2016RelSnmallocE2E
     Win2016Release

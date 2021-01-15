@@ -469,7 +469,7 @@ postsubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
-  - name: post-openenclave-Win2016DebugSnmallocE2E
+  - name: post-openenclave-Win2016DebSnmallocE2E
     branches:
     - master
     decorate: true
@@ -479,7 +479,7 @@ postsubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebugSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave/job/Win2016DebSnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters  PULL_NUMBER=master"        
 
   - name: post-openenclave-Win2016RelSnmalloc
     branches:

@@ -1,19 +1,16 @@
 ---
 jobs:
   - script: |
-        folder("test-infra") {
-            displayName("test-infra")
-        }
-        folder("test-infra/openenclave") {
+        folder("openenclave") {
             displayName("openenclave")
         }
-        pipelineJob("test-infra/openenclave/Win2016DebugSnmallocE2E") {
+        pipelineJob("openenclave/Win2016DebSnmallocE2E") {
             quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {
                 stringParam {
-                    name("OE_TEST_INFRA_PULL_NUMBER")
+                    name("PULL_NUMBER")
                     defaultValue("master")
                     description("")
                     trim(true)
@@ -25,14 +22,14 @@ jobs:
                     trim(true)
                 }
                 stringParam {
-                    name("WINDOWS_VERSION")
-                    defaultValue("Windows-2016")
+                    name("BUILD_TYPE")
+                    defaultValue("Debug")
                     description("")
                     trim(true)
                 }
                 stringParam {
-                    name("BUILD_TYPE")
-                    defaultValue("Debug")
+                    name("WINDOWS_VERSION")
+                    defaultValue("Windows-2016")
                     description("")
                     trim(true)
                 }
@@ -66,7 +63,7 @@ jobs:
                     description("")
                     trim(true)
                 }
-            }
+            } 
             authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
             definition {
                 cpsScm {
@@ -74,9 +71,8 @@ jobs:
                         git {
                             remote {
                                 github("openenclave/test-infra", "https")
-                                refspec("+refs/pull/*/merge:refs/remotes/origin/pr/*")
                             }
-                            branch('origin/pr/$OE_TEST_INFRA_PULL_NUMBER')
+                            branch('*/master')
                             extensions {
                                 cleanBeforeCheckout()
                                 cleanAfterCheckout()
@@ -115,4 +111,4 @@ jobs:
                     }
                 }
             }
-        }           
+        }        

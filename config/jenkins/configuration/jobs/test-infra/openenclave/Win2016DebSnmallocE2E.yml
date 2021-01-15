@@ -1,16 +1,19 @@
 ---
 jobs:
   - script: |
-        folder("openenclave") {
+        folder("test-infra") {
+            displayName("test-infra")
+        }
+        folder("test-infra/openenclave") {
             displayName("openenclave")
         }
-        pipelineJob("openenclave/Win2016DebugSnmallocE2E") {
+        pipelineJob("test-infra/openenclave/Win2016DebSnmallocE2E") {
             quietPeriod(0)
             description()
             keepDependencies(false)
             parameters {
                 stringParam {
-                    name("PULL_NUMBER")
+                    name("OE_TEST_INFRA_PULL_NUMBER")
                     defaultValue("master")
                     description("")
                     trim(true)
@@ -22,14 +25,14 @@ jobs:
                     trim(true)
                 }
                 stringParam {
-                    name("BUILD_TYPE")
-                    defaultValue("Debug")
+                    name("WINDOWS_VERSION")
+                    defaultValue("Windows-2016")
                     description("")
                     trim(true)
                 }
                 stringParam {
-                    name("WINDOWS_VERSION")
-                    defaultValue("Windows-2016")
+                    name("BUILD_TYPE")
+                    defaultValue("Debug")
                     description("")
                     trim(true)
                 }
@@ -63,7 +66,7 @@ jobs:
                     description("")
                     trim(true)
                 }
-            } 
+            }
             authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
             definition {
                 cpsScm {
@@ -71,8 +74,9 @@ jobs:
                         git {
                             remote {
                                 github("openenclave/test-infra", "https")
+                                refspec("+refs/pull/*/merge:refs/remotes/origin/pr/*")
                             }
-                            branch('*/master')
+                            branch('origin/pr/$OE_TEST_INFRA_PULL_NUMBER')
                             extensions {
                                 cleanBeforeCheckout()
                                 cleanAfterCheckout()
@@ -111,4 +115,4 @@ jobs:
                     }
                 }
             }
-        }        
+        }           

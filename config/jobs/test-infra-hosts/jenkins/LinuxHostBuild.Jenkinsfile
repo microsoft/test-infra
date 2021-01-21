@@ -1,5 +1,6 @@
 SP_CLIENT_ID=env.SP_CLIENT_ID?env.SP_CLIENT_ID:""
 SP_PASSWORD=env.SP_PASSWORD?env.SP_PASSWORD:""
+SP_TENANT=env.SP_TENANT?env.SP_TENANT:""
 SUBSCRIPTION_IMAGE_STRING=env.SP_PASSWORD?env.SP_PASSWORD:""
 LOCATION="uksouth"
 
@@ -29,6 +30,16 @@ pipeline {
                 script{
                     sh  """
                         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                        """
+                }
+            }
+        }
+
+        stage('AZ login'){
+            steps{
+                script{
+                    sh  """
+                        az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD}
                         """
                 }
             }

@@ -167,7 +167,8 @@ YY=$(date +%Y)
 DD=$(date +%d)
 MM=$(date +%m)
 
-GALLERY_IMAGE_VERSION="$YY.$MM.$DD"
+RAND=$((1 + $RANDOM % 1000))
+GALLERY_IMAGE_VERSION="$YY.$MM.$DD$RAND"
 GALLERY_NAME="ACC_Images"
 
 # If the target image version doesn't exist, the below
@@ -179,7 +180,6 @@ az sig image-version delete \
     --gallery-image-version ${GALLERY_IMAGE_VERSION}
 
 # Upload and replciate image.
-## TODO, need a better image verisoning sysem.
 az sig image-version create \
     --resource-group "ACC-Images" \
     --gallery-name ${GALLERY_NAME} \
@@ -191,7 +191,5 @@ az sig image-version create \
     --end-of-life-date "$(($YY+1))-$MM-$DD"
 
 # Clean up
-az group delete \
-    --name ${VM_RESOURCE_GROUP} \
-    --yes
+az group delete --name ${VM_RESOURCE_GROUP} --yes || true
 

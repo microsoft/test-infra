@@ -1,14 +1,19 @@
-// Shared library config, check out common.groovy!
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
-SHARED_LIBRARY="/config/jobs/test-infra-images/jenkins/common.groovy"
 SP_CLIENT_ID=env.SP_CLIENT_ID?env.SP_CLIENT_ID:""
 SP_PASSWORD=env.SP_PASSWORD?env.SP_PASSWORD:""
+SUBSCRIPTION_IMAGE_STRING=env.SP_PASSWORD?env.SP_PASSWORD:""
+LOCATION="uksouth"
+
+LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu_1804_LTS_Gen2"
+VM_RESOURCE_GROUP="${LINUX_VERSION}-imageBuilder"
+VM_NAME="temporary"
+ADMIN_USERNAME="jenkins"
+VANIllA_IMAGE="${SUBSCRIPTION_IMAGE_STRING}/${LINUX_VERSION}"
 
 pipeline {
     options {
         timeout(time: 60, unit: 'MINUTES') 
     }
-    agent { label "ACC-${LINUX_VERSION}" }
+    agent { label "ACC-Ubuntu-1804" }
 
     stages {
 
@@ -24,6 +29,19 @@ pipeline {
                 script{
                     sh  """
                         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                        """
+                }
+            }
+        }
+
+        stage('Create resource group'){
+            steps{
+                script{
+                    sh  """
+                        az group create \
+                            --name ${VM_RESOURCE_GROUP} \
+                            --location ${LOCATION} \
+                            --tags 'team=oesdk' 'environment=staging' 'maintainer=oesdkteam'
                         """
                 }
             }

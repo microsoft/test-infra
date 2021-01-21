@@ -39,7 +39,7 @@ pipeline {
             steps{
                 script{
                     sh  """
-                        az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD}
+                        'az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD}'
                         """
                 }
             }
@@ -75,7 +75,7 @@ pipeline {
                         az vm create \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME} \
-                            --image ${VANIllA_IMAGE} \
+                            --image '${VANIllA_IMAGE}' \
                             --admin-username ${ADMIN_USERNAME} \
                             --authentication-type ssh \
                             --size Standard_DC4s_v2 \

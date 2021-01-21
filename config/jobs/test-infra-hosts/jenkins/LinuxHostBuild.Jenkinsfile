@@ -62,7 +62,7 @@ pipeline {
                         az group create \
                             --name ${VM_RESOURCE_GROUP} \
                             --location ${LOCATION} \
-                            --tags 'team=oesdk' 'environment=staging' 'maintainer=oesdkteam'
+                            --tags 'team=oesdk' 'environment=staging' 'maintainer=oesdkteam' 'deleteMe=true'
                         """
                 }
             }
@@ -79,7 +79,7 @@ pipeline {
                             --admin-username ${ADMIN_USERNAME} \
                             --authentication-type ssh \
                             --size Standard_DC4s_v2 \
-                            --ssh-key-values ~/.ssh/id_rsa.pub
+                            --generate-ssh-keys
                         """
                 }
             }

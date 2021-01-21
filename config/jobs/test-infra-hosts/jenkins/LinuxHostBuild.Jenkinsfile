@@ -1,7 +1,7 @@
 SP_CLIENT_ID=env.SP_CLIENT_ID?env.SP_CLIENT_ID:""
 SP_PASSWORD=env.SP_PASSWORD?env.SP_PASSWORD:""
 SP_TENANT=env.SP_TENANT?env.SP_TENANT:""
-SUBSCRIPTION_IMAGE_STRING=env.SP_PASSWORD?env.SP_PASSWORD:""
+SUBSCRIPTION_IMAGE_STRING=env.SUBSCRIPTION_IMAGE_STRING?env.SUBSCRIPTION_IMAGE_STRING:""
 LOCATION="uksouth"
 
 LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu_1804_LTS_Gen2"
@@ -45,6 +45,16 @@ pipeline {
             }
         }
 
+        stage('Ensure Resource Group Does Not Exist'){
+            steps{
+                script{
+                    sh  """
+                        az group delete --name ${VM_RESOURCE_GROUP} --yes || true
+                        """
+                }
+            }
+        }
+
         stage('Create resource group'){
             steps{
                 script{
@@ -62,7 +72,14 @@ pipeline {
             steps{
                 script{
                     sh  """
-                        echo 'gotta start somewhere'
+                        az vm create \
+                            --resource-group ${VM_RESOURCE_GROUP} \
+                            --name ${VM_NAME} \
+                            --image ${VANIllA_IMAGE} \
+                            --admin-username ${ADMIN_USERNAME} \
+                            --authentication-type ssh \
+                            --size Standard_DC4s_v2 \
+                            --ssh-key-values ~/.ssh/id_rsa.pub
                         """
                 }
             }

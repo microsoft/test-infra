@@ -17,6 +17,16 @@ pipeline {
             }
         }
 
+        stage('Install prereqs'){
+            steps{
+                script{
+                    sh  """
+                        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+                        """
+                }
+            }
+        }
+
         stage('Launch base VM'){
             steps{
                 script{

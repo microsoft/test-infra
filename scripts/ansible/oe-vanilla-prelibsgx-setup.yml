@@ -13,3 +13,7 @@
     - import_role:
         name: linux/az-dcap-client
         tasks_from: stable-install.yml
+
+    - import_role:
+        name: linux/jenkins
+        tasks_from: packer.yml

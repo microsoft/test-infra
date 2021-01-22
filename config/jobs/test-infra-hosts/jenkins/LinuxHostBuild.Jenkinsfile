@@ -141,37 +141,9 @@ pipeline {
                 script{
                     sh(
                         script: """
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'mkdir /home/jenkins/'
-
-                        sleep 1m
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'cd /home/jenkins/ && git clone https://github.com/openenclave/test-infra'
-
-                        sleep 1m
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
-
-                        sleep 1m
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'ansible-playbook /home/jenkins/test-infra/scripts/ansible/oe-contributors-acc-setup.yml'
-
-                        sleep 1m
+                        az vm deallocate \
+                            --resource-group ${VM_RESOURCE_GROUP} \
+                            --name ${VM_NAME}
                         """
                     )  
                 }

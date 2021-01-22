@@ -9,8 +9,6 @@ pipeline {
         string(name: 'LOCATION', defaultValue: 'uksouth', description: 'Azure Region')
         string(name: 'SGX', defaultValue: 'SGX', description: 'SGX enabled')
         string(name: 'LINUX_VERSION', defaultValue: 'Ubuntu_1804_LTS_Gen2', description: 'Linux version to build ')
-        string(name: 'BRANCH', defaultValue: 'master', description: 'Branch to build ')
-        string(name: 'FORK', defaultValue: 'openenclave', description: 'Fork to build ')
     }
     environment {
         BUILD_ID = "${currentBuild.number}"
@@ -21,12 +19,13 @@ pipeline {
         PUBLISHER = "${params.SGX}-${params.LINUX_VERSION}"
         OFFER = "${params.SGX}-${params.LINUX_VERSION}"
         SKU = "${params.SGX}-${params.LINUX_VERSION}"
+        IMAGE_RESOURCE_GROUP = "ACC-Images"
+        GALLERY_NAME = "ACC_Images"
     }
     stages {
         stage('Checkout') {
             steps{
                 cleanWs()
-                //checkout scm
             }
         }
         stage('Install prereqs') {
@@ -74,12 +73,12 @@ pipeline {
                 script{
                     withCredentials([string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')]) {
                         sh(
-                            script: """
+                            script: '''
                             az group create \
                                 --name ${VM_RESOURCE_GROUP} \
                                 --location ${params.LOCATION} \
                                 --tags 'team=oesdk' 'environment=staging' 'maintainer=oesdkteam' 'deleteMe=true'
-                            """
+                            '''
                         )
                     }
                 }
@@ -119,17 +118,11 @@ pipeline {
                             --command-id RunShellScript \
                             --scripts "sudo mkdir /home/jenkins/ && sudo chmod 777 /home/jenkins/"
 
-                        sleep 15s
-
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts "cd /home/jenkins/ && \
-                            git clone https://github.com/openenclave/test-infra && \
-                            cd test-infra && git checkout master"
-
-                        sleep 15s
+                            --scripts "cd /home/jenkins/ git clone https://github.com/openenclave/test-infra && cd test-infra && git checkout master"
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
@@ -137,23 +130,17 @@ pipeline {
                             --command-id RunShellScript \
                             --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
 
-                        sleep 15s
-
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
                             --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
-
-                        sleep 15s
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
                             --scripts 'ansible-playbook /home/jenkins/test-infra/scripts/ansible/oe-contributors-acc-setup.yml'
-
-                        sleep 15s
                         '''
                     )  
                 }
@@ -173,15 +160,15 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}
                         
-                        img_id=\$(az image create \
+                        img_id=$(az image create \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name myImage \
                             --source ${VM_NAME} \
                             --hyper-v-generation V2 | jq -r '.id')
 
                         az sig image-definition create \
-                            --resource-group ACC-Images \
-                            --gallery-name ACC_Images \
+                            --resource-group ${IMAGE_RESOURCE_GROUP} \
+                            --gallery-name ${GALLERY_NAME}  \
                             --gallery-image-definition ${GALLERY_DEFN} \
                             --publisher ${PUBLISHER} \
                             --offer ${OFFER} \
@@ -195,19 +182,18 @@ pipeline {
                         MM=$(date +%m)
 
                         GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
-                        GALLERY_NAME="ACC_Images"
 
                         az sig image-version delete \
-                            --resource-group "ACC-Images" \
+                            --resource-group ${IMAGE_RESOURCE_GROUP} \
                             --gallery-name ${GALLERY_NAME} \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
+                            --gallery-image-definition ${GALLERY_DEFN} \
                             --gallery-image-version ${GALLERY_IMAGE_VERSION}
 
                         az sig image-version create \
-                            --resource-group "ACC-Images" \
+                            --resource-group ${IMAGE_RESOURCE_GROUP} \
                             --gallery-name ${GALLERY_NAME} \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
-                            --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
+                            --gallery-image-definition ${GALLERY_DEFN} \
+                            --gallery-image-version ${GALLERY_IMAGE_VERSION} \
                             --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
                             --replica-count 1 \
                             --managed-image $img_id \

@@ -9,15 +9,16 @@ pipeline {
         string(name: 'LOCATION', defaultValue: 'uksouth', description: 'Azure Region')
         string(name: 'SGX', defaultValue: 'SGX', description: 'SGX enabled')
         string(name: 'LINUX_VERSION', defaultValue: 'Ubuntu_1804_LTS_Gen2', description: 'Linux version to build ')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Branch to build ')
     }
     environment {
-        VM_RESOURCE_GROUP = "${env.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
+        VM_RESOURCE_GROUP = "${params.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
         VM_NAME = "temporary"
         ADMIN_USERNAME = "jenkins"
-        GALLERY_DEFN = "${env.SGX}-${env.LINUX_VERSION}"
-        PUBLISHER = "${env.SGX}-${env.LINUX_VERSION}"
-        OFFER = "${env.SGX}-${env.LINUX_VERSION}"
-        SKU = "${env.SGX}-${env.LINUX_VERSION}"
+        GALLERY_DEFN = "${params.SGX}-${params.LINUX_VERSION}"
+        PUBLISHER = "${params.SGX}-${params.LINUX_VERSION}"
+        OFFER = "${params.SGX}-${params.LINUX_VERSION}"
+        SKU = "${params.SGX}-${params.LINUX_VERSION}"
     }
     stages {
         stage('Checkout') {
@@ -115,7 +116,9 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'cd /home/jenkins/ && git clone https://github.com/openenclave/test-infra'
+                            --scripts 'cd /home/jenkins/ && \
+                            git clone https://github.com/openenclave/test-infra && \
+                            cd test-infra && git checkout ${env.BRANCH}
 
                         sleep 1m
 
@@ -200,6 +203,20 @@ pipeline {
             }
         }
     }
+
+    stage('Test VM State') {
+            steps{
+                script{
+                    sh(
+                        script: '''
+                        echo "We should test..."
+                        '''
+                    )  
+                }
+            }
+        }
+    }
+
     post ('Clean Up') {
         always{
             script{

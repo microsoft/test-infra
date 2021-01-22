@@ -122,7 +122,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts sudo mkdir /home/jenkins/ && sudo chmod 777 /home/jenkins/ 
+                            --scripts "sudo mkdir /home/jenkins/ && sudo chmod 777 /home/jenkins/"
 
                         sleep 1m
 

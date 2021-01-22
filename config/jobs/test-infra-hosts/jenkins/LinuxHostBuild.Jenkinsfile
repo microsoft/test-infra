@@ -145,7 +145,7 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         az vm deallocate \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}
@@ -194,7 +194,7 @@ pipeline {
                             --replica-count 1 \
                             --managed-image $img_id \
                             --end-of-life-date "$(($YY+1))-$MM-$DD"
-                        """
+                        '''
                     )  
                 }
             }

@@ -135,6 +135,47 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
+                            --scripts 'ls -l /home/jenkins/'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts 'ls -l /home/jenkins/test-infra/'
+
+                        sleep 15s
+
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts 'ls -l /home/jenkins/test-infra/scripts/'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts 'ls -l /home/jenkins/test-infra/scripts/ansible'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
                             --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
 
                         sleep 15s
@@ -186,7 +227,6 @@ pipeline {
                         DD=$(date +%d)
                         MM=$(date +%m)
 
-                        RAND=$((1 + $RANDOM % 1000))
                         GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
                         GALLERY_NAME="ACC_Images"
 

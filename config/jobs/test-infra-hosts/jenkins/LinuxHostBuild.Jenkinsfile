@@ -1,8 +1,8 @@
 pipeline {
     options {
-        timeout(time: 60, unit: 'MINUTES') 
+        timeout(time: 60, unit: 'MINUTES')
     }
-    agent { 
+    agent {
         label "ACC-Ubuntu-1804"
     }
     parameters {
@@ -43,13 +43,14 @@ pipeline {
         stage('AZ login') {
             steps{
                 withCredentials([
-                string(credentialsId: 'BUILD-SP-CLIENTID', variable: 'SP_CLIENT_ID'), 
-                string(credentialsId: 'BUILD-SP-PASSWORD', variable: 'SP_PASSWORD'), 
-                string(credentialsId: 'BUILD-SP-TENANT', variable: 'SP_TENANT')]) {
+                    string(credentialsId: 'BUILD-SP-CLIENTID', variable: 'SP_CLIENT_ID'),
+                    string(credentialsId: 'BUILD-SP-PASSWORD', variable: 'SP_PASSWORD'),
+                    string(credentialsId: 'BUILD-SP-TENANT', variable: 'SP_TENANT')
+                ]) {
                     script{
                         sh(
                             script: '''
-                            az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD}
+                            az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD} > /dev/null
                             '''
                         )
                     }
@@ -70,27 +71,32 @@ pipeline {
         stage('Create resource group') {
             steps{
                 script{
-                    sh(
-                        script: '''
-                        az group create \
-                            --name ${VM_RESOURCE_GROUP} \
-                            --location ${LOCATION} \
-                            --tags 'team=oesdk' 'environment=staging' 'maintainer=oesdkteam' 'deleteMe=true'
-                        '''
-                    )  
+                    withCredentials([string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')]) {
+                        sh(
+                            script: """
+                            az group create \
+                                --name ${VM_RESOURCE_GROUP} \
+                                --location ${params.LOCATION} \
+                                --tags 'team=oesdk' 'environment=staging' 'maintainer=oesdkteam' 'deleteMe=true'
+                            """
+                        )
+                    }
                 }
             }
         }
         stage('Launch base VM') {
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING')]) {
+                    withCredentials([
+                        string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
+                        string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
+                    ]) {
                         sh(
                             script: '''
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \
                                 --name ${VM_NAME} \
-                                --image "${SUBSCRIPTION_IMAGE_STRING}/${LINUX_VERSION}" \
+                                --image ${SUBSCRIPTION_IMAGE_STRING}/${LINUX_VERSION} \
                                 --admin-username ${ADMIN_USERNAME} \
                                 --authentication-type ssh \
                                 --size Standard_DC4s_v2 \

@@ -7,12 +7,17 @@ pipeline {
     }
     parameters {
         string(name: 'LOCATION', defaultValue: 'uksouth', description: 'Azure Region')
+        string(name: 'SGX', defaultValue: 'SGX', description: 'SGX enabled')
         string(name: 'LINUX_VERSION', defaultValue: 'Ubuntu_1804_LTS_Gen2', description: 'Linux version to build ')
     }
     environment {
         VM_RESOURCE_GROUP = "${env.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
         VM_NAME = "temporary"
         ADMIN_USERNAME = "jenkins"
+        GALLERY_DEFN = "${env.SGX}-${env.LINUX_VERSION}"
+        PUBLISHER = "${env.SGX}-${env.LINUX_VERSION}"
+        OFFER = "${env.SGX}-${env.LINUX_VERSION}"
+        SKU = "${env.SGX}-${env.LINUX_VERSION}"
     }
     stages {
         stage('Checkout') {
@@ -158,8 +163,10 @@ pipeline {
                         az sig image-definition create \
                             --resource-group ACC-Images \
                             --gallery-name ACC_Images \
-                            --gallery-image-definition "ACC-${LINUX_VERSION}" \
-                            --publisher "ACC-Images-Brett-Test" \
+                            --gallery-image-definition ${GALLERY_DEFN} \
+                            --publisher ${PUBLISHER} \
+                            --offer ${OFFER} \
+                            --sku ${SKU} \
                             --os-type Linux \
                             --os-state generalized \
                             --hyper-v-generation V2 || true

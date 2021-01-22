@@ -149,13 +149,12 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}
                         
-                        img_id="\$(az image create \
+                        img_id=\$(az image create \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name myImage \
                             --source ${VM_NAME} \
-                            --hyper-v-generation V2 | jq -r '.id')"
+                            --hyper-v-generation V2 | jq -r '.id')
 
-                        # Create an image definition. If the image definition already exists, the below command will not fail.
                         az sig image-definition create \
                             --resource-group ACC-Images \
                             --gallery-name ACC_Images \
@@ -167,7 +166,6 @@ pipeline {
                             --os-state generalized \
                             --hyper-v-generation V2 || true
 
-                        # Store Date info for End Of Life date and versioning.
                         YY=$(date +%Y)
                         DD=$(date +%d)
                         MM=$(date +%m)
@@ -176,15 +174,12 @@ pipeline {
                         GALLERY_IMAGE_VERSION="$YY.$MM.$DD$RAND"
                         GALLERY_NAME="ACC_Images"
 
-                        # If the target image version doesn't exist, the below
-                        # command will not fail because it is idempotent.
                         az sig image-version delete \
                             --resource-group "ACC-Images" \
                             --gallery-name ${GALLERY_NAME} \
                             --gallery-image-definition ACC-${LINUX_VERSION} \
                             --gallery-image-version ${GALLERY_IMAGE_VERSION}
 
-                        # Upload and replciate image.
                         az sig image-version create \
                             --resource-group "ACC-Images" \
                             --gallery-name ${GALLERY_NAME} \

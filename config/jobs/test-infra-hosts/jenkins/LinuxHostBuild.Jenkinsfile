@@ -202,7 +202,13 @@ pipeline {
     }
     post ('Clean Up') {
         always{
-            cleanWs()
+            script{
+                sh(
+                    script: '''
+                    az group delete --name ${VM_RESOURCE_GROUP} --yes || true
+                    '''
+                )
+            }
         }
     }
 }

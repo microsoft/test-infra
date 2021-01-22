@@ -126,7 +126,7 @@ pipeline {
                             --command-id RunShellScript \
                             --scripts cd /home/jenkins/ && \
                             git clone https://github.com/openenclave/test-infra && \
-                            cd test-infra && git checkout master
+                            cd test-infra && git checkout master && 
 
                         sleep 1m
 

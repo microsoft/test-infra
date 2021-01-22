@@ -33,7 +33,7 @@ pipeline {
                     sh(
                         script: """
                         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-                        sudo apt-get install jq
+                        sudo apt-get install jq -y
                         """
                     )  
                 }
@@ -109,7 +109,13 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'mkdir /home/jenkins/'
+                            --scripts pwd && ls -l
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts mkdir /home/jenkins/
 
                         sleep 1m
 

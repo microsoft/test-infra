@@ -7,12 +7,19 @@ pipeline {
     }
     parameters {
         string(name: 'LOCATION', defaultValue: 'uksouth', description: 'Azure Region')
+        string(name: 'SGX', defaultValue: 'SGX', description: 'SGX enabled')
         string(name: 'LINUX_VERSION', defaultValue: 'Ubuntu_1804_LTS_Gen2', description: 'Linux version to build ')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Branch to build ')
+        string(name: 'FORK', defaultValue: 'openenclave', description: 'Fork to build ')
     }
     environment {
-        VM_RESOURCE_GROUP = "${params.LINUX_VERSION}-imageBuilder"
+        VM_RESOURCE_GROUP = "${params.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
         VM_NAME = "temporary"
         ADMIN_USERNAME = "jenkins"
+        GALLERY_DEFN = "${params.SGX}-${params.LINUX_VERSION}"
+        PUBLISHER = "${params.SGX}-${params.LINUX_VERSION}"
+        OFFER = "${params.SGX}-${params.LINUX_VERSION}"
+        SKU = "${params.SGX}-${params.LINUX_VERSION}"
     }
     stages {
         stage('Checkout') {
@@ -25,10 +32,11 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-                        """
-                    )
+                        sudo apt-get install jq -y
+                        '''
+                    )  
                 }
             }
         }
@@ -53,10 +61,10 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         az group delete --name ${VM_RESOURCE_GROUP} --yes || true
-                        """
-                    )
+                        '''
+                    )  
                 }
             }
         }
@@ -103,12 +111,18 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'mkdir /home/jenkins/'
+                            --scripts pwd && ls -l
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts mkdir /home/jenkins/
 
                         sleep 1m
 
@@ -116,7 +130,9 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'cd /home/jenkins/ && git clone https://github.com/openenclave/test-infra'
+                            --scripts cd /home/jenkins/ && \
+                            git clone https://github.com/openenclave/test-infra && \
+                            cd test-infra && git checkout master && 
 
                         sleep 1m
 
@@ -136,15 +152,92 @@ pipeline {
 
                         sleep 1m
 
-                        """
-                    )
+                        '''
+                    )  
+                }
+            }
+        }
+
+        stage('Save VM State') {
+            steps{
+                script{
+                    sh(
+                        script: '''
+                        az vm deallocate \
+                            --resource-group ${VM_RESOURCE_GROUP} \
+                            --name ${VM_NAME}
+
+                        az vm generalize \
+                            --resource-group ${VM_RESOURCE_GROUP} \
+                            --name ${VM_NAME}
+                        
+                        img_id=\$(az image create \
+                            --resource-group ${VM_RESOURCE_GROUP} \
+                            --name myImage \
+                            --source ${VM_NAME} \
+                            --hyper-v-generation V2 | jq -r '.id')
+
+                        az sig image-definition create \
+                            --resource-group ACC-Images \
+                            --gallery-name ACC_Images \
+                            --gallery-image-definition ${GALLERY_DEFN} \
+                            --publisher ${PUBLISHER} \
+                            --offer ${OFFER} \
+                            --sku ${SKU} \
+                            --os-type Linux \
+                            --os-state generalized \
+                            --hyper-v-generation V2 || true
+
+                        YY=$(date +%Y)
+                        DD=$(date +%d)
+                        MM=$(date +%m)
+
+                        RAND=$((1 + $RANDOM % 1000))
+                        GALLERY_IMAGE_VERSION="$YY.$MM.$DD$RAND"
+                        GALLERY_NAME="ACC_Images"
+
+                        az sig image-version delete \
+                            --resource-group "ACC-Images" \
+                            --gallery-name ${GALLERY_NAME} \
+                            --gallery-image-definition ACC-${LINUX_VERSION} \
+                            --gallery-image-version ${GALLERY_IMAGE_VERSION}
+
+                        az sig image-version create \
+                            --resource-group "ACC-Images" \
+                            --gallery-name ${GALLERY_NAME} \
+                            --gallery-image-definition ACC-${LINUX_VERSION} \
+                            --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
+                            --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
+                            --replica-count 1 \
+                            --managed-image $img_id \
+                            --end-of-life-date "$(($YY+1))-$MM-$DD"
+                        '''
+                    )  
+                }
+            }
+        }
+        stage('Test VM State') {
+            steps{
+                script{
+                    sh(
+                        script: '''
+                        echo "We should test..."
+                        '''
+                    )  
                 }
             }
         }
     }
+
     post ('Clean Up') {
         always{
-            cleanWs()
+            script{
+                sh(
+                    script: '''
+                    az group delete --name ${VM_RESOURCE_GROUP} --yes || true
+                    '''
+                )
+            }
         }
     }
 }

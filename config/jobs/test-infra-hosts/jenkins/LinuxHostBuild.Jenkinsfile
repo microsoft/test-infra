@@ -31,10 +31,10 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
                         sudo apt-get install jq -y
-                        """
+                        '''
                     )  
                 }
             }
@@ -47,9 +47,9 @@ pipeline {
                 string(credentialsId: 'BUILD-SP-TENANT', variable: 'SP_TENANT')]) {
                     script{
                         sh(
-                            script: """
+                            script: '''
                             az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD}
-                            """
+                            '''
                         )
                     }
                 }
@@ -59,9 +59,9 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         az group delete --name ${VM_RESOURCE_GROUP} --yes || true
-                        """
+                        '''
                     )  
                 }
             }
@@ -70,12 +70,12 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         az group create \
                             --name ${VM_RESOURCE_GROUP} \
                             --location ${LOCATION} \
                             --tags 'team=oesdk' 'environment=staging' 'maintainer=oesdkteam' 'deleteMe=true'
-                        """
+                        '''
                     )  
                 }
             }
@@ -85,7 +85,7 @@ pipeline {
                 script{
                     withCredentials([string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING')]) {
                         sh(
-                            script: """
+                            script: '''
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \
                                 --name ${VM_NAME} \
@@ -94,7 +94,7 @@ pipeline {
                                 --authentication-type ssh \
                                 --size Standard_DC4s_v2 \
                                 --generate-ssh-keys
-                            """
+                            '''
                         )
                     }
                 }
@@ -104,7 +104,7 @@ pipeline {
             steps{
                 script{
                     sh(
-                        script: """
+                        script: '''
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
@@ -123,7 +123,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'cd /home/jenkins/ && \
+                            --scripts cd /home/jenkins/ && \
                             git clone https://github.com/openenclave/test-infra && \
                             cd test-infra && git checkout ${env.BRANCH}
 
@@ -145,7 +145,7 @@ pipeline {
 
                         sleep 1m
 
-                        """
+                        '''
                     )  
                 }
             }

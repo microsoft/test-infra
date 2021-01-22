@@ -122,7 +122,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts mkdir /home/jenkins/
+                            --scripts sudo mkdir /home/jenkins/ && sudo chmod 777 /home/jenkins/ 
 
                         sleep 1m
 
@@ -132,7 +132,7 @@ pipeline {
                             --command-id RunShellScript \
                             --scripts cd /home/jenkins/ && \
                             git clone https://github.com/openenclave/test-infra && \
-                            cd test-infra && git checkout master && 
+                            cd test-infra && git checkout master 
 
                         sleep 1m
 

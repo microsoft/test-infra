@@ -203,9 +203,7 @@ pipeline {
                 }
             }
         }
-    }
-
-    stage('Test VM State') {
+        stage('Test VM State') {
             steps{
                 script{
                     sh(

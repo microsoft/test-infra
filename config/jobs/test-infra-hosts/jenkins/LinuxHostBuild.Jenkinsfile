@@ -144,6 +144,10 @@ pipeline {
                         az vm deallocate \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}
+
+                        az vm generalize \
+                            --resource-group ${VM_RESOURCE_GROUP} \
+                            --name ${VM_NAME}
                         """
                     )  
                 }

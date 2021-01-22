@@ -136,73 +136,42 @@ pipeline {
             }
         }
 
-        stage('Save VM State and Upload') {
+        stage('Save VM State') {
             steps{
                 script{
                     sh(
                         script: """
-                        # Destroy everything to prepare for generalizaiton
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'sudo rm -rf /home/jenkins/*'
+                            --scripts 'mkdir /home/jenkins/'
 
                         sleep 1m
 
-                        # Create VM image by deallocating, generalizing and then making the actual image
-                        az vm deallocate \
-                            --resource-group ${VM_RESOURCE_GROUP} \
-                            --name ${VM_NAME}
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts 'cd /home/jenkins/ && git clone https://github.com/openenclave/test-infra'
 
-                        az vm generalize \
-                            --resource-group ${VM_RESOURCE_GROUP} \
-                            --name ${VM_NAME}
+                        sleep 1m
 
-                        img_id=$(az image create \
-                            --resource-group ${VM_RESOURCE_GROUP} \
-                            --name myImage --source ${VM_NAME} \
-                            --hyper-v-generation V2 | jq -r '.id')
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
 
-                        # Create an image definition. If the image definition already exists, the below command will not fail.
-                        az sig image-definition create \
-                            --resource-group ACC-Images \
-                            --gallery-name ACC_Images \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
-                            --publisher ACC-Images-Brett-Test \
-                            --offer ACC-${LINUX_VERSION} \
-                            --sku ACC-${LINUX_VERSION} \
-                            --os-type Linux \
-                            --os-state generalized \
-                            --hyper-v-generation V2 || true
+                        sleep 1m
 
-                        # Store Date info for End Of Life date and versioning.
-                        YY=$(date +%Y)
-                        DD=$(date +%d)
-                        MM=$(date +%m)
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts 'ansible-playbook /home/jenkins/test-infra/scripts/ansible/oe-contributors-acc-setup.yml'
 
-                        RAND=$((1 + $RANDOM % 1000))
-                        GALLERY_IMAGE_VERSION="$YY.$MM.$DD$RAND"
-                        GALLERY_NAME="ACC_Images"
-
-                        # If the target image version doesn't exist, the below
-                        # command will not fail because it is idempotent.
-                        az sig image-version delete \
-                            --resource-group "ACC-Images" \
-                            --gallery-name ${GALLERY_NAME} \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
-                            --gallery-image-version ${GALLERY_IMAGE_VERSION}
-
-                        # Upload and replciate image.
-                        az sig image-version create \
-                            --resource-group "ACC-Images" \
-                            --gallery-name ${GALLERY_NAME} \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
-                            --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
-                            --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
-                            --replica-count 1 \
-                            --managed-image $img_id \
-                            --end-of-life-date "$(($YY+1))-$MM-$DD"
+                        sleep 1m
                         """
                     )  
                 }

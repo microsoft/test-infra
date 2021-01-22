@@ -148,6 +148,11 @@ pipeline {
                         az vm generalize \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}
+                        
+                        img_id="$(az image create \
+                            --resource-group ${VM_RESOURCE_GROUP} \
+                            --name myImage --source ${VM_NAME} \
+                            --hyper-v-generation V2 | jq -r '.id')"
                         """
                     )  
                 }

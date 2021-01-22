@@ -158,10 +158,10 @@ pipeline {
                         az sig image-definition create \
                             --resource-group ACC-Images \
                             --gallery-name ACC_Images \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
-                            --publisher ACC-Images-Brett-Test \
-                            --offer ACC-${LINUX_VERSION} \
-                            --sku ACC-${LINUX_VERSION} \
+                            --gallery-image-definition "ACC-${LINUX_VERSION}" \
+                            --publisher "ACC-Images-Brett-Test" \
+                            --offer "ACC-${LINUX_VERSION}" \
+                            --sku "ACC-${LINUX_VERSION}" \
                             --os-type Linux \
                             --os-state generalized \
                             --hyper-v-generation V2 || true

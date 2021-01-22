@@ -125,42 +125,9 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts cd /home/jenkins/ && \
+                            --scripts "cd /home/jenkins/ && \
                             git clone https://github.com/openenclave/test-infra && \
-                            cd test-infra && git checkout master && pwd
-
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'ls -l /home/jenkins/'
-
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'ls -l /home/jenkins/test-infra/'
-
-                        sleep 15s
-
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'ls -l /home/jenkins/test-infra/scripts/'
-
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'ls -l /home/jenkins/test-infra/scripts/ansible'
+                            cd test-infra && git checkout master"
 
                         sleep 15s
 

@@ -10,6 +10,7 @@ pipeline {
         string(name: 'SGX', defaultValue: 'SGX', description: 'SGX enabled')
         string(name: 'LINUX_VERSION', defaultValue: 'Ubuntu_1804_LTS_Gen2', description: 'Linux version to build ')
         string(name: 'BRANCH', defaultValue: 'master', description: 'Branch to build ')
+        string(name: 'FORK', defaultValue: 'openenclave', description: 'Fork to build ')
     }
     environment {
         VM_RESOURCE_GROUP = "${params.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
@@ -125,7 +126,7 @@ pipeline {
                             --command-id RunShellScript \
                             --scripts cd /home/jenkins/ && \
                             git clone https://github.com/openenclave/test-infra && \
-                            cd test-infra && git checkout ${env.BRANCH}
+                            cd test-infra && git checkout master
 
                         sleep 1m
 

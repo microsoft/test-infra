@@ -13,6 +13,7 @@ pipeline {
         string(name: 'FORK', defaultValue: 'openenclave', description: 'Fork to build ')
     }
     environment {
+        BUILD_ID = "${currentBuild.number}"
         VM_RESOURCE_GROUP = "${params.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
         VM_NAME = "temporary"
         ADMIN_USERNAME = "jenkins"
@@ -116,15 +117,9 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts pwd && ls -l
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
                             --scripts "sudo mkdir /home/jenkins/ && sudo chmod 777 /home/jenkins/"
 
-                        sleep 1m
+                        sleep 15s
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
@@ -134,7 +129,7 @@ pipeline {
                             git clone https://github.com/openenclave/test-infra && \
                             cd test-infra && git checkout master 
 
-                        sleep 1m
+                        sleep 15s
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
@@ -142,7 +137,7 @@ pipeline {
                             --command-id RunShellScript \
                             --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
 
-                        sleep 1m
+                        sleep 15s
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
@@ -150,8 +145,7 @@ pipeline {
                             --command-id RunShellScript \
                             --scripts 'ansible-playbook /home/jenkins/test-infra/scripts/ansible/oe-contributors-acc-setup.yml'
 
-                        sleep 1m
-
+                        sleep 15s
                         '''
                     )  
                 }
@@ -193,7 +187,7 @@ pipeline {
                         MM=$(date +%m)
 
                         RAND=$((1 + $RANDOM % 1000))
-                        GALLERY_IMAGE_VERSION="$YY.$MM.$DD$RAND"
+                        GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
                         GALLERY_NAME="ACC_Images"
 
                         az sig image-version delete \

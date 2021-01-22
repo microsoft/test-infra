@@ -10,7 +10,7 @@ pipeline {
         string(name: 'LINUX_VERSION', defaultValue: 'Ubuntu_1804_LTS_Gen2', description: 'Linux version to build ')
     }
     environment {
-        VM_RESOURCE_GROUP = "${env.LINUX_VERSION}-imageBuilder"
+        VM_RESOURCE_GROUP = "${env.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
         VM_NAME = "temporary"
         ADMIN_USERNAME = "jenkins"
     }

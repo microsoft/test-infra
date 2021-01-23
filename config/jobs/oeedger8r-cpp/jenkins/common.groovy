@@ -7,6 +7,7 @@
 void checkout( String PULL_NUMBER="master" ) {
     if (isUnix()) {
         sh  """
+            git init && \
             git config --global core.compression 0 && \
             rm -rf oeedger8r-cpp && \
             git clone --recursive --depth 1 https://github.com/openenclave/oeedger8r-cpp && \
@@ -40,6 +41,8 @@ def cmakeBuildoeedger8r( String BUILD_CONFIG="Release", String COMPILER="clang-7
 
             sh  """
                 echo COMPILER IS ${COMPILER}
+                pwd
+                ls -l
                 """
             def c_compiler
             def cpp_compiler
@@ -94,6 +97,7 @@ def cleanup() {
     if (isUnix()) {
         try {
                 sh  """
+                    sudo rm ~/.gitconfig || rm ~/.gitconfig || echo 'no ~/.gitconfig'
                     sudo rm -rf oeedger8r-cpp || rm -rf oeedger8r-cpp || echo 'Workspace is clean'
                     """
             } catch (Exception e) {

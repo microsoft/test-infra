@@ -12,6 +12,8 @@ pipeline {
 
     environment {
         SHARED_LIBRARY="/config/jobs/oeedger8r-cpp/jenkins/common.groovy"
+        CONTAINER=params.LINUX_VERSION.toLowerCase()
+        DOCKERIMAGE="openenclave/${CONTAINER}:${params.DOCKER_TAG}"
     }
 
     agent {
@@ -27,22 +29,24 @@ pipeline {
         stage('Build and Test') {
             steps{
                 script{
-                    def runner = load pwd() + "${SHARED_LIBRARY}"
-                    String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
-                    for(BUILD_TYPE in BUILD_TYPES){
-                        stage("Ubuntu ${params.LINUX_VERSION} Build - ${BUILD_TYPE}"){
-                            try{
-                                runner.cleanup()
-                                runner.checkout("${params.PULL_NUMBER}")
-                                runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${params.COMPILER}")
-                            } catch (Exception e) {
-                                // Do something with the exception 
-                                error "Program failed, please read logs..."
-                            } finally {
-                                runner.cleanup()
+                    docker.image('${DOCKERIMAGE}').inside {
+                        def runner = load pwd() + "${SHARED_LIBRARY}"
+                        String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
+                        for(BUILD_TYPE in BUILD_TYPES){
+                            stage("Ubuntu ${params.LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                                try{
+                                    runner.cleanup()
+                                    runner.checkout("${params.PULL_NUMBER}")
+                                    runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${params.COMPILER}")
+                                } catch (Exception e) {
+                                    // Do something with the exception 
+                                    error "Program failed, please read logs..."
+                                } finally {
+                                    runner.cleanup()
+                                }
                             }
                         }
-                    } 
+                    }
                 }
             }
         }

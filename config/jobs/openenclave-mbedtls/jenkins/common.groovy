@@ -34,7 +34,7 @@ void checkout( String PULL_NUMBER="master" ) {
 /** Build oeedgr8r based on build config, compiler and platform
   * TODO: Add container support
 **/
-def cmakeBuildoeedger8r( String BUILD_CONFIG="Release", String COMPILER="clang-7" ) {
+def cmakeBuildOpenEnclaveMbedTLS( String BUILD_CONFIG="Release", String COMPILER="clang-7" ) {
     dir ('openenclave-mbedtls/build') {
         if (isUnix()) {
 

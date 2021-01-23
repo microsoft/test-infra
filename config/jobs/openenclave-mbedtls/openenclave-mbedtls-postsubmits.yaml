@@ -7,7 +7,7 @@ postsubmits:
     decorate: true
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -19,7 +19,7 @@ postsubmits:
     decorate: true
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -31,7 +31,7 @@ postsubmits:
     decorate: true
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -43,7 +43,7 @@ postsubmits:
     decorate: true
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -55,7 +55,7 @@ postsubmits:
     decorate: true
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -67,7 +67,7 @@ postsubmits:
     decorate: true
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"

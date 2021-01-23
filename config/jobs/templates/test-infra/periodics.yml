@@ -7,7 +7,7 @@
     interval: 24h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"

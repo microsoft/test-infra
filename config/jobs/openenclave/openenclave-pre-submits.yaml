@@ -10,7 +10,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -25,7 +25,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -40,7 +40,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -55,7 +55,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -70,7 +70,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -85,7 +85,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -100,7 +100,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -115,7 +115,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -130,7 +130,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -145,7 +145,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -160,7 +160,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -175,7 +175,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -190,7 +190,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -205,7 +205,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -220,7 +220,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -235,7 +235,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -250,7 +250,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -265,7 +265,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -280,7 +280,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -295,7 +295,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -310,7 +310,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -325,7 +325,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -340,7 +340,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -355,7 +355,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -370,7 +370,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -385,7 +385,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -400,7 +400,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -415,7 +415,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -430,7 +430,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -445,7 +445,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -460,7 +460,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -475,7 +475,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -490,7 +490,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -505,7 +505,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -520,7 +520,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -535,7 +535,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -550,7 +550,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -565,7 +565,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -580,7 +580,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -595,7 +595,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -610,7 +610,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -625,7 +625,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -640,7 +640,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -655,7 +655,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -670,7 +670,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -685,7 +685,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -700,7 +700,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -715,7 +715,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"
@@ -730,7 +730,7 @@ presubmits:
     max_concurrency: 2
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.2
           command:
             - sh
             - "-c"

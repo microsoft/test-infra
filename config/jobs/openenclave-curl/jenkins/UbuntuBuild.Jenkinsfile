@@ -1,40 +1,40 @@
-// Pull Request Information
-PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
-
-// OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
-
-// Some Defaults
-DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-COMPILER=env.COMPILER?env.COMPILER:"clang-7"
-String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
-
-// Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/openenclave-curl/jenkins/common.groovy"
-
 pipeline {
     options {
-        timeout(time: 60, unit: 'MINUTES') 
+        timeout(time: 60, unit: 'MINUTES')
     }
-    agent { label "ACC-${LINUX_VERSION}" }
 
+    parameters {
+        string(name: 'LINUX_VERSION', defaultValue: params.LINUX_VERSION ?:'Ubuntu-1804', description: 'Linux version to build')
+        string(name: 'COMPILER', defaultValue: params.COMPILER ?:'clang-7', description: 'Compiler version')
+        string(name: 'DOCKER_TAG', defaultValue: params.DOCKER_TAG ?:'latest', description: 'Docker image version')
+        string(name: 'PULL_NUMBER', defaultValue: params.PULL_NUMBER ?:'master',  description: 'Branch/PR to build')
+    }
+
+    environment {
+        SHARED_LIBRARY="/config/jobs/openenclave-curl/jenkins/common.groovy"
+    }
+
+    agent {
+        label "ACC-${LINUX_VERSION}"
+    }
     stages {
-        stage('Checkout'){
+        stage('Checkout') {
             steps{
                 cleanWs()
                 checkout scm
             }
         }
-        stage('Build'){
+        stage('Build and Test') {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
+                    String[] BUILD_TYPES=['Debug', 'RelWithDebInfo', 'Release']
                     for(BUILD_TYPE in BUILD_TYPES){
-                        stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                        stage("Ubuntu ${params.LINUX_VERSION} Build - ${BUILD_TYPE}"){
                             try{
                                 runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
+                                runner.checkout("${params.PULL_NUMBER}")
+                                runner.cmakeBuildOpenEnclaveCurl("${BUILD_TYPE}","${params.COMPILER}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."
@@ -42,7 +42,7 @@ pipeline {
                                 runner.cleanup()
                             }
                         }
-                    }
+                    } 
                 }
             }
         }

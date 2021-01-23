@@ -1,70 +1,38 @@
-// Pull Request Information
-PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
-
-// OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"Ubuntu-1804"
-
-// Some Defaults for general build info
-DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-COMPILER=env.COMPILER?env.COMPILER:"clang-7"
-BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"RelWithDebInfo"
-
-// Some override for build configuration
-LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
-LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
-LVI_MITIGATION_BINDIR=env.DLVI_MITIGATION_BINDIR?env.DLVI_MITIGATION_BINDIR:"/usr/local/lvi-mitigation/bin"
-USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
-// Hack to disable environment lvi
-env.LVI_MITIGATION=""
-
-// Edge casee, snmalloc will not work on old gcc versions and 1604 default is old. Remove after 1604 deprecation.
-USE_SNMALLOC=expression { return COMPILER == 'gcc' && LINUX_VERSION =='1604'}?"OFF":USE_SNMALLOC
-
-// Openenclave extra build configs 
-EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
-
-// Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
-
-// whether to run as an e2e test
-E2E=env.E2E?env.E2E:"OFF"
-
 pipeline {
     options {
-        timeout(time: 180, unit: 'MINUTES') 
+        timeout(time: 180, unit: 'MINUTES')
     }
-    agent { label "ACC-${LINUX_VERSION}" }
+
+    parameters {
+        string(name: 'LINUX_VERSION', defaultValue: params.LINUX_VERSION ?:'Ubuntu-1804', description: 'Linux version to build')
+        string(name: 'COMPILER', defaultValue: params.COMPILER ?:'clang-7', description: 'Compiler version')
+        string(name: 'DOCKER_TAG', defaultValue: params.DOCKER_TAG ?:'latest', description: 'Docker image version')
+        string(name: 'PULL_NUMBER', defaultValue: params.PULL_NUMBER ?:'master',  description: 'Branch/PR to build')
+        string(name: 'BUILD_TYPE', defaultValue: params.BUILD_TYPE ?:'RelWithDebInfo',  description: 'Build Type')
+        string(name: 'LVI_MITIGATION', defaultValue: params.LVI_MITIGATION ?:'ControlFlow',  description: 'LVI Mitigation Strategy')
+        string(name: 'LVI_MITIGATION_SKIP_TESTS', defaultValue: params.LVI_MITIGATION_SKIP_TESTS ?:'OFF',  description: 'Skip LVI_MITIGATION_SKIP_TESTS')
+        string(name: 'USE_SNMALLOC', defaultValue: params.USE_SNMALLOC ?:'ON',  description: 'Use snmalloc for buiild')
+        string(name: 'E2E', defaultValue: params.E2E ?:'OFF',  description: 'End to en set up')
+    }
+
+    environment {
+        // Shared library config, check out common.groovy!
+        SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
+        EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC}"
+
+    }
+
+    agent {
+        label "ACC-${LINUX_VERSION}"
+    }
 
     stages {
-        // Check out test infra repo as need shared libs
-        stage('Checkout'){
+        stage('Checkout') {
             steps{
                 cleanWs()
                 checkout scm
             }
         }
-
-        // Temporarily run always as e2e
-        stage('Install Prereqs (Optional)'){
-            steps{
-                script{
-                    def runner = load pwd() + "${SHARED_LIBRARY}"
-                    if("${E2E}" == "ON"){
-                        stage("${LINUX_VERSION} Setup"){
-                            try{
-                                runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.installOpenEnclavePrereqs()
-                            } catch (Exception e) {
-                                // Do something with the exception 
-                                error "Program failed, please read logs..."
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         // Go through Build stages
         stage('Build'){
             steps{
@@ -72,11 +40,11 @@ pipeline {
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
                     // Build and test in Hardware mode, do not clean up as we will package
-                    stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}"){
                         try{
                             runner.cleanup()
-                            runner.checkout("${PULL_NUMBER}")
-                            runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                            runner.checkout("${params.PULL_NUMBER}")
+                            runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${params.EXTRA_CMAKE_ARGS}")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -84,9 +52,9 @@ pipeline {
                     }
 
                     // Build package and test installation work flows, clean up after
-                    stage("Ubuntu ${LINUX_VERSION} Package - ${BUILD_TYPE}"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Package - ${params.BUILD_TYPE}"){
                         try{
-                            runner.openenclavepackageInstall("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                            runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${params.EXTRA_CMAKE_ARGS}")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -96,12 +64,12 @@ pipeline {
                     }
 
                     // Build in simulation mode 
-                    stage("Ubuntu ${LINUX_VERSION} Build - ${BUILD_TYPE} Simulation"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE} Simulation"){
                         withEnv(["OE_SIMULATION=1"]) {
                             try{
                                 runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                                runner.checkout("${params.PULL_NUMBER}")
+                                runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${params.EXTRA_CMAKE_ARGS}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."

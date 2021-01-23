@@ -1,50 +1,48 @@
-// Pull Request Information
-PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
-
-// OS Version Configuration
-WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"Windows-2019"
-
-// Some Defaults
-DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-COMPILER=env.COMPILER?env.COMPILER:"MSVC"
-String[] BUILD_TYPES=['Debug', 'Release']
-
-// Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/openenclave-mbedtls/jenkins/common.groovy"
-
 pipeline {
     options {
-        timeout(time: 60, unit: 'MINUTES') 
+        timeout(time: 60, unit: 'MINUTES')
     }
-    agent { label "ACC-${WINDOWS_VERSION}" }
 
+    parameters {
+        string(name: 'WINDOWS_VERSION', defaultValue: params.WINDOWS_VERSION ?:'Windows-2016', description: 'Windows version to build')
+        string(name: 'COMPILER', defaultValue: params.COMPILER ?:'MSVC', description: 'Compiler version')
+        string(name: 'DOCKER_TAG', defaultValue: params.DOCKER_TAG ?:'latest', description: 'Docker image version')
+        string(name: 'PULL_NUMBER', defaultValue: params.PULL_NUMBER ?:'master',  description: 'Branch/PR to build')
+    }
+    environment {
+        // Shared library config, check out common.groovy!
+        SHARED_LIBRARY="/config/jobs/openenclave-mbedtls/jenkins/common.groovy"
+    }
+
+    agent {
+        label "ACC-${WINDOWS_VERSION}"
+    }
     stages {
-        stage('Checkout'){
+        stage('Checkout') {
             steps{
                 cleanWs()
                 checkout scm
             }
         }
-        stage('Build'){
+        stage('Build and Test') {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
+                    String[] BUILD_TYPES=['Debug', 'Release']
                     for(BUILD_TYPE in BUILD_TYPES){
-                        stage("Windows ${WINDOWS_VERSION} Build - ${BUILD_TYPE}"){
-                            script {
-                                try{
-                                    runner.cleanup()
-                                    runner.checkout("${PULL_NUMBER}")
-                                    runner.cmakeBuildoeedger8r("${BUILD_TYPE}","${COMPILER}")
-                                } catch (Exception e) {
-                                    // Do something with the exception 
-                                    error "Program failed, please read logs..."
-                                } finally {
-                                    runner.cleanup()
-                                }
+                        stage("${params.WINDOWS_VERSION} Build - ${BUILD_TYPE}"){
+                            try{
+                                runner.cleanup()
+                                runner.checkout("${params.PULL_NUMBER}")
+                                runner.cmakeBuildOpenEnclaveMbedTLS("${BUILD_TYPE}","${params.COMPILER}")
+                            } catch (Exception e) {
+                                // Do something with the exception 
+                                error "Program failed, please read logs..."
+                            } finally {
+                                runner.cleanup()
                             }
                         }
-                    }
+                    } 
                 }
             }
         }

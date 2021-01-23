@@ -4,7 +4,7 @@ presubmits:
   - name: pr-test-infra-test-infra-images-Ubuntu1604Build
     branches:
     - master
-    run_if_changed: "^(config/jobs/test-infra-images/*)"
+    run_if_changed: "^(config/jobs/test-infra-images//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -19,7 +19,7 @@ presubmits:
   - name: pr-test-infra-test-infra-images-Ubuntu1804Build
     branches:
     - master
-    run_if_changed: "^(config/jobs/test-infra-images/*)"
+    run_if_changed: "^(config/jobs/test-infra-images//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -34,7 +34,7 @@ presubmits:
   - name: pr-test-infra-test-infra-images-Windows2019Build
     branches:
     - master
-    run_if_changed: "^(config/jobs/test-infra-images/*)"
+    run_if_changed: "^(config/jobs/test-infra-images//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -49,7 +49,7 @@ presubmits:
   - name: pr-test-infra-gperftools-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/gperftools/*)"
+    run_if_changed: "^(config/jobs/gperftools//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -64,7 +64,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -79,7 +79,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-Rhel8BuildClang-8
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -94,7 +94,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1604BuildClang-7
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -109,7 +109,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1804BuildClang-7
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -124,7 +124,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1604BuildClang-8
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -139,7 +139,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1804BuildClang-8
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -154,7 +154,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-Windows2016Build
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -169,7 +169,7 @@ presubmits:
   - name: pr-test-infra-oeedger8r-cpp-Windows2019Build
     branches:
     - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp/*)"
+    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -919,7 +919,7 @@ presubmits:
   - name: pr-test-infra-openenclave-build-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-build/*)"
+    run_if_changed: "^(config/jobs/openenclave-build//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -934,7 +934,7 @@ presubmits:
   - name: pr-test-infra-openenclave-ci-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-ci/*)"
+    run_if_changed: "^(config/jobs/openenclave-ci//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -949,7 +949,7 @@ presubmits:
   - name: pr-test-infra-openenclave-curl-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-curl/*)"
+    run_if_changed: "^(config/jobs/openenclave-curl//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -964,7 +964,7 @@ presubmits:
   - name: pr-test-infra-openenclave-curl-Ubuntu1604BuildClang-7
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-curl/*)"
+    run_if_changed: "^(config/jobs/openenclave-curl//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -979,7 +979,7 @@ presubmits:
   - name: pr-test-infra-openenclave-curl-Ubuntu1804BuildClang-7
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-curl/*)"
+    run_if_changed: "^(config/jobs/openenclave-curl//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -994,7 +994,7 @@ presubmits:
   - name: pr-test-infra-openenclave-mbedtls-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-mbedtls/*)"
+    run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1009,7 +1009,7 @@ presubmits:
   - name: pr-test-infra-openenclave-mbedtls-Rhel8BuildClang-8
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-mbedtls/*)"
+    run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1024,7 +1024,7 @@ presubmits:
   - name: pr-test-infra-openenclave-mbedtls-Ubuntu1604BuildClang-7
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-mbedtls/*)"
+    run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1039,7 +1039,7 @@ presubmits:
   - name: pr-test-infra-openenclave-mbedtls-Ubuntu1804BuildClang-7
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-mbedtls/*)"
+    run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1054,7 +1054,7 @@ presubmits:
   - name: pr-test-infra-openenclave-mbedtls-Windows2016Build
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-mbedtls/*)"
+    run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1069,7 +1069,7 @@ presubmits:
   - name: pr-test-infra-openenclave-mbedtls-Windows2019Build
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-mbedtls/*)"
+    run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1084,7 +1084,7 @@ presubmits:
   - name: pr-test-infra-openenclave-site-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-site/*)"
+    run_if_changed: "^(config/jobs/openenclave-site//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1099,7 +1099,7 @@ presubmits:
   - name: pr-test-infra-openenclave-template-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/openenclave-template/*)"
+    run_if_changed: "^(config/jobs/openenclave-template//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2
@@ -1114,7 +1114,7 @@ presubmits:
   - name: pr-test-infra-public-talks-ping
     branches:
     - master
-    run_if_changed: "^(config/jobs/public-talks/*)"
+    run_if_changed: "^(config/jobs/public-talks//*)"
     decorate: true
     skip_report: false
     max_concurrency: 2

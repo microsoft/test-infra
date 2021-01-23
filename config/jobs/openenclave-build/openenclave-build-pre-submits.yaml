@@ -14,4 +14,4 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python /hack/jenkins_bootstrap.py --job openenclave-build/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-build/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        

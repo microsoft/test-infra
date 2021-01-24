@@ -18,7 +18,7 @@ pipeline {
     environment {
         // Shared library config, check out common.groovy!
         SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
-        EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC}"
+        EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC} -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin -DCMAKE_INSTALL_PREFIX:PATH=/opt/openenclave -DCPACK_GENERATOR=DEB -Wdev"
 
     }
 
@@ -39,6 +39,8 @@ pipeline {
             steps{
                 script{
                     stage("Ubuntu ${params.LINUX_VERSION} Build - CI Checks"){
+                        def runner = load pwd() + "${SHARED_LIBRARY}"
+
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}")
@@ -48,6 +50,30 @@ pipeline {
                             error "Program failed, please read logs..."
                         } finally {
                             runner.cleanup()
+                        }
+                    }
+                }
+            }
+        }
+
+        // Run E2E Check if enabledTemporarily run always as e2e
+        stage('Install Prereqs (optional)') {
+            steps{
+                script{
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - Install Prereqs"){
+                        def runner = load pwd() + "${SHARED_LIBRARY}"
+                        if("${params.E2E}" == "ON"){
+                            stage("${LINUX_VERSION} Setup"){
+                                try{
+                                    runner.cleanup()
+                                    runner.checkout("${PULL_NUMBER}")
+                                    runner.installOpenEnclavePrereqs()
+                                } catch (Exception e) {
+                                    // Do something with the exception 
+                                    error "Program failed, please read logs..."
+                                }
+                            }
+
                         }
                     }
                 }
@@ -65,7 +91,7 @@ pipeline {
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}")
-                            runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${params.EXTRA_CMAKE_ARGS}")
+                            runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -75,7 +101,7 @@ pipeline {
                     // Build package and test installation work flows, clean up after
                     stage("Ubuntu ${params.LINUX_VERSION} Package - ${params.BUILD_TYPE}"){
                         try{
-                            runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${params.EXTRA_CMAKE_ARGS}")
+                            runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -90,7 +116,7 @@ pipeline {
                             try{
                                 runner.cleanup()
                                 runner.checkout("${params.PULL_NUMBER}")
-                                runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${params.EXTRA_CMAKE_ARGS}")
+                                runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."

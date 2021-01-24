@@ -19,6 +19,8 @@ pipeline {
         // Shared library config, check out common.groovy!
         SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
         EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC}"
+        // Bug with the environment variable, we only need the above string so set to empty
+        LVI_MITIGATION=""
 
     }
 

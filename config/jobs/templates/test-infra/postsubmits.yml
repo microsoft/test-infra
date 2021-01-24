@@ -1,0 +1,11 @@
+  - name: post-${repo}-${pipeline}
+    branches:
+    - master
+    decorate: true
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.2
+          command:
+            - sh
+            - "-c"
+            - "sleep \$(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job ${repo}/job/${pipeline} --jenkins-user \$JENKINS_USER --url \$JENKINS_URL --jenkins-password \$JENKINS_TOKEN --parameters  PULL_NUMBER=master"

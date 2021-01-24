@@ -1,6 +1,5 @@
 # Do not change build-configs, these are the 3 types of builds we build for
 build-configs:
-  postsubmits
   periodics
   pre-submits
 

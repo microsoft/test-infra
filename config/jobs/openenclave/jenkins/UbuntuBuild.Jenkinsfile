@@ -73,7 +73,6 @@ pipeline {
                                     error "Program failed, please read logs..."
                                 }
                             }
-
                         }
                     }
                 }

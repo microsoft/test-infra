@@ -1,56 +1,77 @@
-// Pull Request Information
-PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
-
-// OS Version Configuration
-LINUX_VERSION=env.LINUX_VERSION?env.LINUX_VERSION:"RHEL-8"
-// Some Defaults for general build info
-DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-COMPILER=env.COMPILER?env.COMPILER:"gcc"
-BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"Debug"
-
-// Some override for build configuration
-LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"None"
-LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
-USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
-
-// Openenclave extra build configs 
-EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
-
-// Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
-
-// whether to run as an e2e test
-E2E=env.E2E?env.E2E:"OFF"
-
 pipeline {
     options {
-        timeout(time: 180, unit: 'MINUTES') 
+        timeout(time: 180, unit: 'MINUTES')
     }
-    agent { label "ACC-${LINUX_VERSION}" }
+
+    parameters {
+        string(name: 'LINUX_VERSION', defaultValue: params.LINUX_VERSION ?:'RHEL-8', description: 'Linux version to build')
+        string(name: 'COMPILER', defaultValue: params.COMPILER ?:'clang-8', description: 'Compiler version')
+        string(name: 'DOCKER_TAG', defaultValue: params.DOCKER_TAG ?:'latest', description: 'Docker image version')
+        string(name: 'PULL_NUMBER', defaultValue: params.PULL_NUMBER ?:'master',  description: 'Branch/PR to build')
+        string(name: 'BUILD_TYPE', defaultValue: params.BUILD_TYPE ?:'RelWithDebInfo',  description: 'Build Type')
+        string(name: 'LVI_MITIGATION', defaultValue: params.LVI_MITIGATION ?:'ControlFlow',  description: 'LVI Mitigation Strategy')
+        string(name: 'LVI_MITIGATION_SKIP_TESTS', defaultValue: params.LVI_MITIGATION_SKIP_TESTS ?:'OFF',  description: 'Skip LVI_MITIGATION_SKIP_TESTS')
+        string(name: 'USE_SNMALLOC', defaultValue: params.USE_SNMALLOC ?:'ON',  description: 'Use snmalloc for buiild')
+        string(name: 'E2E', defaultValue: params.E2E ?:'OFF',  description: 'End to en set up')
+    }
+
+    environment {
+        // Shared library config, check out common.groovy!
+        SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
+        EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC}"
+
+    }
+
+    agent {
+        label "ACC-${LINUX_VERSION}"
+    }
 
     stages {
-        // Check out test infra repo as need shared libs
-        stage('Checkout'){
+        stage('Checkout') {
             steps{
                 cleanWs()
                 checkout scm
             }
         }
 
-        // Temporarily run always as e2e
-        stage('Install Prereqs (Optional)'){
+        // Run CI checks up front, no need to continue if they fail.
+        stage('CI Checks') {
             steps{
                 script{
-                    def runner = load pwd() + "${SHARED_LIBRARY}"
-                    if("${E2E}" == "ON"){
-                        stage("${LINUX_VERSION} Setup"){
-                            try{
-                                runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.installOpenEnclavePrereqs()
-                            } catch (Exception e) {
-                                // Do something with the exception 
-                                error "Program failed, please read logs..."
+                    stage("${params.LINUX_VERSION} Build - CI Checks"){
+                        def runner = load pwd() + "${SHARED_LIBRARY}"
+
+                        try{
+                            runner.cleanup()
+                            runner.checkout("${params.PULL_NUMBER}")
+                            runner.checkCI()
+                        } catch (Exception e) {
+                            // Do something with the exception 
+                            error "Program failed, please read logs..."
+                        } finally {
+                            runner.cleanup()
+                        }
+                    }
+                }
+            }
+        }
+
+        // Run E2E Check if enabledTemporarily run always as e2e
+        stage('Install Prereqs (optional)') {
+            steps{
+                script{
+                    stage("${params.LINUX_VERSION} Build - Install Prereqs"){
+                        def runner = load pwd() + "${SHARED_LIBRARY}"
+                        if("${params.E2E}" == "ON"){
+                            stage("${LINUX_VERSION} Setup"){
+                                try{
+                                    runner.cleanup()
+                                    runner.checkout("${PULL_NUMBER}")
+                                    runner.installOpenEnclavePrereqs()
+                                } catch (Exception e) {
+                                    // Do something with the exception 
+                                    error "Program failed, please read logs..."
+                                }
                             }
                         }
                     }
@@ -65,11 +86,11 @@ pipeline {
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
                     // Build and test in Hardware mode, do not clean up as we will package
-                    stage("RHEL ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                    stage("${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}"){
                         try{
                             runner.cleanup()
-                            runner.checkout("${PULL_NUMBER}")
-                            runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                            runner.checkout("${params.PULL_NUMBER}")
+                            runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -78,25 +99,26 @@ pipeline {
 
                     // Build package and test installation work flows, rhel is not in use but add to keep in line with ubuntu
                     /**
-                    stage("RHEL ${LINUX_VERSION} Package - ${BUILD_TYPE}"){
-                        try{
-                            runner.openenclavepackageInstall("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
-                        } catch (Exception e) {
-                            // Do something with the exception 
-                            error "Program failed, please read logs..."
-                        } finally {
-                            runner.cleanup()
+                        // Build package and test installation work flows, clean up after
+                        stage("${params.LINUX_VERSION} Package - ${params.BUILD_TYPE}"){
+                            try{
+                                runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
+                            } catch (Exception e) {
+                                // Do something with the exception 
+                                error "Program failed, please read logs..."
+                            } finally {
+                                runner.cleanup()
+                            }
                         }
-                    }
-                    **/
+                    */
 
                     // Build in simulation mode 
-                    stage("RHEL ${LINUX_VERSION} Build - ${BUILD_TYPE} Simulation"){
+                    stage("${params.LINUX_VERSION} Build - ${params.BUILD_TYPE} Simulation"){
                         withEnv(["OE_SIMULATION=1"]) {
                             try{
                                 runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                                runner.checkout("${params.PULL_NUMBER}")
+                                runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."

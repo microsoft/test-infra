@@ -33,6 +33,27 @@ pipeline {
                 checkout scm
             }
         }
+
+        // Run CI checks up front, no need to continue if they fail.
+        stage('CI Checks') {
+            steps{
+                script{
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - CI Checks"){
+                        try{
+                            runner.cleanup()
+                            runner.checkout("${params.PULL_NUMBER}")
+                            runner.checkCI()
+                        } catch (Exception e) {
+                            // Do something with the exception 
+                            error "Program failed, please read logs..."
+                        } finally {
+                            runner.cleanup()
+                        }
+                    }
+                }
+            }
+        }
+
         // Go through Build stages
         stage('Build'){
             steps{

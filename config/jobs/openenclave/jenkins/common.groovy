@@ -202,6 +202,22 @@ def openenclavepackageInstall( String BUILD_CONFIG="Release", String COMPILER="c
     }
 }
 
+// Check CI flows https://github.com/openenclave/openenclave/blob/master/scripts/check-ci
+def checkCI() {
+    dir ('openenclave') {
+        if (isUnix()) {
+            try {
+                    sh  """
+                        ./scripts/check-ci"
+                        """
+                } catch (Exception e) {
+                    // Do something with the exception 
+                    error "Program failed, please read logs..."
+                }
+        }
+    }
+}
+
 // Clean up environment, do not fail on error.
 def cleanup() {
     if (isUnix()) {

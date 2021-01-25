@@ -6,7 +6,7 @@ pipeline {
     environment {
         // Shared library config, check out common.groovy!
         SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
-        // TOFO: Refactor this into common groovy
+        // TODO: Refactor this into common groovy
         EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC}"
     }
 

@@ -10,7 +10,7 @@ pipeline {
     }
 
     agent {
-        label "ACC-${LINUX_VERSION}"
+        label "ACC-${params.LINUX_VERSION}"
     }
 
     stages {
@@ -50,10 +50,10 @@ pipeline {
                     stage("${params.LINUX_VERSION} Build - Install Prereqs"){
                         def runner = load pwd() + "${SHARED_LIBRARY}"
                         if("${params.E2E}" == "ON"){
-                            stage("${LINUX_VERSION} Setup"){
+                            stage("${params.LINUX_VERSION} Setup"){
                                 try{
                                     runner.cleanup()
-                                    runner.checkout("${PULL_NUMBER}")
+                                    runner.checkout("${params.PULL_NUMBER}")
                                     runner.installOpenEnclavePrereqs()
                                 } catch (Exception e) {
                                     // Do something with the exception 

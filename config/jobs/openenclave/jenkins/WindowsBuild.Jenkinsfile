@@ -11,7 +11,7 @@ pipeline {
     }
 
     agent {
-        label "ACC-${WINDOWS_VERSION}"
+        label "ACC-${params.WINDOWS_VERSION}"
     }
 
     stages {
@@ -28,10 +28,10 @@ pipeline {
                     stage("${params.WINDOWS_VERSION} Build - Install Prereqs"){
                         def runner = load pwd() + "${SHARED_LIBRARY}"
                         if("${params.E2E}" == "ON"){
-                            stage("${WINDOWS_VERSION} Setup"){
+                            stage("${params.WINDOWS_VERSION} Setup"){
                                 try{
                                     runner.cleanup()
-                                    runner.checkout("${PULL_NUMBER}")
+                                    runner.checkout("${params.PULL_NUMBER}")
                                     // TODO: Windows is not currently working for E2E
                                     //runner.installOpenEnclavePrereqs()
                                 } catch (Exception e) {

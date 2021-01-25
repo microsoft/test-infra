@@ -10,7 +10,7 @@ pipeline {
     }
 
     agent {
-        label "ACC-${LINUX_VERSION}"
+        label "ACC-${params.LINUX_VERSION}"
     }
 
     stages {
@@ -23,14 +23,14 @@ pipeline {
         stage('Build and Test') {
             steps{
                 script{
-                    stage("AArch64GNU ${LINUX_VERSION} Build - ${BUILD_TYPE}"){
+                    stage("AArch64GNU ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}"){
                         try{
                             runner.cleanup()
-                            runner.checkout("${PULL_NUMBER}")
+                            runner.checkout("${params.PULL_NUMBER}")
                             def task =  """
                                         cmake ${WORKSPACE}/openenclave                                              \
                                             -G Ninja                                                                \
-                                            -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                                        \
+                                            -DCMAKE_BUILD_TYPE=${params.BUILD_TYPE}                                        \
                                             -DCMAKE_TOOLCHAIN_FILE=${WORKSPACE}/openenclave/cmake/arm-cross.cmake   \
                                             -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64       \
                                             -Wdev

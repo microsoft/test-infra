@@ -7,7 +7,7 @@
     max_concurrency: 1
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.3
           command:
             - sh
             - "-c"

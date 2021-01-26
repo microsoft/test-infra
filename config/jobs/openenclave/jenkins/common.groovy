@@ -1,5 +1,5 @@
 // Common openenclave jenkins functions
-
+// TODO: Unspaghetti THIS ENTIRE FILE :)
 /** Checkout openenclave, along with merged pull request. If master is instead passed in, don't check out branch
   * as this is being ran as a validation of master or as a reverse integration test on the test-infra repo.
 **/
@@ -97,9 +97,7 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
             }
             withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
                 sh  """
-                    cmake .. -G Ninja                                           \
-                        -DCMAKE_BUILD_TYPE=${BUILD_CONFIG}                      \
-                        ${EXTRA_CMAKE_ARGS}
+                    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS}
                     ninja -v
                     ctest --output-on-failure --timeout
                     """
@@ -218,19 +216,25 @@ def checkCI() {
     }
 }
 
-def AArch64GNUBuildString( BUILD_CONFIG="Release") {
-    dir ('openenclave/build') {
-        def task =  """
-                    cmake ..                                                                    \
-                        -G Ninja                                                                \
-                        -DCMAKE_BUILD_TYPE=                                                     \
-                        -DCMAKE_TOOLCHAIN_FILE=${WORKSPACE}/openenclave/cmake/arm-cross.cmake   \
-                        -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64       \
-                        -Wdev
-                        ninja -v
-                    """
-        runner.ContainerRun("oeciteam/oetools-full-18.04", "cross", task, "--cap-add=SYS_PTRACE")
-    }
+def AArch64GNUBuild( String BUILD_CONFIG="Release") {
+    // This is a hack, migrating docker image repos and we just need the short hand 
+    // linux version for compatability with legacy repo.
+    def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+
+    sh  """
+        echo line 222
+        """
+    def task =  """
+                echo line 225
+                cmake ${WORKSPACE}/openenclave/                                             \
+                    -G Ninja                                                                \
+                    -DCMAKE_BUILD_TYPE=${BUILD_CONFIG}                                      \
+                    -DCMAKE_TOOLCHAIN_FILE=${WORKSPACE}/openenclave/cmake/arm-cross.cmake   \
+                    -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64       \
+                    -Wdev
+                ninja -v
+                """
+    ContainerRun("oeciteam/oetools-full-${lin_version}", "cross", task, "--cap-add=SYS_PTRACE")
 }
 // Clean up environment, do not fail on error.
 def cleanup() {

@@ -27,7 +27,7 @@ pipeline {
         stage('CI Checks') {
             steps{
                 script{
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - CI Checks"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - CI Checks") {
                         def runner = load pwd() + "${SHARED_LIBRARY}"
 
                         try{
@@ -49,10 +49,10 @@ pipeline {
         stage('Install Prereqs (optional)') {
             steps{
                 script{
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - Install Prereqs"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - Install Prereqs") {
                         def runner = load pwd() + "${SHARED_LIBRARY}"
-                        if("${params.E2E}" == "ON"){
-                            stage("${params.LINUX_VERSION} Setup"){
+                        if("${params.E2E}" == "ON") {
+                            stage("${params.LINUX_VERSION} Setup") {
                                 try{
                                     runner.cleanup()
                                     runner.checkout("${params.PULL_NUMBER}")
@@ -69,13 +69,13 @@ pipeline {
         }
 
         // Go through Build stages
-        stage('Build'){
+        stage('Build') {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
                     // Build and test in Hardware mode, do not clean up as we will package
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}") {
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}")
@@ -87,7 +87,7 @@ pipeline {
                     }
 
                     // Build package and test installation work flows, clean up after
-                    stage("Ubuntu ${params.LINUX_VERSION} Package - ${params.BUILD_TYPE}"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Package - ${params.BUILD_TYPE}") {
                         try{
                             runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                         } catch (Exception e) {
@@ -99,7 +99,7 @@ pipeline {
                     }
 
                     // Build in simulation mode 
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE} Simulation"){
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE} Simulation") {
                         withEnv(["OE_SIMULATION=1"]) {
                             try{
                                 runner.cleanup()
@@ -117,7 +117,7 @@ pipeline {
             }
         }
     }
-    post ('Clean Up'){
+    post ('Clean Up') {
         always{
             cleanWs()
         }

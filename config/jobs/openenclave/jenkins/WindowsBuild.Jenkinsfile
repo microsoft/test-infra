@@ -22,6 +22,7 @@ pipeline {
             }
         }
 
+        // Run E2E Check if enabled
         stage('Install Prereqs (optional)') {
             steps{
                 script{

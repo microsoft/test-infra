@@ -7,7 +7,7 @@ pipeline {
         // Shared library config, check out common.groovy!
         SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
         // TODO: Refactor this into common groovy
-        EXTRA_CMAKE_ARGS="-DUSE_SNMALLOC=${params.USE_SNMALLOC}"
+        EXTRA_CMAKE_ARGS="-DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet -DUSE_SNMALLOC=${params.USE_SNMALLOC} -Wdev"
     }
 
     agent {
@@ -25,10 +25,10 @@ pipeline {
         stage('Install Prereqs (optional)') {
             steps{
                 script{
-                    stage("${params.WINDOWS_VERSION} Build - Install Prereqs"){
+                    stage("${params.WINDOWS_VERSION} Build - Install Prereqs") {
                         def runner = load pwd() + "${SHARED_LIBRARY}"
-                        if("${params.E2E}" == "ON"){
-                            stage("${params.WINDOWS_VERSION} Setup"){
+                        if("${params.E2E}" == "ON") {
+                            stage("${params.WINDOWS_VERSION} Setup") {
                                 try{
                                     runner.cleanup()
                                     runner.checkout("${params.PULL_NUMBER}")
@@ -46,13 +46,13 @@ pipeline {
         }
 
         // Go through Build stages
-        stage('Build'){
+        stage('Build') {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
                     // Build and test in Hardware mode, do not clean up as we will package
-                    stage("${params.WINDOWS_VERSION} Build - ${params.BUILD_TYPE}"){
+                    stage("${params.WINDOWS_VERSION} Build - ${params.BUILD_TYPE}") {
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}")
@@ -64,7 +64,7 @@ pipeline {
                     }
 
                     // Build package and test installation work flows, clean up after
-                    stage("${params.WINDOWS_VERSION} Package - ${params.BUILD_TYPE}"){
+                    stage("${params.WINDOWS_VERSION} Package - ${params.BUILD_TYPE}") {
                         try{
                             runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                         } catch (Exception e) {
@@ -76,7 +76,7 @@ pipeline {
                     }
 
                     // Build in simulation mode 
-                    stage("${params.WINDOWS_VERSION} Build - ${params.BUILD_TYPE} Simulation"){
+                    stage("${params.WINDOWS_VERSION} Build - ${params.BUILD_TYPE} Simulation") {
                         withEnv(["OE_SIMULATION=1"]) {
                             try{
                                 runner.cleanup()
@@ -94,7 +94,7 @@ pipeline {
             }
         }
     }
-    post ('Clean Up'){
+    post ('Clean Up') {
         always{
             cleanWs()
         }

@@ -1,12 +1,11 @@
 pipeline {
     options {
-        timeout(time: 60, unit: 'MINUTES')
+        timeout(time: 180, unit: 'MINUTES')
     }
 
     environment {
         // Shared library config, check out common.groovy!
         SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
-        EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC}"
     }
 
     agent {
@@ -20,23 +19,19 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build and Test') {
+
+        // Go through Build stages
+        stage('Build') {
             steps{
                 script{
-                    stage("AArch64GNU ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}"){
+                    def runner = load pwd() + "${SHARED_LIBRARY}"
+
+                    // Build and test in Hardware mode, do not clean up as we will package
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}") {
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}")
-                            def task =  """
-                                        cmake ${WORKSPACE}/openenclave                                              \
-                                            -G Ninja                                                                \
-                                            -DCMAKE_BUILD_TYPE=${params.BUILD_TYPE}                                        \
-                                            -DCMAKE_TOOLCHAIN_FILE=${WORKSPACE}/openenclave/cmake/arm-cross.cmake   \
-                                            -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64       \
-                                            -Wdev
-                                            ninja -v
-                                        """
-                            runner.ContainerRun("oeciteam/oetools-full-18.04", "cross", task, "--cap-add=SYS_PTRACE")
+                            runner.AArch64GNUBuild("${params.BUILD_TYPE}")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -46,7 +41,7 @@ pipeline {
             }
         }
     }
-    post ('Clean Up'){
+    post ('Clean Up') {
         always{
             cleanWs()
         }

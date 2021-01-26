@@ -218,6 +218,20 @@ def checkCI() {
     }
 }
 
+def AArch64GNUBuildString( BUILD_CONFIG="Release") {
+    dir ('openenclave/build') {
+        def task =  """
+                    cmake ..                                                                    \
+                        -G Ninja                                                                \
+                        -DCMAKE_BUILD_TYPE=                                                     \
+                        -DCMAKE_TOOLCHAIN_FILE=${WORKSPACE}/openenclave/cmake/arm-cross.cmake   \
+                        -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64       \
+                        -Wdev
+                        ninja -v
+                    """
+        runner.ContainerRun("oeciteam/oetools-full-18.04", "cross", task, "--cap-add=SYS_PTRACE")
+    }
+}
 // Clean up environment, do not fail on error.
 def cleanup() {
     if (isUnix()) {

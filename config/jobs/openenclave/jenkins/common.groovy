@@ -55,6 +55,10 @@ void installOpenEnclavePrereqs() {
 // Get C Compiler Flags
 def getCCompiler(String COMPILER="clang-8"){
     switch(COMPILER) {
+        case "cross":
+            // In this case, the compiler is set by the CMake toolchain file. As
+            // such, it is not necessary to specify anything in the environment.
+            return ""
         case "gcc":
             return "gcc"
         case "clang-8":
@@ -69,6 +73,10 @@ def getCCompiler(String COMPILER="clang-8"){
 // Get CXX Compiler Flags
 def getCXXCompiler(String COMPILER="clang-8"){
     switch(COMPILER) {
+        case "cross":
+            // In this case, the compiler is set by the CMake toolchain file. As
+            // such, it is not necessary to specify anything in the environment.
+            return ""
         case "gcc":
             return "gcc"
         case "clang-8":
@@ -212,14 +220,25 @@ def ContainerRunLegacy(String imageName, String compiler, String task, String ru
             image.pull()
             image.inside(runArgs) {
                 
-            Run(compiler, task)
+            RunLegacy(compiler, task)
         }
     }
 }
+
 def Run(String compiler ="", String task) {
     def c_compiler = getCCompiler("${compiler}")
     def cpp_compiler = getCXXCompiler("${compiler}")
     dir("${WORKSPACE}/openenclave/build") {
+        withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
+            runTask(task);
+        }
+    }
+}
+
+def RunLegacy(String compiler ="", String task) {
+    def c_compiler = getCCompiler("${compiler}")
+    def cpp_compiler = getCXXCompiler("${compiler}")
+    dir("${WORKSPACE}/build") {
         withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
             runTask(task);
         }

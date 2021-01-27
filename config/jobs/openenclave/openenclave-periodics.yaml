@@ -9,7 +9,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -24,7 +24,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -39,7 +39,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -54,7 +54,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -69,7 +69,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -84,7 +84,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -99,7 +99,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -114,7 +114,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -129,7 +129,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -144,7 +144,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -159,7 +159,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -174,7 +174,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -189,7 +189,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -204,7 +204,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -219,7 +219,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -234,7 +234,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -249,7 +249,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -264,7 +264,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -279,7 +279,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -294,7 +294,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -309,7 +309,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -324,7 +324,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -339,7 +339,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -354,7 +354,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -369,7 +369,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -384,7 +384,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -399,7 +399,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -414,7 +414,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -429,7 +429,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -444,7 +444,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -459,7 +459,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -474,7 +474,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -489,7 +489,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -504,7 +504,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -519,7 +519,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -534,7 +534,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -549,7 +549,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -564,7 +564,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -579,7 +579,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -594,7 +594,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -609,7 +609,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -624,7 +624,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -639,7 +639,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -654,7 +654,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -669,7 +669,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -684,7 +684,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -699,7 +699,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -714,7 +714,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -729,7 +729,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.3
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"

@@ -197,14 +197,25 @@ def AArch64GNUBuild( String BUILD_CONFIG="Release") {
 
 // This is copy and pasted from the deprecated openenclave-ci repo and is used for multiphase tests, we should consider cleaning this up and refactoring 
 def ContainerRun(String imageName, String compiler, String task, String runArgs="") {
-    def image = docker.image(imageName)
-    image.pull()
-    image.inside(runArgs) {
-        
-    Run(compiler, task)
+        def image = docker.image(imageName)
+        image.pull()
+        image.inside(runArgs) {
+            
+        Run(compiler, task)
     }
 }
 
+
+def ContainerRunLegacy(String imageName, String compiler, String task, String runArgs="") {
+        dir("${WORKSPACE}/build") {
+            def image = docker.image(imageName)
+            image.pull()
+            image.inside(runArgs) {
+                
+            Run(compiler, task)
+        }
+    }
+}
 def Run(String compiler ="", String task) {
     def c_compiler = getCCompiler("${compiler}")
     def cpp_compiler = getCXXCompiler("${compiler}")

@@ -53,7 +53,7 @@ pipeline {
                                 -Wdev
                             ninja -v
                             """
-                    runner.ContainerRun("oeciteam/oetools-full-18.04", "clang-7", task, "--cap-add=SYS_PTRACE")
+                    runner.ContainerRunLegacy("oeciteam/oetools-full-18.04", "clang-7", task, "--cap-add=SYS_PTRACE")
                     stash includes: 'build/tests/**', name: "linux-ACC-${LINUX_VERSION}-${COMPILER}-${BUILD_TYPE}-LVI_MITIGATION=${LVI_MITIGATION}-${LINUX_VERSION}-${BUILD_NUMBER}"
                 }
             }

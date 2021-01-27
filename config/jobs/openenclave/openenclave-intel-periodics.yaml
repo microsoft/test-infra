@@ -12,7 +12,7 @@ periodics:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX-FLC-Linux --sleep 20 --jenkins-user $JENKINS_USER_INTEL --url $JENKINS_URL_INTEL --jenkins-password $JENKINS_TOKEN_INTEL"
+            - "python /hack/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX-FLC-Linux --sleep 20 --jenkins-user $JENKINS_USER --url $INTEL_URL --jenkins-password $INTEL_TOKEN"
   - name: ci-openenclave-intel-SGX1-Linux-2
     extra_refs:
     - org: openenclave
@@ -26,4 +26,4 @@ periodics:
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX1-Linux --sleep 20 --jenkins-user $JENKINS_USER_INTEL --url $JENKINS_URL_INTEL --jenkins-password $JENKINS_TOKEN_INTEL"
+            - "python /hack/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX1-Linux --sleep 20 --jenkins-user $JENKINS_USER --url $INTEL_URL --jenkins-password $INTEL_TOKEN"

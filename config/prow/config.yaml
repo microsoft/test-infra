@@ -205,8 +205,17 @@ presets:
         name: jenkins-token
         key: jenkins-token
 
+  - name: INTEL_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: intel-token
+        key: intel-token
+
   - name: JENKINS_USER
     value: build_runner
   
   - name: JENKINS_URL
     value: https://openenclave-jenkins.eastus.cloudapp.azure.com
+
+  - name: INTEL_URL
+    value: https://jenkins-async-trigger-dev.sgxoeprd.adsdcsp.com

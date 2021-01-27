@@ -91,36 +91,6 @@ presubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-oeedger8r-cpp-Ubuntu1604BuildClang-7
-    branches:
-    - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
-    decorate: true
-    skip_report: false
-    max_concurrency: 1
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.3
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
-
-  - name: pr-test-infra-oeedger8r-cpp-Ubuntu1804BuildClang-7
-    branches:
-    - master
-    run_if_changed: "^(config/jobs/oeedger8r-cpp//*)"
-    decorate: true
-    skip_report: false
-    max_concurrency: 1
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.3
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
-
   - name: pr-test-infra-oeedger8r-cpp-Ubuntu1604BuildClang-8
     branches:
     - master
@@ -466,7 +436,7 @@ presubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Rhel8ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -479,9 +449,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7Snmalloc
+  - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-8Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -494,9 +464,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-7SnmallocE2E
+  - name: pr-test-infra-openenclave-Ubuntu1604DebugClang-8SnmallocE2E
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -509,9 +479,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -524,9 +494,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7Snmalloc
+  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-8Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -539,9 +509,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
+  - name: pr-test-infra-openenclave-Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -554,9 +524,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604RelWithDebInfoClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -569,9 +539,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7Snmalloc
+  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-8Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -584,9 +554,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-7SnmallocE2E
+  - name: pr-test-infra-openenclave-Ubuntu1604ReleaseClang-8SnmallocE2E
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -599,9 +569,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1604ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -614,9 +584,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7Snmalloc
+  - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-8Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -629,9 +599,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-7SnmallocE2E
+  - name: pr-test-infra-openenclave-Ubuntu1804DebugClang-8SnmallocE2E
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -644,9 +614,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -659,9 +629,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7Snmalloc
+  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-8Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -674,9 +644,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
+  - name: pr-test-infra-openenclave-Ubuntu1804RelWithDebInfoClang-8SnmallocE2E
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -689,9 +659,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804RelWithDebInfoClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7
+  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -704,9 +674,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7Snmalloc
+  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-8Snmalloc
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -719,9 +689,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-7SnmallocE2E
+  - name: pr-test-infra-openenclave-Ubuntu1804ReleaseClang-8SnmallocE2E
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave//*)"
@@ -734,7 +704,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave/job/Ubuntu1804ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-Win2016Debug
     branches:
@@ -961,7 +931,7 @@ presubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-curl-Ubuntu1604BuildClang-7
+  - name: pr-test-infra-openenclave-curl-Ubuntu1604BuildClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave-curl//*)"
@@ -974,9 +944,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1604BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-curl-Ubuntu1804BuildClang-7
+  - name: pr-test-infra-openenclave-curl-Ubuntu1804BuildClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave-curl//*)"
@@ -989,7 +959,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-curl/job/Ubuntu1804BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-ping
     branches:
@@ -1021,7 +991,7 @@ presubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-mbedtls-Ubuntu1604BuildClang-7
+  - name: pr-test-infra-openenclave-mbedtls-Ubuntu1604BuildClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
@@ -1034,9 +1004,9 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1604BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-test-infra-openenclave-mbedtls-Ubuntu1804BuildClang-7
+  - name: pr-test-infra-openenclave-mbedtls-Ubuntu1804BuildClang-8
     branches:
     - master
     run_if_changed: "^(config/jobs/openenclave-mbedtls//*)"
@@ -1049,7 +1019,7 @@ presubmits:
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra/job/openenclave-mbedtls/job/Ubuntu1804BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters OE_TEST_INFRA_PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-test-infra-openenclave-mbedtls-Windows2016Build
     branches:

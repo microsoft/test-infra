@@ -82,9 +82,8 @@ def getCXXCompiler(String COMPILER="clang-8"){
 /** Build openenclave based on build config, compiler and platform
 **/
 def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang-7", String EXTRA_CMAKE_ARGS ="") {
-    dir ('openenclave/build') {
-        if (isUnix()) {
-            
+    if (isUnix()) {
+
             printDebug()
 
             def task =  """
@@ -93,8 +92,9 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
                         ctest --output-on-failure --timeout
                         """
 
-            Run("${COMPILER}", task)
-        } else {
+        Run("${COMPILER}", task)
+    } else {
+        dir ('openenclave/build') {
             bat """
                 vcvars64.bat x64 && \
                 cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS} && \
@@ -107,33 +107,34 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
 
 // Common build and package functionality.
 def openenclavepackageInstall( String BUILD_CONFIG="Release", String COMPILER="clang-7", String EXTRA_CMAKE_ARGS ="") {
-    dir ('openenclave/build') {
-        if (isUnix()) {
+    
+    if (isUnix()) {
 
-            printDebug()
+        printDebug()
 
-            def task =  """
-                        sudo ninja -v package
-                        sudo ninja -v install
-                        cp -r /opt/openenclave/share/openenclave/samples ~/
-                        cd ~/samples
-                        . /opt/openenclave/share/openenclave/openenclaverc
-                        for i in *; do
-                            if [ -d \${i} ]; then
-                                cd \${i}
-                                mkdir build
-                                cd build
-                                cmake ..
-                                make
-                                make run
-                                cd ../..
-                            fi
-                        done
-                        """
+        def task =  """
+                    sudo ninja -v package
+                    sudo ninja -v install
+                    cp -r /opt/openenclave/share/openenclave/samples ~/
+                    cd ~/samples
+                    . /opt/openenclave/share/openenclave/openenclaverc
+                    for i in *; do
+                        if [ -d \${i} ]; then
+                            cd \${i}
+                            mkdir build
+                            cd build
+                            cmake ..
+                            make
+                            make run
+                            cd ../..
+                        fi
+                    done
+                    """
 
-            Run("${COMPILER}", task)
-        } else {
-            //Missing lvi sample test case
+        Run("${COMPILER}", task)
+    } else {
+        //Missing lvi sample test case
+        dir ('openenclave/build') {
             bat """
                 vcvars64.bat x64 && \
                 cpack.exe -D CPACK_NUGET_COMPONENT_INSTALL=ON -DCPACK_COMPONENTS_ALL=OEHOSTVERIFY && \
@@ -158,24 +159,22 @@ def openenclavepackageInstall( String BUILD_CONFIG="Release", String COMPILER="c
 
 // Check CI flows https://github.com/openenclave/openenclave/blob/master/scripts/check-ci
 def checkCI() {
-    dir ('openenclave') {
-        if (isUnix()) {
-            try {
-                    // This is a hack, migrating docker image repos and we just need the short hand 
-                    // linux version for compatability with legacy repo.
-                    def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
-                    def task =  """
-                                echo 'bug here, revisit before go live'
-                                #./scripts/check-ci
-                                """
+    if (isUnix()) {
+        try {
+                // This is a hack, migrating docker image repos and we just need the short hand 
+                // linux version for compatability with legacy repo.
+                def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+                def task =  """
+                            echo 'bug here, revisit before go live'
+                            #bash ./../scripts/check-ci
+                            """
 
-                    Run("cross", task)
+                Run("cross", task)
 
-                } catch (Exception e) {
-                    // Do something with the exception 
-                    error "Program failed, please read logs..."
-                }
-        }
+            } catch (Exception e) {
+                // Do something with the exception 
+                error "Program failed, please read logs..."
+            }
     }
 }
 
@@ -201,30 +200,28 @@ def ContainerRun(String imageName, String compiler, String task, String runArgs=
     def image = docker.image(imageName)
     image.pull()
     image.inside(runArgs) {
-        dir("${WORKSPACE}/openenclave/build") {
-            Run(compiler, task)
+        
+    Run(compiler, task)
+    }
+}
+
+def Run(String compiler ="", String task) {
+    def c_compiler = getCCompiler("${compiler}")
+    def cpp_compiler = getCXXCompiler("${compiler}")
+    dir("${WORKSPACE}/openenclave/build") {
+        withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
+            runTask(task);
         }
     }
 }
 
-def Run(String compiler, String task) {
-    def c_compiler = getCCompiler("${compiler}")
-    def cpp_compiler = getCXXCompiler("${compiler}")
-    
-    withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
-        runTask(task);
-    }
-}
-
 def runTask(String task) {
-    dir("${WORKSPACE}/build") {
-        sh """#!/usr/bin/env bash
-                set -o errexit
-                set -o pipefail
-                source /etc/profile
-                ${task}
-            """
-    }
+    sh """#!/usr/bin/env bash
+            set -o errexit
+            set -o pipefail
+            source /etc/profile
+            ${task}
+        """
 }
 
 def printDebug(){
@@ -237,11 +234,12 @@ def printDebug(){
 def cleanup() {
     if (isUnix()) {
         try {
-                sh  """
-                    sudo rm -rf openenclave || rm -rf openenclave || echo 'Workspace is clean'
-                    sudo rm -rf /opt/openenclave || rm -rf /opt/openenclave || echo 'Workspace is clean'
-                    sudo rm -rf ~/samples || rm -rf ~/samples || echo 'Workspace is clean'
-                    """
+                def task =  """
+                            sudo rm -rf openenclave || rm -rf openenclave || echo 'Workspace is clean'
+                            sudo rm -rf /opt/openenclave || rm -rf /opt/openenclave || echo 'Workspace is clean'
+                            sudo rm -rf ~/samples || rm -rf ~/samples || echo 'Workspace is clean'
+                            """
+                Run("clang-7", task)
             } catch (Exception e) {
                 // Do something with the exception 
                 error "Program failed, please read logs..."

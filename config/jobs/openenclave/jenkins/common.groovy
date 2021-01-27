@@ -84,19 +84,16 @@ def getCXXCompiler(String COMPILER="clang-8"){
 def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang-7", String EXTRA_CMAKE_ARGS ="") {
     dir ('openenclave/build') {
         if (isUnix()) {
-
-            def c_compiler = getCCompiler("${COMPILER}")
-            def cpp_compiler = getCXXCompiler("${COMPILER}")
             
             printDebug()
 
-            withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
-                sh  """
-                    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS}
-                    ninja -v
-                    ctest --output-on-failure --timeout
-                    """
-            }
+            def task =  """
+                        cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS}
+                        ninja -v
+                        ctest --output-on-failure --timeout
+                        """
+
+            Run("${COMPILER}", task)
         } else {
             bat """
                 vcvars64.bat x64 && \
@@ -112,33 +109,29 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
 def openenclavepackageInstall( String BUILD_CONFIG="Release", String COMPILER="clang-7", String EXTRA_CMAKE_ARGS ="") {
     dir ('openenclave/build') {
         if (isUnix()) {
-            
+
             printDebug()
 
-            def c_compiler = getCCompiler("${COMPILER}")
-            def cpp_compiler = getCXXCompiler("${COMPILER}")
+            def task =  """
+                        sudo ninja -v package
+                        sudo ninja -v install
+                        cp -r /opt/openenclave/share/openenclave/samples ~/
+                        cd ~/samples
+                        . /opt/openenclave/share/openenclave/openenclaverc
+                        for i in *; do
+                            if [ -d \${i} ]; then
+                                cd \${i}
+                                mkdir build
+                                cd build
+                                cmake ..
+                                make
+                                make run
+                                cd ../..
+                            fi
+                        done
+                        """
 
-            withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
-                //Missing lvi sample test case
-                sh  """
-                    sudo ninja -v package
-                    sudo ninja -v install
-                    cp -r /opt/openenclave/share/openenclave/samples ~/
-                    cd ~/samples
-                    . /opt/openenclave/share/openenclave/openenclaverc
-                    for i in *; do
-                        if [ -d \${i} ]; then
-                            cd \${i}
-                            mkdir build
-                            cd build
-                            cmake ..
-                            make
-                            make run
-                            cd ../..
-                        fi
-                    done
-                    """
-            }
+            Run("${COMPILER}", task)
         } else {
             //Missing lvi sample test case
             bat """
@@ -175,6 +168,7 @@ def checkCI() {
                                 echo 'bug here, revisit before go live'
                                 #./scripts/check-ci
                                 """
+
                     Run("cross", task)
 
                 } catch (Exception e) {

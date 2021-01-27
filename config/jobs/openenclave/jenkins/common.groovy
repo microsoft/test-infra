@@ -53,6 +53,31 @@ void installOpenEnclavePrereqs() {
     }
 }
 
+def getCCompiler(String COMPILER="clang-8"){
+    switch(COMPILER) {
+        case "gcc":
+            return "gcc"
+        case "clang-8":
+            return "clang-8"
+        case "clang-7":
+            return "clang-7"
+        default:
+            return "clang-8"
+    }
+}
+
+def getCXXCompiler(String COMPILER="clang-8"){
+    switch(COMPILER) {
+        case "gcc":
+            return "gcc"
+        case "clang-8":
+            return "clang++-8"
+        case "clang-7":
+            return "clang++-7"
+        default:
+            return "clang++-8"
+    }
+}
 /** Build openenclave based on build config, compiler and platform
   * TODO: Add container support
 **/
@@ -65,36 +90,8 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
                 echo BUILD_CONFIG IS ${BUILD_CONFIG}
                 echo EXTRA_CMAKE_ARGS IS ${EXTRA_CMAKE_ARGS}
                 """
-            def c_compiler
-            def cpp_compiler
-            def compiler_version
-            switch(COMPILER) {
-                case "clang-8":
-                    c_compiler = "clang"
-                    cpp_compiler = "clang++"
-                    compiler_version = "8"
-                    break
-                case "clang-7":
-                    c_compiler = "clang"
-                    cpp_compiler = "clang++"
-                    compiler_version = "7"
-                    break
-                case "gcc":
-                    c_compiler = "gcc"
-                    cpp_compiler = "g++"
-
-                    break
-                default:
-                    // This is needed for backwards compatibility with the old
-                    // implementation of the method.
-                    c_compiler = "clang"
-                    cpp_compiler = "clang++"
-                    compiler_version = "8"
-            }
-            if (compiler_version) {
-                c_compiler += "-${compiler_version}"
-                cpp_compiler += "-${compiler_version}"
-            }
+            def c_compiler = getCCompiler("${COMPILER}")
+            def cpp_compiler = getCXXCompiler("${COMPILER}")
             withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
                 sh  """
                     cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS}
@@ -123,36 +120,9 @@ def openenclavepackageInstall( String BUILD_CONFIG="Release", String COMPILER="c
             sh  """
                 echo COMPILER IS ${COMPILER}
                 """
-            def c_compiler
-            def cpp_compiler
-            def compiler_version
-            switch(COMPILER) {
-                case "clang-8":
-                    c_compiler = "clang"
-                    cpp_compiler = "clang++"
-                    compiler_version = "8"
-                    break
-                case "clang-7":
-                    c_compiler = "clang"
-                    cpp_compiler = "clang++"
-                    compiler_version = "7"
-                    break
-                case "gcc":
-                    c_compiler = "gcc"
-                    cpp_compiler = "g++"
-
-                    break
-                default:
-                    // This is needed for backwards compatibility with the old
-                    // implementation of the method.
-                    c_compiler = "clang"
-                    cpp_compiler = "clang++"
-                    compiler_version = "8"
-            }
-            if (compiler_version) {
-                c_compiler += "-${compiler_version}"
-                cpp_compiler += "-${compiler_version}"
-            }
+            def c_compiler = getCCompiler("${COMPILER}")
+            def cpp_compiler = getCXXCompiler("${COMPILER}")
+            
             // To do, switch ninja to cpack sometimes?
 
             withEnv(["CC=${c_compiler}","CXX=${cpp_compiler}"]) {
@@ -221,11 +191,7 @@ def AArch64GNUBuild( String BUILD_CONFIG="Release") {
     // linux version for compatability with legacy repo.
     def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
 
-    sh  """
-        echo line 222
-        """
     def task =  """
-                echo line 225
                 cmake ${WORKSPACE}/openenclave/                                             \
                     -G Ninja                                                                \
                     -DCMAKE_BUILD_TYPE=${BUILD_CONFIG}                                      \

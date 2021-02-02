@@ -275,4 +275,22 @@ def Run(String compiler, String task, String compiler_version = "") {
     }
 }
 
+def AArch64GNUBuild( String BUILD_CONFIG="Release") {
+    // This is a hack, migrating docker image repos and we just need the short hand 
+    // linux version for compatability with legacy repo.
+    def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+
+    def task =  """
+                cmake ${WORKSPACE}/openenclave                                              \
+                    -G Ninja                                                                \
+                    -DCMAKE_BUILD_TYPE=${BUILD_TYPE}                                        \
+                    -DCMAKE_TOOLCHAIN_FILE=${WORKSPACE}/openenclave/cmake/arm-cross.cmake   \
+                    -DOE_TA_DEV_KIT_DIR=/devkits/vexpress-qemu_armv8a/export-ta_arm64       \
+                    -DHAS_QUOTE_PROVIDER=OFF                                                \
+                    -Wdev
+                ninja -v
+                """
+    ContainerRun("oeciteam/oetools-full-${lin_version}", "cross", task, "--cap-add=SYS_PTRACE")
+}
+
 return this

@@ -108,7 +108,7 @@ def cmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang
         } else {
             bat """
                 vcvars64.bat x64 && \
-                cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} -DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet ${EXTRA_CMAKE_ARGS} -Wdev && \
+                cmake.exe .. -G Ninja -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} ${EXTRA_CMAKE_ARGS} && \
                 ninja.exe && \
                 ctest.exe -V -C ${BUILD_CONFIG} --output-on-failure
                 """
@@ -185,7 +185,7 @@ def openenclavepackageInstall( String BUILD_CONFIG="Release", String COMPILER="c
                 cpack.exe -D CPACK_NUGET_COMPONENT_INSTALL=ON -DCPACK_COMPONENTS_ALL=OEHOSTVERIFY && \
                 cpack.exe && \
                 (if exist C:\\oe rmdir /s/q C:\\oe) && \
-                nuget.exe install open-enclave -Source %cd%\\openenclave\\build -OutputDirectory C:\\oe -ExcludeVersion && \
+                nuget.exe install open-enclave -Source %cd% -OutputDirectory C:\\oe -ExcludeVersion && \
                 set CMAKE_PREFIX_PATH=C:\\oe\\open-enclave\\openenclave\\lib\\openenclave\\cmake && \
                 cd C:\\oe\\open-enclave\\openenclave\\share\\openenclave\\samples && \
                 setlocal enabledelayedexpansion && \

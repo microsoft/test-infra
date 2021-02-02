@@ -1,55 +1,44 @@
-// Pull Request Information
-PULL_NUMBER=env.PULL_NUMBER?env.PULL_NUMBER:"master"
-
-// OS Version Configuration
-WINDOWS_VERSION=env.WINDOWS_VERSION?env.WINDOWS_VERSION:"Windows-2019"
-
-// Some Defaults
-DOCKER_TAG=env.DOCKER_TAG?env.DOCKER_TAG:"latest"
-COMPILER=env.COMPILER?env.COMPILER:"MSVC"
-BUILD_TYPE=env.BUILD_TYPE?env.BUILD_TYPE:"Debug"
-
-// Some override for build configuration
-LVI_MITIGATION=env.LVI_MITIGATION?env.LVI_MITIGATION:"ControlFlow"
-LVI_MITIGATION_SKIP_TESTS=env.LVI_MITIGATION_SKIP_TESTS?env.LVI_MITIGATION_SKIP_TESTS:"OFF"
-USE_SNMALLOC=env.USE_SNMALLOC?env.USE_SNMALLOC:"ON"
-
-EXTRA_CMAKE_ARGS=env.EXTRA_CMAKE_ARGS?env.EXTRA_CMAKE_ARGS:"-DLVI_MITIGATION=${LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${USE_SNMALLOC}"
-
-// Shared library config, check out common.groovy!
-SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
-
-// whether to run as an e2e test
-E2E=env.E2E?env.E2E:"OFF"
-
 pipeline {
     options {
-        timeout(time: 180, unit: 'MINUTES') 
+        timeout(time: 180, unit: 'MINUTES')
     }
-    agent { label "ACC-${WINDOWS_VERSION}" }
+
+    environment {
+        // Shared library config, check out common.groovy!
+        SHARED_LIBRARY="/config/jobs/openenclave/jenkins/common.groovy"
+        // TODO: Refactor this into common groovy
+        EXTRA_CMAKE_ARGS="-DBUILD_ENCLAVES=ON -DNUGET_PACKAGE_PATH=C:/oe_prereqs -DCPACK_GENERATOR=NuGet -DUSE_SNMALLOC=${params.USE_SNMALLOC} -Wdev"
+    }
+
+    agent {
+        label "ACC-${params.WINDOWS_VERSION}"
+    }
 
     stages {
-        stage('Checkout'){
+        stage('Checkout') {
             steps{
                 cleanWs()
                 checkout scm
             }
         }
 
-        // Temporarily run always as e2e
-        stage('Install Prereqs (Optional)'){
+        // Run E2E Check if enabled
+        stage('Install Prereqs (optional)') {
             steps{
                 script{
-                    def runner = load pwd() + "${SHARED_LIBRARY}"
-                    if("${E2E}" == "ON"){
-                        stage("${WINDOWS_VERSION} Setup"){
-                            try{
-                                runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.installOpenEnclavePrereqs()
-                            } catch (Exception e) {
-                                // Do something with the exception 
-                                error "Program failed, please read logs..."
+                    stage("${params.WINDOWS_VERSION} Build - Install Prereqs") {
+                        def runner = load pwd() + "${SHARED_LIBRARY}"
+                        if("${params.E2E}" == "ON") {
+                            stage("${params.WINDOWS_VERSION} Setup") {
+                                try{
+                                    runner.cleanup()
+                                    runner.checkout("${params.PULL_NUMBER}")
+                                    // TODO: Windows is not currently working for E2E
+                                    //runner.installOpenEnclavePrereqs()
+                                } catch (Exception e) {
+                                    // Do something with the exception 
+                                    error "Program failed, please read logs..."
+                                }
                             }
                         }
                     }
@@ -57,16 +46,43 @@ pipeline {
             }
         }
 
-        stage('Build'){
+        // Go through Build stages
+        stage('Build') {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
-                    stage("Windows ${WINDOWS_VERSION} Build - ${BUILD_TYPE}"){
-                        script {
+
+                    // Build and test in Hardware mode, do not clean up as we will package
+                    stage("${params.WINDOWS_VERSION} Build - ${params.BUILD_TYPE}") {
+                        try{
+                            runner.cleanup()
+                            runner.checkout("${params.PULL_NUMBER}")
+                            runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
+                        } catch (Exception e) {
+                            // Do something with the exception 
+                            error "Program failed, please read logs..."
+                        }
+                    }
+
+                    // Build package and test installation work flows, clean up after
+                    stage("${params.WINDOWS_VERSION} Package - ${params.BUILD_TYPE}") {
+                        try{
+                            runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
+                        } catch (Exception e) {
+                            // Do something with the exception 
+                            error "Program failed, please read logs..."
+                        } finally {
+                            runner.cleanup()
+                        }
+                    }
+
+                    // Build in simulation mode 
+                    stage("${params.WINDOWS_VERSION} Build - ${params.BUILD_TYPE} Simulation") {
+                        withEnv(["OE_SIMULATION=1"]) {
                             try{
                                 runner.cleanup()
-                                runner.checkout("${PULL_NUMBER}")
-                                runner.cmakeBuildopenenclave("${BUILD_TYPE}","${COMPILER}","${EXTRA_CMAKE_ARGS}")
+                                runner.checkout("${params.PULL_NUMBER}")
+                                runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."
@@ -79,7 +95,7 @@ pipeline {
             }
         }
     }
-    post ('Clean Up'){
+    post ('Clean Up') {
         always{
             cleanWs()
         }

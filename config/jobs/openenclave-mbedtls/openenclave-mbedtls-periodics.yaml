@@ -9,7 +9,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -24,13 +24,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-mbedtls-Ubuntu1604BuildClang-7
+  - name: ci-openenclave-mbedtls-Ubuntu1604BuildClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave-mbedtls
@@ -39,13 +39,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-mbedtls-Ubuntu1804BuildClang-7
+  - name: ci-openenclave-mbedtls-Ubuntu1804BuildClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave-mbedtls
@@ -54,11 +54,11 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
   - name: ci-openenclave-mbedtls-Windows2016Build
     extra_refs:
@@ -69,7 +69,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -84,7 +84,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"

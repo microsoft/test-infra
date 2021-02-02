@@ -36,7 +36,7 @@ jobs:
                 }
                 stringParam {
                     name("COMPILER")
-                    defaultValue("")
+                    defaultValue("cross")
                     description("")
                     trim(true)
                 }

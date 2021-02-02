@@ -9,7 +9,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -24,41 +24,11 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job oeedger8r-cpp/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
-
-  - name: ci-oeedger8r-cpp-Ubuntu1604BuildClang-7
-    extra_refs:
-    - org: openenclave
-      repo: oeedger8r-cpp
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.2
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1604BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
-
-  - name: ci-oeedger8r-cpp-Ubuntu1804BuildClang-7
-    extra_refs:
-    - org: openenclave
-      repo: oeedger8r-cpp
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.2
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job oeedger8r-cpp/job/Ubuntu1804BuildClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
   - name: ci-oeedger8r-cpp-Ubuntu1604BuildClang-8
     extra_refs:
@@ -69,7 +39,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -84,7 +54,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -99,7 +69,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -114,7 +84,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"

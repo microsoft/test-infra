@@ -7,10 +7,10 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 2
+    max_concurrency: 1
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -22,10 +22,10 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 2
+    max_concurrency: 1
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -37,10 +37,10 @@ presubmits:
     always_run: true
     decorate: true
     skip_report: false
-    max_concurrency: 2
+    max_concurrency: 1
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"

@@ -9,7 +9,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -24,7 +24,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -39,7 +39,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -54,7 +54,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -69,7 +69,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -84,7 +84,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -99,7 +99,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -114,7 +114,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -129,7 +129,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -144,7 +144,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -159,7 +159,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -174,7 +174,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -189,7 +189,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -204,7 +204,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -219,7 +219,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -234,7 +234,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -249,7 +249,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -264,7 +264,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -279,13 +279,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Rhel8ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604DebugClang-7
+  - name: ci-openenclave-Ubuntu1604DebugClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -294,13 +294,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604DebugClang-7Snmalloc
+  - name: ci-openenclave-Ubuntu1604DebugClang-8Snmalloc
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -309,13 +309,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604DebugClang-7SnmallocE2E
+  - name: ci-openenclave-Ubuntu1604DebugClang-8SnmallocE2E
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -324,13 +324,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604RelWithDebInfoClang-7
+  - name: ci-openenclave-Ubuntu1604RelWithDebInfoClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -339,13 +339,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604RelWithDebInfoClang-7Snmalloc
+  - name: ci-openenclave-Ubuntu1604RelWithDebInfoClang-8Snmalloc
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -354,13 +354,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604RelWithDebInfoClang-7SnmallocE2E
+  - name: ci-openenclave-Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -369,13 +369,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604RelWithDebInfoClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604ReleaseClang-7
+  - name: ci-openenclave-Ubuntu1604ReleaseClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -384,13 +384,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604ReleaseClang-7Snmalloc
+  - name: ci-openenclave-Ubuntu1604ReleaseClang-8Snmalloc
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -399,13 +399,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1604ReleaseClang-7SnmallocE2E
+  - name: ci-openenclave-Ubuntu1604ReleaseClang-8SnmallocE2E
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -414,13 +414,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1604ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804DebugClang-7
+  - name: ci-openenclave-Ubuntu1804DebugClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -429,13 +429,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804DebugClang-7Snmalloc
+  - name: ci-openenclave-Ubuntu1804DebugClang-8Snmalloc
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -444,13 +444,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804DebugClang-7SnmallocE2E
+  - name: ci-openenclave-Ubuntu1804DebugClang-8SnmallocE2E
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -459,13 +459,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804RelWithDebInfoClang-7
+  - name: ci-openenclave-Ubuntu1804RelWithDebInfoClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -474,13 +474,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804RelWithDebInfoClang-7Snmalloc
+  - name: ci-openenclave-Ubuntu1804RelWithDebInfoClang-8Snmalloc
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -489,13 +489,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804RelWithDebInfoClang-7SnmallocE2E
+  - name: ci-openenclave-Ubuntu1804RelWithDebInfoClang-8SnmallocE2E
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -504,13 +504,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804RelWithDebInfoClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804ReleaseClang-7
+  - name: ci-openenclave-Ubuntu1804ReleaseClang-8
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -519,13 +519,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804ReleaseClang-7Snmalloc
+  - name: ci-openenclave-Ubuntu1804ReleaseClang-8Snmalloc
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -534,13 +534,13 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
-  - name: ci-openenclave-Ubuntu1804ReleaseClang-7SnmallocE2E
+  - name: ci-openenclave-Ubuntu1804ReleaseClang-8SnmallocE2E
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -549,11 +549,11 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-7SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Ubuntu1804ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
 
   - name: ci-openenclave-Win2016Debug
     extra_refs:
@@ -564,7 +564,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -579,7 +579,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -594,7 +594,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -609,7 +609,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -624,7 +624,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -639,7 +639,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -654,7 +654,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -669,7 +669,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -684,7 +684,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -699,7 +699,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -714,7 +714,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
@@ -729,7 +729,7 @@ periodics:
     interval: 12h
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:0.2
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"

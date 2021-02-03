@@ -31,7 +31,7 @@ pipeline {
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}")
-                            //runner.checkCI()
+                            runner.checkCI()
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."

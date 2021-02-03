@@ -293,4 +293,25 @@ def AArch64GNUBuild( String BUILD_CONFIG="Release") {
     ContainerRun("oeciteam/oetools-full-${lin_version}", "cross", task, "--cap-add=SYS_PTRACE")
 }
 
+// Check CI flows https://github.com/openenclave/openenclave/blob/master/scripts/check-ci
+def checkCI() {
+    if (isUnix()) {
+        try {
+                // This is a hack, migrating docker image repos and we just need the short hand 
+                // linux version for compatability with legacy repo.
+                def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+                def task =  """
+                            echo 'bug here, revisit before go live'
+                            #bash ./../scripts/check-ci
+                            """
+
+                Run("cross", task)
+
+            } catch (Exception e) {
+                // Do something with the exception 
+                error "Program failed, please read logs..."
+            }
+    }
+}
+
 return this

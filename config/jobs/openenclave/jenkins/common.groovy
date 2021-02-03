@@ -230,6 +230,21 @@ def ContainerRun(String imageName, String compiler, String task, String runArgs=
     }
 }
 
+def checkDevFlows() {
+    if (isUnix()) {
+        try {
+                sh  """
+                    cmake ${WORKSPACE}/openenclave -G Ninja -Wdev --warn-uninitialized -Werror=dev
+                    ninja -v
+                    """
+            } catch (Exception e) {
+                // Do something with the exception 
+                error "Program failed, please read logs..."
+            } 
+        
+    }
+}
+
 def runTask(String task) {
     dir("${WORKSPACE}/build") {
         sh """#!/usr/bin/env bash

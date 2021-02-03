@@ -9,10 +9,12 @@ pipeline {
         EXTRA_CMAKE_ARGS="-DLVI_MITIGATION=${params.LVI_MITIGATION} -DLVI_MITIGATION_SKIP_TESTS=${params.LVI_MITIGATION_SKIP_TESTS} -DUSE_SNMALLOC=${params.USE_SNMALLOC} -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin -DCMAKE_INSTALL_PREFIX:PATH=/opt/openenclave -DCPACK_GENERATOR=DEB -Wdev"
         // Bug with the environment variable, we only need the above string so set to empty
         LVI_MITIGATION=""
+        // Jenkins does not support dynamic agent allocation. Specify as environment variable as workaround
+        AGENT_PREFIX = "${params.E2E == "ON" ? "vanilla" : "ACC"}"
     }
 
     agent {
-        label "ACC-${params.LINUX_VERSION}"
+        label "${AGENT_PREFIX}-${params.LINUX_VERSION}"
     }
 
     stages {

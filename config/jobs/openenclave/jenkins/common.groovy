@@ -231,18 +231,15 @@ def ContainerRun(String imageName, String compiler, String task, String runArgs=
 }
 
 def checkDevFlows() {
-    if (isUnix()) {
-        try {
-                sh  """
-                    cmake ${WORKSPACE}/openenclave -G Ninja -Wdev --warn-uninitialized -Werror=dev
-                    ninja -v
-                    """
-            } catch (Exception e) {
-                // Do something with the exception 
-                error "Program failed, please read logs..."
-            } 
-        
-    }
+    // This is a hack, migrating docker image repos and we just need the short hand 
+    // linux version for compatability with legacy repo.
+    def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+
+    def task =  """
+                cmake ${WORKSPACE}/openenclave -G Ninja -Wdev --warn-uninitialized -Werror=dev
+                ninja -v
+                """
+    ContainerRun("oeciteam/oetools-full-${lin_version}", "clang-8", task, "--cap-add=SYS_PTRACE")
 }
 
 def runTask(String task) {

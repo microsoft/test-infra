@@ -56,7 +56,7 @@ pipeline {
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}")
-                            runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
+                            runner.containerCmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}", "--device /dev/sgx:/dev/sgx")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -69,7 +69,7 @@ pipeline {
                             try{
                                 runner.cleanup()
                                 runner.checkout("${params.PULL_NUMBER}")
-                                runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
+                                runner.containerCmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
                             } catch (Exception e) {
                                 // Do something with the exception 
                                 error "Program failed, please read logs..."

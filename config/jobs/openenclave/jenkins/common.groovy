@@ -230,6 +230,24 @@ def ContainerRun(String imageName, String compiler, String task, String runArgs=
     }
 }
 
+def containerCmakeBuildopenenclave( String BUILD_CONFIG="Release", String COMPILER="clang-7", String EXTRA_CMAKE_ARGS ="", CONTAINER_ARGS="") {
+    // This is a hack, migrating docker image repos and we just need the short hand 
+    // linux version for compatability with legacy repo.
+    def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+
+    def task =  """
+                cmake ${WORKSPACE}/openenclave                      \
+                    -G Ninja                                        \
+                    -DCMAKE_BUILD_TYPE=${BUILD_CONFIG}              \
+                    ${EXTRA_CMAKE_ARGS}                             \
+                    -Wdev
+                ninja -v
+                ctest --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
+                """
+
+    ContainerRun("oeciteam/oetools-full-${lin_version}", "clang-8", task, "--cap-add=SYS_PTRACE ${CONTAINER_ARGS}")
+}
+
 def checkDevFlows() {
     // This is a hack, migrating docker image repos and we just need the short hand 
     // linux version for compatability with legacy repo.

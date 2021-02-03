@@ -40,7 +40,7 @@ pipeline {
                     runner.checkout("${OE_PULL_NUMBER}")
                     println("Generating certificates and reports ...")
                     def task = """
-                            cmake ${WORKSPACE}/openenclave -G Ninja -DHAS_QUOTE_PROVIDER=ON -DCMAKE_BUILD_TYPE=${build_type} -Wdev
+                            cmake ${WORKSPACE}/openenclave -G Ninja -DCMAKE_BUILD_TYPE=${build_type} -Wdev
                             ninja -v
                             pushd tests/host_verify/host
                             openssl ecparam -name prime256v1 -genkey -noout -out keyec.pem
@@ -97,7 +97,7 @@ pipeline {
                     runner.checkout("${OE_PULL_NUMBER}")
                     unstash "linux_host_verify-${LINUX_VERSION}-${BUILD_TYPE}-${BUILD_NUMBER}"
                     def task = """
-                            cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
+                            cmake ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -Wdev
                             ninja -v
                             ctest -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
                             """
@@ -121,7 +121,7 @@ pipeline {
                         dir('build') {
                             bat """
                                 vcvars64.bat x64 && \
-                                cmake.exe ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DHAS_QUOTE_PROVIDER=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
+                                cmake.exe ${WORKSPACE}/openenclave -G Ninja -DBUILD_ENCLAVES=OFF -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DNUGET_PACKAGE_PATH=C:/oe_prereqs -Wdev && \
                                 ninja -v && \
                                 ctest.exe -V -C ${BUILD_TYPE} -R host_verify --output-on-failure --timeout ${CTEST_TIMEOUT_SECONDS}
                                 """

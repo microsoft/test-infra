@@ -45,29 +45,6 @@ pipeline {
             }
         }
 
-        // Run E2E Check if enabledTemporarily run always as e2e
-        stage('Install Prereqs (optional)') {
-            steps{
-                script{
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - Install Prereqs") {
-                        def runner = load pwd() + "${SHARED_LIBRARY}"
-                        if("${params.E2E}" == "ON") {
-                            stage("${params.LINUX_VERSION} Setup") {
-                                try{
-                                    runner.cleanup()
-                                    runner.checkout("${params.PULL_NUMBER}")
-                                    runner.installOpenEnclavePrereqs()
-                                } catch (Exception e) {
-                                    // Do something with the exception 
-                                    error "Program failed, please read logs..."
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         // Go through Build stages
         stage('Build') {
             steps{
@@ -83,18 +60,6 @@ pipeline {
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
-                        }
-                    }
-
-                    // Build package and test installation work flows, clean up after
-                    stage("Ubuntu ${params.LINUX_VERSION} Package - ${params.BUILD_TYPE}") {
-                        try{
-                            runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
-                        } catch (Exception e) {
-                            // Do something with the exception 
-                            error "Program failed, please read logs..."
-                        } finally {
-                            runner.cleanup()
                         }
                     }
 

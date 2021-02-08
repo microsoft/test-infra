@@ -29,6 +29,7 @@ pipelines:
     Ubuntu1804BuildClang-8
     Windows2016Build
     Windows2019Build
+
   openenclave:
     ping
     AArch64GNU1604Debug
@@ -79,6 +80,29 @@ pipelines:
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
+    Docker1604BuildClang-8
+    Docker1604DebugClang-8
+    Docker1604DebugClang-8Snmalloc
+    Docker1604DebugClang-8SnmallocE2E
+    Docker1604RelWithDebInfoClang-8
+    Docker1604RelWithDebInfoClang-8Snmalloc
+    Docker1604RelWithDebInfoClang-8SnmallocE2E
+    Docker1604ReleaseClang-8
+    Docker1604ReleaseClang-8Snmalloc
+    Docker1604ReleaseClang-8SnmallocE2E
+    Docker1804BuildClang-8
+    Docker1804DebugClang-8
+    Docker1804DebugClang-8Snmalloc
+    Docker1804DebugClang-8SnmallocE2E
+    Docker1804RelWithDebInfoClang-8
+    Docker1804RelWithDebInfoClang-8Snmalloc
+    Docker1804RelWithDebInfoClang-8SnmallocE2E
+    Docker1804ReleaseClang-8
+    Docker1804ReleaseClang-8Snmalloc
+    Docker1804ReleaseClang-8SnmallocE2E
+    Docker1604BuildClang-8
+    Docker1804BuildClang-8
+
   openenclave-build:
     ping
   openenclave-ci:
@@ -209,6 +233,12 @@ buildtypemap:
     Win2019DebugSnmallocE2E
     AArch64GNU1604Debug
     AArch64GNU1804Debug
+    Docker1604DebugClang-8Snmalloc
+    Docker1604DebugClang-8SnmallocE2E
+    Docker1804DebugClang-8
+    Docker1804DebugClang-8Snmalloc
+    Docker1804DebugClang-8SnmallocE2E
+
   Release:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
@@ -227,6 +257,13 @@ buildtypemap:
     Win2019Release
     AArch64GNU1604Release
     AArch64GNU1804Release
+    Docker1604ReleaseClang-8
+    Docker1604ReleaseClang-8Snmalloc
+    Docker1604ReleaseClang-8SnmallocE2E
+    Docker1804ReleaseClang-8
+    Docker1804ReleaseClang-8Snmalloc
+    Docker1804ReleaseClang-8SnmallocE2E
+
   RelWithDebInfo:
     Ubuntu1604RelWithDebInfoClang-8
     Ubuntu1604RelWithDebInfoClang-8Snmalloc
@@ -234,6 +271,12 @@ buildtypemap:
     Ubuntu1804RelWithDebInfoClang-8
     Ubuntu1804RelWithDebInfoClang-8Snmalloc
     Ubuntu1804RelWithDebInfoClang-8SnmallocE2E
+    Docker1604ReleaseClang-8
+    Docker1604ReleaseClang-8Snmalloc
+    Docker1604ReleaseClang-8SnmallocE2E
+    Docker1804ReleaseClang-8
+    Docker1804ReleaseClang-8Snmalloc
+    Docker1804ReleaseClang-8SnmallocE2E
 
 lvioptionsmaps:
   ControlFlow:
@@ -473,6 +516,32 @@ jobmaps:
     Ubuntu1804ReleaseClang-8SnmallocE2E
     Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
+
+  UbuntuContainerBuild:
+    Docker1604Build
+    Docker1604BuildClang-8
+    Docker1604DebugClang-8
+    Docker1604DebugClang-8Snmalloc
+    Docker1604DebugClang-8SnmallocE2E
+    Docker1604RelWithDebInfoClang-8
+    Docker1604RelWithDebInfoClang-8Snmalloc
+    Docker1604RelWithDebInfoClang-8SnmallocE2E
+    Docker1604ReleaseClang-8
+    Docker1604ReleaseClang-8Snmalloc
+    Docker1604ReleaseClang-8SnmallocE2E
+    Docker1804Build
+    Docker1804BuildClang-8
+    Docker1804DebugClang-8
+    Docker1804DebugClang-8Snmalloc
+    Docker1804DebugClang-8SnmallocE2E
+    Docker1804RelWithDebInfoClang-8
+    Docker1804RelWithDebInfoClang-8Snmalloc
+    Docker1804RelWithDebInfoClang-8SnmallocE2E
+    Docker1804ReleaseClang-8
+    Docker1804ReleaseClang-8Snmalloc
+    Docker1804ReleaseClang-8SnmallocE2E
+    Docker1604BuildClang-8
+    Docker1804BuildClang-8
 
   WindowsBuild:
     Win2016Debug

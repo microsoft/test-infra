@@ -17,13 +17,13 @@ jobs:
                 }
                 stringParam {
                     name("LINUX_VERSION")
-                    defaultValue("")
+                    defaultValue("Ubuntu-1804")
                     description("")
                     trim(true)
                 }
                 stringParam {
                     name("BUILD_TYPE")
-                    defaultValue("")
+                    defaultValue("RelWithDebInfo")
                     description("")
                     trim(true)
                 }

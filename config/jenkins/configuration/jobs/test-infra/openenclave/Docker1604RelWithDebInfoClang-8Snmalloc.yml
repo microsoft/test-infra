@@ -26,7 +26,7 @@ jobs:
                 }
                 stringParam {
                     name("LINUX_VERSION")
-                    defaultValue("")
+                    defaultValue("Ubuntu-1604")
                     description("")
                     trim(true)
                 }
@@ -38,7 +38,7 @@ jobs:
                 }
                 stringParam {
                     name("BUILD_TYPE")
-                    defaultValue("")
+                    defaultValue("RelWithDebInfo")
                     description("")
                     trim(true)
                 }
@@ -50,7 +50,7 @@ jobs:
                 }
                 stringParam {
                     name("USE_SNMALLOC")
-                    defaultValue("OFF")
+                    defaultValue("ON")
                     description("")
                     trim(true)
                 }

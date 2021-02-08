@@ -1,4 +1,4 @@
-  - name: pr-test-infra-${repo}-${pipeline}
+  - name: pr-infra-${repo}-${pipeline}
     branches:
     - master
     run_if_changed: "^(config/jobs/${repo}//*)"

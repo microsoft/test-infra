@@ -1,4 +1,4 @@
-  - name: ci-test-infra-${repo}-${pipeline}
+  - name: ci-infra-${repo}-${pipeline}
     extra_refs:
     - org: openenclave
       repo: test-infra

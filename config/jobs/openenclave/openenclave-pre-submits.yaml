@@ -735,3 +735,288 @@ presubmits:
             - sh
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Win2019Release --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604BuildClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604DebugClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604DebugClang-8Snmalloc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604DebugClang-8SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604RelWithDebInfoClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604RelWithDebInfoClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604RelWithDebInfoClang-8Snmalloc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604RelWithDebInfoClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604ReleaseClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604ReleaseClang-8Snmalloc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604ReleaseClang-8SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604ReleaseClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804BuildClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804DebugClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804DebugClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804DebugClang-8Snmalloc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804DebugClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804DebugClang-8SnmallocE2E
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804DebugClang-8SnmallocE2E --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804RelWithDebInfoClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804RelWithDebInfoClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804RelWithDebInfoClang-8Snmalloc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804RelWithDebInfoClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804ReleaseClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804ReleaseClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804ReleaseClang-8Snmalloc
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804ReleaseClang-8Snmalloc --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1604BuildClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1604BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
+
+  - name: pr-openenclave-Docker1804BuildClang-8
+    branches:
+    - master
+    always_run: true
+    decorate: true
+    skip_report: false
+    max_concurrency: 1
+    spec:
+      containers:
+        - image: openenclave/jenkinsoperator:0.4
+          command:
+            - sh
+            - "-c"
+            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave/job/Docker1804BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        

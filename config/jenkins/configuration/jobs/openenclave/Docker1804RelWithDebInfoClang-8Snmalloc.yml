@@ -1,0 +1,115 @@
+---
+jobs:
+  - script: |
+        folder("openenclave") {
+            displayName("openenclave")
+        }
+        pipelineJob("openenclave/Docker1804RelWithDebInfoClang-8Snmalloc") {
+            quietPeriod(0)
+            description()
+            keepDependencies(false)
+            parameters {
+                stringParam {
+                    name("PULL_NUMBER")
+                    defaultValue("master")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("LINUX_VERSION")
+                    defaultValue("")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("BUILD_TYPE")
+                    defaultValue("")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("WINDOWS_VERSION")
+                    defaultValue("")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("COMPILER")
+                    defaultValue("clang-8")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("USE_SNMALLOC")
+                    defaultValue("OFF")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("LVI_MITIGATION")
+                    defaultValue("NONE")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("DOCKER_TAG")
+                    defaultValue("latest")
+                    description("")
+                    trim(true)
+                }
+                stringParam {
+                    name("OE_SIMULATION")
+                    defaultValue("1")
+                    description("")
+                    trim(true)
+                }
+            } 
+            authenticationToken('<JENKINS_REMOTE_TRIGGER_TOKEN>')
+            definition {
+                cpsScm {
+                    scm {
+                        git {
+                            remote {
+                                github("openenclave/test-infra", "https")
+                            }
+                            branch('*/master')
+                            extensions {
+                                cleanBeforeCheckout()
+                                cleanAfterCheckout()
+                                cloneOptions {
+                                    depth(1)
+                                    honorRefspec(false)
+                                    noTags(false)
+                                    reference("")
+                                    shallow(true)
+                                    timeout(10)
+                                }
+                                pruneBranches()
+                                submoduleOptions {
+                                    disable(false)
+                                    parentCredentials(false)
+                                    recursive(true)
+                                    reference("")
+                                    timeout(10)
+                                    tracking(false)
+                                }
+                                wipeOutWorkspace()
+                            }
+                        }
+                    }
+                    scriptPath("config/jobs/openenclave/jenkins/UbuntuContainerBuild.Jenkinsfile")
+                    lightweight(true)
+                }
+            }
+            disabled(false)
+            configure {
+                it / 'properties' / 'jenkins.model.BuildDiscarderProperty' {
+                    strategy {
+                        'daysToKeep'('2')
+                        'numToKeep'('100')
+                        'artifactDaysToKeep'('-1')
+                        'artifactNumToKeep'('-1')
+                    }
+                }
+            }
+        }        

@@ -86,7 +86,6 @@ pipelines:
     Docker1604DebugClang-8SnmallocE2E
     Docker1604RelWithDebInfoClang-8
     Docker1604RelWithDebInfoClang-8Snmalloc
-    Docker1604RelWithDebInfoClang-8SnmallocE2E
     Docker1604ReleaseClang-8
     Docker1604ReleaseClang-8Snmalloc
     Docker1604ReleaseClang-8SnmallocE2E
@@ -96,10 +95,8 @@ pipelines:
     Docker1804DebugClang-8SnmallocE2E
     Docker1804RelWithDebInfoClang-8
     Docker1804RelWithDebInfoClang-8Snmalloc
-    Docker1804RelWithDebInfoClang-8SnmallocE2E
     Docker1804ReleaseClang-8
     Docker1804ReleaseClang-8Snmalloc
-    Docker1804ReleaseClang-8SnmallocE2E
     Docker1604BuildClang-8
     Docker1804BuildClang-8
 
@@ -464,11 +461,31 @@ compilermap:
     Rhel8ReleaseClang-8SnmallocE2E
     Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
+    Docker1604BuildClang-8
+    Docker1604DebugClang-8
+    Docker1604DebugClang-8Snmalloc
+    Docker1604DebugClang-8SnmallocE2E
+    Docker1604RelWithDebInfoClang-8
+    Docker1604RelWithDebInfoClang-8Snmalloc
+    Docker1604ReleaseClang-8
+    Docker1604ReleaseClang-8Snmalloc
+    Docker1604ReleaseClang-8SnmallocE2E
+    Docker1804BuildClang-8
+    Docker1804DebugClang-8
+    Docker1804DebugClang-8Snmalloc
+    Docker1804DebugClang-8SnmallocE2E
+    Docker1804RelWithDebInfoClang-8
+    Docker1804RelWithDebInfoClang-8Snmalloc
+    Docker1804ReleaseClang-8
+    Docker1804ReleaseClang-8Snmalloc
+    Docker1604BuildClang-8
+    Docker1804BuildClang-8
 
 # Map each JenkinsFile type to to builds that use them
 jobs:
   RhelBuild
   UbuntuBuild
+  UbuntuContainerBuild
   WindowsBuild
   HostVerify
   LinuxElfBuild
@@ -525,21 +542,16 @@ jobmaps:
     Docker1604DebugClang-8SnmallocE2E
     Docker1604RelWithDebInfoClang-8
     Docker1604RelWithDebInfoClang-8Snmalloc
-    Docker1604RelWithDebInfoClang-8SnmallocE2E
     Docker1604ReleaseClang-8
     Docker1604ReleaseClang-8Snmalloc
-    Docker1604ReleaseClang-8SnmallocE2E
     Docker1804Build
     Docker1804BuildClang-8
     Docker1804DebugClang-8
     Docker1804DebugClang-8Snmalloc
-    Docker1804DebugClang-8SnmallocE2E
     Docker1804RelWithDebInfoClang-8
     Docker1804RelWithDebInfoClang-8Snmalloc
-    Docker1804RelWithDebInfoClang-8SnmallocE2E
     Docker1804ReleaseClang-8
     Docker1804ReleaseClang-8Snmalloc
-    Docker1804ReleaseClang-8SnmallocE2E
     Docker1604BuildClang-8
     Docker1804BuildClang-8
 

@@ -45,72 +45,29 @@ pipeline {
             }
         }
 
-        // Run E2E Check if enabledTemporarily run always as e2e
-        stage('Install Prereqs (optional)') {
-            steps{
-                script{
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - Install Prereqs") {
-                        def runner = load pwd() + "${SHARED_LIBRARY}"
-                        if("${params.E2E}" == "ON") {
-                            stage("${params.LINUX_VERSION} Setup") {
-                                try{
-                                    runner.cleanup()
-                                    runner.checkout("${params.PULL_NUMBER}")
-                                    runner.installOpenEnclavePrereqs()
-                                } catch (Exception e) {
-                                    // Do something with the exception 
-                                    error "Program failed, please read logs..."
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         // Go through Build stages
         stage('Build') {
             steps{
                 script{
                     def runner = load pwd() + "${SHARED_LIBRARY}"
+                    // This is a hack, we need to migrate docker image repos and we just need the short hand 
+                    // linux version for compatability with legacy docker repos as part of initial integration.
+                    def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+                    def task =  """
+                                cmake ${WORKSPACE}/openenclave -G Ninja ${EXTRA_CMAKE_ARGS}
+                                ninja -v
+                                ctest --output-on-failure
+                                """
 
                     // Build and test in Hardware mode, do not clean up as we will package
                     stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}") {
                         try{
                             runner.cleanup()
-                            runner.checkout("${params.PULL_NUMBER}")
-                            runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
+                            runner.checkout("${params.PULL_NUMBER}") 
+                            runner.ContainerRun("oeciteam/oetools-full-${lin_version}:${DOCKER_TAG}", "clang-8", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
-                        }
-                    }
-
-                    // Build package and test installation work flows, clean up after
-                    stage("Ubuntu ${params.LINUX_VERSION} Package - ${params.BUILD_TYPE}") {
-                        try{
-                            runner.openenclavepackageInstall("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
-                        } catch (Exception e) {
-                            // Do something with the exception 
-                            error "Program failed, please read logs..."
-                        } finally {
-                            runner.cleanup()
-                        }
-                    }
-
-                    // Build in simulation mode 
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE} Simulation") {
-                        withEnv(["OE_SIMULATION=1"]) {
-                            try{
-                                runner.cleanup()
-                                runner.checkout("${params.PULL_NUMBER}")
-                                runner.cmakeBuildopenenclave("${params.BUILD_TYPE}","${params.COMPILER}","${EXTRA_CMAKE_ARGS}")
-                            } catch (Exception e) {
-                                // Do something with the exception 
-                                error "Program failed, please read logs..."
-                            } finally {
-                                runner.cleanup()
-                            }
                         }
                     }
                 }

@@ -73,6 +73,52 @@ pipeline {
                 }
             }
         }
+
+        // Go through Package stages
+        stage('Package') {
+            steps{
+                script{
+                    def runner = load pwd() + "${SHARED_LIBRARY}"
+                    // This is a hack, we need to migrate docker image repos and we just need the short hand 
+                    // linux version for compatability with legacy docker repos as part of initial integration.
+                    def lin_version = "${params.LINUX_VERSION}" == "Ubuntu-1604" ? "16.04" : "18.04"
+                    def task =  """
+                                cmake ${WORKSPACE}/openenclave -G Ninja ${EXTRA_CMAKE_ARGS}
+                                ninja -v
+                                ninja -v package
+                                sudo ninja -v install
+                                cp -r /opt/openenclave/share/openenclave/samples ~/
+                                cd ~/samples
+                                source /opt/openenclave/share/openenclave/openenclaverc
+                                for i in *; do
+                                    if [ -d \${i} ]; then
+                                        cd \${i}
+                                        mkdir build
+                                        cd build
+                                        cmake ..
+                                        make
+                                        make run
+                                        cd ../..
+                                    fi
+                                done
+                                """
+
+                    // Build and test in Hardware mode, do not clean up as we will package
+                    stage("Ubuntu ${params.LINUX_VERSION} Build - ${params.BUILD_TYPE}") {
+                        try{
+                            runner.cleanup()
+                            runner.checkout("${params.PULL_NUMBER}") 
+                            runner.Contarunner.ContainerRun("oeciteam/oetools-full-${lin_version}:${DOCKER_TAG}", "clang-8", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")inerRun("oeciteam/oetools-full-${lin_version}:${DOCKER_TAG}", "clang-8", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
+                        } catch (Exception e) {
+                            // Do something with the exception 
+                            error "Program failed, please read logs..."
+                        } finally {
+                            runner.cleanup()
+                        }
+                    }
+                }
+            }
+        }
     }
     post ('Clean Up') {
         always{

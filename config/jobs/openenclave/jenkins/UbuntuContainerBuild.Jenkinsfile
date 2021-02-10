@@ -1,6 +1,4 @@
 // TODO:
-// 1. Merge in legacy container builds
-// 1.5 OE_SIMULATION="0" bug, waiting on https://github.com/openenclave/test-infra/pull/469 rebuild (est 2/10/2021)
 // 2. Switch the CI containers to openenclave dockerhub instead of oeciteam
 // 3. Switch to declarative
 // 4. Refactor common.groovy (has dependencies on 2 + 3)
@@ -17,9 +15,6 @@ pipeline {
         
         // Bug with the LVI_MITIGATION environment variable in the oesdk code base, we only need the above EXTRA_CMAKE_ARGS string so set to empty.
         LVI_MITIGATION=""
-
-        // Bug with the OE_SIMULATION environment variable, overrides the packaging default. Set to 0 temporarily until 2/10/2021
-        OE_SIMULATION="0"
     }
 
     agent {

@@ -235,6 +235,7 @@ def runTask(String task) {
         sh """#!/usr/bin/env bash
                 set -o errexit
                 set -o pipefail
+                set -x
                 source /etc/profile
                 ${task}
             """

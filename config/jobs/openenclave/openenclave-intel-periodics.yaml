@@ -1,5 +1,5 @@
 periodics:
-  - name: ci-openenclave-intel-SGX-FLC-Linux-2
+  - name: ci-openenclave-intel-SGX-FLC-Linux
     extra_refs:
     - org: openenclave
       repo: openenclave
@@ -13,7 +13,8 @@ periodics:
             - sh
             - "-c"
             - "python3 /scripts/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX-FLC-Linux --jenkins-user $JENKINS_USER --url $INTEL_URL --jenkins-password $INTEL_TOKEN"
-  - name: ci-openenclave-intel-SGX1-Linux-2
+
+  - name: ci-openenclave-intel-SGX1-Linux
     extra_refs:
     - org: openenclave
       repo: openenclave

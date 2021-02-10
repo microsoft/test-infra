@@ -59,7 +59,7 @@ jobs:
                     trim(true)
                 }
                 stringParam {
-                    name("OE_SIMULATION")
+                    name("SIMULATION")
                     defaultValue("1")
                     description("")
                     trim(true)

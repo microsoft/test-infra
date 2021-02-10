@@ -101,7 +101,7 @@ pipeline {
                     def task =  """
                                 cmake ${WORKSPACE}/openenclave                               \
                                     -G Ninja                                                 \
-                                    -DCMAKE_BUILD_TYPE=RelWithDebInfo                        \
+                                    -DCMAKE_BUILD_TYPE=${params.BUILD_TYPE}                  \
                                     -DCMAKE_INSTALL_PREFIX:PATH='/opt/openenclave'           \
                                     -DCPACK_GENERATOR=DEB                                    \
                                     -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \

@@ -8,11 +8,11 @@ periodics:
     interval: 60m
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX-FLC-Linux --sleep 20 --jenkins-user $JENKINS_USER --url $INTEL_URL --jenkins-password $INTEL_TOKEN"
+            - "python3 /scripts/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX-FLC-Linux --sleep 20 --jenkins-user $JENKINS_USER --url $INTEL_URL --jenkins-password $INTEL_TOKEN"
   - name: ci-openenclave-intel-SGX1-Linux-2
     extra_refs:
     - org: openenclave
@@ -22,8 +22,8 @@ periodics:
     interval: 60m
     spec:
       containers:
-        - image: openenclave/jenkinsoperator:latest
+        - image: openenclave/jenkinsoperator:0.4
           command:
             - sh
             - "-c"
-            - "python /hack/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX1-Linux --sleep 20 --jenkins-user $JENKINS_USER --url $INTEL_URL --jenkins-password $INTEL_TOKEN"
+            - "python3 /scripts/jenkins_bootstrap.py --job Pipelines/job/Agnostic-SGX1-Linux --sleep 20 --jenkins-user $JENKINS_USER --url $INTEL_URL --jenkins-password $INTEL_TOKEN"

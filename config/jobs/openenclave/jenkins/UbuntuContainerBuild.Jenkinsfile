@@ -39,6 +39,8 @@ pipeline {
             steps{
                 script{
                     stage("Ubuntu ${params.LINUX_VERSION} Build - CI Checks") {
+
+                        // For use with common functions
                         def runner = load pwd() + "${SHARED_LIBRARY}"
 
                         try{
@@ -62,6 +64,7 @@ pipeline {
             steps{
                 script{
 
+                    // For use with common functions
                     def runner = load pwd() + "${SHARED_LIBRARY}"
                     
                     // Task for container run, define here as this how the legacy version work
@@ -83,19 +86,26 @@ pipeline {
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
+                        } finally {
+                            runner.cleanup()
                         }
                     }
                 }
 
                 script{
 
+                    // For use with common functions
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
                     // Task for container run, define here as this how the legacy version work
                     def task =  """
-                                cmake ${WORKSPACE}/openenclave -G Ninja ${EXTRA_CMAKE_ARGS}  \
+                                cmake ${WORKSPACE}/openenclave                               \
+                                    -G Ninja                                                 \
+                                    -DCMAKE_BUILD_TYPE=RelWithDebInfo                        \
                                     -DCMAKE_INSTALL_PREFIX:PATH='/opt/openenclave'           \
-                                    -DCPACK_GENERATOR=DEB
+                                    -DCPACK_GENERATOR=DEB                                    \
+                                    -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin    \
+                                    -Wdev
                                 ninja -v
                                 ninja -v package
                                 sudo ninja -v install
@@ -124,7 +134,7 @@ pipeline {
                         try{
                             runner.cleanup()
                             runner.checkout("${params.PULL_NUMBER}") 
-                            runner.ContainerRun("oeciteam/oetools-full-${lin_version}:${DOCKER_TAG}", "clang-8", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")inerRun("oeciteam/oetools-full-${lin_version}:${DOCKER_TAG}", "clang-8", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
+                            runner.ContainerRun("oeciteam/oetools-full-${lin_version}:${DOCKER_TAG}", "clang-8", task, "--cap-add=SYS_PTRACE --device /dev/sgx:/dev/sgx")
                         } catch (Exception e) {
                             // Do something with the exception 
                             error "Program failed, please read logs..."
@@ -140,6 +150,8 @@ pipeline {
         stage('Simulation') {
             steps{
                 script{
+
+                    // For use with common functions
                     def runner = load pwd() + "${SHARED_LIBRARY}"
 
                     // Task for container run, define here as this how the legacy version work

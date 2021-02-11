@@ -3,6 +3,9 @@
 // 3. Switch to declarative
 // 4. Refactor common.groovy (has dependencies on 2 + 3)
 
+@Library('runner')
+import config.jobs.openenclave.jenkins.common.groovy
+
 pipeline {
     options {
         timeout(time: 180, unit: 'MINUTES')
@@ -31,24 +34,19 @@ pipeline {
 
         // Run CI checks up front, no need to continue if they fail.
         stage('CI Checks') {
-            steps{
-                script{
-                    stage("Ubuntu ${params.LINUX_VERSION} Build - CI Checks") {
+            script{
+                stage("Ubuntu ${params.LINUX_VERSION} Build - CI Checks") {
 
-                        // For use with common functions
-                        def runner = load pwd() + "${SHARED_LIBRARY}"
-
-                        try{
-                            runner.cleanup()
-                            runner.checkout("${params.PULL_NUMBER}")
-                            // Purposfully commented out, please see https://github.com/openenclave/test-infra/pull/465
-                            // runner.checkCI()
-                        } catch (Exception e) {
-                            // Do something with the exception 
-                            error "Program failed, please read logs..."
-                        } finally {
-                            runner.cleanup()
-                        }
+                    try{
+                        runner.cleanup()
+                        runner.checkout("${params.PULL_NUMBER}")
+                        // Purposfully commented out, please see https://github.com/openenclave/test-infra/pull/465
+                        // runner.checkCI()
+                    } catch (Exception e) {
+                        // Do something with the exception 
+                        error "Program failed, please read logs..."
+                    } finally {
+                        runner.cleanup()
                     }
                 }
             }
@@ -58,9 +56,6 @@ pipeline {
         stage('Hardware') {
             steps{
                 script{
-
-                    // For use with common functions
-                    def runner = load pwd() + "${SHARED_LIBRARY}"
                     
                     // Task for container run, define here as this how the legacy version work
                     def task =  """

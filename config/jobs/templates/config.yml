@@ -9,7 +9,6 @@ repos:
   test-infra-images
   gperftools
   oeedger8r-cpp
-  openenclave
   openenclave-build
   openenclave-ci
   openenclave-curl
@@ -27,43 +26,6 @@ pipelines:
     Rhel8BuildClang-8
     Ubuntu1804BuildClang-8
     Windows2019Build
-
-  openenclave:
-    ping
-    AArch64GNU1804Debug
-    AArch64GNU1804Release
-    HostVerifyDeb18042019
-    HostVerifyRel18042019
-    LinuxElfDeb18042019
-    LinuxElfRel18042019
-    Rhel8DebugClang-8
-    Rhel8DebugClang-8Snmalloc
-    Rhel8DebugClang-8SnmallocE2E
-    Rhel8ReleaseClang-8
-    Rhel8ReleaseClang-8Snmalloc
-    Rhel8ReleaseClang-8SnmallocE2E
-    Ubuntu1804DebugClang-8
-    Ubuntu1804DebugClang-8Snmalloc
-    Ubuntu1804DebugClang-8SnmallocE2E
-    Ubuntu1804RelWithDebInfoClang-8
-    Ubuntu1804RelWithDebInfoClang-8Snmalloc
-    Ubuntu1804RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1804ReleaseClang-8
-    Ubuntu1804ReleaseClang-8Snmalloc
-    Ubuntu1804ReleaseClang-8SnmallocE2E
-    Win2019Debug
-    Win2019DebugSnmalloc
-    Win2019DebugSnmallocE2E
-    Win2019RelSnmalloc
-    Win2019RelSnmallocE2E
-    Win2019Release
-    Docker1804DebugClang-8
-    Docker1804DebugClang-8Snmalloc
-    Docker1804RelWithDebInfoClang-8
-    Docker1804RelWithDebInfoClang-8Snmalloc
-    Docker1804ReleaseClang-8
-    Docker1804ReleaseClang-8Snmalloc
-
   openenclave-build:
     ping
   openenclave-ci:
@@ -245,7 +207,6 @@ windowsversionsmap:
     LinuxElfDeb18042019
     LinuxElfRel18042019
 linuxversionsmap:
-
   Ubuntu-1804:
     Ubuntu1804Build
     Ubuntu1804BuildClang-8

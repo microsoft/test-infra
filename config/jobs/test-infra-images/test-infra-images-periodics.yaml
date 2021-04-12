@@ -1,20 +1,5 @@
 periodics:
 
-  - name: ci-test-infra-images-Ubuntu1604Build
-    extra_refs:
-    - org: openenclave
-      repo: test-infra-images
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.4
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job test-infra-images/job/Ubuntu1604Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        
-
   - name: ci-test-infra-images-Ubuntu1804Build
     extra_refs:
     - org: openenclave

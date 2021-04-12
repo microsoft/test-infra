@@ -31,21 +31,6 @@ presubmits:
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Rhel8BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
-  - name: pr-openenclave-mbedtls-Ubuntu1604BuildClang-8
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 1
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.4
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1604BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
-
   - name: pr-openenclave-mbedtls-Ubuntu1804BuildClang-8
     branches:
     - master
@@ -60,21 +45,6 @@ presubmits:
             - sh
             - "-c"
             - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Ubuntu1804BuildClang-8 --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
-
-  - name: pr-openenclave-mbedtls-Windows2016Build
-    branches:
-    - master
-    always_run: true
-    decorate: true
-    skip_report: false
-    max_concurrency: 1
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.4
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-mbedtls/job/Windows2016Build --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=$PULL_NUMBER"        
 
   - name: pr-openenclave-mbedtls-Windows2019Build
     branches:

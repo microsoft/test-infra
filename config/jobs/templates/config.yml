@@ -25,24 +25,16 @@ pipelines:
   oeedger8r-cpp:
     ping
     Rhel8BuildClang-8
-    Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
-    Windows2016Build
     Windows2019Build
 
   openenclave:
     ping
-    AArch64GNU1604Debug
-    AArch64GNU1604Release
     AArch64GNU1804Debug
     AArch64GNU1804Release
-    HostVerifyDeb16042019
     HostVerifyDeb18042019
-    HostVerifyRel16042019
     HostVerifyRel18042019
-    LinuxElfDeb16042019
     LinuxElfDeb18042019
-    LinuxElfRel16042019
     LinuxElfRel18042019
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
@@ -50,15 +42,6 @@ pipelines:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Ubuntu1604DebugClang-8
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
-    Ubuntu1604RelWithDebInfoClang-8
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
     Ubuntu1804DebugClang-8
     Ubuntu1804DebugClang-8Snmalloc
     Ubuntu1804DebugClang-8SnmallocE2E
@@ -68,23 +51,12 @@ pipelines:
     Ubuntu1804ReleaseClang-8
     Ubuntu1804ReleaseClang-8Snmalloc
     Ubuntu1804ReleaseClang-8SnmallocE2E
-    Win2016Debug
-    Win2016DebugSnmalloc
-    Win2016DebSnmallocE2E
-    Win2016RelSnmalloc
-    Win2016RelSnmallocE2E
-    Win2016Release
     Win2019Debug
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
-    Docker1604DebugClang-8Snmalloc
-    Docker1604RelWithDebInfoClang-8
-    Docker1604RelWithDebInfoClang-8Snmalloc
-    Docker1604ReleaseClang-8
-    Docker1604ReleaseClang-8Snmalloc
     Docker1804DebugClang-8
     Docker1804DebugClang-8Snmalloc
     Docker1804RelWithDebInfoClang-8
@@ -98,14 +70,11 @@ pipelines:
     ping
   openenclave-curl:
     ping
-    Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
   openenclave-mbedtls:
     ping
     Rhel8BuildClang-8
-    Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
-    Windows2016Build
     Windows2019Build
   openenclave-site:
     ping
@@ -114,7 +83,6 @@ pipelines:
   public-talks:
     ping
   test-infra-images:
-    Ubuntu1604Build
     Ubuntu1804Build
     Windows2019Build
 
@@ -122,10 +90,8 @@ pipelines:
 
 ### Platform options
 windowsversions:
-  Windows-2016
   Windows-2019
 linuxversions:
-  Ubuntu-1604
   Ubuntu-1804
   RHEL-8
 
@@ -164,15 +130,6 @@ buildmodesmap:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Ubuntu1604DebugClang-8
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
-    Ubuntu1604RelWithDebInfoClang-8
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
     Ubuntu1804DebugClang-8
     Ubuntu1804DebugClang-8Snmalloc
     Ubuntu1804DebugClang-8SnmallocE2E
@@ -182,25 +139,15 @@ buildmodesmap:
     Ubuntu1804ReleaseClang-8
     Ubuntu1804ReleaseClang-8Snmalloc
     Ubuntu1804ReleaseClang-8SnmallocE2E
-    Win2016Debug
-    Win2016DebugSnmalloc
-    Win2016DebSnmallocE2E
-    Win2016RelSnmalloc
-    Win2016RelSnmallocE2E
-    Win2016Release
     Win2019Debug
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
-    HostVerifyDeb16042019
     HostVerifyDeb18042019
-    HostVerifyRel16042019
     HostVerifyRel18042019
-    LinuxElfDeb16042019
     LinuxElfDeb18042019
-    LinuxElfRel16042019
     LinuxElfRel18042019
 
 buildtypemap:
@@ -208,22 +155,13 @@ buildtypemap:
     Rhel8DebugClang-8
     Rhel8DebugClang-8Snmalloc
     Rhel8DebugClang-8SnmallocE2E
-    Ubuntu1604DebugClang-8
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
     Ubuntu1804DebugClang-8
     Ubuntu1804DebugClang-8Snmalloc
     Ubuntu1804DebugClang-8SnmallocE2E
-    Win2016Debug
-    Win2016DebugSnmalloc
-    Win2016DebSnmallocE2E
     Win2019Debug
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
-    AArch64GNU1604Debug
     AArch64GNU1804Debug
-    Docker1604DebugClang-8
-    Docker1604DebugClang-8Snmalloc
     Docker1804DebugClang-8
     Docker1804DebugClang-8Snmalloc
 
@@ -231,48 +169,25 @@ buildtypemap:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
     Ubuntu1804ReleaseClang-8
     Ubuntu1804ReleaseClang-8Snmalloc
     Ubuntu1804ReleaseClang-8SnmallocE2E
-    Win2016RelSnmalloc
-    Win2016RelSnmallocE2E
-    Win2016Release
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
-    AArch64GNU1604Release
     AArch64GNU1804Release
-    Docker1604ReleaseClang-8
-    Docker1604ReleaseClang-8Snmalloc
     Docker1804ReleaseClang-8
     Docker1804ReleaseClang-8Snmalloc
 
   RelWithDebInfo:
-    Ubuntu1604RelWithDebInfoClang-8
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
     Ubuntu1804RelWithDebInfoClang-8
     Ubuntu1804RelWithDebInfoClang-8Snmalloc
     Ubuntu1804RelWithDebInfoClang-8SnmallocE2E
-    Docker1604RelWithDebInfoClang-8
-    Docker1604RelWithDebInfoClang-8Snmalloc
     Docker1804RelWithDebInfoClang-8
     Docker1804RelWithDebInfoClang-8Snmalloc
 
 lvioptionsmaps:
   ControlFlow:
-    Ubuntu1604DebugClang-8
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
-    Ubuntu1604RelWithDebInfoClang-8
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
     Ubuntu1804DebugClang-8
     Ubuntu1804DebugClang-8Snmalloc
     Ubuntu1804DebugClang-8SnmallocE2E
@@ -282,12 +197,6 @@ lvioptionsmaps:
     Ubuntu1804ReleaseClang-8
     Ubuntu1804ReleaseClang-8Snmalloc
     Ubuntu1804ReleaseClang-8SnmallocE2E
-    Win2016Debug
-    Win2016DebugSnmalloc
-    Win2016DebSnmallocE2E
-    Win2016RelSnmalloc
-    Win2016RelSnmallocE2E
-    Win2016Release
     Win2019Debug
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
@@ -307,43 +216,22 @@ snmallocmap:
     Rhel8DebugClang-8SnmallocE2E
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
     Ubuntu1804DebugClang-8Snmalloc
     Ubuntu1804DebugClang-8SnmallocE2E
     Ubuntu1804RelWithDebInfoClang-8Snmalloc
     Ubuntu1804RelWithDebInfoClang-8SnmallocE2E
     Ubuntu1804ReleaseClang-8Snmalloc
     Ubuntu1804ReleaseClang-8SnmallocE2E
-    Win2016DebugSnmalloc
-    Win2016DebSnmallocE2E
-    Win2016RelSnmalloc
-    Win2016RelSnmallocE2E
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
-    Docker1604DebugClang-8Snmalloc
-    Docker1604RelWithDebInfoClang-8Snmalloc
-    Docker1604ReleaseClang-8Snmalloc
     Docker1804DebugClang-8Snmalloc
     Docker1804RelWithDebInfoClang-8Snmalloc
     Docker1804ReleaseClang-8Snmalloc
 
 ### Map parameter to each job option
 windowsversionsmap:
-  Windows-2016:
-    Win2016Debug
-    Win2016DebugSnmalloc
-    Win2016DebSnmallocE2E
-    Win2016RelSnmalloc
-    Win2016RelSnmallocE2E
-    Win2016Release
-    Windows2016Build
   Windows-2019:
     Windows2019Build
     Win2019Debug
@@ -352,42 +240,11 @@ windowsversionsmap:
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
-    HostVerifyDeb16042019
     HostVerifyDeb18042019
-    HostVerifyRel16042019
     HostVerifyRel18042019
-    LinuxElfDeb16042019
     LinuxElfDeb18042019
-    LinuxElfRel16042019
     LinuxElfRel18042019
 linuxversionsmap:
-  Ubuntu-1604:
-    Ubuntu1604Build
-    Ubuntu1604BuildClang-8
-    Ubuntu1604BuildClang-8
-    Ubuntu1604DebugClang-8
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
-    Ubuntu1604RelWithDebInfoClang-8
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
-    HostVerifyDeb16042019
-    HostVerifyRel16042019
-    LinuxElfDeb16042019
-    LinuxElfRel16042019
-    AArch64GNU1604Debug
-    AArch64GNU1604Release
-    Docker1604Build
-    Docker1604BuildClang-8
-    Docker1604DebugClang-8
-    Docker1604DebugClang-8Snmalloc
-    Docker1604RelWithDebInfoClang-8
-    Docker1604RelWithDebInfoClang-8Snmalloc
-    Docker1604ReleaseClang-8
-    Docker1604ReleaseClang-8Snmalloc
 
   Ubuntu-1804:
     Ubuntu1804Build
@@ -416,7 +273,6 @@ linuxversionsmap:
     Docker1804RelWithDebInfoClang-8Snmalloc
     Docker1804ReleaseClang-8
     Docker1804ReleaseClang-8Snmalloc
-    Docker1604BuildClang-8
     Docker1804BuildClang-8
   RHEL-8:
     Rhel8BuildClang-8
@@ -431,8 +287,6 @@ linuxversionsmap:
 compilermap:
   gcc:
   cross:
-    AArch64GNU1604Debug
-    AArch64GNU1604Release
     AArch64GNU1804Debug
     AArch64GNU1804Release
   clang-8:
@@ -440,21 +294,7 @@ compilermap:
     HostVerifyRel18042019
     LinuxElfDeb18042019
     LinuxElfRel18042019
-    HostVerifyDeb16042019
-    HostVerifyRel16042019
-    LinuxElfDeb16042019
-    LinuxElfRel16042019
-    Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
-    Ubuntu1604DebugClang-8
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
-    Ubuntu1604RelWithDebInfoClang-8
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
     Ubuntu1804DebugClang-8
     Ubuntu1804DebugClang-8Snmalloc
     Ubuntu1804DebugClang-8SnmallocE2E
@@ -471,15 +311,7 @@ compilermap:
     Rhel8ReleaseClang-8
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
-    Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
-    Docker1604BuildClang-8
-    Docker1604DebugClang-8
-    Docker1604DebugClang-8Snmalloc
-    Docker1604RelWithDebInfoClang-8
-    Docker1604RelWithDebInfoClang-8Snmalloc
-    Docker1604ReleaseClang-8
-    Docker1604ReleaseClang-8Snmalloc
     Docker1804BuildClang-8
     Docker1804DebugClang-8
     Docker1804DebugClang-8Snmalloc
@@ -487,7 +319,6 @@ compilermap:
     Docker1804RelWithDebInfoClang-8Snmalloc
     Docker1804ReleaseClang-8
     Docker1804ReleaseClang-8Snmalloc
-    Docker1604BuildClang-8
     Docker1804BuildClang-8
 
 # Map each JenkinsFile type to to builds that use them
@@ -505,8 +336,6 @@ jobmaps:
   ping:
     ping
   ArchLinux:
-    AArch64GNU1604Debug
-    AArch64GNU1604Release
     AArch64GNU1804Debug
     AArch64GNU1804Release
   RhelBuild:
@@ -518,17 +347,6 @@ jobmaps:
     Rhel8ReleaseClang-8Snmalloc
     Rhel8ReleaseClang-8SnmallocE2E
   UbuntuBuild:
-    Ubuntu1604Build
-    Ubuntu1604BuildClang-8
-    Ubuntu1604DebugClang-8
-    Ubuntu1604DebugClang-8Snmalloc
-    Ubuntu1604DebugClang-8SnmallocE2E
-    Ubuntu1604RelWithDebInfoClang-8
-    Ubuntu1604RelWithDebInfoClang-8Snmalloc
-    Ubuntu1604RelWithDebInfoClang-8SnmallocE2E
-    Ubuntu1604ReleaseClang-8
-    Ubuntu1604ReleaseClang-8Snmalloc
-    Ubuntu1604ReleaseClang-8SnmallocE2E
     Ubuntu1804Build
     Ubuntu1804BuildClang-8
     Ubuntu1804DebugClang-8
@@ -540,18 +358,9 @@ jobmaps:
     Ubuntu1804ReleaseClang-8
     Ubuntu1804ReleaseClang-8Snmalloc
     Ubuntu1804ReleaseClang-8SnmallocE2E
-    Ubuntu1604BuildClang-8
     Ubuntu1804BuildClang-8
 
   UbuntuContainerBuild:
-    Docker1604Build
-    Docker1604BuildClang-8
-    Docker1604DebugClang-8
-    Docker1604DebugClang-8Snmalloc
-    Docker1604RelWithDebInfoClang-8
-    Docker1604RelWithDebInfoClang-8Snmalloc
-    Docker1604ReleaseClang-8
-    Docker1604ReleaseClang-8Snmalloc
     Docker1804Build
     Docker1804BuildClang-8
     Docker1804DebugClang-8
@@ -560,31 +369,19 @@ jobmaps:
     Docker1804RelWithDebInfoClang-8Snmalloc
     Docker1804ReleaseClang-8
     Docker1804ReleaseClang-8Snmalloc
-    Docker1604BuildClang-8
     Docker1804BuildClang-8
 
   WindowsBuild:
-    Win2016Debug
-    Win2016DebugSnmalloc
-    Win2016DebSnmallocE2E
-    Win2016RelSnmalloc
-    Win2016RelSnmallocE2E
-    Win2016Release
     Win2019Debug
     Win2019DebugSnmalloc
     Win2019DebugSnmallocE2E
     Win2019RelSnmalloc
     Win2019RelSnmallocE2E
     Win2019Release
-    Windows2016Build
     Windows2019Build
   HostVerify:
-    HostVerifyDeb16042019
     HostVerifyDeb18042019
-    HostVerifyRel16042019
     HostVerifyRel18042019
   LinuxElfBuild:
-    LinuxElfDeb16042019
     LinuxElfDeb18042019
-    LinuxElfRel16042019
     LinuxElfRel18042019

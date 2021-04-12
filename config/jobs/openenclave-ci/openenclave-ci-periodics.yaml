@@ -1,16 +1,1 @@
 periodics:
-
-  - name: ci-openenclave-ci-ping
-    extra_refs:
-    - org: openenclave
-      repo: openenclave-ci
-      base_ref: master
-    decorate: true
-    interval: 12h
-    spec:
-      containers:
-        - image: openenclave/jenkinsoperator:0.4
-          command:
-            - sh
-            - "-c"
-            - "sleep $(( ( RANDOM % 90 )  + 1 )) && python3 /scripts/jenkins_bootstrap.py --job openenclave-ci/job/ping --jenkins-user $JENKINS_USER --url $JENKINS_URL --jenkins-password $JENKINS_TOKEN --parameters PULL_NUMBER=master"        

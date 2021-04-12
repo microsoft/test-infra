@@ -20,30 +20,21 @@ repos:
 # These corrrespond to the pipelines each repo has and are stored in the config/jenkins/configuration/jobs directory
 pipelines:
   gperftools:
-    ping
   oeedger8r-cpp:
-    ping
     Rhel8BuildClang-8
     Ubuntu1804BuildClang-8
     Windows2019Build
   openenclave-build:
-    ping
   openenclave-ci:
-    ping
   openenclave-curl:
-    ping
     Ubuntu1804BuildClang-8
   openenclave-mbedtls:
-    ping
     Rhel8BuildClang-8
     Ubuntu1804BuildClang-8
     Windows2019Build
   openenclave-site:
-    ping
   openenclave-template:
-    ping
   public-talks:
-    ping
   test-infra-images:
     Ubuntu1804Build
     Windows2019Build

@@ -224,6 +224,8 @@ pipeline {
 
                             GALLERY_IMAGE_VERSION="$YY.$MM.135"
 
+                            echo "${SUBSCRIPTION_IMAGE_STRING}/ACC-${LINUX_VERSION}/${GALLERY_IMAGE_VERSION}"
+                            
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \
                                 --name ${VM_NAME} \

@@ -21,6 +21,9 @@ pipeline {
         SKU = "${params.SGX}-${params.LINUX_VERSION}"
         GALLERY_NAME = "ACC_Images"
     }
+    /subscriptions/c4fdda6e-bfbd-4b8e-9703-037b3a45bf37/resourceGroups/OE-Jenkins-Images/providers/Microsoft.Compute/galleries/Production_Images/images/ws2016-SGX-DCAP/versions/latest 
+    /subscriptions/c4fdda6e-bfbd-4b8e-9703-037b3a45bf37/resourceGroups/OE-Jenkins-Images/providers/Microsoft.Compute/galleries/Vanilla_Images/images
+    /subscriptions/c4fdda6e-bfbd-4b8e-9703-037b3a45bf37/resourceGroups/ACC-Images/providers/Microsoft.Compute/galleries/ACC_Images/images/ACC-Ubuntu_1804_LTS_Gen2/versions/2021.04.135
     stages {
         stage('Checkout') {
             steps{
@@ -229,7 +232,7 @@ pipeline {
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \
                                 --name ${VM_NAME} \
-                                --image ${SUBSCRIPTION_IMAGE_STRING}/ACC-${LINUX_VERSION}/${GALLERY_IMAGE_VERSION} \
+                                --image "    /subscriptions/c4fdda6e-bfbd-4b8e-9703-037b3a45bf37/resourceGroups/ACC-Images/providers/Microsoft.Compute/galleries/ACC_Images/images/ACC-Ubuntu_1804_LTS_Gen2/versions/2021.04.135" \
                                 --admin-username ${ADMIN_USERNAME} \
                                 --authentication-type ssh \
                                 --size Standard_DC4s_v2 \

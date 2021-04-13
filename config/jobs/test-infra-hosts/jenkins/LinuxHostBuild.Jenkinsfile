@@ -222,7 +222,7 @@ pipeline {
                             DD=$(date +%d)
                             MM=$(date +%m)
 
-                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD5"
+                            GALLERY_IMAGE_VERSION="$YY.$MM.135"
 
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \

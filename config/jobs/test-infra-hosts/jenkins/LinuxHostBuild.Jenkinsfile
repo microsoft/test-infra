@@ -200,7 +200,8 @@ pipeline {
                             --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
                             --replica-count 1 \
                             --managed-image $img_id \
-                            --end-of-life-date "$(($YY+1))-$MM-$DD"
+                            --end-of-life-date "$(($YY+1))-$MM-$DD" \
+                            --no-wait
                         '''
                     )  
                 }
@@ -221,7 +222,7 @@ pipeline {
                             DD=$(date +%d)
                             MM=$(date +%m)
 
-                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
+                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD5"
 
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \

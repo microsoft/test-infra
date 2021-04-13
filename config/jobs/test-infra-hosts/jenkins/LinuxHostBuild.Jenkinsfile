@@ -241,7 +241,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME}-staging \
                             --command-id RunShellScript \
-                            --scripts 'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git'
+                            --scripts 'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/${ADMIN_USERNAME}/'
 
                         sleep 15s
 
@@ -249,7 +249,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME}-staging  \
                             --command-id RunShellScript \
-                            --scripts   'cd oeedger8r-cpp && mkdir build && cmake .. && make && ctest'
+                            --scripts 'cd /home/${ADMIN_USERNAME}/oeedger8r-cpp && mkdir build && cmake .. && make && ctest'
                         '''
                     )  
                 }

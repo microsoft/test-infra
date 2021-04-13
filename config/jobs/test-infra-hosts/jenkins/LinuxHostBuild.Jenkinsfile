@@ -208,7 +208,7 @@ pipeline {
             }
         }
 
-        stage('Launch VM After Saving State') {
+        stage('Launch a VM After Saving State') {
             steps{
                 script{
                     withCredentials([
@@ -222,12 +222,12 @@ pipeline {
                             DD=$(date +%d)
                             MM=$(date +%m)
 
-                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD"
+                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
                             
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \
                                 --name ${VM_NAME}-staging \
-                                --image "/subscriptions/${SUBSCRIPTION-ID}/resourceGroups/ACC-Images/providers/Microsoft.Compute/galleries/ACC_Images/images/ACC-${LINUX_VERSION}/versions/${GALLERY_IMAGE_VERSION}" \
+                                --image "/subscriptions/${SUB_ID}/resourceGroups/ACC-Images/providers/Microsoft.Compute/galleries/ACC_Images/images/ACC-${LINUX_VERSION}/versions/${GALLERY_IMAGE_VERSION}" \
                                 --admin-username ${ADMIN_USERNAME} \
                                 --authentication-type ssh \
                                 --size Standard_DC4s_v2 \
@@ -239,12 +239,29 @@ pipeline {
             }
         }
 
-        stage('Test VM State') {
+        stage('Test Open Enclave') {
             steps{
                 script{
                     sh(
                         script: '''
-                        echo "We should test..."
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging \
+                            --command-id RunShellScript \
+                            --scripts 'git clone --recursive https://github.com/openenclave/openenclave.git'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging  \
+                            --command-id RunShellScript \
+                            --scripts   'cd openenclave && \
+                                        mkdir build && \
+                                        cmake -G "Ninja" .. \
+                                        -DLVI_MITIGATION=ControlFlow \
+                                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin
+                                        ninja'
                         '''
                     )  
                 }

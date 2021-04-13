@@ -200,7 +200,8 @@ pipeline {
                             --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
                             --replica-count 1 \
                             --managed-image $img_id \
-                            --end-of-life-date "$(($YY+1))-$MM-$DD"
+                            --end-of-life-date "$(($YY+1))-$MM-$DD" \
+                            --no-wait
                         '''
                     )  
                 }

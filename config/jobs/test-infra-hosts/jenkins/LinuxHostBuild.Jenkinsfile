@@ -216,17 +216,10 @@ pipeline {
                     ]) {
                         sh(
                             script: '''
-
-                            YY=$(date +%Y)
-                            DD=$(date +%d)
-                            MM=$(date +%m)
-
-                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
-                            
                             az vm create \
                                 --resource-group ${VM_RESOURCE_GROUP} \
                                 --name ${VM_NAME}-staging \
-                                --image "/subscriptions/${SUB_ID}/resourceGroups/ACC-Images/providers/Microsoft.Compute/galleries/ACC_Images/images/ACC-${LINUX_VERSION}/versions/${GALLERY_IMAGE_VERSION}" \
+                                --image "/subscriptions/${SUB_ID}/resourceGroups/${VM_RESOURCE_GROUP}/providers/Microsoft.Compute/images/myImage" \
                                 --admin-username ${ADMIN_USERNAME} \
                                 --authentication-type ssh \
                                 --size Standard_DC4s_v2 \

@@ -249,11 +249,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME}-staging  \
                             --command-id RunShellScript \
-                            --scripts   'cd oeedger8r-cpp && \
-                                        mkdir build && \
-                                        cmake .. && 
-                                        make && \
-                                        ctest'
+                            --scripts   'cd oeedger8r-cpp && mkdir build && cmake .. && make && ctest'
                         '''
                     )  
                 }

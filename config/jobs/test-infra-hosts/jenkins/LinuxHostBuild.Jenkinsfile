@@ -133,7 +133,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
+                            --scripts 'sudo apt-get update && sudo apt-get install libssl-dev libffi-dev python3-pip -y'
 
                         sleep 15s
 

@@ -200,8 +200,7 @@ pipeline {
                             --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
                             --replica-count 1 \
                             --managed-image $img_id \
-                            --end-of-life-date "$(($YY+1))-$MM-$DD" \
-                            --no-wait
+                            --end-of-life-date "$(($YY+1))-$MM-$DD"
                         '''
                     )  
                 }
@@ -235,6 +234,34 @@ pipeline {
                             '''
                         )
                     }
+                }
+            }
+        }
+
+        stage('Test Oeedgr8r') {
+            steps{
+                script{
+                    sh(
+                        script: '''
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging \
+                            --command-id RunShellScript \
+                            --scripts 'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging  \
+                            --command-id RunShellScript \
+                            --scripts   'cd oeedger8r-cpp && \
+                                        mkdir build && \
+                                        cmake .. && 
+                                        make && \
+                                        ctest'
+                        '''
+                    )  
                 }
             }
         }

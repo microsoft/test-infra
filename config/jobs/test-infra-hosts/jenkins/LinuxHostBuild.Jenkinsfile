@@ -127,13 +127,13 @@ pipeline {
                             git clone https://github.com/openenclave/test-infra && \
                             cd test-infra && git checkout master"
 
-                        sleep 15s
+                        sleep 2m
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'sudo apt-get update && sudo apt-get install libssl-dev libffi-dev python3-pip -y'
+                            --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
 
                         sleep 15s
 

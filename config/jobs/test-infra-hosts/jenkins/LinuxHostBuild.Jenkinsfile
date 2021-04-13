@@ -200,13 +200,44 @@ pipeline {
                             --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
                             --replica-count 1 \
                             --managed-image $img_id \
-                            --end-of-life-date "$(($YY+1))-$MM-$DD" \
-                            --no-wait
+                            --end-of-life-date "$(($YY+1))-$MM-$DD"
                         '''
                     )  
                 }
             }
         }
+
+        stage('Launch VM After Saving State') {
+            steps{
+                script{
+                    withCredentials([
+                        string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
+                        string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
+                    ]) {
+                        sh(
+                            script: '''
+
+                            YY=$(date +%Y)
+                            DD=$(date +%d)
+                            MM=$(date +%m)
+
+                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
+
+                            az vm create \
+                                --resource-group ${VM_RESOURCE_GROUP} \
+                                --name ${VM_NAME} \
+                                --image ${SUBSCRIPTION_IMAGE_STRING}/ACC-${LINUX_VERSION}/${GALLERY_IMAGE_VERSION} \
+                                --admin-username ${ADMIN_USERNAME} \
+                                --authentication-type ssh \
+                                --size Standard_DC4s_v2 \
+                                --generate-ssh-keys
+                            '''
+                        )
+                    }
+                }
+            }
+        }
+
         stage('Test VM State') {
             steps{
                 script{

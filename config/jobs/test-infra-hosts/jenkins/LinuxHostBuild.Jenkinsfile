@@ -67,6 +67,8 @@ pipeline {
                 }
             }
         }
+
+
         stage('Create resource group') {
             steps{
                 script{
@@ -152,6 +154,38 @@ pipeline {
                             --scripts 'ansible-playbook /home/jenkins/test-infra/scripts/ansible/oe-contributors-acc-setup.yml'
 
                         sleep 15s
+                        '''
+                    )  
+                }
+            }
+        }
+
+        stage('Create local Docker Image') {
+            steps{
+                script{
+                    sh(
+                        script: '''
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME} \
+                            --command-id RunShellScript \
+                            --scripts "sudo mkdir /home/jenkins/ && sudo chmod 777 /home/jenkins/"
+                        
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging \
+                            --command-id RunShellScript \
+                            --scripts 'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging  \
+                            --command-id RunShellScript \
+                            --scripts   'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'
                         '''
                     )  
                 }

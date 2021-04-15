@@ -134,8 +134,8 @@ pipeline {
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
                             --scripts "cd /home/jenkins/ && \
-                            git clone https://github.com/openenclave/test-infra && \
-                            cd test-infra && git checkout master"
+                            git clone https://github.com/openenclave/openenclave && \
+                            cd openenclave && git checkout master"
 
                         sleep 2m
 
@@ -143,7 +143,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'bash /home/jenkins/test-infra/scripts/ansible/install-ansible.sh'
+                            --scripts 'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'
 
                         sleep 15s
 
@@ -151,7 +151,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \
                             --command-id RunShellScript \
-                            --scripts 'ansible-playbook /home/jenkins/test-infra/scripts/ansible/oe-contributors-acc-setup.yml'
+                            --scripts 'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'
 
                         sleep 15s
                         '''

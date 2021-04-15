@@ -1,12 +1,12 @@
 def azExecute(String vmName, String script ='echo test') {
     sh(
-        script: '''
+        script: """
         az vm run-command invoke \
             --resource-group ${VM_RESOURCE_GROUP}  \
             --name ${vmName} \
             --command-id RunShellScript \
-            --scripts "${script}"
-        '''
+            --scripts ${script}
+        """
     )
 
 }
@@ -124,6 +124,7 @@ pipeline {
         stage('Configure base VM') {
             steps{
                 script{
+                    azExecute("${VM_NAME}", "sudo mkdir /home/jenkins/")
                     sh(
                         script: '''
                         az vm run-command invoke \
@@ -178,6 +179,8 @@ pipeline {
                 script{
                     sh(
                         script: '''
+                        sleep 15s
+                        
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME} \

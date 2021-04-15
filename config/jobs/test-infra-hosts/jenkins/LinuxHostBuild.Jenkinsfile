@@ -1,13 +1,13 @@
 def azExecute(String vmName, String script ='echo test') {
     sh(
         script: """
-        sleep 15s
-        az vm run-command invoke \
-            --resource-group ${VM_RESOURCE_GROUP}  \
-            --name ${vmName} \
-            --command-id RunShellScript \
-            --scripts ${script}
-        """
+                sleep 30s
+                az vm run-command invoke \
+                    --resource-group ${VM_RESOURCE_GROUP}  \
+                    --name ${vmName} \
+                    --command-id RunShellScript \
+                    --scripts ${script}
+                """
     )
 
 }
@@ -138,33 +138,7 @@ pipeline {
         stage('Create local Docker Image') {
             steps{
                 script{
-                    sh(
-                        script: '''
-                        sleep 15s
-                        
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts "sudo mkdir /home/jenkins/ && sudo chmod 777 /home/jenkins/"
-                        
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'
-
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME}  \
-                            --command-id RunShellScript \
-                            --scripts   'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'
-                        '''
-                    )  
+                    azExecute("${VM_NAME}", "'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'")
                 }
             }
         }

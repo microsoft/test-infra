@@ -263,7 +263,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME}-staging \
                             --command-id RunShellScript \
-                            --scripts 'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/${ADMIN_USERNAME}/'
+                            --scripts 'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp'
 
                         sleep 15s
 
@@ -271,7 +271,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME}-staging  \
                             --command-id RunShellScript \
-                            --scripts 'cd /home/${ADMIN_USERNAME}/oeedger8r-cpp && mkdir build && cmake .. && make && ctest'
+                            --scripts 'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build &&cmake .. -G Ninja && ninja && ctest'
                         '''
                     )  
                 }
@@ -287,7 +287,7 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME}-staging \
                             --command-id RunShellScript \
-                            --scripts 'git clone --recursive https://github.com/openenclave/openenclave.git'
+                            --scripts 'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'
 
                         sleep 15s
 
@@ -295,8 +295,8 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP}  \
                             --name ${VM_NAME}-staging  \
                             --command-id RunShellScript \
-                            --scripts   'cd openenclave && \
-                                        mkdir build && \
+                            --scripts   'mkdir /home/jenkins/openenclave/build && \
+                                        cd /home/jenkins/openenclave/build && \
                                         cmake -G "Ninja" .. \
                                         -DLVI_MITIGATION=ControlFlow \
                                         -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \

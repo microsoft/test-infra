@@ -167,6 +167,8 @@ pipeline {
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}
 
+                        sleep 15s 
+
                         az vm generalize \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}
@@ -247,17 +249,15 @@ pipeline {
                         script: '''
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
+                            --name ${VM_NAME}-staging \
                             --command-id RunShellScript \
                             --scripts "sudo mkdir /home/jenkins/"
                         
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
+                            --name ${VM_NAME}-staging \
                             --command-id RunShellScript \
-                            --scripts " sudo chmod 777 /home/jenkins/"
-
-                        sleep 15s
+                            --scripts "sudo chmod 777 /home/jenkins/"
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
@@ -299,8 +299,9 @@ pipeline {
                                         mkdir build && \
                                         cmake -G "Ninja" .. \
                                         -DLVI_MITIGATION=ControlFlow \
-                                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin
-                                        ninja'
+                                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \
+                                        ninja && \
+                                        ctest'
                         '''
                     )  
                 }
@@ -313,6 +314,7 @@ pipeline {
             script{
                 sh(
                     script: '''
+                    sleep 15m
                     az group delete --name ${VM_RESOURCE_GROUP} --yes || true
                     '''
                 )

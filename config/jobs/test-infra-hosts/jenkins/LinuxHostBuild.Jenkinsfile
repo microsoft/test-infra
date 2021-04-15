@@ -1,3 +1,16 @@
+def azExecute(String vmName, String script ='echo test') {
+    sh(
+        script: '''
+        az vm run-command invoke \
+            --resource-group ${VM_RESOURCE_GROUP}  \
+            --name ${vmName} \
+            --command-id RunShellScript \
+            --scripts "${script}"
+        '''
+    )
+
+}
+
 pipeline {
     options {
         timeout(time: 60, unit: 'MINUTES')

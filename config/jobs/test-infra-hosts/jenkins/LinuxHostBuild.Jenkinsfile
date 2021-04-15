@@ -161,59 +161,64 @@ pipeline {
         stage('Save VM State') {
             steps{
                 script{
-                    sh(
-                        script: '''
-                        az vm deallocate \
-                            --resource-group ${VM_RESOURCE_GROUP} \
-                            --name ${VM_NAME}
+                    withCredentials([
+                        string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
+                        string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
+                    ]) {
+                        sh(
+                            script: '''
+                            az vm deallocate \
+                                --resource-group ${VM_RESOURCE_GROUP} \
+                                --name ${VM_NAME}
 
-                        sleep 15s 
+                            sleep 15s 
 
-                        az vm generalize \
-                            --resource-group ${VM_RESOURCE_GROUP} \
-                            --name ${VM_NAME}
-                        
-                        img_id=\$(az image create \
-                            --resource-group ${VM_RESOURCE_GROUP} \
-                            --name myImage \
-                            --source ${VM_NAME} \
-                            --hyper-v-generation V2 | jq -r '.id')
+                            az vm generalize \
+                                --resource-group ${VM_RESOURCE_GROUP} \
+                                --name ${VM_NAME}
+                            
+                            img_id=\$(az image create \
+                                --resource-group ${VM_RESOURCE_GROUP} \
+                                --name myImage \
+                                --source ${VM_NAME} \
+                                --hyper-v-generation V2 | jq -r '.id')
 
-                        az sig image-definition create \
-                            --resource-group ACC-Images \
-                            --gallery-name ${GALLERY_NAME} \
-                            --gallery-image-definition ${GALLERY_DEFN} \
-                            --publisher ${PUBLISHER} \
-                            --offer ${OFFER} \
-                            --sku ${SKU} \
-                            --os-type Linux \
-                            --os-state generalized \
-                            --hyper-v-generation V2 || true
+                            az sig image-definition create \
+                                --resource-group ACC-Images \
+                                --gallery-name ${GALLERY_NAME} \
+                                --gallery-image-definition ${GALLERY_DEFN} \
+                                --publisher ${PUBLISHER} \
+                                --offer ${OFFER} \
+                                --sku ${SKU} \
+                                --os-type Linux \
+                                --os-state generalized \
+                                --hyper-v-generation V2 || true
 
-                        YY=$(date +%Y)
-                        DD=$(date +%d)
-                        MM=$(date +%m)
+                            YY=$(date +%Y)
+                            DD=$(date +%d)
+                            MM=$(date +%m)
 
-                        GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
+                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
 
-                        az sig image-version delete \
-                            --resource-group "ACC-Images" \
-                            --gallery-name ${GALLERY_NAME} \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
-                            --gallery-image-version ${GALLERY_IMAGE_VERSION}
+                            az sig image-version delete \
+                                --resource-group "ACC-Images" \
+                                --gallery-name ${GALLERY_NAME} \
+                                --gallery-image-definition ACC-${LINUX_VERSION} \
+                                --gallery-image-version ${GALLERY_IMAGE_VERSION}
 
-                        az sig image-version create \
-                            --resource-group "ACC-Images" \
-                            --gallery-name ${GALLERY_NAME} \
-                            --gallery-image-definition ACC-${LINUX_VERSION} \
-                            --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
-                            --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
-                            --replica-count 1 \
-                            --managed-image $img_id \
-                            --end-of-life-date "$(($YY+1))-$MM-$DD" \
-                            --no-wait
-                        '''
-                    )  
+                            az sig image-version create \
+                                --resource-group "ACC-Images" \
+                                --gallery-name ${GALLERY_NAME} \
+                                --gallery-image-definition ACC-${LINUX_VERSION} \
+                                --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
+                                --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
+                                --replica-count 1 \
+                                --managed-image $img_id \
+                                --end-of-life-date "$(($YY+1))-$MM-$DD" \
+                                --no-wait
+                            '''
+                        )
+                    } 
                 }
             }
         }

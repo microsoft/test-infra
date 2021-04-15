@@ -1,6 +1,7 @@
 def azExecute(String vmName, String script ='echo test') {
     sh(
         script: """
+        sleep 15s
         az vm run-command invoke \
             --resource-group ${VM_RESOURCE_GROUP}  \
             --name ${vmName} \
@@ -124,52 +125,12 @@ pipeline {
         stage('Configure base VM') {
             steps{
                 script{
-                    azExecute("${VM_NAME}", "sudo mkdir /home/jenkins/")
-                    sh(
-                        script: '''
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts "sudo mkdir /home/jenkins/"
-                        
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts "sudo chmod 777 /home/jenkins/"
-
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts "cd /home/jenkins/ && \
-                            git clone https://github.com/openenclave/openenclave && \
-                            cd openenclave && git checkout master"
-
-                        sleep 2m
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'
-
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME} \
-                            --command-id RunShellScript \
-                            --scripts 'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'
-
-                        sleep 15s
-                        '''
-                    )  
+                    azExecute("${VM_NAME}", "'sudo mkdir /home/jenkins/'")
+                    azExecute("${VM_NAME}", "'sudo chmod 777 /home/jenkins/'")
+                    azExecute("${VM_NAME}", "'git clone https://github.com/openenclave/openenclave /home/jenkins/openenclave'") // this needs to take a configurable org
+                    azExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
+                    azExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
+                    azExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
                 }
             }
         }

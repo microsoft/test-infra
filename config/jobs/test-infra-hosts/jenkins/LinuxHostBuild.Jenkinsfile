@@ -155,6 +155,7 @@ pipeline {
                 script{
                     sh(
                         script: '''
+                        sleep 60m
                         az vm deallocate \
                             --resource-group ${VM_RESOURCE_GROUP} \
                             --name ${VM_NAME}

@@ -127,7 +127,7 @@ pipeline {
                 script{
                     azExecute("${VM_NAME}", "'sudo mkdir /home/jenkins/'")
                     azExecute("${VM_NAME}", "'sudo chmod 777 /home/jenkins/'")
-                    azExecute("${VM_NAME}", "'git clone https://github.com/openenclave/openenclave /home/jenkins/openenclave'") // this needs to take a configurable org
+                    azExecute("${VM_NAME}", "'git clone --recursive https://github.com/openenclave/openenclave /home/jenkins/openenclave'") // this needs to take a configurable org
                     azExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
                     azExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
                     azExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
@@ -152,7 +152,7 @@ pipeline {
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME}-staging \
+                            --name ${VM_NAME} \
                             --command-id RunShellScript \
                             --scripts 'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'
 
@@ -160,7 +160,7 @@ pipeline {
 
                         az vm run-command invoke \
                             --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME}-staging  \
+                            --name ${VM_NAME}  \
                             --command-id RunShellScript \
                             --scripts   'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'
                         '''

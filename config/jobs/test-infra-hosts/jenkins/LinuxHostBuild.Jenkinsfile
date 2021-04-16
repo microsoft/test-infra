@@ -235,8 +235,6 @@ pipeline {
         stage('Test Oeedgr8r') {
             steps{
                 script{
-                    azExecute("${VM_NAME}-staging", "sudo mkdir /home/jenkins/'")
-                    azExecute("${VM_NAME}-staging", "sudo chmod 777 /home/jenkins/'")
                     azExecute("${VM_NAME}-staging", "git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp/'")
                     azExecute("${VM_NAME}-staging", "mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build &&cmake .. -G Ninja && ninja && ctest'")
                 }

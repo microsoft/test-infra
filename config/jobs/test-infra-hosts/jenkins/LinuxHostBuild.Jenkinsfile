@@ -14,7 +14,7 @@ def azExecute(String vmName, String script ='echo test') {
 
 pipeline {
     options {
-        timeout(time: 60, unit: 'MINUTES')
+        timeout(time: 120, unit: 'MINUTES')
     }
     agent {
         label "ACC-Ubuntu-1804"

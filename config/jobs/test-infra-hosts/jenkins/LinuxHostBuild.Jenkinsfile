@@ -235,10 +235,35 @@ pipeline {
         stage('Test Oeedgr8r') {
             steps{
                 script{
-                    azExecute("${VM_NAME}", "'sudo mkdir /home/jenkins/'")
-                    azExecute("${VM_NAME}", "'sudo chmod 777 /home/jenkins/'")
-                    azExecute("${VM_NAME}", "'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp'") // this needs to take a configurable org
-                    azExecute("${VM_NAME}", "'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build && cmake .. -G Ninja && ninja && ctest'")
+                    sh(
+                        script: '''
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging \
+                            --command-id RunShellScript \
+                            --scripts "sudo mkdir /home/jenkins/"
+                        
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging \
+                            --command-id RunShellScript \
+                            --scripts "sudo chmod 777 /home/jenkins/"
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging \
+                            --command-id RunShellScript \
+                            --scripts 'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp'
+
+                        sleep 15s
+
+                        az vm run-command invoke \
+                            --resource-group ${VM_RESOURCE_GROUP}  \
+                            --name ${VM_NAME}-staging  \
+                            --command-id RunShellScript \
+                            --scripts 'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build &&cmake .. -G Ninja && ninja && ctest'
+                        '''
+                    )  
                 }
             }
         }

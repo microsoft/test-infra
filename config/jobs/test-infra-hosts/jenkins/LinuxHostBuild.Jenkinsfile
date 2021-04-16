@@ -7,6 +7,7 @@ def azExecute(String vmName, String script ='echo test') {
                     --name ${vmName} \
                     --command-id RunShellScript \
                     --scripts ${script}
+                sleep 30s
                 """
     )
 
@@ -131,6 +132,7 @@ pipeline {
                     azExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
                     azExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
                     azExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
+                    azExecute("${VM_NAME}", "'sudo rm -rf /home/jenkins/openenclave'")
                 }
             }
         }
@@ -235,8 +237,8 @@ pipeline {
         stage('Test Oeedgr8r') {
             steps{
                 script{
-                    azExecute("${VM_NAME}-staging", "git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp/'")
-                    azExecute("${VM_NAME}-staging", "mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build &&cmake .. -G Ninja && ninja && ctest'")
+                    azExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp/'")
+                    azExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build && cmake .. -G Ninja && ninja && ctest'")
                 }
             }
         }
@@ -244,29 +246,14 @@ pipeline {
         stage('Test Open Enclave') {
             steps{
                 script{
-                    sh(
-                        script: '''
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME}-staging \
-                            --command-id RunShellScript \
-                            --scripts 'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'
-
-                        sleep 15s
-
-                        az vm run-command invoke \
-                            --resource-group ${VM_RESOURCE_GROUP}  \
-                            --name ${VM_NAME}-staging  \
-                            --command-id RunShellScript \
-                            --scripts   'mkdir /home/jenkins/openenclave/build && \
-                                        cd /home/jenkins/openenclave/build && \
-                                        cmake -G "Ninja" .. \
-                                        -DLVI_MITIGATION=ControlFlow \
-                                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \
-                                        ninja && \
-                                        ctest'
-                        '''
-                    )  
+                    azExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'")
+                    azExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/openenclave/build'")
+                    azExecute("${VM_NAME}-staging", "'cd /home/jenkins/openenclave/build && \
+                                                        cmake -G Ninja .. \
+                                                        -DLVI_MITIGATION=ControlFlow \
+                                                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \
+                                                        ninja && \
+                                                        ctest'")
                 }
             }
         }
@@ -277,7 +264,6 @@ pipeline {
             script{
                 sh(
                     script: '''
-                    sleep 15m
                     az group delete --name ${VM_RESOURCE_GROUP} --yes || true
                     '''
                 )

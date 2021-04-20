@@ -1,15 +1,28 @@
-def azExecute(String vmName, String script ='echo test') {
-    sh(
-        script: """
-                sleep 30s
-                az vm run-command invoke \
-                    --resource-group ${VM_RESOURCE_GROUP}  \
-                    --name ${vmName} \
-                    --command-id RunShellScript \
-                    --scripts ${script}
-                sleep 30s
-                """
-    )
+def azVmExecute(String vmName, String script ='echo test') {
+    int retry_count = 1;
+    int max_retries = 5;
+    while(retry_count <= max_retries) {
+        try {
+            sh(
+            script: """
+                    az vm run-command invoke \
+                        --resource-group ${VM_RESOURCE_GROUP}  \
+                        --name ${vmName} \
+                        --command-id RunShellScript \
+                        --scripts ${script}
+                    """
+            )
+            break;
+        } catch (Exception e) {
+            if (retry_count == max_retries) {
+                throw e
+            }
+            sleep(30)
+            retry_count += 1
+            continue;
+        }
+    }
+        
 
 }
 
@@ -126,13 +139,13 @@ pipeline {
         stage('Configure base VM') {
             steps{
                 script{
-                    azExecute("${VM_NAME}", "'sudo mkdir /home/jenkins/'")
-                    azExecute("${VM_NAME}", "'sudo chmod 777 /home/jenkins/'")
-                    azExecute("${VM_NAME}", "'git clone --recursive https://github.com/openenclave/openenclave /home/jenkins/openenclave'") // this needs to take a configurable org
-                    azExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
-                    azExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
-                    azExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
-                    azExecute("${VM_NAME}", "'sudo rm -rf /home/jenkins/openenclave'")
+                    azVmExecute("${VM_NAME}", "'sudo mkdir /home/jenkins/'")
+                    azVmExecute("${VM_NAME}", "'sudo chmod 777 /home/jenkins/'")
+                    azVmExecute("${VM_NAME}", "'git clone --recursive https://github.com/openenclave/openenclave /home/jenkins/openenclave'") // this needs to take a configurable org
+                    azVmExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
+                    azVmExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
+                    azVmExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
+                    azVmExecute("${VM_NAME}", "'sudo rm -rf /home/jenkins/openenclave'")
                 }
             }
         }
@@ -140,7 +153,7 @@ pipeline {
         stage('Create local Docker Image') {
             steps{
                 script{
-                    azExecute("${VM_NAME}", "'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'")
+                    azVmExecute("${VM_NAME}", "'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'")
                 }
             }
         }
@@ -237,8 +250,8 @@ pipeline {
         stage('Test Oeedgr8r') {
             steps{
                 script{
-                    azExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp/'")
-                    azExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build && cmake .. -G Ninja && ninja && ctest'")
+                    azVmExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp/'")
+                    azVmExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build && cmake .. -G Ninja && ninja && ctest'")
                 }
             }
         }
@@ -246,9 +259,9 @@ pipeline {
         stage('Test Open Enclave') {
             steps{
                 script{
-                    azExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'")
-                    azExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/openenclave/build'")
-                    azExecute("${VM_NAME}-staging", "'cd /home/jenkins/openenclave/build && \
+                    azVmExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'")
+                    azVmExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/openenclave/build'")
+                    azVmExecute("${VM_NAME}-staging", "'cd /home/jenkins/openenclave/build && \
                                                         cmake -G Ninja .. \
                                                         -DLVI_MITIGATION=ControlFlow \
                                                         -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \

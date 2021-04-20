@@ -62,14 +62,8 @@ pipeline {
         }
         stage('Install prereqs') {
             steps{
-                script{
-                    sh(
-                        script: '''
-                        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-                        sudo apt-get install jq -y
-                        '''
-                    )  
-                }
+                executeWithRetry('curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash');
+                executeWithRetry('sudo apt-get install jq -y');
             }
         }
         stage('AZ login') {
@@ -79,25 +73,13 @@ pipeline {
                     string(credentialsId: 'BUILD-SP-PASSWORD', variable: 'SP_PASSWORD'),
                     string(credentialsId: 'BUILD-SP-TENANT', variable: 'SP_TENANT')
                 ]) {
-                    script{
-                        sh(
-                            script: '''
-                            az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD} > /dev/null
-                            '''
-                        )
-                    }
+                    executeWithRetry("az login --service-principal --username ${SP_CLIENT_ID} --tenant ${SP_TENANT} --password ${SP_PASSWORD} > /dev/null");
                 }
             }
         }
         stage('Ensure Resource Group Does Not Exist') {
             steps{
-                script{
-                    sh(
-                        script: '''
-                        az group delete --name ${VM_RESOURCE_GROUP} --yes || true
-                        '''
-                    )  
-                }
+                executeWithRetry("az group delete --name ${VM_RESOURCE_GROUP} --yes || true");
             }
         }
 

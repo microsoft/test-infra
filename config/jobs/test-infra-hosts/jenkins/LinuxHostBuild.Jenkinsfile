@@ -151,7 +151,7 @@ pipeline {
                                                 --resource-group ${VM_RESOURCE_GROUP} \
                                                 --name myImage \
                                                 --source ${VM_NAME} \
-                                                --hyper-v-generation V2 | jq -r '.id')
+                                                --hyper-v-generation V2 | jq -r '.id'
 
                                             az sig image-definition create \
                                                 --resource-group ACC-Images \
@@ -238,13 +238,7 @@ pipeline {
 
     post ('Clean Up') {
         always{
-            script{
-                sh(
-                    script: '''
-                    az group delete --name ${VM_RESOURCE_GROUP} --yes || true
-                    '''
-                )
-            }
+            executeWithRetry("az group delete --name ${VM_RESOURCE_GROUP} --yes || true")
         }
     }
 }

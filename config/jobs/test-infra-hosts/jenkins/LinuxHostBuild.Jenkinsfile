@@ -1,17 +1,25 @@
-def azVmExecute(String vmName, String script ='echo test') {
-    int retry_count = 1;
-    int max_retries = 5;
-    while(retry_count <= max_retries) {
-        try {
-            sh(
-            script: """
-                    az vm run-command invoke \
+def azVmExecute(String vmName, String command ='echo test') {
+    String script = "az vm run-command invoke \
                         --resource-group ${VM_RESOURCE_GROUP}  \
                         --name ${vmName} \
                         --command-id RunShellScript \
-                        --scripts ${script}
-                    """
-            )
+                        --scripts ${command}"
+    executeWithRetry(script);
+}
+
+def executeWithRetry(String script ='echo test') {
+
+    int retry_count = 1;
+    int max_retries = 5;
+
+    while(retry_count <= max_retries) {
+        try {
+            sh  """#!/usr/bin/env bash
+                set -o errexit
+                set -o pipefail
+                source /etc/profile
+                ${script}
+                """
             break;
         } catch (Exception e) {
             if (retry_count == max_retries) {
@@ -22,10 +30,7 @@ def azVmExecute(String vmName, String script ='echo test') {
             continue;
         }
     }
-        
-
 }
-
 pipeline {
     options {
         timeout(time: 120, unit: 'MINUTES')

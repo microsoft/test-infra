@@ -198,18 +198,14 @@ pipeline {
                         string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
                         string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
                     ]) {
-                        sh(
-                            script: '''
-                            az vm create \
-                                --resource-group ${VM_RESOURCE_GROUP} \
-                                --name ${VM_NAME}-staging \
-                                --image "/subscriptions/${SUB_ID}/resourceGroups/${VM_RESOURCE_GROUP}/providers/Microsoft.Compute/images/myImage" \
-                                --admin-username ${ADMIN_USERNAME} \
-                                --authentication-type ssh \
-                                --size Standard_DC4s_v2 \
-                                --generate-ssh-keys
-                            '''
-                        )
+                        executeWithRetry("az vm create \
+                                            --resource-group ${VM_RESOURCE_GROUP} \
+                                            --name ${VM_NAME}-staging \
+                                            --image \"/subscriptions/${SUB_ID}/resourceGroups/${VM_RESOURCE_GROUP}/providers/Microsoft.Compute/images/myImage\" \
+                                            --admin-username ${ADMIN_USERNAME} \
+                                            --authentication-type ssh \
+                                            --size Standard_DC4s_v2 \
+                                            --generate-ssh-keys")
                     }
                 }
             }

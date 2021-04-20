@@ -99,8 +99,8 @@ pipeline {
             steps{
                 withCredentials([
                     string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
-                    string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
-                ]) {
+                    string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')]) {
+
                     executeWithRetry("az vm create \
                                         --resource-group ${VM_RESOURCE_GROUP} \
                                         --name ${VM_NAME} \
@@ -115,23 +115,19 @@ pipeline {
 
         stage('Configure base VM') {
             steps{
-                script{
-                    azVmExecute("${VM_NAME}", "'sudo mkdir /home/jenkins/'")
-                    azVmExecute("${VM_NAME}", "'sudo chmod 777 /home/jenkins/'")
-                    azVmExecute("${VM_NAME}", "'git clone --recursive https://github.com/openenclave/openenclave /home/jenkins/openenclave'") // this needs to take a configurable org
-                    azVmExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
-                    azVmExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
-                    azVmExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
-                    azVmExecute("${VM_NAME}", "'sudo rm -rf /home/jenkins/openenclave'")
-                }
+                azVmExecute("${VM_NAME}", "'sudo mkdir /home/jenkins/'")
+                azVmExecute("${VM_NAME}", "'sudo chmod 777 /home/jenkins/'")
+                azVmExecute("${VM_NAME}", "'git clone --recursive https://github.com/openenclave/openenclave /home/jenkins/openenclave'") // this needs to take a configurable org
+                azVmExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
+                azVmExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
+                azVmExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
+                azVmExecute("${VM_NAME}", "'sudo rm -rf /home/jenkins/openenclave'")
             }
         }
 
         stage('Create local Docker Image') {
             steps{
-                script{
-                    azVmExecute("${VM_NAME}", "'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'")
-                }
+                azVmExecute("${VM_NAME}", "'sudo docker build --no-cache=true --build-arg ubuntu_version=18.04 --build-arg devkits_uri=https://tcpsbuild.blob.core.windows.net/tcsp-build/OE-CI-devkits-dd4c992d.tar.gz -t oetools-full-18.04:e2elite -f /home/jenkins/openenclave.jenkins/infrastructure/dockerfiles/linux/Dockerfile.full .'")
             }
         }
 
@@ -142,59 +138,54 @@ pipeline {
                         string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
                         string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
                     ]) {
-                        sh(
-                            script: '''
-                            az vm deallocate \
-                                --resource-group ${VM_RESOURCE_GROUP} \
-                                --name ${VM_NAME}
 
-                            sleep 15s 
+                        executeWithRetry("az vm deallocate \
+                                                --resource-group ${VM_RESOURCE_GROUP} \
+                                                --name ${VM_NAME}")
 
-                            az vm generalize \
-                                --resource-group ${VM_RESOURCE_GROUP} \
-                                --name ${VM_NAME}
-                            
-                            img_id=\$(az image create \
-                                --resource-group ${VM_RESOURCE_GROUP} \
-                                --name myImage \
-                                --source ${VM_NAME} \
-                                --hyper-v-generation V2 | jq -r '.id')
+                        executeWithRetry("az vm generalize \
+                                                --resource-group ${VM_RESOURCE_GROUP} \
+                                                --name ${VM_NAME}")
 
-                            az sig image-definition create \
-                                --resource-group ACC-Images \
-                                --gallery-name ${GALLERY_NAME} \
-                                --gallery-image-definition ${GALLERY_DEFN} \
-                                --publisher ${PUBLISHER} \
-                                --offer ${OFFER} \
-                                --sku ${SKU} \
-                                --os-type Linux \
-                                --os-state generalized \
-                                --hyper-v-generation V2 || true
+                        executeWithRetry("img_id=\$(az image create \
+                                                --resource-group ${VM_RESOURCE_GROUP} \
+                                                --name myImage \
+                                                --source ${VM_NAME} \
+                                                --hyper-v-generation V2 | jq -r '.id')
 
-                            YY=$(date +%Y)
-                            DD=$(date +%d)
-                            MM=$(date +%m)
+                                            az sig image-definition create \
+                                                --resource-group ACC-Images \
+                                                --gallery-name ${GALLERY_NAME} \
+                                                --gallery-image-definition ${GALLERY_DEFN} \
+                                                --publisher ${PUBLISHER} \
+                                                --offer ${OFFER} \
+                                                --sku ${SKU} \
+                                                --os-type Linux \
+                                                --os-state generalized \
+                                                --hyper-v-generation V2 || true
 
-                            GALLERY_IMAGE_VERSION="$YY.$MM.$DD${BUILD_ID}"
+                                            YY=$(date +%Y)
+                                            DD=$(date +%d)
+                                            MM=$(date +%m)
 
-                            az sig image-version delete \
-                                --resource-group "ACC-Images" \
-                                --gallery-name ${GALLERY_NAME} \
-                                --gallery-image-definition ACC-${LINUX_VERSION} \
-                                --gallery-image-version ${GALLERY_IMAGE_VERSION}
+                                            GALLERY_IMAGE_VERSION=\"$YY.$MM.$DD${BUILD_ID}\"
 
-                            az sig image-version create \
-                                --resource-group "ACC-Images" \
-                                --gallery-name ${GALLERY_NAME} \
-                                --gallery-image-definition ACC-${LINUX_VERSION} \
-                                --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
-                                --target-regions "uksouth" "eastus2" "eastus" "westus2" "westeurope" \
-                                --replica-count 1 \
-                                --managed-image $img_id \
-                                --end-of-life-date "$(($YY+1))-$MM-$DD" \
-                                --no-wait
-                            '''
-                        )
+                                            az sig image-version delete \
+                                                --resource-group ACC-Images \
+                                                --gallery-name ${GALLERY_NAME} \
+                                                --gallery-image-definition ACC-${LINUX_VERSION} \
+                                                --gallery-image-version ${GALLERY_IMAGE_VERSION}
+
+                                            az sig image-version create \
+                                                --resource-group ACC-Images \
+                                                --gallery-name ${GALLERY_NAME} \
+                                                --gallery-image-definition ACC-${LINUX_VERSION} \
+                                                --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
+                                                --target-regions \"uksouth\" \"eastus2\" \"eastus\" \"westus2\" \"westeurope\" \
+                                                --replica-count 1 \
+                                                --managed-image $img_id \
+                                                --end-of-life-date \"$(($YY+1))-$MM-$DD\" \
+                                                --no-wait")
                     } 
                 }
             }

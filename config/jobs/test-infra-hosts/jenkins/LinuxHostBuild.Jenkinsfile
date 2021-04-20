@@ -147,13 +147,7 @@ pipeline {
                                                 --resource-group ${VM_RESOURCE_GROUP} \
                                                 --name ${VM_NAME}")
 
-                        executeWithRetry("img_id=\$(az image create \
-                                                --resource-group ${VM_RESOURCE_GROUP} \
-                                                --name myImage \
-                                                --source ${VM_NAME} \
-                                                --hyper-v-generation V2 | jq -r '.id');
-
-                                            az sig image-definition create \
+                        executeWithRetry("az sig image-definition create \
                                                 --resource-group ACC-Images \
                                                 --gallery-name ${GALLERY_NAME} \
                                                 --gallery-image-definition ${GALLERY_DEFN} \
@@ -162,30 +156,14 @@ pipeline {
                                                 --sku ${SKU} \
                                                 --os-type Linux \
                                                 --os-state generalized \
-                                                --hyper-v-generation V2 || true
+                                                --hyper-v-generation V2 || true")
 
-                                            YY=$(date +%Y)
-                                            DD=$(date +%d)
-                                            MM=$(date +%m)
-
-                                            GALLERY_IMAGE_VERSION=\"$YY.$MM.$DD${BUILD_ID}\"
-
-                                            az sig image-version delete \
-                                                --resource-group ACC-Images \
-                                                --gallery-name ${GALLERY_NAME} \
-                                                --gallery-image-definition ACC-${LINUX_VERSION} \
-                                                --gallery-image-version ${GALLERY_IMAGE_VERSION}
-
-                                            az sig image-version create \
-                                                --resource-group ACC-Images \
-                                                --gallery-name ${GALLERY_NAME} \
-                                                --gallery-image-definition ACC-${LINUX_VERSION} \
-                                                --gallery-image-version "${GALLERY_IMAGE_VERSION}" \
-                                                --target-regions \"uksouth\" \"eastus2\" \"eastus\" \"westus2\" \"westeurope\" \
-                                                --replica-count 1 \
-                                                --managed-image $img_id \
-                                                --end-of-life-date \"$(($YY+1))-$MM-$DD\" \
-                                                --no-wait")
+                        executeWithRetry("img_id=\$(az image create \
+                                                --resource-group ${VM_RESOURCE_GROUP} \
+                                                --name myImage \
+                                                --source ${VM_NAME} \
+                                                --hyper-v-generation V2 | jq -r '.id')")
+                                                
                     } 
                 }
             }

@@ -31,6 +31,7 @@ def executeWithRetry(String script ='echo test') {
         }
     }
 }
+
 pipeline {
     options {
         timeout(time: 120, unit: 'MINUTES')
@@ -47,7 +48,8 @@ pipeline {
         BUILD_ID = "${currentBuild.number}"
         VM_RESOURCE_GROUP = "${params.LINUX_VERSION}-imageBuilder-${currentBuild.number}"
         VM_NAME = "temporary"
-        ADMIN_USERNAME = "jenkins"
+        VM_STAGING_NAME = "${VM_NAME}-staging"
+        ADMIN_USERNAME = "oeadmin"
         GALLERY_DEFN = "${params.SGX}-${params.LINUX_VERSION}"
         PUBLISHER = "${params.SGX}-${params.LINUX_VERSION}"
         OFFER = "${params.SGX}-${params.LINUX_VERSION}"
@@ -57,11 +59,6 @@ pipeline {
         IMG_ID = ""
     }
     stages {
-        stage('Checkout') {
-            steps{
-                cleanWs()
-            }
-        }
         stage('Install prereqs') {
             steps{
                 executeWithRetry('curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash');
@@ -102,7 +99,6 @@ pipeline {
                 withCredentials([
                     string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
                     string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')]) {
-
                     executeWithRetry("az vm create \
                                         --resource-group ${VM_RESOURCE_GROUP} \
                                         --name ${VM_NAME} \
@@ -135,107 +131,115 @@ pipeline {
 
         stage('Save VM State') {
             steps{
-                script{
-                    withCredentials([
-                        string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
-                        string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
-                    ]) {
+                withCredentials([
+                    string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
+                    string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
+                ]) {
 
-                        executeWithRetry("az vm deallocate \
-                                                --resource-group ${VM_RESOURCE_GROUP} \
-                                                --name ${VM_NAME}")
+                    executeWithRetry("az vm deallocate \
+                                            --resource-group ${VM_RESOURCE_GROUP} \
+                                            --name ${VM_NAME}")
 
-                        executeWithRetry("az vm generalize \
-                                                --resource-group ${VM_RESOURCE_GROUP} \
-                                                --name ${VM_NAME}")
+                    executeWithRetry("az vm generalize \
+                                            --resource-group ${VM_RESOURCE_GROUP} \
+                                            --name ${VM_NAME}")
 
-                        executeWithRetry("az sig image-definition create \
+                }
+            }
+        }
+
+        stage('Begin image gallery upload') {
+            steps{
+                withCredentials([
+                    string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
+                    string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
+                ]) {
+
+                    // Ensure the image definition exists.
+                    executeWithRetry("az sig image-definition create \
+                                            --resource-group ACC-Images \
+                                            --gallery-name ${GALLERY_NAME} \
+                                            --gallery-image-definition ${GALLERY_DEFN} \
+                                            --publisher ${PUBLISHER} \
+                                            --offer ${OFFER} \
+                                            --sku ${SKU} \
+                                            --os-type Linux \
+                                            --os-state generalized \
+                                            --hyper-v-generation V2 || true")
+
+                    /*
+                    executeWithRetry("az sig image-version delete \
                                                 --resource-group ACC-Images \
                                                 --gallery-name ${GALLERY_NAME} \
-                                                --gallery-image-definition ${GALLERY_DEFN} \
-                                                --publisher ${PUBLISHER} \
-                                                --offer ${OFFER} \
-                                                --sku ${SKU} \
-                                                --os-type Linux \
-                                                --os-state generalized \
-                                                --hyper-v-generation V2 || true")
+                                                --gallery-image-definition ACC-${LINUX_VERSION} \
+                                                --gallery-image-version ${GALLERY_IMAGE_VERSION}")
+                    */
 
-                        env.GALLERY_IMAGE_VERSION = sh (script :"\$(date +%Y).\$(date +%m).\$(date +%d).${BUILD_ID}", returnStdout: true).trim()
+                    // Image ID is needed to be used during shared image gallery upload.
+                    script {
+                        env.IMG_ID = sh (
+                                script: "\$(az image create \
+                                                --resource-group ${VM_RESOURCE_GROUP} \
+                                                --name myImage \
+                                                --source ${VM_NAME} \
+                                                --hyper-v-generation V2 | jq -r '.id')",
+                                returnStdout: true
+                            ).trim()
+                    }
 
-                        executeWithRetry("az sig image-version delete \
-                                                    --resource-group ACC-Images \
-                                                    --gallery-name ${GALLERY_NAME} \
-                                                    --gallery-image-definition ACC-${LINUX_VERSION} \
-                                                    --gallery-image-version ${GALLERY_IMAGE_VERSION}")
-
-                        env.IMG_ID = sh (script :"\$(az image create \
-                                                    --resource-group ${VM_RESOURCE_GROUP} \
-                                                    --name myImage \
-                                                    --source ${VM_NAME} \
-                                                    --hyper-v-generation V2 | jq -r '.id')", returnStdout: true).trim()
-
-                        executeWithRetry("az sig image-version delete \
-                                                    --resource-group ACC-Images \
-                                                    --gallery-name ${GALLERY_NAME} \
-                                                    --gallery-image-definition ACC-${LINUX_VERSION} \
-                                                    --gallery-image-version ${GALLERY_IMAGE_VERSION}")
-                                            
-                        executeWithRetry("az sig image-version create \
-                                                    --resource-group ACC-Images \
-                                                    --gallery-name ${GALLERY_NAME} \
-                                                    --gallery-image-definition ACC-${LINUX_VERSION} \
-                                                    --gallery-image-version ${GALLERY_IMAGE_VERSION} \
-                                                    --target-regions \"uksouth\" \"eastus2\" \"eastus\" \"westus2\" \"westeurope\" \
-                                                    --replica-count 1 \
-                                                    --managed-image $img_id \
-                                                    --end-of-life-date \"\$((\$YY+1))-\$MM-\$DD\" \
-                                                    --no-wait")
-                    } 
+                    // Create shared image gallery version
+                    executeWithRetry("az sig image-version create \
+                                                --resource-group ACC-Images \
+                                                --gallery-name ${GALLERY_NAME} \
+                                                --gallery-image-definition ACC-${LINUX_VERSION} \
+                                                --gallery-image-version ${GALLERY_IMAGE_VERSION} \
+                                                --target-regions \"uksouth\" \"eastus2\" \"eastus\" \"westus2\" \"westeurope\" \
+                                                --replica-count 1 \
+                                                --managed-image ${env.IMG_ID} \
+                                                --end-of-life-date \"\$((\$YY+1))-\$MM-\$DD\" \
+                                                --no-wait")
                 }
             }
         }
 
+        // Launch VM from managed image, do not wait for shared image gallery upload
         stage('Launch a VM After Saving State') {
             steps{
-                script{
-                    withCredentials([
-                        string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
-                        string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
-                    ]) {
-                        executeWithRetry("az vm create \
-                                            --resource-group ${VM_RESOURCE_GROUP} \
-                                            --name ${VM_NAME}-staging \
-                                            --image \"/subscriptions/${SUB_ID}/resourceGroups/${VM_RESOURCE_GROUP}/providers/Microsoft.Compute/images/myImage\" \
-                                            --admin-username ${ADMIN_USERNAME} \
-                                            --authentication-type ssh \
-                                            --size Standard_DC4s_v2 \
-                                            --generate-ssh-keys")
-                    }
+                withCredentials([
+                    string(credentialsId: 'VANILLA-IMAGES-SUBSCRIPTION-STRING', variable: 'SUBSCRIPTION_IMAGE_STRING'),
+                    string(credentialsId: 'SUBSCRIPTION-ID', variable: 'SUB_ID')
+                ]) {
+                    executeWithRetry("az vm create \
+                                        --resource-group ${VM_RESOURCE_GROUP} \
+                                        --name ${VM_NAME}-staging \
+                                        --image \"/subscriptions/${SUB_ID}/resourceGroups/${VM_RESOURCE_GROUP}/providers/Microsoft.Compute/images/myImage\" \
+                                        --admin-username ${ADMIN_USERNAME} \
+                                        --authentication-type ssh \
+                                        --size Standard_DC4s_v2 \
+                                        --generate-ssh-keys")
                 }
             }
         }
 
+        // We test Oeedgr8r first as it is a standalone project with almost the same dependencies as openenclave, with a 2 minute testing time.
         stage('Test Oeedgr8r') {
             steps{
-                script{
-                    azVmExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp/'")
-                    azVmExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build && cmake .. -G Ninja && ninja && ctest'")
-                }
+                azVmExecute("${VM_STAGING_NAME}", "'git clone --recursive https://github.com/openenclave/oeedger8r-cpp.git /home/jenkins/oeedger8r-cpp/'")
+                azVmExecute("${VM_STAGING_NAME}", "'mkdir /home/jenkins/oeedger8r-cpp/build; cd /home/jenkins/oeedger8r-cpp/build && cmake .. -G Ninja && ninja && ctest'")
             }
         }
 
+        // Test Openenclave with the highest chance of failing configuration to fail fast if there are issues encounterED
         stage('Test Open Enclave') {
             steps{
-                script{
-                    azVmExecute("${VM_NAME}-staging", "'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'")
-                    azVmExecute("${VM_NAME}-staging", "'mkdir /home/jenkins/openenclave/build'")
-                    azVmExecute("${VM_NAME}-staging", "'cd /home/jenkins/openenclave/build && \
-                                                        cmake -G Ninja .. \
-                                                        -DLVI_MITIGATION=ControlFlow \
-                                                        -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \
-                                                        ninja && \
-                                                        ctest'")
-                }
+                azVmExecute("${VM_STAGING_NAME}", "'git clone --recursive https://github.com/openenclave/openenclave.git /home/jenkins/openenclave'")
+                azVmExecute("${VM_STAGING_NAME}", "'mkdir /home/jenkins/openenclave/build'")
+                azVmExecute("${VM_STAGING_NAME}", "'cd /home/jenkins/openenclave/build && \
+                                                    cmake -G Ninja .. \
+                                                    -DLVI_MITIGATION=ControlFlow \
+                                                    -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \
+                                                    ninja && \
+                                                    ctest'")
             }
         }
     }

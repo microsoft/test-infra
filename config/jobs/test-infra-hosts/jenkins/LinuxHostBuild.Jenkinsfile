@@ -163,23 +163,31 @@ pipeline {
 
 
                     // Image ID is needed to be used during shared image gallery upload.
+                    executeWithRetry("az image create \
+                                            --resource-group ${VM_RESOURCE_GROUP} \
+                                            --name myImage \
+                                            --source ${VM_NAME} \
+                                            --hyper-v-generation V2 | jq -r '.id'")
+
                     script {
                         env.IMG_ID = sh (
-                                        script: "\$(az image create \
-                                                        --resource-group ${VM_RESOURCE_GROUP} \
-                                                        --name myImage \
-                                                        --source ${VM_NAME} \
-                                                        --hyper-v-generation V2 | jq -r '.id')",
+                                        script: "\$(az image show \
+                                                --resource-group ${VM_RESOURCE_GROUP} \
+                                                --name ${VM_NAME} \
+                                                | jq -r '.id' )",
                                         returnStdout: true
                                      ).trim()
-
+                        
+                        echo "here"
+                        echo "${env.IMG_ID}"
                         env.GALLERY_IMAGE_VERSION = sh (
                                                         script: "\$(date +%Y).\$(date +%m).\$(date +%d).${BUILD_ID}",
                                                         returnStdout: true
                                                     ).trim()
+                        echo "${env.GALLERY_IMAGE_VERSION}"
                     }
 
-                    
+                    echo 'Brettttttt'
                     /*
                     executeWithRetry("az sig image-version delete \
                                                 --resource-group ACC-Images \
@@ -189,7 +197,7 @@ pipeline {
                     */
 
                     // Create shared image gallery version
-                    executeWithRetry("echo 'bretttttt' && az sig image-version create \
+                    executeWithRetry("az sig image-version create \
                                                 --resource-group ACC-Images \
                                                 --gallery-name ${GALLERY_NAME} \
                                                 --gallery-image-definition ACC-${LINUX_VERSION} \

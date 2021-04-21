@@ -53,6 +53,8 @@ pipeline {
         OFFER = "${params.SGX}-${params.LINUX_VERSION}"
         SKU = "${params.SGX}-${params.LINUX_VERSION}"
         GALLERY_NAME = "ACC_Images"
+        GALLERY_IMAGE_VERSION = ""
+        IMG_ID = ""
     }
     stages {
         stage('Checkout') {
@@ -158,11 +160,36 @@ pipeline {
                                                 --os-state generalized \
                                                 --hyper-v-generation V2 || true")
 
-                        executeWithRetry("img_id=\$(az image create \
-                                                --resource-group ${VM_RESOURCE_GROUP} \
-                                                --name myImage \
-                                                --source ${VM_NAME} \
-                                                --hyper-v-generation V2 | jq -r '.id')")
+                        env.GALLERY_IMAGE_VERSION = sh (script :"\$(date +%Y).\$(date +%m).\$(date +%d).${BUILD_ID}", returnStdout: true).trim()
+
+                        executeWithRetry("az sig image-version delete \
+                                                    --resource-group ACC-Images \
+                                                    --gallery-name ${GALLERY_NAME} \
+                                                    --gallery-image-definition ACC-${LINUX_VERSION} \
+                                                    --gallery-image-version ${GALLERY_IMAGE_VERSION}")
+
+                        env.IMG_ID = sh (script :"\$(az image create \
+                                                    --resource-group ${VM_RESOURCE_GROUP} \
+                                                    --name myImage \
+                                                    --source ${VM_NAME} \
+                                                    --hyper-v-generation V2 | jq -r '.id')", returnStdout: true).trim()
+
+                        executeWithRetry("az sig image-version delete \
+                                                    --resource-group ACC-Images \
+                                                    --gallery-name ${GALLERY_NAME} \
+                                                    --gallery-image-definition ACC-${LINUX_VERSION} \
+                                                    --gallery-image-version ${GALLERY_IMAGE_VERSION}")
+                                            
+                        executeWithRetry("az sig image-version create \
+                                                    --resource-group ACC-Images \
+                                                    --gallery-name ${GALLERY_NAME} \
+                                                    --gallery-image-definition ACC-${LINUX_VERSION} \
+                                                    --gallery-image-version ${GALLERY_IMAGE_VERSION} \
+                                                    --target-regions \"uksouth\" \"eastus2\" \"eastus\" \"westus2\" \"westeurope\" \
+                                                    --replica-count 1 \
+                                                    --managed-image $img_id \
+                                                    --end-of-life-date \"\$((\$YY+1))-\$MM-\$DD\" \
+                                                    --no-wait")
                     } 
                 }
             }

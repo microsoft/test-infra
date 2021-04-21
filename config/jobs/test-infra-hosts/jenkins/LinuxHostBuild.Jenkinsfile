@@ -186,8 +186,7 @@ pipeline {
                                                 --gallery-image-definition ACC-${LINUX_VERSION} \
                                                 --gallery-image-version ${GALLERY_IMAGE_VERSION}")
                     */
-/subscriptions/c4fdda6e-bfbd-4b8e-9703-037b3a45bf37/resourceGroups/Ubuntu_1804_LTS_Gen2-imageBuilder-98/providers/Microsoft.Compute/images/myImage
-/subscriptions/c4fdda6e-bfbd-4b8e-9703-037b3a45bf37/resourceGroups/Ubuntu_1804_LTS_Gen2-imageBuilder-98/providers/Microsoft.Compute/images/myImage
+
                     // Create shared image gallery version
                     executeWithRetry("az sig image-version create \
                                                 --resource-group ACC-Images \

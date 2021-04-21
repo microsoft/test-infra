@@ -188,7 +188,7 @@ pipeline {
                     */
 
                     // Create shared image gallery version
-                    executeWithRetry("az sig image-version create \
+                    executeWithRetry("echo 'bretttttt' && az sig image-version create \
                                                 --resource-group ACC-Images \
                                                 --gallery-name ${GALLERY_NAME} \
                                                 --gallery-image-definition ACC-${LINUX_VERSION} \
@@ -240,6 +240,14 @@ pipeline {
                                                     -DLVI_MITIGATION_BINDIR=/usr/local/lvi-mitigation/bin && \
                                                     ninja && \
                                                     ctest'")
+            }
+        }
+
+        stage("Run tests on new Agents") {
+            steps{
+                build job: '/test-infra-hosts/Azure-Linux',
+                parameters: [string(name: 'UBUNTU_1804_CUSTOM_LABEL', value: 'staging-ubuntu-1804'),
+                            booleanParam(name: 'FULL_TEST_SUITE', value: false)]
             }
         }
     }

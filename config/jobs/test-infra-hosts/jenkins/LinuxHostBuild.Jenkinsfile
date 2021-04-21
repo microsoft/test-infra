@@ -112,6 +112,7 @@ pipeline {
                 azVmExecute("${VM_NAME}", "'cd /home/jenkins/openenclave  && git checkout master'") // this needs to actually check out a merge ref
                 azVmExecute("${VM_NAME}", "'bash /home/jenkins/openenclave/scripts/ansible/install-ansible.sh'")
                 azVmExecute("${VM_NAME}", "'ansible-playbook /home/jenkins/openenclave/scripts/ansible/oe-contributors-acc-setup.yml'")
+                azVmExecute("${VM_NAME}", "'sudo snap install docker'")
                 azVmExecute("${VM_NAME}", "'sudo rm -rf /home/jenkins/openenclave'")
             }
         }

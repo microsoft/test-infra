@@ -8,9 +8,8 @@ def azVmExecute(String vmName, String command ='echo test') {
 }
 
 def executeWithRetry(String script ='echo test') {
-
     int retry_count = 1;
-    int max_retries = 5;
+    int max_retries = 10;
 
     while(retry_count <= max_retries) {
         try {
@@ -25,7 +24,7 @@ def executeWithRetry(String script ='echo test') {
             if (retry_count == max_retries) {
                 throw e
             }
-            sleep(30)
+            sleep(60)
             retry_count += 1
             continue;
         }
@@ -76,12 +75,6 @@ pipeline {
                 }
             }
         }
-        stage('Ensure Resource Group Does Not Exist') {
-            steps{
-                executeWithRetry("az group delete --name ${VM_RESOURCE_GROUP} --yes || true");
-            }
-        }
-
 
         stage('Create resource group') {
             steps{
@@ -167,6 +160,25 @@ pipeline {
                                             --os-state generalized \
                                             --hyper-v-generation V2 || true")
 
+
+                    // Image ID is needed to be used during shared image gallery upload.
+                    script {
+                        env.IMG_ID = sh (
+                                        script: "\$(az image create \
+                                                        --resource-group ${VM_RESOURCE_GROUP} \
+                                                        --name myImage \
+                                                        --source ${VM_NAME} \
+                                                        --hyper-v-generation V2 | jq -r '.id')",
+                                        returnStdout: true
+                                     ).trim()
+
+                        env.GALLERY_IMAGE_VERSION = sh (
+                                                        script: "\$(date +%Y).\$(date +%m).\$(date +%d).${BUILD_ID}",
+                                                        returnStdout: true
+                                                    ).trim()
+                    }
+
+                    
                     /*
                     executeWithRetry("az sig image-version delete \
                                                 --resource-group ACC-Images \
@@ -174,18 +186,6 @@ pipeline {
                                                 --gallery-image-definition ACC-${LINUX_VERSION} \
                                                 --gallery-image-version ${GALLERY_IMAGE_VERSION}")
                     */
-
-                    // Image ID is needed to be used during shared image gallery upload.
-                    script {
-                        env.IMG_ID = sh (
-                                script: "\$(az image create \
-                                                --resource-group ${VM_RESOURCE_GROUP} \
-                                                --name myImage \
-                                                --source ${VM_NAME} \
-                                                --hyper-v-generation V2 | jq -r '.id')",
-                                returnStdout: true
-                            ).trim()
-                    }
 
                     // Create shared image gallery version
                     executeWithRetry("az sig image-version create \

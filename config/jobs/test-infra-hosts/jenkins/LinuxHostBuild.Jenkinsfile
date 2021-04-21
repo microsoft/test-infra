@@ -163,7 +163,6 @@ pipeline {
                                                 --name myImage \
                                                 --source ${VM_NAME} \
                                                 --hyper-v-generation V2 | jq -r '.id')")
-                                                
                     } 
                 }
             }
